@@ -1,115 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
 <title>Doce Destino</title>
 
 <style>
+
+/* =========================
+   BASE
+========================= */
+
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background: #120d1c;
+  background: #100a18;
   color: white;
   font-family: Georgia, serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
+
+/* =========================
+   JOGO
+========================= */
 
 .game {
-  width: 100%;
-  max-width: 480px;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top, #604060 0%, transparent 35%),
-    linear-gradient(180deg, #24152d, #0e0914);
   position: relative;
-  overflow: hidden;
-}
 
-.screen {
-  min-height: 100vh;
-  padding: 35px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-h1 {
-  font-size: 48px;
-  margin: 0 0 10px;
-  color: #ffd6ef;
-  text-shadow: 0 0 20px #ff8dcc;
-}
-
-.subtitle {
-  font-size: 19px;
-  color: #f5dbea;
-  margin-bottom: 45px;
-}
-
-input {
   width: 100%;
-  padding: 16px;
-  border-radius: 14px;
-  border: 2px solid #d98abb;
-  background: rgba(255,255,255,0.08);
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  outline: none;
-  margin-bottom: 15px;
+  height: 100dvh;
+
+  min-height: 100dvh;
+
+  overflow: hidden;
+
+  background: #120c18;
 }
 
-input::placeholder {
+
+/* =========================
+   TELA INICIAL
+========================= */
+
+.start-screen {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #704766 0%,
+      #28172f 45%,
+      #100a18 100%
+    );
+}
+
+.start-screen.hidden {
+  display: none;
+}
+
+.start-title {
+  margin: 0;
+
+  font-size: clamp(42px, 12vw, 64px);
+
+  color: #ffd8ef;
+
+  text-shadow:
+    0 0 12px rgba(255, 151, 211, .8),
+    0 0 35px rgba(255, 120, 200, .4);
+}
+
+.start-subtitle {
+  margin-top: 8px;
+  margin-bottom: 35px;
+
+  font-size: 18px;
+
+  color: #f6ddea;
+}
+
+.name-input {
+  width: min(340px, 90%);
+
+  padding: 15px 18px;
+
+  border: 1px solid rgba(255, 190, 230, .6);
+
+  border-radius: 16px;
+
+  outline: none;
+
+  background: rgba(20, 10, 28, .65);
+
+  color: white;
+
+  text-align: center;
+
+  font-size: 18px;
+}
+
+.name-input::placeholder {
   color: #c9afc3;
 }
 
-button {
-  width: 100%;
-  padding: 15px;
-  margin: 7px 0;
+.start-button {
+  width: min(340px, 90%);
+
+  margin-top: 14px;
+
+  padding: 16px;
+
   border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #e99acb, #a95c98);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ec9ccc,
+      #a85b98
+    );
+
   color: white;
+
   font-size: 17px;
+
   font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,.25);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35);
 }
 
-button:active {
-  transform: scale(.98);
-}
 
-.hidden {
-  display: none !important;
-}
+/* =========================
+   CENA
+========================= */
 
-.story {
-  justify-content: flex-end;
-  padding-bottom: 25px;
-}
+.story-screen {
+  position: absolute;
 
-.scene {
-  position: relative;
-  flex: 1;
-  width: 100%;
-  min-height: 72vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  inset: 0;
 
   overflow: hidden;
-  background: #151020;
+
+  display: none;
+}
+
+.story-screen.active {
+  display: block;
+}
+
+
+/* =========================
+   CENÁRIO
+========================= */
+
+.scene {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  background: #17101f;
 }
 
 .scene img {
@@ -120,369 +206,981 @@ button:active {
 
   max-width: none;
 
-  object-fit: cover;
+  left: -7.5%;
+  top: -7.5%;
 
-  display: block;
+  object-fit: cover;
 
   transform-origin: center center;
 
-  animation: cameraAurora 22s ease-in-out infinite alternate;
+  animation:
+    auroraCamera 24s ease-in-out infinite alternate;
+
+  will-change: transform;
 }
 
-@keyframes cameraAurora {
+
+/* Movimento cinematográfico */
+
+@keyframes auroraCamera {
 
   0% {
     transform:
       scale(1.02)
-      translate3d(-0.5%, 0%, 0);
+      translate3d(-0.3%, 0%, 0);
   }
 
-  50% {
+  35% {
     transform:
-      scale(1.06)
-      translate3d(0.5%, -0.5%, 0);
+      scale(1.05)
+      translate3d(0.4%, -0.3%, 0);
+  }
+
+  70% {
+    transform:
+      scale(1.07)
+      translate3d(-0.3%, 0.4%, 0);
   }
 
   100% {
     transform:
       scale(1.10)
-      translate3d(-0.5%, 0.5%, 0);
+      translate3d(0.3%, -0.2%, 0);
   }
 }
 
-.dialogue {
-  background: rgba(10, 5, 18, .88);
-  border: 1px solid rgba(255,190,230,.35);
-  border-radius: 20px;
-  padding: 20px;
-  text-align: left;
-  margin-bottom: 15px;
-}
 
-.character {
-  color: #ffafd9;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+/* =========================
+   SOMBRA SOBRE O CENÁRIO
+========================= */
 
-.text {
-  font-size: 18px;
-  line-height: 1.55;
-}
+.scene::after {
 
-.choice-title {
-  color: #ffd6ef;
-  margin: 10px 0;
-}
+  content: "";
 
-.status {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(12, 5, 18, .40) 0%,
+      transparent 25%,
+      transparent 58%,
+      rgba(10, 4, 16, .78) 100%
+    );
+}
+
+
+/* =========================
+   PETALAS
+========================= */
+
+.petals {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.petal {
+
+  position: absolute;
+
+  width: 9px;
+  height: 5px;
+
+  border-radius: 80% 20% 80% 20%;
+
+  background: rgba(255, 190, 220, .85);
+
+  filter: blur(.2px);
+
+  animation:
+    fallingPetal linear infinite;
+}
+
+.petal:nth-child(1) {
+  left: 8%;
+  top: -5%;
+  animation-duration: 11s;
+}
+
+.petal:nth-child(2) {
+  left: 28%;
+  top: -10%;
+  animation-duration: 15s;
+  animation-delay: 3s;
+}
+
+.petal:nth-child(3) {
+  left: 51%;
+  top: -8%;
+  animation-duration: 13s;
+  animation-delay: 1s;
+}
+
+.petal:nth-child(4) {
+  left: 73%;
+  top: -7%;
+  animation-duration: 17s;
+  animation-delay: 5s;
+}
+
+.petal:nth-child(5) {
+  left: 91%;
+  top: -12%;
+  animation-duration: 12s;
+  animation-delay: 2s;
+}
+
+@keyframes fallingPetal {
+
+  0% {
+    transform:
+      translate3d(0, -20px, 0)
+      rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: .8;
+  }
+
+  50% {
+    transform:
+      translate3d(35px, 50vh, 0)
+      rotate(180deg);
+  }
+
+  100% {
+    transform:
+      translate3d(-45px, 110vh, 0)
+      rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.hud {
+
+  position: absolute;
+
+  top: max(14px, env(safe-area-inset-top));
+
+  left: 14px;
+  right: 14px;
+
+  z-index: 10;
+
   display: flex;
+
+  align-items: center;
+
   justify-content: space-between;
-  font-size: 13px;
-  color: #eecce2;
+
+  pointer-events: none;
 }
 
-.route {
-  color: #ffd1e9;
+
+/* =========================
+   PROTAGONISTA
+========================= */
+
+.player-info {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
 }
 
-.footer {
-  margin-top: 25px;
-  font-size: 12px;
-  color: #9e8398;
+
+/* Espaço para a foto escolhida */
+
+.player-avatar {
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 210, 235, .9);
+
+  background:
+    linear-gradient(
+      145deg,
+      #efabd0,
+      #8f527f
+    );
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,.35);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  font-size: 22px;
 }
+
+.player-avatar img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.player-name {
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  text-shadow:
+    0 2px 5px rgba(0,0,0,.8);
+}
+
+
+/* =========================
+   AFINIDADE
+========================= */
+
+.affinity {
+
+  padding: 9px 13px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(18, 7, 26, .55);
+
+  border:
+    1px solid rgba(255, 190, 225, .35);
+
+  color: white;
+
+  font-size: 14px;
+
+  text-shadow:
+    0 2px 5px rgba(0,0,0,.8);
+
+  backdrop-filter: blur(7px);
+}
+
+
+/* =========================
+   ÁREA INFERIOR
+========================= */
+
+.bottom-ui {
+
+  position: absolute;
+
+  left: 14px;
+  right: 14px;
+
+  bottom: max(14px, env(safe-area-inset-bottom));
+
+  z-index: 8;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* =========================
+   DIÁLOGO
+========================= */
+
+.dialogue {
+
+  width: 100%;
+
+  padding: 16px 18px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(13, 6, 20, .80),
+      rgba(13, 6, 20, .94)
+    );
+
+  border:
+    1px solid rgba(255, 190, 230, .40);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35);
+
+  backdrop-filter: blur(9px);
+
+  color: white;
+}
+
+
+/* Não existe "Narrador" aqui.
+   É somente a ação/narração. */
+
+.dialogue-text {
+
+  font-size: clamp(16px, 4.4vw, 19px);
+
+  line-height: 1.45;
+
+  text-align: left;
+
+  color: #fff6fc;
+}
+
+
+/* =========================
+   ESCOLHAS
+========================= */
+
+.choices {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.choice {
+
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border-radius: 14px;
+
+  border:
+    1px solid rgba(255, 190, 225, .45);
+
+  background:
+    rgba(93, 44, 85, .78);
+
+  color: white;
+
+  font-family: Georgia, serif;
+
+  font-size: 15px;
+
+  text-align: left;
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.25);
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform .15s ease,
+    background .15s ease;
+}
+
+.choice:active {
+
+  transform: scale(.98);
+
+  background:
+    rgba(164, 86, 142, .9);
+}
+
+
+/* =========================
+   FALA DA PROTAGONISTA
+========================= */
+
+.player-dialogue {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 10px;
+}
+
+.player-dialogue .small-avatar {
+
+  width: 55px;
+  height: 55px;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 210, 235, .7);
+
+  background: #8d527d;
+}
+
+.player-dialogue .small-avatar img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* =========================
+   PERSONAGEM
+========================= */
+
+.character-dialogue {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 10px;
+}
+
+.character-dialogue .character-avatar {
+
+  width: 55px;
+  height: 55px;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  background: #604060;
+
+  border:
+    1px solid rgba(255, 210, 235, .7);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+  .player-avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .player-name {
+    font-size: 15px;
+  }
+
+  .affinity {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .dialogue {
+    padding: 13px 15px;
+  }
+
+  .choice {
+    padding: 10px 13px;
+    font-size: 14px;
+  }
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="game">
 
-  <!-- TELA INICIAL -->
-  <section id="startScreen" class="screen">
 
-    <h1>Doce Destino</h1>
+  <!-- =========================
+       TELA INICIAL
+  ========================== -->
 
-    <div class="subtitle">
+  <section
+    id="startScreen"
+    class="start-screen"
+  >
+
+    <h1 class="start-title">
+      Doce Destino
+    </h1>
+
+    <div class="start-subtitle">
       Seu coração escolhe o caminho.
     </div>
 
-    <p>
-      Antes de começar sua história...
-    </p>
-
-    <p>
-      <strong>Como você se chama?</strong>
-    </p>
-
     <input
       id="playerName"
+      class="name-input"
       type="text"
       maxlength="20"
       placeholder="Digite seu nome"
     >
 
-    <button onclick="startGame()">
+    <button
+      class="start-button"
+      onclick="startGame()"
+    >
       Começar minha história 💗
     </button>
 
-    <div class="footer">
-      03 rotas • escolhas • afinidade • finais diferentes
-    </div>
-
   </section>
 
 
-  <!-- HISTÓRIA -->
-  <section id="storyScreen" class="screen story hidden">
+  <!-- =========================
+       HISTÓRIA
+  ========================== -->
 
-    <div class="status">
-      <span id="playerDisplay"></span>
-      <span>❤️ Afinidade: <span id="affinity">0</span></span>
+  <section
+    id="storyScreen"
+    class="story-screen"
+  >
+
+
+    <!-- CENÁRIO -->
+
+    <div
+      id="scene"
+      class="scene"
+    ></div>
+
+
+    <!-- PÉTALAS -->
+
+    <div class="petals">
+
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+
     </div>
 
-    <div class="scene" id="scene">
-      🌙
-    </div>
 
-    <div class="dialogue">
+    <!-- HUD -->
 
-      <div class="character" id="character">
-        Narrador
+    <div class="hud">
+
+      <div class="player-info">
+
+        <div
+          id="playerAvatar"
+          class="player-avatar"
+        >
+          ♡
+        </div>
+
+        <div
+          id="playerDisplay"
+          class="player-name"
+        >
+          Bia
+        </div>
+
       </div>
 
-      <div class="text" id="storyText">
+
+      <div class="affinity">
+
+        ❤️
+        <span id="affinity">
+          0
+        </span>
+
       </div>
 
     </div>
 
-    <div id="choices"></div>
+
+    <!-- INTERFACE INFERIOR -->
+
+    <div class="bottom-ui">
+
+
+      <!-- TEXTO -->
+
+      <div class="dialogue">
+
+        <div
+          id="storyText"
+          class="dialogue-text"
+        ></div>
+
+      </div>
+
+
+      <!-- ESCOLHAS -->
+
+      <div
+        id="choices"
+        class="choices"
+      ></div>
+
+
+    </div>
+
 
   </section>
+
 
 </div>
 
 
 <script>
 
+/* =========================
+   VARIÁVEIS
+========================= */
+
 let playerName = "";
+
 let affinity = 0;
+
 let currentStep = 0;
+
 let route = "";
+
+
+/* =========================
+   HISTÓRIA
+========================= */
 
 const story = [
 
   {
-    character: "Narrador",
 
     text: () =>
       `Seu primeiro dia na Universidade Aurora finalmente chegou. ${playerName}, você respira fundo antes de entrar no campus.`,
 
-    scene: "universidade-aurora.png.PNG",
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "Entrar imediatamente.",
+        text:
+          "Entrar imediatamente.",
+
         affinity: 1,
+
         next: 1
       },
+
       {
-        text: "Parar por alguns segundos e observar.",
+        text:
+          "Parar por alguns segundos e observar.",
+
         affinity: 0,
+
         next: 2
       }
+
     ]
+
   },
 
 
   {
-    character: "???",
 
     text: () =>
-      `— Ei! Você vai ficar parada aí o dia inteiro?`,
+      `Você atravessa os portões da universidade. O movimento dos estudantes ao redor faz você perceber que uma nova fase está começando.`,
 
-    scene: "✨",
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "— Desculpa! Eu estava meio perdida.",
+        text:
+          "Continuar andando.",
+
         affinity: 1,
-        next: 3
-      },
-      {
-        text: "— E você é quem para estar me dando ordens?",
-        affinity: 0,
-        next: 3
+
+        next: 2
       }
+
     ]
+
   },
 
 
   {
-    character: "Narrador",
 
     text: () =>
       `Enquanto observa o campus, três pessoas chamam sua atenção. Cada uma parece carregar uma história completamente diferente.`,
 
-    scene: "🏫",
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "Olhar para o garoto de cabelos ruivos.",
-        route: "Childe",
+        text:
+          "Olhar para o garoto de cabelos ruivos.",
+
+        route:
+          "Childe",
+
         affinity: 1,
+
+        next: 3
+      },
+
+      {
+        text:
+          "Olhar para o garoto de cabelos claros.",
+
+        route:
+          "Aether",
+
+        affinity: 1,
+
         next: 4
       },
+
       {
-        text: "Olhar para o garoto de cabelos claros.",
-        route: "Aether",
+        text:
+          "Procurar alguém familiar.",
+
+        route:
+          "Leiftam",
+
         affinity: 1,
+
         next: 5
-      },
+      }
+
+    ]
+
+  },
+
+
+  {
+
+    text: () =>
+      `O garoto percebe seu olhar e dá um pequeno sorriso.
+
+"Você sempre olha para as pessoas desse jeito... ou eu sou uma exceção?"`,
+
+    scene:
+      "universidade-aurora.png.PNG",
+
+    choices: [
+
       {
-        text: "Procurar alguém que pareça familiar.",
-        route: "Leiftam",
+        text:
+          "Talvez você seja uma exceção.",
+
+        affinity: 2,
+
+        next: 6
+      },
+
+      {
+        text:
+          "Eu estava apenas olhando.",
+
         affinity: 1,
+
         next: 6
       }
+
     ]
+
   },
 
 
   {
-    character: "Childe",
 
     text: () =>
-      `Ele percebe seu olhar e dá um pequeno sorriso. — Você sempre olha para as pessoas desse jeito… ou eu sou uma exceção?`,
+      `O garoto de cabelos claros se aproxima sorrindo.
 
-    scene: "❤️",
+"Você fica vermelha toda vez que eu chego perto. Interessante."`,
+
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "— Talvez você seja uma exceção.",
+        text:
+          "Eu não estou vermelha!",
+
         affinity: 2,
-        next: 7
+
+        next: 6
       },
+
       {
-        text: "— Eu estava apenas olhando.",
-        affinity: 1,
-        next: 7
+        text:
+          "Talvez seja culpa sua.",
+
+        affinity: 2,
+
+        next: 6
       }
+
     ]
+
   },
 
 
   {
-    character: "Aether",
 
     text: () =>
-      `O garoto de cabelos claros se aproxima sorrindo. — Você fica vermelha toda vez que eu chego perto. Interessante.`,
+      `Uma voz familiar surge atrás de você.
 
-    scene: "✨",
+"Eu sabia que você estaria aqui. Não mudou nada, ${playerName}."`,
+
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "— Eu não estou vermelha!",
+        text:
+          "Abraçá-lo.",
+
         affinity: 2,
-        next: 7
+
+        next: 6
       },
+
       {
-        text: "— Talvez seja culpa sua.",
-        affinity: 2,
-        next: 7
+        text:
+          "Você continua aparecendo do nada.",
+
+        affinity: 1,
+
+        next: 6
       }
+
     ]
+
   },
 
 
   {
-    character: "Leiftam",
 
     text: () =>
-      `Uma voz familiar surge atrás de você. — Eu sabia que você estaria aqui. Não mudou nada, ${playerName}.`,
+      `Você sente que aquele dia acabou de mudar alguma coisa.
 
-    scene: "🌿",
+Talvez seja apenas o começo...`,
+
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "Abraçá-lo.",
-        affinity: 2,
-        next: 7
-      },
-      {
-        text: "— Você continua aparecendo do nada.",
+        text:
+          "Continuar.",
+
         affinity: 1,
+
         next: 7
       }
+
     ]
+
   },
 
 
   {
-    character: "Narrador",
 
     text: () =>
-      `Você sente que aquele dia acabou de mudar alguma coisa. Talvez seja apenas o começo...`,
+      `E assim começa o seu Doce Destino, ${playerName}.
 
-    scene: "🌙",
+Seu coração ainda não sabe qual caminho escolher...`,
 
-    choices: [
-      {
-        text: "Continuar.",
-        affinity: 1,
-        next: 7
-      }
-    ]
-  },
-
-
-  {
-    character: () =>
-      route || "Destino",
-
-    text: () =>
-      `E assim começa o seu Doce Destino, ${playerName}. Seu coração ainda não sabe qual caminho escolher...`,
-
-    scene: "💗",
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: [
+
       {
-        text: "Ver o que o destino preparou.",
+        text:
+          "Ver o que o destino preparou.",
+
         affinity: 1,
+
         next: 8
       }
+
     ]
+
   },
 
 
   {
-    character: "Narrador",
 
     text: () =>
       `Por enquanto, esta é apenas a primeira página da sua história.
 
 O caminho de ${playerName} está apenas começando. 💗`,
 
-    scene: "🌌",
+    scene:
+      "universidade-aurora.png.PNG",
 
     choices: []
+
   }
 
 ];
 
 
+/* =========================
+   COMEÇAR
+========================= */
+
 function startGame() {
 
   const input =
-    document.getElementById("playerName");
+    document.getElementById(
+      "playerName"
+    );
 
   playerName =
     input.value.trim();
+
 
   if (!playerName) {
 
@@ -495,56 +1193,72 @@ function startGame() {
     return;
   }
 
+
   affinity = 0;
+
   currentStep = 0;
+
   route = "";
 
+
   document
-    .getElementById("startScreen")
+    .getElementById(
+      "startScreen"
+    )
     .classList.add("hidden");
 
-  document
-    .getElementById("storyScreen")
-    .classList.remove("hidden");
 
   document
-    .getElementById("playerDisplay")
-    .textContent = playerName;
+    .getElementById(
+      "storyScreen"
+    )
+    .classList.add("active");
+
+
+  document
+    .getElementById(
+      "playerDisplay"
+    )
+    .textContent =
+      playerName;
+
 
   showScene();
+
 }
 
+
+/* =========================
+   MOSTRAR CENA
+========================= */
 
 function showScene() {
 
   const current =
     story[currentStep];
 
-  const character =
-    typeof current.character === "function"
-      ? current.character()
-      : current.character;
 
-  document
-    .getElementById("character")
-    .textContent = character;
-
-  document
-    .getElementById("storyText")
-    .textContent = current.text();
-
+  /* Cenário */
 
   const sceneElement =
-    document.getElementById("scene");
+    document.getElementById(
+      "scene"
+    );
 
 
   if (
     current.scene &&
-    /\.(png|jpe?g|webp|gif)$/i.test(current.scene)
+    /\.(png|jpe?g|webp|gif)$/i.test(
+      current.scene
+    )
   ) {
 
     sceneElement.innerHTML =
-      `<img src="${current.scene}" alt="Cenário">`;
+
+      `<img
+        src="${current.scene}"
+        alt="Universidade Aurora"
+      >`;
 
   } else {
 
@@ -554,82 +1268,130 @@ function showScene() {
   }
 
 
-  document
-    .getElementById("affinity")
-    .textContent = affinity;
+  /* Texto */
 
+  document
+    .getElementById(
+      "storyText"
+    )
+    .textContent =
+      current.text();
+
+
+  /* Afinidade */
+
+  document
+    .getElementById(
+      "affinity"
+    )
+    .textContent =
+      affinity;
+
+
+  /* Escolhas */
 
   const choicesContainer =
-    document.getElementById("choices");
+    document.getElementById(
+      "choices"
+    );
 
-  choicesContainer.innerHTML = "";
+  choicesContainer.innerHTML =
+    "";
 
 
-  if (current.choices.length === 0) {
+  /* Final */
+
+  if (
+    current.choices.length === 0
+  ) {
 
     const restart =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
+
+    restart.className =
+      "choice";
 
     restart.textContent =
       "Voltar ao início 💕";
 
+
     restart.onclick = () => {
 
       document
-        .getElementById("storyScreen")
-        .classList.add("hidden");
+        .getElementById(
+          "storyScreen"
+        )
+        .classList.remove("active");
+
 
       document
-        .getElementById("startScreen")
+        .getElementById(
+          "startScreen"
+        )
         .classList.remove("hidden");
 
     };
 
-    choicesContainer.appendChild(restart);
+
+    choicesContainer.appendChild(
+      restart
+    );
 
     return;
+
   }
 
 
-  const title =
-    document.createElement("div");
+  /* Criar escolhas */
 
-  title.className =
-    "choice-title";
+  current.choices.forEach(
+    choice => {
 
-  title.textContent =
-    "O que você vai fazer?";
+      const button =
+        document.createElement(
+          "button"
+        );
 
-  choicesContainer.appendChild(title);
+
+      button.className =
+        "choice";
 
 
-  current.choices.forEach(choice => {
+      button.textContent =
+        choice.text;
 
-    const button =
-      document.createElement("button");
 
-    button.textContent =
-      choice.text;
+      button.onclick = () => {
 
-    button.onclick = () => {
+        affinity +=
+          choice.affinity || 0;
 
-      affinity +=
-        choice.affinity || 0;
 
-      if (choice.route) {
-        route = choice.route;
-      }
+        if (choice.route) {
 
-      currentStep =
-        choice.next;
+          route =
+            choice.route;
 
-      showScene();
+        }
 
-    };
 
-    choicesContainer.appendChild(button);
+        currentStep =
+          choice.next;
 
-  });
+
+        showScene();
+
+      };
+
+
+      choicesContainer.appendChild(
+        button
+      );
+
+    }
+  );
 
 }
 
