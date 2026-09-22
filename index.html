@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doce Destino</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #120d1c;
+      color: white;
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .game {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background:
+        linear-gradient(
+          rgba(20, 10, 35, 0.45),
+          rgba(20, 10, 35, 0.9)
+        ),
+        radial-gradient(circle at top, #60406f, #17101f 65%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 35px 24px;
+      text-align: center;
+    }
+
+    .stars {
+      font-size: 24px;
+      letter-spacing: 8px;
+      margin-bottom: 35px;
+      opacity: 0.8;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      font-size: 18px;
+      color: #f2d9ff;
+    }
+
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: #e8a8dc;
+      margin: 30px auto;
+    }
+
+    .description {
+      max-width: 330px;
+      line-height: 1.6;
+      color: #eadfea;
+      margin-bottom: 35px;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 16px 30px;
+      font-size: 17px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #c56bb5, #7c4fa3);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .version {
+      position: absolute;
+      bottom: 18px;
+      font-size: 12px;
+      opacity: 0.45;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="game">
+
+    <div class="stars">✦ ✧ ✦</div>
+
+    <h1>Doce Destino</h1>
+
+    <div class="subtitle">
+      Seu coração escolhe o caminho.
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="description">
+      Algumas histórias começam por acaso.
+      Outras parecem estar esperando por você.
+      <br><br>
+      Qual caminho seu coração vai escolher?
+    </p>
+
+    <button onclick="comecarHistoria()">
+      Começar minha história
+    </button>
+
+    <div class="version">
+      Doce Destino • Primeiro protótipo
+    </div>
+
+  </main>
+
+  <script>
+    function comecarHistoria() {
+      alert(
+        "Bem-vinda ao Doce Destino! 💗\n\n" +
+        "Sua história está apenas começando..."
+      );
+    }
+  </script>
+
+</body>
+</html>
