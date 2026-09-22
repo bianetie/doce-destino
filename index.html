@@ -100,10 +100,21 @@ button:active {
 
 .scene {
   flex: 1;
+  min-height: 45vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 70px;
+  overflow: hidden;
+}
+
+.scene img {
+  width: 100%;
+  height: 100%;
+  min-height: 45vh;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
 }
 
 .dialogue {
@@ -235,9 +246,12 @@ const story = [
 
   {
     character: "Narrador",
+
     text: () =>
       `Seu primeiro dia na Universidade Aurora finalmente chegou. ${playerName}, você respira fundo antes de entrar no campus.`,
-    scene: "scene: "universidade-aurora.png.PNG",",
+
+    scene: "universidade-aurora.png.PNG",
+
     choices: [
       {
         text: "Entrar imediatamente.",
@@ -252,11 +266,15 @@ const story = [
     ]
   },
 
+
   {
     character: "???",
+
     text: () =>
       `— Ei! Você vai ficar parada aí o dia inteiro?`,
+
     scene: "✨",
+
     choices: [
       {
         text: "— Desculpa! Eu estava meio perdida.",
@@ -271,11 +289,15 @@ const story = [
     ]
   },
 
+
   {
     character: "Narrador",
+
     text: () =>
       `Enquanto observa o campus, três pessoas chamam sua atenção. Cada uma parece carregar uma história completamente diferente.`,
+
     scene: "🏫",
+
     choices: [
       {
         text: "Olhar para o garoto de cabelos ruivos.",
@@ -298,11 +320,15 @@ const story = [
     ]
   },
 
+
   {
     character: "Childe",
+
     text: () =>
       `Ele percebe seu olhar e dá um pequeno sorriso. — Você sempre olha para as pessoas desse jeito… ou eu sou uma exceção?`,
+
     scene: "❤️",
+
     choices: [
       {
         text: "— Talvez você seja uma exceção.",
@@ -317,11 +343,15 @@ const story = [
     ]
   },
 
+
   {
     character: "Aether",
+
     text: () =>
       `O garoto de cabelos claros se aproxima sorrindo. — Você fica vermelha toda vez que eu chego perto. Interessante.`,
+
     scene: "✨",
+
     choices: [
       {
         text: "— Eu não estou vermelha!",
@@ -336,11 +366,15 @@ const story = [
     ]
   },
 
+
   {
     character: "Leiftam",
+
     text: () =>
       `Uma voz familiar surge atrás de você. — Eu sabia que você estaria aqui. Não mudou nada, ${playerName}.`,
+
     scene: "🌿",
+
     choices: [
       {
         text: "Abraçá-lo.",
@@ -355,11 +389,15 @@ const story = [
     ]
   },
 
+
   {
     character: "Narrador",
+
     text: () =>
       `Você sente que aquele dia acabou de mudar alguma coisa. Talvez seja apenas o começo...`,
+
     scene: "🌙",
+
     choices: [
       {
         text: "Continuar.",
@@ -369,12 +407,16 @@ const story = [
     ]
   },
 
+
   {
     character: () =>
       route || "Destino",
+
     text: () =>
       `E assim começa o seu Doce Destino, ${playerName}. Seu coração ainda não sabe qual caminho escolher...`,
+
     scene: "💗",
+
     choices: [
       {
         text: "Ver o que o destino preparou.",
@@ -384,13 +426,17 @@ const story = [
     ]
   },
 
+
   {
     character: "Narrador",
+
     text: () =>
       `Por enquanto, esta é apenas a primeira página da sua história.
 
 O caminho de ${playerName} está apenas começando. 💗`,
+
     scene: "🌌",
+
     choices: []
   }
 
@@ -399,75 +445,109 @@ O caminho de ${playerName} está apenas começando. 💗`,
 
 function startGame() {
 
-  const input = document.getElementById("playerName");
+  const input =
+    document.getElementById("playerName");
 
-  playerName = input.value.trim();
+  playerName =
+    input.value.trim();
 
   if (!playerName) {
-    alert("Digite seu nome para começar sua história. 💗");
+
+    alert(
+      "Digite seu nome para começar sua história. 💗"
+    );
+
     input.focus();
+
     return;
   }
 
   affinity = 0;
   currentStep = 0;
+  route = "";
 
-  document.getElementById("startScreen").classList.add("hidden");
-  document.getElementById("storyScreen").classList.remove("hidden");
+  document
+    .getElementById("startScreen")
+    .classList.add("hidden");
 
-  document.getElementById("playerDisplay").textContent =
-    playerName;
+  document
+    .getElementById("storyScreen")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("playerDisplay")
+    .textContent = playerName;
 
   showScene();
-
 }
 
 
 function showScene() {
 
-  const current = story[currentStep];
+  const current =
+    story[currentStep];
 
   const character =
     typeof current.character === "function"
       ? current.character()
       : current.character;
 
-  document.getElementById("character").textContent =
-    character;
+  document
+    .getElementById("character")
+    .textContent = character;
 
-  document.getElementById("storyText").textContent =
-    current.text();
+  document
+    .getElementById("storyText")
+    .textContent = current.text();
 
-const sceneElement = document.getElementById("scene");
 
-if (current.scene && /\.(png|jpe?g|webp|gif)$/i.test(current.scene)) {
+  const sceneElement =
+    document.getElementById("scene");
+
+
+  if (
+    current.scene &&
+    /\.(png|jpe?g|webp|gif)$/i.test(current.scene)
+  ) {
+
     sceneElement.innerHTML =
-        `<img src="${current.scene}" alt="Cenário" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">`;
-} else {
-    sceneElement.textContent = current.scene;
-}
+      `<img src="${current.scene}" alt="Cenário">`;
 
-  document.getElementById("affinity").textContent =
-    affinity;
+  } else {
+
+    sceneElement.textContent =
+      current.scene;
+
+  }
+
+
+  document
+    .getElementById("affinity")
+    .textContent = affinity;
+
 
   const choicesContainer =
     document.getElementById("choices");
 
   choicesContainer.innerHTML = "";
 
+
   if (current.choices.length === 0) {
 
-    const restart = document.createElement("button");
+    const restart =
+      document.createElement("button");
 
     restart.textContent =
       "Voltar ao início 💕";
 
     restart.onclick = () => {
 
-      document.getElementById("storyScreen")
+      document
+        .getElementById("storyScreen")
         .classList.add("hidden");
 
-      document.getElementById("startScreen")
+      document
+        .getElementById("startScreen")
         .classList.remove("hidden");
 
     };
@@ -478,9 +558,11 @@ if (current.scene && /\.(png|jpe?g|webp|gif)$/i.test(current.scene)) {
   }
 
 
-  const title = document.createElement("div");
+  const title =
+    document.createElement("div");
 
-  title.className = "choice-title";
+  title.className =
+    "choice-title";
 
   title.textContent =
     "O que você vai fazer?";
@@ -498,13 +580,15 @@ if (current.scene && /\.(png|jpe?g|webp|gif)$/i.test(current.scene)) {
 
     button.onclick = () => {
 
-      affinity += choice.affinity || 0;
+      affinity +=
+        choice.affinity || 0;
 
       if (choice.route) {
         route = choice.route;
       }
 
-      currentStep = choice.next;
+      currentStep =
+        choice.next;
 
       showScene();
 
