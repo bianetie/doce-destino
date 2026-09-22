@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
 <title>Doce Destino</title>
 
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
 box-sizing:border-box;
 -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
 margin:0;
 width:100%;
 height:100%;
@@ -26,17 +39,21 @@ font-family:inherit;
 cursor:pointer;
 }
 
-/* =========================
+
+/* =====================================================
    TELA INICIAL
-========================= */
+===================================================== */
 
 .start-screen{
 position:fixed;
 inset:0;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 text-align:center;
+
 background:
 radial-gradient(
 circle at 50% 35%,
@@ -44,6 +61,7 @@ rgba(255,255,255,.98),
 rgba(249,232,244,.98) 55%,
 rgba(235,211,230,1)
 );
+
 z-index:50;
 }
 
@@ -75,23 +93,35 @@ margin-bottom:45px;
 
 .start-button{
 padding:13px 34px;
+
 font-size:15px;
+
 border:1px solid rgba(159,111,143,.5);
+
 background:rgba(255,255,255,.78);
+
 color:#76516a;
+
 border-radius:22px;
-box-shadow:0 5px 18px rgba(126,76,110,.10);
+
+box-shadow:
+0 5px 18px
+rgba(126,76,110,.10);
 }
 
-/* =========================
+
+/* =====================================================
    JOGO
-========================= */
+===================================================== */
 
 .story-screen{
 display:none;
+
 position:fixed;
 inset:0;
+
 overflow:hidden;
+
 background:#e8dce6;
 }
 
@@ -101,15 +131,19 @@ inset:0;
 overflow:hidden;
 }
 
-/* =========================
+
+/* =====================================================
    CIDADE
-========================= */
+===================================================== */
 
 .city-scene{
 position:absolute;
 inset:0;
+
 display:block;
+
 overflow:hidden;
+
 background:
 linear-gradient(
 to bottom,
@@ -123,6 +157,7 @@ to bottom,
 .city-sky{
 position:absolute;
 inset:0;
+
 background:
 radial-gradient(
 circle at 75% 17%,
@@ -138,9 +173,12 @@ transparent 5%
 
 .city-building{
 position:absolute;
+
 bottom:24%;
+
 width:29%;
 height:38%;
+
 background:
 linear-gradient(
 90deg,
@@ -148,8 +186,12 @@ rgba(126,101,116,.9) 0 8%,
 rgba(229,211,219,.95) 8% 92%,
 rgba(126,101,116,.9) 92%
 );
+
 border-radius:5px 5px 0 0;
-box-shadow:0 10px 25px rgba(80,55,75,.12);
+
+box-shadow:
+0 10px 25px
+rgba(80,55,75,.12);
 }
 
 .city-building:nth-child(1){
@@ -170,7 +212,9 @@ height:41%;
 
 .windows{
 position:absolute;
+
 inset:12% 10%;
+
 background:
 repeating-linear-gradient(
 90deg,
@@ -184,16 +228,21 @@ transparent 0 20px,
 rgba(130,174,196,.65) 21px 31px,
 transparent 32px 55px
 );
+
 opacity:.7;
 }
 
 .street{
 position:absolute;
+
 left:0;
 right:0;
 bottom:0;
+
 height:27%;
-background:linear-gradient(
+
+background:
+linear-gradient(
 to bottom,
 #c7adb9,
 #aa8c9c
@@ -202,72 +251,115 @@ to bottom,
 
 .sidewalk{
 position:absolute;
+
 bottom:22%;
+
 left:0;
 right:0;
+
 height:7%;
+
 background:#eadfe4;
-box-shadow:0 -3px 8px rgba(80,50,70,.1);
+
+box-shadow:
+0 -3px 8px
+rgba(80,50,70,.1);
 }
 
 .street-line{
 position:absolute;
+
 bottom:9%;
+
 left:0;
 right:0;
+
 height:3px;
-background:rgba(255,255,255,.45);
+
+background:
+rgba(255,255,255,.45);
 }
 
 .cafe{
 position:absolute;
+
 bottom:25%;
 left:6%;
+
 width:31%;
 height:20%;
-background:rgba(250,240,244,.95);
-border:2px solid rgba(121,83,109,.2);
-border-radius:8px 8px 0 0;
-box-shadow:0 8px 20px rgba(80,50,70,.12);
+
+background:
+rgba(250,240,244,.95);
+
+border:
+2px solid rgba(121,83,109,.2);
+
+border-radius:
+8px 8px 0 0;
+
+box-shadow:
+0 8px 20px
+rgba(80,50,70,.12);
 }
 
 .cafe-sign{
 position:absolute;
+
 top:-25px;
 left:20%;
+
 width:60%;
+
 padding:5px;
+
 text-align:center;
+
 font-size:11px;
+
 color:#76516a;
+
 background:#fff5fa;
-border:1px solid rgba(121,83,109,.2);
+
+border:
+1px solid rgba(121,83,109,.2);
+
 border-radius:12px;
 }
 
 .cafe-window{
 position:absolute;
+
 left:10%;
 right:10%;
+
 top:25%;
+
 height:48%;
+
 background:
 linear-gradient(
 135deg,
 rgba(150,194,208,.75),
 rgba(245,232,237,.7)
 );
-border:4px solid #e6d3dc;
+
+border:
+4px solid #e6d3dc;
 }
 
-/* =========================
+
+/* =====================================================
    UNIVERSIDADE
-========================= */
+===================================================== */
 
 .university-scene{
 position:absolute;
+
 inset:0;
+
 display:none;
+
 background:
 linear-gradient(
 to bottom,
@@ -275,32 +367,46 @@ rgba(177,210,238,.12),
 rgba(255,232,245,.08) 50%,
 rgba(111,87,92,.15)
 ),
-url("universidade-aurora.png.PNG") center/cover no-repeat;
+url("universidade-aurora.png.PNG")
+center/cover
+no-repeat;
 }
 
 .university-scene.active{
 display:block;
 }
 
-/* =========================
+
+/* =====================================================
    FOLHAS
-========================= */
+===================================================== */
 
 .wind-layer{
 position:absolute;
+
 inset:0;
+
 pointer-events:none;
+
 overflow:hidden;
+
 z-index:4;
 }
 
 .leaf{
 position:absolute;
+
 width:9px;
 height:5px;
-border-radius:100% 0 100% 0;
-background:rgba(255,244,250,.7);
-animation:windLeaf linear infinite;
+
+border-radius:
+100% 0 100% 0;
+
+background:
+rgba(255,244,250,.7);
+
+animation:
+windLeaf linear infinite;
 }
 
 .leaf:nth-child(1){
@@ -331,8 +437,12 @@ animation-delay:3s;
 }
 
 @keyframes windLeaf{
+
 0%{
-transform:translate(-20px,-20px) rotate(0);
+transform:
+translate(-20px,-20px)
+rotate(0);
+
 opacity:0;
 }
 
@@ -341,53 +451,85 @@ opacity:.8;
 }
 
 100%{
-transform:translate(150px,90vh) rotate(360deg);
+transform:
+translate(150px,90vh)
+rotate(360deg);
+
 opacity:0;
 }
+
 }
 
-/* =========================
+
+/* =====================================================
    HUD
-========================= */
+===================================================== */
 
 .hud{
 position:absolute;
+
 top:15px;
 left:15px;
 right:15px;
+
 display:flex;
+
 justify-content:space-between;
 align-items:center;
+
 z-index:25;
 }
 
 .player-card,
 .affinity,
 .sound-button{
-border:1px solid rgba(255,255,255,.7);
-background:rgba(255,255,255,.58);
-backdrop-filter:blur(8px);
-box-shadow:0 3px 14px rgba(80,50,70,.1);
+
+border:
+1px solid rgba(255,255,255,.7);
+
+background:
+rgba(255,255,255,.58);
+
+backdrop-filter:
+blur(8px);
+
+box-shadow:
+0 3px 14px
+rgba(80,50,70,.1);
 }
 
 .player-card{
 display:flex;
+
 align-items:center;
+
 gap:8px;
-padding:6px 11px 6px 7px;
+
+padding:
+6px 11px 6px 7px;
+
 border-radius:30px;
 }
 
 .player-avatar{
 width:32px;
 height:32px;
+
 border-radius:50%;
-background:rgba(255,255,255,.82);
-border:1px solid rgba(160,120,145,.35);
+
+background:
+rgba(255,255,255,.82);
+
+border:
+1px solid rgba(160,120,145,.35);
+
 display:flex;
+
 align-items:center;
 justify-content:center;
+
 color:#a47792;
+
 font-size:17px;
 }
 
@@ -398,40 +540,65 @@ color:#684d60;
 
 .affinity{
 padding:7px 11px;
+
 border-radius:20px;
+
 color:#76516a;
+
 font-size:12px;
 }
 
-/* =========================
+
+/* =====================================================
    SOM
-========================= */
+===================================================== */
 
 .sound-button{
 position:absolute;
+
 right:15px;
 top:61px;
+
 z-index:30;
+
 width:36px;
 height:36px;
+
 border-radius:50%;
+
 color:#76516a;
+
 font-size:16px;
 }
 
 .audio-panel{
 display:none;
+
 position:absolute;
+
 right:15px;
 top:105px;
+
 z-index:35;
+
 width:205px;
+
 padding:15px;
+
 border-radius:18px;
-border:1px solid rgba(255,255,255,.7);
-background:rgba(255,248,252,.92);
-backdrop-filter:blur(12px);
-box-shadow:0 8px 25px rgba(80,50,70,.16);
+
+border:
+1px solid rgba(255,255,255,.7);
+
+background:
+rgba(255,248,252,.92);
+
+backdrop-filter:
+blur(12px);
+
+box-shadow:
+0 8px 25px
+rgba(80,50,70,.16);
 }
 
 .audio-row{
@@ -440,8 +607,11 @@ margin-bottom:12px;
 
 .audio-row label{
 display:block;
+
 font-size:11px;
+
 color:#76516a;
+
 margin-bottom:5px;
 }
 
@@ -450,75 +620,177 @@ width:100%;
 }
 
 .mute-button{
-border:1px solid rgba(159,111,143,.4);
+border:
+1px solid rgba(159,111,143,.4);
+
 background:white;
+
 color:#76516a;
-padding:6px 12px;
+
+padding:
+6px 12px;
+
 font-size:11px;
+
 border-radius:14px;
 }
 
-/* =========================
+
+/* =====================================================
    CHILDE
-========================= */
+===================================================== */
 
 .childe-layer{
 display:none;
+
 position:absolute;
+
 left:0;
 right:0;
-top:9%;
-bottom:27%;
+
+top:8%;
+bottom:20%;
+
 z-index:12;
+
 pointer-events:none;
+
 align-items:flex-end;
+
 justify-content:flex-end;
-padding-right:7%;
+
+padding-right:4%;
 }
 
 .childe-layer.visible{
 display:flex;
 }
 
+
+/*
+   CHILDE VIVO
+
+   Ele não fica completamente parado.
+   O movimento é extremamente pequeno:
+   respiração + mudança de peso.
+*/
+
 .childe-sprite{
-height:72%;
+
+height:65%;
+
 width:auto;
-max-width:52%;
+
+max-width:45%;
+
 object-fit:contain;
+
 object-position:center bottom;
-filter:drop-shadow(0 8px 12px rgba(55,35,50,.18));
-animation:childeBreath 3.6s ease-in-out infinite;
+
+filter:
+drop-shadow(
+0 5px 10px
+rgba(55,35,50,.16)
+);
+
+transform-origin:
+center bottom;
+
+animation:
+childeAlive
+4.2s
+ease-in-out
+infinite;
 }
 
-@keyframes childeBreath{
-0%,100%{
-transform:translateY(0);
+
+@keyframes childeAlive{
+
+0%{
+
+transform:
+translateY(0)
+rotate(0deg)
+scale(1);
+
+}
+
+25%{
+
+transform:
+translateY(-2px)
+rotate(-0.35deg)
+scale(1.003);
+
 }
 
 50%{
-transform:translateY(-3px);
-}
+
+transform:
+translateY(-4px)
+rotate(0.25deg)
+scale(1.006);
+
 }
 
-/* =========================
+75%{
+
+transform:
+translateY(-2px)
+rotate(0.35deg)
+scale(1.003);
+
+}
+
+100%{
+
+transform:
+translateY(0)
+rotate(0deg)
+scale(1);
+
+}
+
+}
+
+
+/* =====================================================
    BOLHA DO CHILDE
-========================= */
+===================================================== */
 
 .childe-bubble{
 display:none;
+
 position:absolute;
+
 right:7%;
+
 top:22%;
+
 width:min(52%,300px);
-padding:12px 15px 13px;
-border-radius:20px 20px 5px 20px;
-background:rgba(255,249,252,.94);
-border:1px solid rgba(255,255,255,.95);
+
+padding:
+12px 15px 13px;
+
+border-radius:
+20px 20px 5px 20px;
+
+background:
+rgba(255,249,252,.94);
+
+border:
+1px solid rgba(255,255,255,.95);
+
 box-shadow:
-0 6px 22px rgba(74,48,67,.15),
-inset 0 1px rgba(255,255,255,.8);
+0 6px 22px
+rgba(74,48,67,.15),
+inset 0 1px
+rgba(255,255,255,.8);
+
 z-index:18;
-animation:bubbleIn .22s ease-out;
+
+animation:
+bubbleIn .22s ease-out;
 }
 
 .childe-bubble.visible{
@@ -526,157 +798,329 @@ display:block;
 }
 
 .childe-bubble::after{
+
 content:"";
+
 position:absolute;
+
 right:28px;
 bottom:-10px;
+
 width:19px;
 height:19px;
-background:rgba(255,249,252,.94);
-border-right:1px solid rgba(255,255,255,.8);
-border-bottom:1px solid rgba(255,255,255,.8);
-transform:rotate(45deg);
+
+background:
+rgba(255,249,252,.94);
+
+border-right:
+1px solid
+rgba(255,255,255,.8);
+
+border-bottom:
+1px solid
+rgba(255,255,255,.8);
+
+transform:
+rotate(45deg);
 }
 
 .childe-bubble-speaker{
 font-size:11px;
+
 font-weight:600;
+
 color:#966582;
+
 margin-bottom:5px;
 }
 
 .childe-bubble-text{
 font-size:13px;
+
 line-height:1.45;
+
 color:#4d3c49;
 }
 
 @keyframes bubbleIn{
+
 from{
+
 opacity:0;
-transform:translateY(5px) scale(.98);
+
+transform:
+translateY(5px)
+scale(.98);
+
 }
 
 to{
+
 opacity:1;
-transform:translateY(0) scale(1);
-}
+
+transform:
+translateY(0)
+scale(1);
+
 }
 
-/* =========================
+}
+
+
+/* =====================================================
    CAIXA DA PROTAGONISTA
-========================= */
+===================================================== */
 
 .bottom-area{
 position:absolute;
+
 left:0;
 right:0;
 bottom:0;
-padding:0 12px 12px;
+
+padding:
+0 12px 12px;
+
 z-index:22;
 }
 
 .dialogue-box{
+
 position:relative;
+
 width:100%;
+
 min-height:115px;
+
 max-height:29vh;
-padding:16px 20px 24px;
-border:1px solid rgba(255,255,255,.9);
+
+padding:
+16px 20px 24px;
+
+border:
+1px solid rgba(255,255,255,.9);
+
 border-radius:21px;
-background:rgba(255,250,253,.91);
-backdrop-filter:blur(13px);
+
+background:
+rgba(255,250,253,.91);
+
+backdrop-filter:
+blur(13px);
+
 box-shadow:
-0 7px 28px rgba(71,46,65,.18),
-inset 0 1px rgba(255,255,255,.7);
+0 7px 28px
+rgba(71,46,65,.18),
+inset 0 1px
+rgba(255,255,255,.7);
+
 cursor:pointer;
+
 touch-action:manipulation;
 }
 
 .dialogue-speaker{
+
 font-size:12px;
+
 letter-spacing:.3px;
+
 font-weight:600;
+
 color:#966582;
+
 margin-bottom:6px;
 }
 
 .dialogue-text{
+
 font-size:14px;
+
 line-height:1.58;
+
 color:#4d3c49;
+
 min-height:62px;
 }
 
+
+/* =====================================================
+   PENSAMENTOS
+===================================================== */
+
+.dialogue-box.thought{
+
+background:
+rgba(250,244,250,.88);
+
+border:
+1px solid rgba(188,151,180,.45);
+
+box-shadow:
+0 7px 28px
+rgba(90,60,85,.12),
+inset 0 1px
+rgba(255,255,255,.7);
+}
+
+.dialogue-box.thought
+.dialogue-text{
+
+font-style:italic;
+
+color:#80657a;
+
+font-size:14px;
+}
+
+.dialogue-box.thought
+.dialogue-speaker{
+
+font-style:italic;
+
+font-weight:500;
+
+color:#ad829f;
+}
+
+
+/* =====================================================
+   CONTINUAR
+===================================================== */
+
 .tap-indicator{
+
 position:absolute;
-right:15px;
-bottom:8px;
+
+right:18px;
+bottom:9px;
+
 color:#a77b97;
-font-size:18px;
-animation:tapPulse 1.5s ease-in-out infinite;
+
+font-size:12px;
+
+letter-spacing:.4px;
+
+font-weight:500;
+
+animation:
+tapPulse
+1.5s
+ease-in-out
+infinite;
 }
 
 @keyframes tapPulse{
+
 0%,100%{
+
 opacity:.35;
-transform:translateX(0);
+
+transform:
+translateX(0);
+
 }
 
 50%{
+
 opacity:1;
-transform:translateX(4px);
-}
+
+transform:
+translateX(4px);
+
 }
 
-/* =========================
+}
+
+
+/* =====================================================
    ESCOLHAS
-========================= */
+===================================================== */
 
 .choice-area{
+
 display:flex;
+
 flex-direction:column;
+
 gap:8px;
+
 margin-top:9px;
 }
 
 .choice-button{
+
 width:100%;
-padding:10px 14px;
+
+padding:
+10px 14px;
+
 font-size:13px;
+
 line-height:1.3;
-border:1px solid rgba(159,111,143,.5);
-background:rgba(255,255,255,.84);
+
+border:
+1px solid rgba(159,111,143,.5);
+
+background:
+rgba(255,255,255,.84);
+
 color:#76516a;
+
 border-radius:22px;
-box-shadow:0 5px 18px rgba(126,76,110,.08);
+
+box-shadow:
+0 5px 18px
+rgba(126,76,110,.08);
 }
 
 .choice-button::before{
+
 content:"♡";
+
 margin-right:8px;
+
 color:#bd8baa;
 }
 
 .restart-button{
-padding:9px 20px;
+
+padding:
+9px 20px;
+
 font-size:12px;
+
 margin-top:8px;
-border:1px solid rgba(159,111,143,.5);
+
+border:
+1px solid rgba(159,111,143,.5);
+
 background:white;
+
 color:#76516a;
+
 border-radius:22px;
 }
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
 
 @media(min-width:700px){
 
 .bottom-area{
+
 left:50%;
-transform:translateX(-50%);
+
+transform:
+translateX(-50%);
+
 width:650px;
 }
 
 .hud{
+
 left:25px;
 right:25px;
 }
@@ -690,20 +1134,23 @@ right:25px;
 }
 
 .childe-sprite{
-height:76%;
+height:68%;
 }
 
 }
+
 
 @media(max-height:700px){
 
 .childe-layer{
+
 top:7%;
-bottom:28%;
+
+bottom:21%;
 }
 
 .childe-sprite{
-height:68%;
+height:61%;
 }
 
 .childe-bubble{
@@ -711,37 +1158,57 @@ top:18%;
 }
 
 .dialogue-box{
+
 min-height:103px;
+
 padding-top:13px;
 }
 
 .dialogue-text{
+
 font-size:13px;
+
 min-height:55px;
 }
 
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- TELA INICIAL -->
 
-<div class="start-screen" id="startScreen">
+<!-- =====================================================
+     TELA INICIAL
+===================================================== -->
+
+<div
+class="start-screen"
+id="startScreen">
 
 <div class="start-content">
 
-<div class="start-decoration">♡</div>
+<div class="start-decoration">
+♡
+</div>
 
-<div class="logo">Doce Destino</div>
+<div class="logo">
+Doce Destino
+</div>
 
 <div class="subtitle">
 Seu coração escolhe o caminho.
 </div>
 
-<button class="start-button" id="startButton">
+<button
+class="start-button"
+id="startButton">
+
 Começar minha história
+
 </button>
 
 </div>
@@ -749,49 +1216,80 @@ Começar minha história
 </div>
 
 
-<!-- JOGO -->
+<!-- =====================================================
+     JOGO
+===================================================== -->
 
-<div class="story-screen" id="storyScreen">
+<div
+class="story-screen"
+id="storyScreen">
+
 
 <div class="scene">
 
-<div class="city-scene" id="cityScene">
+
+<!-- =====================================================
+     CIDADE
+===================================================== -->
+
+<div
+class="city-scene"
+id="cityScene">
 
 <div class="city-sky"></div>
 
-<div class="city-building">
-<div class="windows"></div>
-</div>
 
 <div class="city-building">
 <div class="windows"></div>
 </div>
 
+
 <div class="city-building">
 <div class="windows"></div>
 </div>
+
+
+<div class="city-building">
+<div class="windows"></div>
+</div>
+
 
 <div class="cafe">
-<div class="cafe-sign">CAFÉ AURORA</div>
-<div class="cafe-window"></div>
+
+<div class="cafe-sign">
+CAFÉ AURORA
 </div>
 
+<div class="cafe-window"></div>
+
+</div>
+
+
 <div class="sidewalk"></div>
+
 <div class="street"></div>
+
 <div class="street-line"></div>
 
 </div>
 
+
+<!-- =====================================================
+     UNIVERSIDADE
+===================================================== -->
 
 <div
 class="university-scene"
 id="universityScene">
 </div>
 
+
 </div>
 
 
-<!-- FOLHAS -->
+<!-- =====================================================
+     FOLHAS
+===================================================== -->
 
 <div class="wind-layer">
 
@@ -803,7 +1301,9 @@ id="universityScene">
 </div>
 
 
-<!-- CHILDE -->
+<!-- =====================================================
+     CHILDE
+===================================================== -->
 
 <div
 class="childe-layer"
@@ -813,12 +1313,15 @@ id="childeLayer">
 class="childe-sprite"
 id="childeSprite"
 src=""
-alt="">
+alt=""
+>
 
 </div>
 
 
-<!-- BOLHA DO CHILDE -->
+<!-- =====================================================
+     BOLHA DO CHILDE
+===================================================== -->
 
 <div
 class="childe-bubble"
@@ -827,7 +1330,9 @@ id="childeBubble">
 <div
 class="childe-bubble-speaker"
 id="childeBubbleSpeaker">
+
 ???
+
 </div>
 
 <div
@@ -838,9 +1343,12 @@ id="childeBubbleText">
 </div>
 
 
-<!-- HUD -->
+<!-- =====================================================
+     HUD
+===================================================== -->
 
 <div class="hud">
+
 
 <div class="player-card">
 
@@ -851,26 +1359,36 @@ id="childeBubbleText">
 <div
 class="player-name"
 id="playerName">
+
 Você
+
 </div>
 
 </div>
+
 
 <div
 class="affinity"
 id="affinity">
+
 ♡ Afinidade 0
-</div>
 
 </div>
 
 
-<!-- SOM -->
+</div>
+
+
+<!-- =====================================================
+     SOM
+===================================================== -->
 
 <button
 class="sound-button"
 id="soundButton">
+
 ♫
+
 </button>
 
 
@@ -878,9 +1396,12 @@ id="soundButton">
 class="audio-panel"
 id="audioPanel">
 
+
 <div class="audio-row">
 
-<label>Música</label>
+<label>
+Música
+</label>
 
 <input
 type="range"
@@ -888,13 +1409,17 @@ id="musicVolume"
 min="0"
 max="1"
 step=".01"
-value=".35">
+value=".35"
+>
 
 </div>
 
+
 <div class="audio-row">
 
-<label>Ambiente</label>
+<label>
+Ambiente
+</label>
 
 <input
 type="range"
@@ -902,13 +1427,17 @@ id="ambientVolume"
 min="0"
 max="1"
 step=".01"
-value=".10">
+value=".10"
+>
 
 </div>
 
+
 <div class="audio-row">
 
-<label>Efeitos</label>
+<label>
+Efeitos
+</label>
 
 <input
 type="range"
@@ -916,49 +1445,64 @@ id="effectVolume"
 min="0"
 max="1"
 step=".01"
-value=".35">
+value=".35"
+>
 
 </div>
+
 
 <button
 class="mute-button"
 id="muteButton">
+
 Silenciar
+
 </button>
 
 </div>
 
 
-<!-- FALA DA PROTAGONISTA -->
+<!-- =====================================================
+     ÁREA INFERIOR
+===================================================== -->
 
 <div class="bottom-area">
+
 
 <div
 class="dialogue-box"
 id="dialogueBox">
+
 
 <div
 class="dialogue-speaker"
 id="dialogueSpeaker">
 </div>
 
+
 <div
 class="dialogue-text"
 id="dialogueText">
 </div>
 
+
 <div
 class="tap-indicator"
 id="tapIndicator">
-›
-</div>
+
+Continuar ›
 
 </div>
+
+
+</div>
+
 
 <div
 class="choice-area"
 id="choiceArea">
 </div>
+
 
 </div>
 
@@ -967,31 +1511,41 @@ id="choiceArea">
 
 <script>
 
-/* =========================
-   MEMÓRIA
-========================= */
 
-const memory = {
+/* =====================================================
+   MEMÓRIA
+===================================================== */
+
+const memory={
 
 encontrouChilde:false,
+
 foiGentil:false,
+
 foiProvocadora:false,
+
 manteveDistancia:false,
+
 perguntouNome:false,
+
 disseNome:false,
+
 childeSeApresentou:false,
+
 descobriuUniversidade:false,
+
 affinity:0,
+
 expression:"franzindo"
 
 };
 
 
-/* =========================
+/* =====================================================
    SPRITES
-========================= */
+===================================================== */
 
-const sprites = {
+const sprites={
 
 alegre:
 "childe-alegre-transparente.png.PNG",
@@ -1008,66 +1562,98 @@ decepcionado:
 };
 
 
-/* =========================
+/* =====================================================
    ELEMENTOS
-========================= */
+===================================================== */
 
-const startScreen =
-document.getElementById("startScreen");
+const startScreen=
+document.getElementById(
+"startScreen"
+);
 
-const storyScreen =
-document.getElementById("storyScreen");
+const storyScreen=
+document.getElementById(
+"storyScreen"
+);
 
-const cityScene =
-document.getElementById("cityScene");
+const cityScene=
+document.getElementById(
+"cityScene"
+);
 
-const universityScene =
-document.getElementById("universityScene");
+const universityScene=
+document.getElementById(
+"universityScene"
+);
 
-const startButton =
-document.getElementById("startButton");
+const startButton=
+document.getElementById(
+"startButton"
+);
 
-const childeLayer =
-document.getElementById("childeLayer");
+const childeLayer=
+document.getElementById(
+"childeLayer"
+);
 
-const childeSprite =
-document.getElementById("childeSprite");
+const childeSprite=
+document.getElementById(
+"childeSprite"
+);
 
-const childeBubble =
-document.getElementById("childeBubble");
+const childeBubble=
+document.getElementById(
+"childeBubble"
+);
 
-const childeBubbleSpeaker =
-document.getElementById("childeBubbleSpeaker");
+const childeBubbleSpeaker=
+document.getElementById(
+"childeBubbleSpeaker"
+);
 
-const childeBubbleText =
-document.getElementById("childeBubbleText");
+const childeBubbleText=
+document.getElementById(
+"childeBubbleText"
+);
 
-const dialogueBox =
-document.getElementById("dialogueBox");
+const dialogueBox=
+document.getElementById(
+"dialogueBox"
+);
 
-const dialogueSpeaker =
-document.getElementById("dialogueSpeaker");
+const dialogueSpeaker=
+document.getElementById(
+"dialogueSpeaker"
+);
 
-const dialogueText =
-document.getElementById("dialogueText");
+const dialogueText=
+document.getElementById(
+"dialogueText"
+);
 
-const tapIndicator =
-document.getElementById("tapIndicator");
+const tapIndicator=
+document.getElementById(
+"tapIndicator"
+);
 
-const choiceArea =
-document.getElementById("choiceArea");
+const choiceArea=
+document.getElementById(
+"choiceArea"
+);
 
-const affinityDisplay =
-document.getElementById("affinity");
+const affinityDisplay=
+document.getElementById(
+"affinity"
+);
 
 
-/* =========================
+/* =====================================================
    CENÁRIOS
-========================= */
+===================================================== */
 
 function showCity(){
 
-cityScene.style.display =
+cityScene.style.display=
 "block";
 
 universityScene.classList.remove(
@@ -1079,7 +1665,7 @@ universityScene.classList.remove(
 
 function showUniversity(){
 
-cityScene.style.display =
+cityScene.style.display=
 "none";
 
 universityScene.classList.add(
@@ -1089,16 +1675,24 @@ universityScene.classList.add(
 }
 
 
-/* =========================
+/* =====================================================
    CHILDE
-========================= */
+===================================================== */
 
-function showChilde(expression="franzindo"){
+function showChilde(expression){
 
-memory.expression =
+if(!expression){
+
+expression=
+memory.expression ||
+"franzindo";
+
+}
+
+memory.expression=
 expression;
 
-childeSprite.src =
+childeSprite.src=
 sprites[expression];
 
 childeLayer.classList.add(
@@ -1114,30 +1708,28 @@ childeLayer.classList.remove(
 "visible"
 );
 
-childeBubble.classList.remove(
-"visible"
-);
+hideChildeBubble();
 
-childeSprite.src =
-"";
-
+childeSprite.src="";
 }
 
 
-/* =========================
-   BOLHA DELE
-========================= */
+/* =====================================================
+   BOLHA
+===================================================== */
 
 function showChildeBubble(
 speaker,
 text
 ){
 
-childeBubbleSpeaker.textContent =
-speaker || "???";
+childeBubbleSpeaker.textContent=
+speaker ||
+"???";
 
-childeBubbleText.textContent =
-text || "";
+childeBubbleText.textContent=
+text ||
+"";
 
 childeBubble.classList.add(
 "visible"
@@ -1155,34 +1747,40 @@ childeBubble.classList.remove(
 }
 
 
-/* =========================
+/* =====================================================
    ÁUDIO
-========================= */
+===================================================== */
 
 let audioContext=null;
+
 let musicGain=null;
+
 let ambientGain=null;
+
 let musicStarted=false;
+
 let muted=false;
+
 
 function initAudio(){
 
 if(audioContext)
 return;
 
-audioContext =
+audioContext=
 new(
 window.AudioContext ||
 window.webkitAudioContext
 )();
 
-musicGain =
+musicGain=
 audioContext.createGain();
 
-ambientGain =
+ambientGain=
 audioContext.createGain();
 
 musicGain.gain.value=.35;
+
 ambientGain.gain.value=.10;
 
 musicGain.connect(
@@ -1197,6 +1795,7 @@ startMusic();
 
 }
 
+
 function startMusic(){
 
 if(musicStarted)
@@ -1205,6 +1804,7 @@ return;
 musicStarted=true;
 
 const notes=[
+
 261.63,
 329.63,
 392,
@@ -1213,9 +1813,11 @@ const notes=[
 349.23,
 440,
 349.23
+
 ];
 
 let i=0;
+
 
 function playNote(){
 
@@ -1229,7 +1831,9 @@ const gain=
 audioContext.createGain();
 
 osc.type="sine";
-osc.frequency.value=notes[i];
+
+osc.frequency.value=
+notes[i];
 
 gain.gain.setValueAtTime(
 0,
@@ -1247,6 +1851,7 @@ audioContext.currentTime+1.3
 );
 
 osc.connect(gain);
+
 gain.connect(musicGain);
 
 osc.start();
@@ -1269,9 +1874,9 @@ playNote();
 }
 
 
-/* =========================
-   CONTROLES
-========================= */
+/* =====================================================
+   CONTROLES DE SOM
+===================================================== */
 
 document
 .getElementById("soundButton")
@@ -1298,12 +1903,16 @@ document
 "input",
 function(){
 
-if(musicGain)
+if(musicGain){
+
 musicGain.gain.value=
-muted?0:this.value;
+muted
+?0
+:this.value;
 
 }
-);
+
+});
 
 
 document
@@ -1312,12 +1921,16 @@ document
 "input",
 function(){
 
-if(ambientGain)
+if(ambientGain){
+
 ambientGain.gain.value=
-muted?0:this.value;
+muted
+?0
+:this.value;
 
 }
-);
+
+});
 
 
 document
@@ -1326,7 +1939,8 @@ document
 
 muted=!muted;
 
-if(musicGain)
+if(musicGain){
+
 musicGain.gain.value=
 muted
 ?0
@@ -1334,13 +1948,18 @@ muted
 "musicVolume"
 ).value;
 
-if(ambientGain)
+}
+
+if(ambientGain){
+
 ambientGain.gain.value=
 muted
 ?0
 :document.getElementById(
 "ambientVolume"
 ).value;
+
+}
 
 this.textContent=
 muted
@@ -1350,82 +1969,157 @@ muted
 };
 
 
-/* =========================
+/* =====================================================
    HISTÓRIA
-========================= */
+===================================================== */
 
 const story={
 
+
+/* =====================================================
+   COMEÇO
+===================================================== */
+
 start:{
+
 type:"narration",
+
 text:
 "Você acabou de chegar à cidade onde fica a Universidade Aurora. Uma nova cidade, uma nova fase... e nenhum plano muito bem organizado.",
+
 next:"cityWalk"
+
 },
+
 
 cityWalk:{
+
 type:"narration",
+
 text:
 "Com uma mala ao lado e o celular na mão, você tenta descobrir onde fica o endereço que recebeu.",
+
 next:"lost"
+
 },
+
 
 lost:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Meu Deus... eu devia ter olhado isso antes de sair.",
-next:"encounter"
+
+next:"lostThought"
+
 },
+
+
+lostThought:{
+
+type:"thought",
+
+text:
+"Ah... o que eu vou fazer agora? Por onde eu começo? Eu nem conheço essa cidade.",
+
+next:"encounter"
+
+},
+
+
+/* =====================================================
+   ENCONTRO
+===================================================== */
 
 encounter:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Você está procurando alguma coisa?",
+
 expression:"franzindo",
+
 next:"encounter2"
+
 },
+
 
 encounter2:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Estou tentando encontrar um lugar.",
+
 next:"encounter3"
+
 },
+
 
 encounter3:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Isso eu percebi.",
+
 expression:"alegre",
+
 next:"encounter4"
+
 },
+
 
 encounter4:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Você está olhando esse mapa há uns cinco minutos.",
+
 expression:"alegre",
+
 next:"firstChoice"
+
 },
 
+
+/* =====================================================
+   PRIMEIRA ESCOLHA
+===================================================== */
+
 firstChoice:{
+
 type:"choice",
+
 text:
 "Como você responde?",
+
 choices:[
+
 
 {
 text:
 "Peço ajuda para encontrar o endereço.",
+
 action:function(){
 
 memory.encontrouChilde=true;
+
 memory.foiGentil=true;
+
 memory.affinity+=2;
 
 showChilde("alegre");
@@ -1433,15 +2127,20 @@ showChilde("alegre");
 showNode("helpMe");
 
 }
+
 },
+
 
 {
 text:
 "Digo que não estou perdida.",
+
 action:function(){
 
 memory.encontrouChilde=true;
+
 memory.foiProvocadora=true;
+
 memory.affinity+=1;
 
 showChilde("alegre");
@@ -1449,14 +2148,18 @@ showChilde("alegre");
 showNode("notLost");
 
 }
+
 },
+
 
 {
 text:
 "Agradeço, mas digo que consigo me virar.",
+
 action:function(){
 
 memory.encontrouChilde=true;
+
 memory.manteveDistancia=true;
 
 showChilde("franzindo");
@@ -1464,166 +2167,318 @@ showChilde("franzindo");
 showNode("alone");
 
 }
+
 }
 
 ]
+
 },
+
+
+/* =====================================================
+   ROTA GENTIL
+===================================================== */
 
 helpMe:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Você poderia me ajudar? É meu primeiro dia aqui.",
+
 next:"helpMe2"
+
 },
+
 
 helpMe2:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Claro. Deixa eu ver.",
+
 expression:"alegre",
+
 next:"helpMe3"
+
 },
+
 
 helpMe3:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Você está indo para o lado errado.",
+
 expression:"alegre",
+
 next:"helpMe4"
+
 },
+
 
 helpMe4:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Sério?",
+
 next:"helpMe5"
+
 },
+
 
 helpMe5:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Sério. Vem, eu te mostro.",
+
 expression:"alegre",
+
 next:"walking"
+
 },
+
+
+/* =====================================================
+   ROTA PROVOCADORA
+===================================================== */
 
 notLost:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Eu não estou perdida.",
+
 next:"notLost2"
+
 },
+
 
 notLost2:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Ah, não?",
+
 expression:"alegre",
+
 next:"notLost3"
+
 },
+
 
 notLost3:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Estou apenas... explorando.",
+
 next:"notLost4"
+
 },
+
 
 notLost4:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Então você está explorando a direção errada.",
+
 expression:"alegre",
+
 next:"walking"
+
 },
+
+
+/* =====================================================
+   ROTA DISTANTE
+===================================================== */
 
 alone:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Obrigada. Acho que consigo encontrar sozinha.",
+
 next:"alone2"
+
 },
+
 
 alone2:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Tudo bem.",
+
 expression:"franzindo",
+
 next:"alone3"
+
 },
+
 
 alone3:{
+
 type:"narration",
+
 text:
 "Ele dá um pequeno sorriso e se afasta alguns passos, respeitando seu espaço.",
-next:"walking"
+
+next:"aloneThought"
+
 },
+
+
+aloneThought:{
+
+type:"thought",
+
+text:
+"Talvez eu tenha sido um pouco seca... mas eu realmente preciso aprender a me virar sozinha.",
+
+next:"walking"
+
+},
+
+
+/* =====================================================
+   CAMINHADA
+===================================================== */
 
 walking:{
+
 type:"narration",
+
 text:
 "Depois de alguns minutos, vocês caminham pela rua juntos.",
+
 next:"walking2"
+
 },
+
 
 walking2:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Então... você é nova na cidade?",
+
 expression:"alegre",
+
 next:"walking3"
+
 },
+
 
 walking3:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Sim. Vou estudar aqui.",
+
 next:"walking4"
+
 },
+
 
 walking4:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Entendi.",
+
 expression:"franzindo",
+
 next:"nameQuestion"
+
 },
+
 
 nameQuestion:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Aliás... acho que ainda não perguntei seu nome.",
+
 expression:"alegre",
+
 next:"nameChoice"
+
 },
 
+
+/* =====================================================
+   NOME
+===================================================== */
+
 nameChoice:{
+
 type:"choice",
+
 text:
 "O que você responde?",
+
 choices:[
 
+
 {
-text:"Digo meu nome.",
+text:
+"Digo meu nome.",
+
 action:function(){
 
 memory.perguntouNome=true;
+
 memory.disseNome=true;
+
 memory.affinity+=2;
 
 showChilde("alegre");
@@ -1631,13 +2486,18 @@ showChilde("alegre");
 showNode("sheSaysName");
 
 }
+
 },
 
+
 {
-text:"Brinco e digo que é segredo.",
+text:
+"Brinco e digo que é segredo.",
+
 action:function(){
 
 memory.perguntouNome=true;
+
 memory.affinity+=1;
 
 showChilde("alegre");
@@ -1645,253 +2505,570 @@ showChilde("alegre");
 showNode("secretName");
 
 }
+
 }
 
 ]
+
 },
+
 
 sheSaysName:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Meu nome é seu nome.",
+
 next:"hisName"
+
 },
+
 
 secretName:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Isso é segredo.",
+
 next:"hisName"
+
 },
+
 
 hisName:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Ah... e eu nem me apresentei.",
+
 expression:"franzindo",
+
 next:"hisName2"
+
 },
+
 
 hisName2:{
+
 type:"dialogue",
+
 speaker:"???",
+
 text:
 "Eu sou Childe.",
+
 expression:"alegre",
-revealName:true,
+
 next:"hisName3"
+
 },
+
 
 hisName3:{
+
 type:"dialogue",
+
 speaker:"Childe",
+
 text:
 "Prazer em te conhecer.",
+
 expression:"alegre",
+
 next:"beforeUniversity"
+
 },
+
 
 beforeUniversity:{
+
 type:"dialogue",
+
 speaker:"Childe",
+
 text:
 "Você disse que vai estudar na Aurora, não foi?",
+
 expression:"franzindo",
+
 next:"beforeUniversity2"
+
 },
+
 
 beforeUniversity2:{
+
 type:"dialogue",
+
 speaker:"Você",
+
 text:
 "Sim.",
+
 next:"beforeUniversity3"
+
 },
+
 
 beforeUniversity3:{
+
 type:"dialogue",
+
 speaker:"Childe",
+
 text:
 "Então talvez a gente se encontre de novo.",
+
 expression:"alegre",
+
 next:"separate"
+
 },
+
+
+/* =====================================================
+   DESPEDIDA
+===================================================== */
 
 separate:{
+
 type:"narration",
+
 text:
-"Depois de se despedirem, vocês seguem caminhos diferentes. Você ainda não imagina que aquele encontro não foi por acaso.",
-next:"universityArrival"
+"Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+
+hideCharacter:true,
+
+next:"afterMeetingThought"
+
 },
+
+
+afterMeetingThought:{
+
+type:"thought",
+
+text:
+"Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
+
+next:"afterMeetingThought2"
+
+},
+
+
+afterMeetingThought2:{
+
+type:"thought",
+
+text:
+"Mas agora eu preciso me preocupar com uma coisa muito mais importante: encontrar a Universidade Aurora.",
+
+next:"universityArrival"
+
+},
+
+
+/* =====================================================
+   UNIVERSIDADE
+===================================================== */
 
 universityArrival:{
+
 type:"narration",
+
 text:
 "No dia seguinte, você finalmente chega à Universidade Aurora.",
+
+scene:"university",
+
+hideCharacter:true,
+
 next:"universityArrival2"
+
 },
+
 
 universityArrival2:{
+
 type:"narration",
+
 text:
 "O campus é ainda mais bonito do que nas fotos.",
-next:"universityArrival3"
+
+next:"universityThought"
+
 },
 
-universityArrival3:{
-type:"dialogue",
-speaker:"Childe",
+
+universityThought:{
+
+type:"thought",
+
 text:
-"Você?",
-expression:"alegre",
-next:"universityArrival4"
+"Tá... respira. Primeiro eu preciso descobrir onde fica minha sala. Depois eu vejo o resto.",
+
+next:"universityThought2"
+
 },
 
-universityArrival4:{
-type:"dialogue",
-speaker:"Você",
+
+universityThought2:{
+
+type:"thought",
+
 text:
-"Não acredito...",
-next:"universityArrival5"
+"Por onde eu começo?",
+
+next:"universityFirstChoice"
+
 },
 
-universityArrival5:{
-type:"dialogue",
-speaker:"Childe",
-text:
-"Então você realmente estuda aqui.",
-expression:"alegre",
-next:"universityChoice"
-},
 
-universityChoice:{
+/* =====================================================
+   ESCOLHA UNIVERSIDADE
+===================================================== */
+
+universityFirstChoice:{
+
 type:"choice",
+
 text:
-"Como você reage ao reencontro?",
+"O que você decide fazer?",
+
 choices:[
 
-{
-text:
-"Fico feliz por encontrar ele novamente.",
-action:function(){
-
-memory.affinity+=3;
-showChilde("alegre");
-showNode("happyAgain");
-
-}
-},
 
 {
 text:
-"Brinco dizendo que ele está me seguindo.",
+"Vou procurar a secretaria para pedir informações.",
+
 action:function(){
+
+memory.descobriuUniversidade=true;
 
 memory.affinity+=1;
-showChilde("alegre");
-showNode("teasingAgain");
+
+showNode("secretaria");
 
 }
+
 },
+
 
 {
 text:
-"Digo que não esperava encontrar ele aqui.",
+"Vou procurar minha sala sozinha.",
+
 action:function(){
 
-showChilde("franzindo");
-showNode("surprisedAgain");
+memory.descobriuUniversidade=true;
+
+showNode("sozinha");
 
 }
+
 },
+
 
 {
 text:
-"Digo que prefiro manter distância.",
+"Paro um pouco e observo os estudantes ao meu redor.",
+
 action:function(){
 
-memory.affinity-=2;
-showChilde("decepcionado");
-showNode("distanceAgain");
+memory.descobriuUniversidade=true;
+
+memory.foiProvocadora=true;
+
+memory.affinity+=1;
+
+showNode("observeStudents");
 
 }
+
 }
 
 ]
+
 },
 
-happyAgain:{
-type:"dialogue",
-speaker:"Childe",
+
+/* =====================================================
+   SECRETARIA
+===================================================== */
+
+secretaria:{
+
+type:"narration",
+
 text:
-"Parece que vou ter sorte de encontrar você por aqui.",
-expression:"alegre",
-next:"end"
+"Você decide seguir as placas espalhadas pelo campus em busca da secretaria.",
+
+next:"secretariaThought"
+
 },
 
-teasingAgain:{
-type:"dialogue",
-speaker:"Childe",
+
+secretariaThought:{
+
+type:"thought",
+
 text:
-"Você realmente gosta de me provocar, não é?",
-expression:"alegre",
-next:"end"
+"Talvez seja melhor perguntar logo. Eu não quero chegar atrasada na minha primeira aula.",
+
+next:"futureCharacterCheck"
+
 },
 
-surprisedAgain:{
-type:"dialogue",
-speaker:"Childe",
+
+/* =====================================================
+   SOZINHA
+===================================================== */
+
+sozinha:{
+
+type:"narration",
+
 text:
-"Eu também não esperava.",
-expression:"franzindo",
-next:"end"
+"Você decide tentar encontrar sua sala sem pedir ajuda a ninguém.",
+
+next:"sozinhaThought"
+
 },
 
-distanceAgain:{
-type:"dialogue",
-speaker:"Childe",
+
+sozinhaThought:{
+
+type:"thought",
+
 text:
-"Entendi. Não vou insistir.",
-expression:"decepcionado",
-next:"end"
+"Eu consigo. Só preciso prestar atenção nas placas.",
+
+next:"futureCharacterCheck"
+
 },
 
-end:{
+
+/* =====================================================
+   OBSERVAR
+===================================================== */
+
+observeStudents:{
+
+type:"narration",
+
+text:
+"Você fica alguns segundos observando o movimento do campus.",
+
+next:"observeThought"
+
+},
+
+
+observeThought:{
+
+type:"thought",
+
+text:
+"Tem tanta gente aqui... talvez seja melhor observar primeiro antes de sair perguntando qualquer coisa.",
+
+next:"futureCharacterCheck"
+
+},
+
+
+/* =====================================================
+   BORBOLETA
+===================================================== */
+
+futureCharacterCheck:{
+
+type:"branch",
+
+condition:function(){
+
+if(memory.foiProvocadora){
+
+return "newCharacterA";
+
+}
+
+if(memory.manteveDistancia){
+
+return "newCharacterB";
+
+}
+
+return "neutralCharacter";
+
+}
+
+},
+
+
+/* =====================================================
+   FUTURO PERSONAGEM A
+===================================================== */
+
+newCharacterA:{
+
+type:"narration",
+
+text:
+"Enquanto você observa o campus, uma voz desconhecida chama sua atenção ao passar por perto.",
+
+next:"newCharacterA2"
+
+},
+
+
+newCharacterA2:{
+
+type:"thought",
+
+text:
+"Quem é ele?",
+
+next:"newCharacterA3"
+
+},
+
+
+newCharacterA3:{
+
+type:"dialogue",
+
+speaker:"???",
+
+text:
+"Você está procurando a sala de alguma turma?",
+
+next:"endEpisode"
+
+},
+
+
+/* =====================================================
+   FUTURO PERSONAGEM B
+===================================================== */
+
+newCharacterB:{
+
+type:"narration",
+
+text:
+"Você segue sozinha pelo corredor. Quando dobra uma esquina, quase esbarra em alguém.",
+
+next:"newCharacterB2"
+
+},
+
+
+newCharacterB2:{
+
+type:"thought",
+
+text:
+"Ótimo... primeiro dia e eu já quase derrubo alguém.",
+
+next:"newCharacterB3"
+
+},
+
+
+newCharacterB3:{
+
+type:"dialogue",
+
+speaker:"???",
+
+text:
+"Você está bem?",
+
+next:"endEpisode"
+
+},
+
+
+/* =====================================================
+   ROTA NEUTRA
+===================================================== */
+
+neutralCharacter:{
+
+type:"narration",
+
+text:
+"Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
+
+next:"endEpisode"
+
+},
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+endEpisode:{
+
 type:"end",
+
 text:
 "EPISÓDIO 1 — Um encontro inesperado"
+
 }
 
 };
 
 
-/* =========================
-   CONTROLE DA FALA
-========================= */
+/* =====================================================
+   MOSTRAR NÓ
+===================================================== */
 
 let currentNode=null;
 
+
 function showNode(id){
 
-const node=story[id];
+const node=
+story[id];
 
 if(!node)
 return;
 
-currentNode=node;
+currentNode=
+node;
 
 choiceArea.innerHTML="";
 
 tapIndicator.style.display="none";
 
 
-/* UNIVERSIDADE */
+/* CENÁRIO */
 
-if(id==="universityArrival"){
+if(node.scene==="university"){
+
 showUniversity();
+
+}
+
+
+/* PERSONAGEM */
+
+if(node.hideCharacter){
+
+hideChilde();
+
 }
 
 
@@ -1899,7 +3076,9 @@ showUniversity();
 
 if(node.expression){
 
-showChilde(node.expression);
+showChilde(
+node.expression
+);
 
 }
 
@@ -1911,14 +3090,24 @@ node.type==="dialogue" &&
 node.speaker!=="Você"
 ){
 
-showChilde();
+showChilde(
+node.expression ||
+memory.expression ||
+"franzindo"
+);
 
 showChildeBubble(
-node.speaker || "???",
+node.speaker ||
+"???",
 node.text
 );
 
+dialogueSpeaker.textContent="";
+
+dialogueText.textContent="";
+
 }
+
 
 /* FALA DA PROTAGONISTA */
 
@@ -1927,16 +3116,21 @@ node.type==="dialogue" &&
 node.speaker==="Você"
 ){
 
-/*
-O Childe CONTINUA na tela.
-Só escondemos a bolha dele enquanto ela fala.
-*/
-
 if(memory.encontrouChilde){
-childeLayer.classList.add("visible");
+
+childeLayer.classList.add(
+"visible"
+);
+
 }
 
 hideChildeBubble();
+
+dialogueSpeaker.textContent=
+"Você";
+
+dialogueText.textContent=
+node.text;
 
 }
 
@@ -1945,12 +3139,43 @@ hideChildeBubble();
 
 if(node.type==="narration"){
 
+dialogueBox.classList.remove(
+"thought"
+);
+
 dialogueSpeaker.textContent="";
-dialogueText.textContent=node.text;
+
+dialogueText.textContent=
+node.text;
 
 hideChildeBubble();
 
-tapIndicator.style.display="block";
+tapIndicator.style.display=
+"block";
+
+return;
+
+}
+
+
+/* PENSAMENTO */
+
+if(node.type==="thought"){
+
+dialogueBox.classList.add(
+"thought"
+);
+
+dialogueSpeaker.textContent=
+"Pensamento";
+
+dialogueText.textContent=
+node.text;
+
+hideChildeBubble();
+
+tapIndicator.style.display=
+"block";
 
 return;
 
@@ -1961,48 +3186,47 @@ return;
 
 if(node.type==="dialogue"){
 
-/*
-A caixa inferior continua sendo usada
-para a protagonista.
-Para Childe, a fala aparece na bolha.
-*/
+dialogueBox.classList.remove(
+"thought"
+);
 
-if(node.speaker==="Você"){
-
-dialogueSpeaker.textContent="Você";
-dialogueText.textContent=node.text;
-
-}else{
-
-dialogueSpeaker.textContent="";
-dialogueText.textContent="";
-
-}
-
-tapIndicator.style.display="block";
+tapIndicator.style.display=
+"block";
 
 return;
 
 }
 
 
-/* ESCOLHAS */
+/* ESCOLHA */
 
 if(node.type==="choice"){
 
+dialogueBox.classList.remove(
+"thought"
+);
+
 dialogueSpeaker.textContent="";
-dialogueText.textContent=node.text;
+
+dialogueText.textContent=
+node.text;
 
 hideChildeBubble();
 
-node.choices.forEach(function(choice){
+
+node.choices.forEach(
+function(choice){
 
 const button=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
-button.className="choice-button";
+button.className=
+"choice-button";
 
-button.textContent=choice.text;
+button.textContent=
+choice.text;
 
 button.addEventListener(
 "click",
@@ -2015,11 +3239,28 @@ updateAffinity();
 }
 );
 
-choiceArea.appendChild(button);
+choiceArea.appendChild(
+button
+);
 
 });
 
 return;
+
+}
+
+
+/* RAMIFICAÇÃO */
+
+if(node.type==="branch"){
+
+const next=
+node.condition();
+
+showNode(next);
+
+return;
+
 }
 
 
@@ -2027,33 +3268,49 @@ return;
 
 if(node.type==="end"){
 
-dialogueSpeaker.textContent="";
-dialogueText.textContent=node.text;
+hideChilde();
 
-hideChildeBubble();
+dialogueBox.classList.remove(
+"thought"
+);
+
+dialogueSpeaker.textContent="";
+
+dialogueText.textContent=
+node.text;
+
+tapIndicator.style.display=
+"none";
+
 
 const button=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
-button.className="restart-button";
+button.className=
+"restart-button";
 
-button.textContent="Recomeçar";
+button.textContent=
+"Recomeçar";
 
 button.addEventListener(
 "click",
 resetStory
 );
 
-choiceArea.appendChild(button);
+choiceArea.appendChild(
+button
+);
 
 }
 
 }
 
 
-/* =========================
-   AVANÇAR
-========================= */
+/* =====================================================
+   TOQUE PARA CONTINUAR
+===================================================== */
 
 dialogueBox.addEventListener(
 "click",
@@ -2064,7 +3321,8 @@ return;
 
 if(
 currentNode.type==="narration" ||
-currentNode.type==="dialogue"
+currentNode.type==="dialogue" ||
+currentNode.type==="thought"
 ){
 
 if(currentNode.next){
@@ -2077,13 +3335,12 @@ currentNode.next
 
 }
 
-}
-);
+});
 
 
-/* =========================
+/* =====================================================
    AFINIDADE
-========================= */
+===================================================== */
 
 function updateAffinity(){
 
@@ -2094,25 +3351,36 @@ memory.affinity;
 }
 
 
-/* =========================
+/* =====================================================
    RESET
-========================= */
+===================================================== */
 
 function resetStory(){
 
 Object.assign(
 memory,
 {
+
 encontrouChilde:false,
+
 foiGentil:false,
+
 foiProvocadora:false,
+
 manteveDistancia:false,
+
 perguntouNome:false,
+
 disseNome:false,
+
 childeSeApresentou:false,
+
 descobriuUniversidade:false,
+
 affinity:0,
+
 expression:"franzindo"
+
 }
 );
 
@@ -2127,17 +3395,19 @@ showNode("start");
 }
 
 
-/* =========================
+/* =====================================================
    COMEÇAR
-========================= */
+===================================================== */
 
 startButton.addEventListener(
 "click",
 function(){
 
-startScreen.style.display="none";
+startScreen.style.display=
+"none";
 
-storyScreen.style.display="block";
+storyScreen.style.display=
+"block";
 
 showCity();
 
@@ -2145,8 +3415,12 @@ initAudio();
 
 showNode("start");
 
-}
-);
+});
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
 
 updateAffinity();
 
