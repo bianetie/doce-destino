@@ -438,8 +438,14 @@ function showScene() {
   document.getElementById("storyText").textContent =
     current.text();
 
-  document.getElementById("scene").textContent =
-    current.scene;
+const sceneElement = document.getElementById("scene");
+
+if (current.scene && current.scene.endsWith(".png")) {
+    sceneElement.innerHTML =
+        `<img src="${current.scene}" alt="Cenário" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">`;
+} else {
+    sceneElement.textContent = current.scene;
+}
 
   document.getElementById("affinity").textContent =
     affinity;
