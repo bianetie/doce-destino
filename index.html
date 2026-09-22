@@ -1,107 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doce Destino</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doce Destino</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #120d1c;
-      color: white;
-      font-family: Georgia, serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #120d1c;
+  color: white;
+  font-family: Georgia, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .game {
-      width: 100%;
-      max-width: 480px;
-      min-height: 100vh;
-      background:
-        linear-gradient(
-          rgba(20, 10, 35, 0.45),
-          rgba(20, 10, 35, 0.9)
-        ),
-        radial-gradient(circle at top, #60406f, #17101f 65%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 35px 24px;
-      text-align: center;
-    }
+.game {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #604060 0%, transparent 35%),
+    linear-gradient(180deg, #24152d, #0e0914);
+  position: relative;
+  overflow: hidden;
+}
 
-    .stars {
-      font-size: 24px;
-      letter-spacing: 8px;
-      margin-bottom: 35px;
-      opacity: 0.8;
-    }
+.screen {
+  min-height: 100vh;
+  padding: 35px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
 
-    h1 {
-      font-size: 48px;
-      margin: 0;
-      letter-spacing: 2px;
-    }
+h1 {
+  font-size: 48px;
+  margin: 0 0 10px;
+  color: #ffd6ef;
+  text-shadow: 0 0 20px #ff8dcc;
+}
 
-    .subtitle {
-      margin-top: 12px;
-      font-size: 18px;
-      color: #f2d9ff;
-    }
+.subtitle {
+  font-size: 19px;
+  color: #f5dbea;
+  margin-bottom: 45px;
+}
 
-    .divider {
-      width: 80px;
-      height: 2px;
-      background: #e8a8dc;
-      margin: 30px auto;
-    }
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px solid #d98abb;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  outline: none;
+  margin-bottom: 15px;
+}
 
-    .description {
-      max-width: 330px;
-      line-height: 1.6;
-      color: #eadfea;
-      margin-bottom: 35px;
-    }
+input::placeholder {
+  color: #c9afc3;
+}
 
-    button {
-      border: none;
-      border-radius: 30px;
-      padding: 16px 30px;
-      font-size: 17px;
-      font-weight: bold;
-      color: white;
-      background: linear-gradient(135deg, #c56bb5, #7c4fa3);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
-      cursor: pointer;
-    }
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 7px 0;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e99acb, #a95c98);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,.25);
+}
 
-    button:active {
-      transform: scale(0.97);
-    }
+button:active {
+  transform: scale(.98);
+}
 
-    .version {
-      position: absolute;
-      bottom: 18px;
-      font-size: 12px;
-      opacity: 0.45;
-    }
-  </style>
+.hidden {
+  display: none !important;
+}
+
+.story {
+  justify-content: flex-end;
+  padding-bottom: 25px;
+}
+
+.scene {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+}
+
+.dialogue {
+  background: rgba(10, 5, 18, .88);
+  border: 1px solid rgba(255,190,230,.35);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.character {
+  color: #ffafd9;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.choice-title {
+  color: #ffd6ef;
+  margin: 10px 0;
+}
+
+.status {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #eecce2;
+}
+
+.route {
+  color: #ffd1e9;
+}
+
+.footer {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #9e8398;
+}
+</style>
 </head>
 
 <body>
 
-  <main class="game">
+<div class="game">
 
-    <div class="stars">✦ ✧ ✦</div>
+  <!-- TELA INICIAL -->
+  <section id="startScreen" class="screen">
 
     <h1>Doce Destino</h1>
 
@@ -109,33 +168,349 @@
       Seu coração escolhe o caminho.
     </div>
 
-    <div class="divider"></div>
-
-    <p class="description">
-      Algumas histórias começam por acaso.
-      Outras parecem estar esperando por você.
-      <br><br>
-      Qual caminho seu coração vai escolher?
+    <p>
+      Antes de começar sua história...
     </p>
 
-    <button onclick="comecarHistoria()">
-      Começar minha história
+    <p>
+      <strong>Como você se chama?</strong>
+    </p>
+
+    <input
+      id="playerName"
+      type="text"
+      maxlength="20"
+      placeholder="Digite seu nome"
+    >
+
+    <button onclick="startGame()">
+      Começar minha história 💗
     </button>
 
-    <div class="version">
-      Doce Destino • Primeiro protótipo
+    <div class="footer">
+      03 rotas • escolhas • afinidade • finais diferentes
     </div>
 
-  </main>
+  </section>
 
-  <script>
-    function comecarHistoria() {
-      alert(
-        "Bem-vinda ao Doce Destino! 💗\n\n" +
-        "Sua história está apenas começando..."
-      );
-    }
-  </script>
+
+  <!-- HISTÓRIA -->
+  <section id="storyScreen" class="screen story hidden">
+
+    <div class="status">
+      <span id="playerDisplay"></span>
+      <span>❤️ Afinidade: <span id="affinity">0</span></span>
+    </div>
+
+    <div class="scene" id="scene">
+      🌙
+    </div>
+
+    <div class="dialogue">
+
+      <div class="character" id="character">
+        Narrador
+      </div>
+
+      <div class="text" id="storyText">
+      </div>
+
+    </div>
+
+    <div id="choices"></div>
+
+  </section>
+
+</div>
+
+
+<script>
+
+let playerName = "";
+let affinity = 0;
+let currentStep = 0;
+let route = "";
+
+const story = [
+
+  {
+    character: "Narrador",
+    text: () =>
+      `Seu primeiro dia na Universidade Aurora finalmente chegou. ${playerName}, você respira fundo antes de entrar no campus.`,
+    scene: "🌅",
+    choices: [
+      {
+        text: "Entrar imediatamente.",
+        affinity: 1,
+        next: 1
+      },
+      {
+        text: "Parar por alguns segundos e observar.",
+        affinity: 0,
+        next: 2
+      }
+    ]
+  },
+
+  {
+    character: "???",
+    text: () =>
+      `— Ei! Você vai ficar parada aí o dia inteiro?`,
+    scene: "✨",
+    choices: [
+      {
+        text: "— Desculpa! Eu estava meio perdida.",
+        affinity: 1,
+        next: 3
+      },
+      {
+        text: "— E você é quem para estar me dando ordens?",
+        affinity: 0,
+        next: 3
+      }
+    ]
+  },
+
+  {
+    character: "Narrador",
+    text: () =>
+      `Enquanto observa o campus, três pessoas chamam sua atenção. Cada uma parece carregar uma história completamente diferente.`,
+    scene: "🏫",
+    choices: [
+      {
+        text: "Olhar para o garoto de cabelos ruivos.",
+        route: "Childe",
+        affinity: 1,
+        next: 4
+      },
+      {
+        text: "Olhar para o garoto de cabelos claros.",
+        route: "Aether",
+        affinity: 1,
+        next: 5
+      },
+      {
+        text: "Procurar alguém que pareça familiar.",
+        route: "Leiftam",
+        affinity: 1,
+        next: 6
+      }
+    ]
+  },
+
+  {
+    character: "Childe",
+    text: () =>
+      `Ele percebe seu olhar e dá um pequeno sorriso. — Você sempre olha para as pessoas desse jeito… ou eu sou uma exceção?`,
+    scene: "❤️",
+    choices: [
+      {
+        text: "— Talvez você seja uma exceção.",
+        affinity: 2,
+        next: 7
+      },
+      {
+        text: "— Eu estava apenas olhando.",
+        affinity: 1,
+        next: 7
+      }
+    ]
+  },
+
+  {
+    character: "Aether",
+    text: () =>
+      `O garoto de cabelos claros se aproxima sorrindo. — Você fica vermelha toda vez que eu chego perto. Interessante.`,
+    scene: "✨",
+    choices: [
+      {
+        text: "— Eu não estou vermelha!",
+        affinity: 2,
+        next: 7
+      },
+      {
+        text: "— Talvez seja culpa sua.",
+        affinity: 2,
+        next: 7
+      }
+    ]
+  },
+
+  {
+    character: "Leiftam",
+    text: () =>
+      `Uma voz familiar surge atrás de você. — Eu sabia que você estaria aqui. Não mudou nada, ${playerName}.`,
+    scene: "🌿",
+    choices: [
+      {
+        text: "Abraçá-lo.",
+        affinity: 2,
+        next: 7
+      },
+      {
+        text: "— Você continua aparecendo do nada.",
+        affinity: 1,
+        next: 7
+      }
+    ]
+  },
+
+  {
+    character: "Narrador",
+    text: () =>
+      `Você sente que aquele dia acabou de mudar alguma coisa. Talvez seja apenas o começo...`,
+    scene: "🌙",
+    choices: [
+      {
+        text: "Continuar.",
+        affinity: 1,
+        next: 7
+      }
+    ]
+  },
+
+  {
+    character: () =>
+      route || "Destino",
+    text: () =>
+      `E assim começa o seu Doce Destino, ${playerName}. Seu coração ainda não sabe qual caminho escolher...`,
+    scene: "💗",
+    choices: [
+      {
+        text: "Ver o que o destino preparou.",
+        affinity: 1,
+        next: 8
+      }
+    ]
+  },
+
+  {
+    character: "Narrador",
+    text: () =>
+      `Por enquanto, esta é apenas a primeira página da sua história.
+
+O caminho de ${playerName} está apenas começando. 💗`,
+    scene: "🌌",
+    choices: []
+  }
+
+];
+
+
+function startGame() {
+
+  const input = document.getElementById("playerName");
+
+  playerName = input.value.trim();
+
+  if (!playerName) {
+    alert("Digite seu nome para começar sua história. 💗");
+    input.focus();
+    return;
+  }
+
+  affinity = 0;
+  currentStep = 0;
+
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("storyScreen").classList.remove("hidden");
+
+  document.getElementById("playerDisplay").textContent =
+    playerName;
+
+  showScene();
+
+}
+
+
+function showScene() {
+
+  const current = story[currentStep];
+
+  const character =
+    typeof current.character === "function"
+      ? current.character()
+      : current.character;
+
+  document.getElementById("character").textContent =
+    character;
+
+  document.getElementById("storyText").textContent =
+    current.text();
+
+  document.getElementById("scene").textContent =
+    current.scene;
+
+  document.getElementById("affinity").textContent =
+    affinity;
+
+  const choicesContainer =
+    document.getElementById("choices");
+
+  choicesContainer.innerHTML = "";
+
+  if (current.choices.length === 0) {
+
+    const restart = document.createElement("button");
+
+    restart.textContent =
+      "Voltar ao início 💕";
+
+    restart.onclick = () => {
+
+      document.getElementById("storyScreen")
+        .classList.add("hidden");
+
+      document.getElementById("startScreen")
+        .classList.remove("hidden");
+
+    };
+
+    choicesContainer.appendChild(restart);
+
+    return;
+  }
+
+
+  const title = document.createElement("div");
+
+  title.className = "choice-title";
+
+  title.textContent =
+    "O que você vai fazer?";
+
+  choicesContainer.appendChild(title);
+
+
+  current.choices.forEach(choice => {
+
+    const button =
+      document.createElement("button");
+
+    button.textContent =
+      choice.text;
+
+    button.onclick = () => {
+
+      affinity += choice.affinity || 0;
+
+      if (choice.route) {
+        route = choice.route;
+      }
+
+      currentStep = choice.next;
+
+      showScene();
+
+    };
+
+    choicesContainer.appendChild(button);
+
+  });
+
+}
+
+</script>
 
 </body>
 </html>
