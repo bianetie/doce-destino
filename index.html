@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
 
 <title>Doce Destino</title>
 
 <style>
 
-/* =========================
-   BASE
-========================= */
+/* =====================================================
+   CONFIGURAÇÃO GERAL
+===================================================== */
 
 * {
   box-sizing: border-box;
@@ -25,21 +24,26 @@
 html,
 body {
   margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
+
   overflow: hidden;
+
+  background: #100b18;
+  color: white;
+
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 body {
-  background: #100a18;
-  color: white;
-  font-family: Georgia, serif;
+  min-height: 100dvh;
 }
 
 
-/* =========================
-   JOGO
-========================= */
+/* =====================================================
+   TELA DO JOGO
+===================================================== */
 
 .game {
   position: relative;
@@ -47,32 +51,28 @@ body {
   width: 100%;
   height: 100dvh;
 
-  min-height: 100dvh;
-
   overflow: hidden;
 
-  background: #120c18;
+  background: #100b18;
 }
 
 
-/* =========================
+/* =====================================================
    TELA INICIAL
-========================= */
+===================================================== */
 
 .start-screen {
   position: absolute;
 
   inset: 0;
 
-  z-index: 20;
+  z-index: 100;
 
   display: flex;
-
   flex-direction: column;
 
-  justify-content: center;
-
   align-items: center;
+  justify-content: center;
 
   padding: 30px;
 
@@ -80,10 +80,9 @@ body {
 
   background:
     radial-gradient(
-      circle at top,
-      #704766 0%,
-      #28172f 45%,
-      #100a18 100%
+      circle at center,
+      rgba(125, 66, 120, 0.55),
+      rgba(15, 8, 24, 0.98)
     );
 }
 
@@ -94,89 +93,101 @@ body {
 .start-title {
   margin: 0;
 
-  font-size: clamp(42px, 12vw, 64px);
+  font-size: clamp(42px, 11vw, 72px);
 
-  color: #ffd8ef;
+  letter-spacing: 2px;
 
   text-shadow:
-    0 0 12px rgba(255, 151, 211, .8),
-    0 0 35px rgba(255, 120, 200, .4);
+    0 0 20px rgba(255, 190, 230, 0.45),
+    0 3px 8px rgba(0,0,0,0.7);
 }
 
 .start-subtitle {
   margin-top: 8px;
   margin-bottom: 35px;
 
-  font-size: 18px;
+  font-size: 17px;
 
-  color: #f6ddea;
+  color: #f5dced;
+
+  font-style: italic;
 }
 
 .name-input {
-  width: min(340px, 90%);
+  width: min(330px, 90vw);
 
-  padding: 15px 18px;
+  padding: 16px 20px;
 
-  border: 1px solid rgba(255, 190, 230, .6);
+  border-radius: 18px;
 
-  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
 
   outline: none;
 
-  background: rgba(20, 10, 28, .65);
+  background: rgba(35, 18, 43, 0.9);
 
   color: white;
 
   text-align: center;
 
-  font-size: 18px;
+  font-size: 17px;
+
+  font-family: inherit;
 }
 
 .name-input::placeholder {
-  color: #c9afc3;
+  color: rgba(255,255,255,0.6);
 }
 
 .start-button {
-  width: min(340px, 90%);
+  margin-top: 18px;
 
-  margin-top: 14px;
+  width: min(330px, 90vw);
 
-  padding: 16px;
+  padding: 16px 20px;
 
-  border: none;
-
-  border-radius: 16px;
+  border: 0;
+  border-radius: 18px;
 
   background:
     linear-gradient(
       135deg,
-      #ec9ccc,
-      #a85b98
+      #9e548c,
+      #6e386c
     );
 
   color: white;
 
-  font-size: 17px;
+  font-family: inherit;
 
+  font-size: 18px;
   font-weight: bold;
 
   box-shadow:
-    0 8px 25px rgba(0,0,0,.35);
+    0 8px 25px rgba(0,0,0,0.35);
+
+  cursor: pointer;
+}
+
+.start-button:active {
+  transform: scale(0.97);
 }
 
 
-/* =========================
-   CENA
-========================= */
+/* =====================================================
+   TELA DA HISTÓRIA
+===================================================== */
 
 .story-screen {
   position: absolute;
 
   inset: 0;
 
+  display: none;
+
   overflow: hidden;
 
-  display: none;
+  background: #100b18;
 }
 
 .story-screen.active {
@@ -184,9 +195,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    CENÁRIO
-========================= */
+===================================================== */
 
 .scene {
   position: absolute;
@@ -195,92 +206,64 @@ body {
 
   overflow: hidden;
 
-  background: #17101f;
+  background: #151020;
 }
 
 .scene img {
   position: absolute;
+
+  left: 50%;
+  top: 50%;
 
   width: 115%;
   height: 115%;
 
   max-width: none;
 
-  left: -7.5%;
-  top: -7.5%;
-
   object-fit: cover;
 
   transform-origin: center center;
 
   animation:
-    auroraCamera 24s ease-in-out infinite alternate;
-
-  will-change: transform;
+    auroraCamera 20s ease-in-out infinite alternate;
 }
 
 
-/* Movimento cinematográfico */
+/* =====================================================
+   MOVIMENTO DA CÂMERA
+===================================================== */
 
 @keyframes auroraCamera {
 
   0% {
     transform:
+      translate(-50%, -50%)
       scale(1.02)
-      translate3d(-0.3%, 0%, 0);
+      translate3d(-0.4%, 0%, 0);
   }
 
-  35% {
+  50% {
     transform:
-      scale(1.05)
-      translate3d(0.4%, -0.3%, 0);
-  }
-
-  70% {
-    transform:
+      translate(-50%, -50%)
       scale(1.07)
-      translate3d(-0.3%, 0.4%, 0);
+      translate3d(0.5%, -0.4%, 0);
   }
 
   100% {
     transform:
-      scale(1.10)
-      translate3d(0.3%, -0.2%, 0);
+      translate(-50%, -50%)
+      scale(1.11)
+      translate3d(-0.4%, 0.6%, 0);
   }
 }
 
 
-/* =========================
-   SOMBRA SOBRE O CENÁRIO
-========================= */
+/* =====================================================
+   ILUMINAÇÃO SOBRE O CENÁRIO
+===================================================== */
 
 .scene::after {
-
   content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      rgba(12, 5, 18, .40) 0%,
-      transparent 25%,
-      transparent 58%,
-      rgba(10, 4, 16, .78) 100%
-    );
-}
-
-
-/* =========================
-   PETALAS
-========================= */
-
-.petals {
 
   position: absolute;
 
@@ -290,116 +273,325 @@ body {
 
   pointer-events: none;
 
-  overflow: hidden;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8, 4, 16, 0.22),
+      transparent 25%,
+      transparent 60%,
+      rgba(8, 3, 15, 0.68) 100%
+    );
 }
 
-.petal {
 
+/* =====================================================
+   CAMADA DE VENTO
+===================================================== */
+
+.wind-layer {
   position: absolute;
 
-  width: 9px;
-  height: 5px;
+  inset: 0;
 
-  border-radius: 80% 20% 80% 20%;
+  z-index: 5;
 
-  background: rgba(255, 190, 220, .85);
+  overflow: hidden;
 
-  filter: blur(.2px);
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   PÉTALAS / FOLHAS
+===================================================== */
+
+.leaf {
+  position: absolute;
+
+  width: 13px;
+  height: 8px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    rgba(255, 194, 220, 0.92);
+
+  box-shadow:
+    0 0 5px rgba(255,255,255,0.3);
 
   animation:
-    fallingPetal linear infinite;
+    windLeaf linear infinite;
+
+  opacity: 0;
 }
 
-.petal:nth-child(1) {
-  left: 8%;
-  top: -5%;
+
+/* posições diferentes */
+
+.leaf:nth-child(1) {
+  left: 3%;
+  top: 15%;
+  animation-duration: 6s;
+  animation-delay: -1s;
+}
+
+.leaf:nth-child(2) {
+  left: 18%;
+  top: 25%;
+  animation-duration: 8s;
+  animation-delay: -4s;
+}
+
+.leaf:nth-child(3) {
+  left: 31%;
+  top: 10%;
+  animation-duration: 7s;
+  animation-delay: -2s;
+}
+
+.leaf:nth-child(4) {
+  left: 46%;
+  top: 20%;
+  animation-duration: 9s;
+  animation-delay: -6s;
+}
+
+.leaf:nth-child(5) {
+  left: 61%;
+  top: 13%;
+  animation-duration: 7.5s;
+  animation-delay: -3s;
+}
+
+.leaf:nth-child(6) {
+  left: 76%;
+  top: 28%;
+  animation-duration: 10s;
+  animation-delay: -7s;
+}
+
+.leaf:nth-child(7) {
+  left: 90%;
+  top: 17%;
+  animation-duration: 6.5s;
+  animation-delay: -2s;
+}
+
+.leaf:nth-child(8) {
+  left: 12%;
+  top: 42%;
   animation-duration: 11s;
+  animation-delay: -8s;
 }
 
-.petal:nth-child(2) {
-  left: 28%;
-  top: -10%;
-  animation-duration: 15s;
-  animation-delay: 3s;
+.leaf:nth-child(9) {
+  left: 54%;
+  top: 37%;
+  animation-duration: 8.5s;
+  animation-delay: -5s;
 }
 
-.petal:nth-child(3) {
-  left: 51%;
-  top: -8%;
-  animation-duration: 13s;
-  animation-delay: 1s;
+.leaf:nth-child(10) {
+  left: 84%;
+  top: 45%;
+  animation-duration: 9.5s;
+  animation-delay: -3s;
 }
 
-.petal:nth-child(4) {
-  left: 73%;
-  top: -7%;
-  animation-duration: 17s;
-  animation-delay: 5s;
-}
 
-.petal:nth-child(5) {
-  left: 91%;
-  top: -12%;
-  animation-duration: 12s;
-  animation-delay: 2s;
-}
-
-@keyframes fallingPetal {
+@keyframes windLeaf {
 
   0% {
     transform:
-      translate3d(0, -20px, 0)
+      translate3d(-30px, -20px, 0)
       rotate(0deg);
+
     opacity: 0;
   }
 
   10% {
-    opacity: .8;
+    opacity: 1;
   }
 
-  50% {
+  30% {
     transform:
-      translate3d(35px, 50vh, 0)
-      rotate(180deg);
+      translate3d(80px, 50px, 0)
+      rotate(100deg);
+  }
+
+  55% {
+    transform:
+      translate3d(190px, 20px, 0)
+      rotate(220deg);
+  }
+
+  75% {
+    transform:
+      translate3d(290px, 100px, 0)
+      rotate(320deg);
   }
 
   100% {
     transform:
-      translate3d(-45px, 110vh, 0)
-      rotate(360deg);
+      translate3d(430px, 150px, 0)
+      rotate(480deg);
+
     opacity: 0;
   }
 }
 
 
-/* =========================
-   HUD
-========================= */
+/* =====================================================
+   EFEITO DA ÁGUA
+===================================================== */
+
+.water-effect {
+
+  position: absolute;
+
+  left: 50%;
+  top: 76%;
+
+  width: 190px;
+  height: 60px;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 6;
+
+  pointer-events: none;
+}
+
+
+.ripple {
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 35px;
+  height: 10px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border:
+    2px solid rgba(255,255,255,0.48);
+
+  border-radius: 50%;
+
+  animation:
+    rippleWater 3s ease-out infinite;
+}
+
+
+.ripple:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.ripple:nth-child(3) {
+  animation-delay: 2s;
+}
+
+
+@keyframes rippleWater {
+
+  0% {
+    width: 20px;
+    height: 7px;
+
+    opacity: 0.8;
+  }
+
+  100% {
+    width: 170px;
+    height: 45px;
+
+    opacity: 0;
+  }
+}
+
+
+/* =====================================================
+   BRILHO DA ÁGUA
+===================================================== */
+
+.water-shimmer {
+
+  position: absolute;
+
+  left: 50%;
+  top: 73%;
+
+  width: 140px;
+  height: 5px;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 7;
+
+  pointer-events: none;
+
+  background:
+    rgba(255,255,255,0.38);
+
+  filter: blur(3px);
+
+  animation:
+    waterShimmer 2.4s ease-in-out infinite;
+}
+
+
+@keyframes waterShimmer {
+
+  0%,
+  100% {
+    transform:
+      translateX(-70%)
+      scaleX(0.5);
+
+    opacity: 0.15;
+  }
+
+  50% {
+    transform:
+      translateX(-30%)
+      scaleX(1.25);
+
+    opacity: 0.75;
+  }
+}
+
+
+/* =====================================================
+   HUD SUPERIOR
+===================================================== */
 
 .hud {
 
   position: absolute;
 
-  top: max(14px, env(safe-area-inset-top));
+  top: 18px;
+  left: 20px;
+  right: 20px;
 
-  left: 14px;
-  right: 14px;
-
-  z-index: 10;
+  z-index: 20;
 
   display: flex;
 
   align-items: center;
 
   justify-content: space-between;
-
-  pointer-events: none;
 }
 
 
-/* =========================
-   PROTAGONISTA
-========================= */
+/* =====================================================
+   JOGADOR
+===================================================== */
 
 .player-info {
 
@@ -407,166 +599,148 @@ body {
 
   align-items: center;
 
-  gap: 9px;
+  gap: 10px;
 }
 
 
-/* Espaço para a foto escolhida */
-
 .player-avatar {
 
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
 
   flex-shrink: 0;
 
   border-radius: 50%;
 
-  border: 2px solid rgba(255, 210, 235, .9);
+  border:
+    2px solid rgba(255,255,255,0.65);
 
   background:
     linear-gradient(
       145deg,
-      #efabd0,
-      #8f527f
+      #b968a5,
+      #7d447c
     );
 
   box-shadow:
-    0 4px 15px rgba(0,0,0,.35);
+    0 4px 15px rgba(0,0,0,0.35);
+
+  color: white;
+
+  font-size: 31px;
+}
+
+
+.player-name {
+
+  font-size: 25px;
+
+  font-weight: bold;
+
+  text-shadow:
+    0 2px 7px rgba(0,0,0,0.9);
+}
+
+
+/* =====================================================
+   AFINIDADE
+===================================================== */
+
+.affinity {
 
   display: flex;
 
   align-items: center;
 
-  justify-content: center;
+  gap: 7px;
 
-  overflow: hidden;
+  padding: 11px 15px;
 
-  font-size: 22px;
-}
-
-.player-avatar img {
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-.player-name {
-
-  color: white;
-
-  font-size: 17px;
-
-  font-weight: bold;
-
-  text-shadow:
-    0 2px 5px rgba(0,0,0,.8);
-}
-
-
-/* =========================
-   AFINIDADE
-========================= */
-
-.affinity {
-
-  padding: 9px 13px;
-
-  border-radius: 18px;
+  border-radius: 22px;
 
   background:
-    rgba(18, 7, 26, .55);
+    rgba(42, 23, 48, 0.78);
 
   border:
-    1px solid rgba(255, 190, 225, .35);
+    1px solid rgba(255,255,255,0.18);
 
-  color: white;
+  box-shadow:
+    0 5px 18px rgba(0,0,0,0.3);
 
-  font-size: 14px;
+  font-size: 17px;
+}
 
-  text-shadow:
-    0 2px 5px rgba(0,0,0,.8);
-
-  backdrop-filter: blur(7px);
+.affinity-heart {
+  font-size: 23px;
 }
 
 
-/* =========================
+/* =====================================================
    ÁREA INFERIOR
-========================= */
+===================================================== */
 
-.bottom-ui {
+.bottom-area {
 
   position: absolute;
 
-  left: 14px;
-  right: 14px;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
 
-  bottom: max(14px, env(safe-area-inset-bottom));
-
-  z-index: 8;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
+  z-index: 20;
 }
 
 
-/* =========================
-   DIÁLOGO
-========================= */
+/* =====================================================
+   CAIXA DE DIÁLOGO
+===================================================== */
 
-.dialogue {
+.dialogue-box {
 
-  width: 100%;
+  padding:
+    22px 25px;
 
-  padding: 16px 18px;
-
-  border-radius: 20px;
+  border-radius:
+    25px;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(13, 6, 20, .80),
-      rgba(13, 6, 20, .94)
-    );
+    rgba(18, 10, 25, 0.91);
 
   border:
-    1px solid rgba(255, 190, 230, .40);
+    1px solid rgba(255,255,255,0.22);
 
   box-shadow:
-    0 10px 35px rgba(0,0,0,.35);
+    0 10px 30px rgba(0,0,0,0.4);
 
-  backdrop-filter: blur(9px);
+  backdrop-filter:
+    blur(5px);
 
-  color: white;
+  -webkit-backdrop-filter:
+    blur(5px);
 }
 
-
-/* Não existe "Narrador" aqui.
-   É somente a ação/narração. */
 
 .dialogue-text {
 
-  font-size: clamp(16px, 4.4vw, 19px);
+  margin: 0;
+
+  font-size:
+    clamp(18px, 4.8vw, 23px);
 
   line-height: 1.45;
 
-  text-align: left;
-
-  color: #fff6fc;
+  color: #fff;
 }
 
 
-/* =========================
+/* =====================================================
    ESCOLHAS
-========================= */
+===================================================== */
 
 .choices {
 
@@ -574,164 +748,154 @@ body {
 
   flex-direction: column;
 
-  gap: 7px;
+  gap: 10px;
+
+  margin-top: 12px;
 }
 
-.choice {
+
+.choice-button {
 
   width: 100%;
 
-  padding: 12px 15px;
+  padding:
+    15px 20px;
 
-  border-radius: 14px;
+  border-radius:
+    18px;
 
   border:
-    1px solid rgba(255, 190, 225, .45);
+    1px solid rgba(255,255,255,0.2);
 
   background:
-    rgba(93, 44, 85, .78);
+    linear-gradient(
+      135deg,
+      rgba(143, 72, 126, 0.93),
+      rgba(86, 43, 83, 0.95)
+    );
 
   color: white;
 
-  font-family: Georgia, serif;
-
-  font-size: 15px;
-
   text-align: left;
 
-  box-shadow:
-    0 5px 18px rgba(0,0,0,.25);
+  font-family: inherit;
 
-  backdrop-filter: blur(8px);
+  font-size:
+    clamp(15px, 4vw, 18px);
+
+  line-height: 1.25;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.3);
+
+  cursor: pointer;
 
   transition:
-    transform .15s ease,
-    background .15s ease;
+    transform 0.15s ease,
+    filter 0.15s ease;
 }
 
-.choice:active {
+.choice-button:active {
 
-  transform: scale(.98);
+  transform:
+    scale(0.98);
+
+  filter:
+    brightness(1.15);
+}
+
+
+/* =====================================================
+   BOTÃO DE SOM
+===================================================== */
+
+.sound-button {
+
+  position: absolute;
+
+  right: 18px;
+  bottom: 180px;
+
+  z-index: 30;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(255,255,255,0.25);
 
   background:
-    rgba(164, 86, 142, .9);
+    rgba(28, 17, 35, 0.8);
+
+  color: white;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.35);
 }
 
 
-/* =========================
-   FALA DA PROTAGONISTA
-========================= */
+/* =====================================================
+   CELULARES PEQUENOS
+===================================================== */
 
-.player-dialogue {
+@media (max-height: 700px) {
 
-  display: flex;
-
-  align-items: flex-end;
-
-  gap: 10px;
-}
-
-.player-dialogue .small-avatar {
-
-  width: 55px;
-  height: 55px;
-
-  flex-shrink: 0;
-
-  border-radius: 14px;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(255, 210, 235, .7);
-
-  background: #8d527d;
-}
-
-.player-dialogue .small-avatar img {
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-/* =========================
-   PERSONAGEM
-========================= */
-
-.character-dialogue {
-
-  display: flex;
-
-  align-items: flex-end;
-
-  gap: 10px;
-}
-
-.character-dialogue .character-avatar {
-
-  width: 55px;
-  height: 55px;
-
-  flex-shrink: 0;
-
-  border-radius: 14px;
-
-  overflow: hidden;
-
-  background: #604060;
-
-  border:
-    1px solid rgba(255, 210, 235, .7);
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 380px) {
+  .hud {
+    top: 10px;
+  }
 
   .player-avatar {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
+    font-size: 25px;
   }
 
   .player-name {
-    font-size: 15px;
+    font-size: 21px;
   }
 
   .affinity {
-    font-size: 12px;
-    padding: 8px 10px;
+    padding: 8px 11px;
   }
 
-  .dialogue {
-    padding: 13px 15px;
+  .bottom-area {
+    bottom: 10px;
   }
 
-  .choice {
-    padding: 10px 13px;
-    font-size: 14px;
+  .dialogue-box {
+    padding: 16px 18px;
+  }
+
+  .dialogue-text {
+    font-size: 17px;
+  }
+
+  .choice-button {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .sound-button {
+    bottom: 165px;
   }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div class="game">
 
 
-  <!-- =========================
+  <!-- =================================================
        TELA INICIAL
-  ========================== -->
+  ================================================== -->
 
   <section
     id="startScreen"
@@ -742,21 +906,22 @@ body {
       Doce Destino
     </h1>
 
-    <div class="start-subtitle">
+    <p class="start-subtitle">
       Seu coração escolhe o caminho.
-    </div>
+    </p>
 
     <input
-      id="playerName"
+      id="nameInput"
       class="name-input"
       type="text"
       maxlength="20"
-      placeholder="Digite seu nome"
+      placeholder="Digite seu nome..."
+      autocomplete="off"
     >
 
     <button
+      id="startButton"
       class="start-button"
-      onclick="startGame()"
     >
       Começar minha história 💗
     </button>
@@ -764,9 +929,9 @@ body {
   </section>
 
 
-  <!-- =========================
+  <!-- =================================================
        HISTÓRIA
-  ========================== -->
+  ================================================== -->
 
   <section
     id="storyScreen"
@@ -774,28 +939,55 @@ body {
   >
 
 
-    <!-- CENÁRIO -->
+    <!-- =================================================
+         CENÁRIO
+    ================================================== -->
 
-    <div
-      id="scene"
-      class="scene"
-    ></div>
+    <div class="scene">
+
+      <img
+        src="universidade-aurora.png.PNG"
+        alt="Universidade Aurora"
+      >
 
 
-    <!-- PÉTALAS -->
+      <!-- PÉTALAS -->
 
-    <div class="petals">
+      <div class="wind-layer">
 
-      <div class="petal"></div>
-      <div class="petal"></div>
-      <div class="petal"></div>
-      <div class="petal"></div>
-      <div class="petal"></div>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+
+      </div>
+
+
+      <!-- ÁGUA -->
+
+      <div class="water-effect">
+
+        <span class="ripple"></span>
+        <span class="ripple"></span>
+        <span class="ripple"></span>
+
+      </div>
+
+
+      <div class="water-shimmer"></div>
 
     </div>
 
 
-    <!-- HUD -->
+    <!-- =================================================
+         HUD
+    ================================================== -->
 
     <div class="hud">
 
@@ -809,7 +1001,7 @@ body {
         </div>
 
         <div
-          id="playerDisplay"
+          id="playerName"
           class="player-name"
         >
           Bia
@@ -820,8 +1012,11 @@ body {
 
       <div class="affinity">
 
-        ❤️
-        <span id="affinity">
+        <span class="affinity-heart">
+          ❤️
+        </span>
+
+        <span id="affinityValue">
           0
         </span>
 
@@ -830,24 +1025,35 @@ body {
     </div>
 
 
-    <!-- INTERFACE INFERIOR -->
+    <!-- =================================================
+         BOTÃO DE SOM
+    ================================================== -->
 
-    <div class="bottom-ui">
+    <button
+      id="soundButton"
+      class="sound-button"
+      aria-label="Som"
+    >
+      🔊
+    </button>
 
 
-      <!-- TEXTO -->
+    <!-- =================================================
+         PARTE INFERIOR
+    ================================================== -->
 
-      <div class="dialogue">
+    <div class="bottom-area">
 
-        <div
-          id="storyText"
+
+      <div class="dialogue-box">
+
+        <p
+          id="dialogueText"
           class="dialogue-text"
-        ></div>
+        ></p>
 
       </div>
 
-
-      <!-- ESCOLHAS -->
 
       <div
         id="choices"
@@ -860,540 +1066,656 @@ body {
 
   </section>
 
-
 </div>
 
 
 <script>
 
-/* =========================
+/* =====================================================
    VARIÁVEIS
-========================= */
+===================================================== */
 
-let playerName = "";
+let playerName = "Bia";
 
 let affinity = 0;
 
-let currentStep = 0;
+let currentScene = 0;
 
-let route = "";
+let soundEnabled = true;
+
+let audioContext = null;
+
+let musicTimer = null;
+
+let birdTimer = null;
 
 
-/* =========================
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const startScreen =
+  document.getElementById("startScreen");
+
+const storyScreen =
+  document.getElementById("storyScreen");
+
+const nameInput =
+  document.getElementById("nameInput");
+
+const startButton =
+  document.getElementById("startButton");
+
+const playerNameElement =
+  document.getElementById("playerName");
+
+const affinityElement =
+  document.getElementById("affinityValue");
+
+const dialogueText =
+  document.getElementById("dialogueText");
+
+const choicesElement =
+  document.getElementById("choices");
+
+const soundButton =
+  document.getElementById("soundButton");
+
+
+/* =====================================================
    HISTÓRIA
-========================= */
+===================================================== */
 
 const story = [
 
   {
-
-    text: () =>
-      `Seu primeiro dia na Universidade Aurora finalmente chegou. ${playerName}, você respira fundo antes de entrar no campus.`,
-
-    scene:
-      "universidade-aurora.png.PNG",
+    text:
+      "Seu primeiro dia na Universidade Aurora finalmente chegou. {name}, você respira fundo antes de entrar no campus.",
 
     choices: [
 
       {
-        text:
-          "Entrar imediatamente.",
-
+        text: "Entrar imediatamente.",
         affinity: 1,
-
         next: 1
       },
 
       {
-        text:
-          "Parar por alguns segundos e observar.",
-
-        affinity: 0,
-
-        next: 2
+        text: "Parar por alguns segundos e observar.",
+        affinity: 2,
+        next: 1
       }
 
     ]
-
   },
 
 
   {
-
-    text: () =>
-      `Você atravessa os portões da universidade. O movimento dos estudantes ao redor faz você perceber que uma nova fase está começando.`,
-
-    scene:
-      "universidade-aurora.png.PNG",
+    text:
+      "A brisa passa suavemente pelo jardim. Pétalas rosadas atravessam seu campo de visão enquanto a água da fonte dança ao longe.",
 
     choices: [
 
       {
-        text:
-          "Continuar andando.",
-
+        text: "Sorrir e continuar caminhando.",
         affinity: 1,
+        next: 2
+      },
 
+      {
+        text: "Observar a universidade com atenção.",
+        affinity: 2,
         next: 2
       }
 
     ]
-
   },
 
 
   {
-
-    text: () =>
-      `Enquanto observa o campus, três pessoas chamam sua atenção. Cada uma parece carregar uma história completamente diferente.`,
-
-    scene:
-      "universidade-aurora.png.PNG",
+    text:
+      "Há algo naquele lugar que faz seu coração bater um pouco mais rápido. Talvez seja apenas a ansiedade de começar uma nova vida.",
 
     choices: [
 
       {
-        text:
-          "Olhar para o garoto de cabelos ruivos.",
-
-        route:
-          "Childe",
-
+        text: "Pensar no futuro.",
         affinity: 1,
-
         next: 3
       },
 
       {
-        text:
-          "Olhar para o garoto de cabelos claros.",
+        text: "Deixar o momento simplesmente acontecer.",
+        affinity: 2,
+        next: 3
+      }
 
-        route:
-          "Aether",
+    ]
+  },
 
+
+  {
+    text:
+      "Você atravessa os portões da Universidade Aurora. O som distante dos pássaros acompanha seus primeiros passos pelo campus.",
+
+    choices: [
+
+      {
+        text: "Continuar explorando.",
         affinity: 1,
-
         next: 4
       },
 
       {
-        text:
-          "Procurar alguém familiar.",
+        text: "Procurar alguém para conversar.",
+        affinity: 2,
+        next: 4
+      }
 
-        route:
-          "Leiftam",
+    ]
+  },
 
+
+  {
+    text:
+      "Então, entre os estudantes que atravessam o jardim, uma presença chama sua atenção.",
+
+    choices: [
+
+      {
+        text: "Olhar discretamente.",
+        affinity: 2,
+        next: 5
+      },
+
+      {
+        text: "Desviar o olhar.",
         affinity: 1,
-
         next: 5
       }
 
     ]
-
   },
 
 
   {
-
-    text: () =>
-      `O garoto percebe seu olhar e dá um pequeno sorriso.
-
-"Você sempre olha para as pessoas desse jeito... ou eu sou uma exceção?"`,
-
-    scene:
-      "universidade-aurora.png.PNG",
+    text:
+      "Por alguns segundos, seus olhares parecem se encontrar. Você ainda não sabe, mas aquele momento será o começo de algo importante.",
 
     choices: [
 
       {
-        text:
-          "Talvez você seja uma exceção.",
-
+        text: "Sustentar o olhar.",
         affinity: 2,
-
         next: 6
       },
 
       {
-        text:
-          "Eu estava apenas olhando.",
-
+        text: "Continuar andando.",
         affinity: 1,
-
         next: 6
       }
 
     ]
-
   },
 
 
   {
-
-    text: () =>
-      `O garoto de cabelos claros se aproxima sorrindo.
-
-"Você fica vermelha toda vez que eu chego perto. Interessante."`,
-
-    scene:
-      "universidade-aurora.png.PNG",
+    text:
+      "Um novo capítulo começa. E talvez seu coração já saiba que essa universidade guarda muito mais do que você imaginava.",
 
     choices: [
 
       {
-        text:
-          "Eu não estou vermelha!",
-
+        text: "Continuar.",
         affinity: 2,
-
-        next: 6
-      },
-
-      {
-        text:
-          "Talvez seja culpa sua.",
-
-        affinity: 2,
-
-        next: 6
+        next: 0
       }
 
     ]
-
-  },
-
-
-  {
-
-    text: () =>
-      `Uma voz familiar surge atrás de você.
-
-"Eu sabia que você estaria aqui. Não mudou nada, ${playerName}."`,
-
-    scene:
-      "universidade-aurora.png.PNG",
-
-    choices: [
-
-      {
-        text:
-          "Abraçá-lo.",
-
-        affinity: 2,
-
-        next: 6
-      },
-
-      {
-        text:
-          "Você continua aparecendo do nada.",
-
-        affinity: 1,
-
-        next: 6
-      }
-
-    ]
-
-  },
-
-
-  {
-
-    text: () =>
-      `Você sente que aquele dia acabou de mudar alguma coisa.
-
-Talvez seja apenas o começo...`,
-
-    scene:
-      "universidade-aurora.png.PNG",
-
-    choices: [
-
-      {
-        text:
-          "Continuar.",
-
-        affinity: 1,
-
-        next: 7
-      }
-
-    ]
-
-  },
-
-
-  {
-
-    text: () =>
-      `E assim começa o seu Doce Destino, ${playerName}.
-
-Seu coração ainda não sabe qual caminho escolher...`,
-
-    scene:
-      "universidade-aurora.png.PNG",
-
-    choices: [
-
-      {
-        text:
-          "Ver o que o destino preparou.",
-
-        affinity: 1,
-
-        next: 8
-      }
-
-    ]
-
-  },
-
-
-  {
-
-    text: () =>
-      `Por enquanto, esta é apenas a primeira página da sua história.
-
-O caminho de ${playerName} está apenas começando. 💗`,
-
-    scene:
-      "universidade-aurora.png.PNG",
-
-    choices: []
-
   }
 
 ];
 
 
-/* =========================
-   COMEÇAR
-========================= */
-
-function startGame() {
-
-  const input =
-    document.getElementById(
-      "playerName"
-    );
-
-  playerName =
-    input.value.trim();
-
-
-  if (!playerName) {
-
-    alert(
-      "Digite seu nome para começar sua história. 💗"
-    );
-
-    input.focus();
-
-    return;
-  }
-
-
-  affinity = 0;
-
-  currentStep = 0;
-
-  route = "";
-
-
-  document
-    .getElementById(
-      "startScreen"
-    )
-    .classList.add("hidden");
-
-
-  document
-    .getElementById(
-      "storyScreen"
-    )
-    .classList.add("active");
-
-
-  document
-    .getElementById(
-      "playerDisplay"
-    )
-    .textContent =
-      playerName;
-
-
-  showScene();
-
-}
-
-
-/* =========================
+/* =====================================================
    MOSTRAR CENA
-========================= */
+===================================================== */
 
 function showScene() {
 
-  const current =
-    story[currentStep];
+  const scene =
+    story[currentScene];
 
-
-  /* Cenário */
-
-  const sceneElement =
-    document.getElementById(
-      "scene"
+  let text =
+    scene.text.replace(
+      "{name}",
+      playerName
     );
 
+  dialogueText.textContent = text;
 
-  if (
-    current.scene &&
-    /\.(png|jpe?g|webp|gif)$/i.test(
-      current.scene
-    )
-  ) {
+  affinityElement.textContent =
+    affinity;
 
-    sceneElement.innerHTML =
-
-      `<img
-        src="${current.scene}"
-        alt="Universidade Aurora"
-      >`;
-
-  } else {
-
-    sceneElement.textContent =
-      current.scene;
-
-  }
+  choicesElement.innerHTML = "";
 
 
-  /* Texto */
-
-  document
-    .getElementById(
-      "storyText"
-    )
-    .textContent =
-      current.text();
-
-
-  /* Afinidade */
-
-  document
-    .getElementById(
-      "affinity"
-    )
-    .textContent =
-      affinity;
-
-
-  /* Escolhas */
-
-  const choicesContainer =
-    document.getElementById(
-      "choices"
-    );
-
-  choicesContainer.innerHTML =
-    "";
-
-
-  /* Final */
-
-  if (
-    current.choices.length === 0
-  ) {
-
-    const restart =
-      document.createElement(
-        "button"
-      );
-
-    restart.className =
-      "choice";
-
-    restart.textContent =
-      "Voltar ao início 💕";
-
-
-    restart.onclick = () => {
-
-      document
-        .getElementById(
-          "storyScreen"
-        )
-        .classList.remove("active");
-
-
-      document
-        .getElementById(
-          "startScreen"
-        )
-        .classList.remove("hidden");
-
-    };
-
-
-    choicesContainer.appendChild(
-      restart
-    );
-
-    return;
-
-  }
-
-
-  /* Criar escolhas */
-
-  current.choices.forEach(
-    choice => {
+  scene.choices.forEach(
+    (choice) => {
 
       const button =
-        document.createElement(
-          "button"
-        );
-
+        document.createElement("button");
 
       button.className =
-        "choice";
-
+        "choice-button";
 
       button.textContent =
         choice.text;
 
+      button.addEventListener(
+        "click",
+        () => {
 
-      button.onclick = () => {
+          affinity +=
+            choice.affinity || 0;
 
-        affinity +=
-          choice.affinity || 0;
+          currentScene =
+            choice.next;
 
-
-        if (choice.route) {
-
-          route =
-            choice.route;
+          showScene();
 
         }
+      );
 
-
-        currentStep =
-          choice.next;
-
-
-        showScene();
-
-      };
-
-
-      choicesContainer.appendChild(
+      choicesElement.appendChild(
         button
       );
 
     }
   );
+}
+
+
+/* =====================================================
+   INICIAR JOGO
+===================================================== */
+
+startButton.addEventListener(
+  "click",
+  () => {
+
+    const typedName =
+      nameInput.value.trim();
+
+    if (typedName.length > 0) {
+      playerName =
+        typedName;
+    }
+
+    playerNameElement.textContent =
+      playerName;
+
+    startScreen.classList.add(
+      "hidden"
+    );
+
+    storyScreen.classList.add(
+      "active"
+    );
+
+    currentScene = 0;
+
+    affinity = 0;
+
+    showScene();
+
+    startAudio();
+
+  }
+);
+
+
+/* =====================================================
+   ÁUDIO
+   Música instrumental ORIGINAL
+===================================================== */
+
+function startAudio() {
+
+  if (audioContext) {
+    return;
+  }
+
+  try {
+
+    audioContext =
+      new (
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+
+    if (
+      audioContext.state ===
+      "suspended"
+    ) {
+      audioContext.resume();
+    }
+
+    startMusic();
+
+    startBirds();
+
+    soundButton.textContent =
+      "🔊";
+
+  } catch (error) {
+
+    console.log(
+      "Áudio não disponível:",
+      error
+    );
+
+  }
 
 }
+
+
+/* =====================================================
+   CRIAR NOTA MUSICAL
+===================================================== */
+
+function playNote(
+  frequency,
+  duration,
+  volume = 0.035
+) {
+
+  if (
+    !audioContext ||
+    !soundEnabled
+  ) {
+    return;
+  }
+
+
+  const oscillator =
+    audioContext.createOscillator();
+
+  const gain =
+    audioContext.createGain();
+
+
+  oscillator.type =
+    "sine";
+
+  oscillator.frequency.value =
+    frequency;
+
+
+  gain.gain.setValueAtTime(
+    0,
+    audioContext.currentTime
+  );
+
+  gain.gain.linearRampToValueAtTime(
+    volume,
+    audioContext.currentTime + 0.05
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + duration
+  );
+
+
+  oscillator.connect(gain);
+
+  gain.connect(
+    audioContext.destination
+  );
+
+
+  oscillator.start();
+
+  oscillator.stop(
+    audioContext.currentTime +
+    duration
+  );
+
+}
+
+
+/* =====================================================
+   MELODIA
+===================================================== */
+
+const melody = [
+
+  261.63,
+  329.63,
+  392.00,
+  523.25,
+
+  392.00,
+  329.63,
+  293.66,
+  261.63,
+
+  293.66,
+  349.23,
+  440.00,
+  523.25,
+
+  440.00,
+  349.23,
+  329.63,
+  293.66
+
+];
+
+
+let melodyIndex = 0;
+
+
+function startMusic() {
+
+  if (!audioContext) {
+    return;
+  }
+
+
+  if (musicTimer) {
+    return;
+  }
+
+
+  musicTimer =
+    setInterval(
+      () => {
+
+        if (
+          !soundEnabled
+        ) {
+          return;
+        }
+
+        playNote(
+          melody[melodyIndex],
+          1.7,
+          0.025
+        );
+
+        melodyIndex++;
+
+        if (
+          melodyIndex >=
+          melody.length
+        ) {
+
+          melodyIndex = 0;
+
+        }
+
+      },
+      900
+    );
+
+}
+
+
+/* =====================================================
+   SOM DE PASSARINHOS
+===================================================== */
+
+function birdSound() {
+
+  if (
+    !audioContext ||
+    !soundEnabled
+  ) {
+    return;
+  }
+
+
+  const now =
+    audioContext.currentTime;
+
+
+  const oscillator =
+    audioContext.createOscillator();
+
+  const gain =
+    audioContext.createGain();
+
+
+  oscillator.type =
+    "sine";
+
+
+  oscillator.frequency.setValueAtTime(
+    1600,
+    now
+  );
+
+  oscillator.frequency.exponentialRampToValueAtTime(
+    2200,
+    now + 0.13
+  );
+
+  oscillator.frequency.exponentialRampToValueAtTime(
+    1500,
+    now + 0.26
+  );
+
+
+  gain.gain.setValueAtTime(
+    0,
+    now
+  );
+
+  gain.gain.linearRampToValueAtTime(
+    0.025,
+    now + 0.03
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    now + 0.32
+  );
+
+
+  oscillator.connect(gain);
+
+  gain.connect(
+    audioContext.destination
+  );
+
+
+  oscillator.start(now);
+
+  oscillator.stop(
+    now + 0.35
+  );
+
+
+  setTimeout(
+    () => {
+
+      if (soundEnabled) {
+
+        playNote(
+          1900,
+          0.22,
+          0.018
+        );
+
+      }
+
+    },
+    180
+  );
+
+}
+
+
+function startBirds() {
+
+  if (birdTimer) {
+    return;
+  }
+
+
+  birdTimer =
+    setInterval(
+      () => {
+
+        if (
+          soundEnabled &&
+          Math.random() > 0.35
+        ) {
+
+          birdSound();
+
+        }
+
+      },
+      5000
+    );
+
+}
+
+
+/* =====================================================
+   BOTÃO DE SOM
+===================================================== */
+
+soundButton.addEventListener(
+  "click",
+  async () => {
+
+    soundEnabled =
+      !soundEnabled;
+
+
+    if (
+      audioContext &&
+      audioContext.state ===
+      "suspended"
+    ) {
+
+      await audioContext.resume();
+
+    }
+
+
+    soundButton.textContent =
+      soundEnabled
+        ? "🔊"
+        : "🔇";
+
+  }
+);
 
 </script>
 
