@@ -1,849 +1,1568 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
 <title>Doce Destino</title>
 
+
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
+
   margin:0;
+
   width:100%;
   height:100%;
+
   overflow:hidden;
-  font-family:Georgia,"Times New Roman",serif;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
   color:#4b3948;
+
   background:#f8edf5;
 }
 
 button{
+
   font-family:inherit;
+
   cursor:pointer;
+
 }
+
+
+/* =====================================================
+   TELAS
+===================================================== */
 
 .story-screen,
 .start-screen{
+
   position:fixed;
+
   inset:0;
+
   overflow:hidden;
+
 }
 
+
+/* =====================================================
+   TELA INICIAL
+===================================================== */
+
 .start-screen{
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   text-align:center;
-  background:radial-gradient(
-    circle at 50% 35%,
-    rgba(255,255,255,.99),
-    rgba(249,232,244,.98) 55%,
-    #ebd3e6
-  );
+
+  background:
+
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(255,255,255,.99),
+      rgba(249,232,244,.98) 55%,
+      #ebd3e6
+    );
+
   z-index:50;
 }
 
+
 .start-content{
+
   width:88%;
+
   max-width:420px;
+
 }
+
 
 .start-decoration{
+
   font-size:32px;
+
   color:#c99ab9;
+
   margin-bottom:18px;
+
 }
+
 
 .logo{
+
   font-size:42px;
+
   font-weight:500;
+
   letter-spacing:2px;
+
   color:#79536d;
+
   margin-bottom:8px;
+
 }
+
 
 .subtitle{
+
   font-size:14px;
+
   letter-spacing:1px;
+
   color:#9b718d;
+
   margin-bottom:45px;
+
 }
+
 
 .start-button{
+
   padding:13px 34px;
+
   font-size:15px;
-  border:1px solid rgba(159,111,143,.5);
-  background:rgba(255,255,255,.82);
+
+  border:
+    1px solid
+    rgba(159,111,143,.5);
+
+  background:
+    rgba(255,255,255,.82);
+
   color:#76516a;
+
   border-radius:22px;
-  box-shadow:0 5px 18px rgba(126,76,110,.10);
+
+  box-shadow:
+    0 5px 18px
+    rgba(126,76,110,.10);
+
 }
+
+
+/* =====================================================
+   JOGO
+===================================================== */
 
 .story-screen{
+
   display:none;
+
   background:#e8dce6;
+
 }
 
+
 .scene{
+
   position:absolute;
+
   inset:0;
+
   overflow:hidden;
+
 }
+
+
+/* =====================================================
+   CENÁRIO DA CIDADE
+===================================================== */
 
 .city-scene,
 .university-scene{
+
   position:absolute;
+
   inset:0;
+
   overflow:hidden;
+
 }
+
 
 .city-scene{
-  background:linear-gradient(
-    to bottom,
-    #b8d9ef 0%,
-    #dcecf4 42%,
-    #efdfe4 43%,
-    #d8bfc9 100%
-  );
+
+  background:
+
+    linear-gradient(
+      to bottom,
+      #b8d9ef 0%,
+      #dcecf4 42%,
+      #efdfe4 43%,
+      #d8bfc9 100%
+    );
+
 }
 
+
 .city-sky{
+
   position:absolute;
+
   inset:0;
+
   background:
+
     radial-gradient(
       circle at 75% 17%,
       rgba(255,255,255,.9) 0 5%,
       transparent 6%
     ),
+
     radial-gradient(
       circle at 25% 20%,
       rgba(255,255,255,.75) 0 4%,
       transparent 5%
     );
+
 }
+
 
 .city-building{
+
   position:absolute;
+
   bottom:24%;
+
   width:29%;
+
   height:38%;
-  background:linear-gradient(
-    90deg,
-    rgba(126,101,116,.9) 0 8%,
-    rgba(229,211,219,.95) 8% 92%,
-    rgba(126,101,116,.9) 92%
-  );
-  border-radius:5px 5px 0 0;
-  box-shadow:0 10px 25px rgba(80,55,75,.12);
+
+  background:
+
+    linear-gradient(
+      90deg,
+      rgba(126,101,116,.9) 0 8%,
+      rgba(229,211,219,.95) 8% 92%,
+      rgba(126,101,116,.9) 92%
+    );
+
+  border-radius:
+    5px 5px 0 0;
+
+  box-shadow:
+    0 10px 25px
+    rgba(80,55,75,.12);
+
 }
+
 
 .city-building:nth-child(1){
+
   left:0;
+
   height:45%;
+
 }
+
 
 .city-building:nth-child(2){
+
   left:34%;
+
   width:32%;
+
   height:53%;
+
 }
+
 
 .city-building:nth-child(3){
+
   right:0;
+
   height:41%;
+
 }
 
+
 .windows{
+
   position:absolute;
+
   inset:12% 10%;
+
   background:
+
     repeating-linear-gradient(
       90deg,
       transparent 0 16px,
       rgba(130,174,196,.7) 17px 27px,
       transparent 28px 45px
     ),
+
     repeating-linear-gradient(
       0deg,
       transparent 0 20px,
       rgba(130,174,196,.65) 21px 31px,
       transparent 32px 55px
     );
+
   opacity:.7;
+
 }
+
+
+/* =====================================================
+   RUA
+===================================================== */
 
 .street{
+
   position:absolute;
+
   left:0;
   right:0;
+
   bottom:0;
+
   height:27%;
-  background:linear-gradient(to bottom,#c7adb9,#aa8c9c);
+
+  background:
+    linear-gradient(
+      to bottom,
+      #c7adb9,
+      #aa8c9c
+    );
+
 }
+
 
 .sidewalk{
+
   position:absolute;
+
   bottom:22%;
+
   left:0;
   right:0;
+
   height:7%;
+
   background:#eadfe4;
-  box-shadow:0 -3px 8px rgba(80,50,70,.1);
+
+  box-shadow:
+    0 -3px 8px
+    rgba(80,50,70,.1);
+
 }
+
 
 .street-line{
+
   position:absolute;
+
   bottom:9%;
+
   left:0;
   right:0;
+
   height:3px;
-  background:rgba(255,255,255,.45);
+
+  background:
+    rgba(255,255,255,.45);
+
 }
+
+
+/* =====================================================
+   CAFÉ
+===================================================== */
 
 .cafe{
+
   position:absolute;
+
   bottom:25%;
+
   left:6%;
+
   width:31%;
+
   height:20%;
-  background:rgba(250,240,244,.95);
-  border:2px solid rgba(121,83,109,.2);
-  border-radius:8px 8px 0 0;
-  box-shadow:0 8px 20px rgba(80,50,70,.12);
+
+  background:
+    rgba(250,240,244,.95);
+
+  border:
+    2px solid
+    rgba(121,83,109,.2);
+
+  border-radius:
+    8px 8px 0 0;
+
+  box-shadow:
+    0 8px 20px
+    rgba(80,50,70,.12);
+
 }
+
 
 .cafe-sign{
+
   position:absolute;
+
   top:-25px;
+
   left:20%;
+
   width:60%;
+
   padding:5px;
+
   text-align:center;
+
   font-size:11px;
+
   color:#76516a;
+
   background:#fff5fa;
-  border:1px solid rgba(121,83,109,.2);
+
+  border:
+    1px solid
+    rgba(121,83,109,.2);
+
   border-radius:12px;
+
 }
+
 
 .cafe-window{
+
   position:absolute;
+
   left:10%;
   right:10%;
+
   top:25%;
+
   height:48%;
-  background:linear-gradient(
-    135deg,
-    rgba(150,194,208,.75),
-    rgba(245,232,237,.7)
-  );
-  border:4px solid #e6d3dc;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(150,194,208,.75),
+      rgba(245,232,237,.7)
+    );
+
+  border:
+    4px solid
+    #e6d3dc;
+
 }
 
+
+/* =====================================================
+   UNIVERSIDADE
+===================================================== */
+
 .university-scene{
+
   display:none;
+
   background:
+
     linear-gradient(
       to bottom,
       rgba(177,210,238,.12),
       rgba(255,232,245,.08) 50%,
       rgba(111,87,92,.15)
     ),
-    url("universidade-aurora.png.PNG") center/cover no-repeat;
+
+    url("universidade-aurora.png.PNG")
+    center/cover
+    no-repeat;
+
 }
+
 
 .university-scene.active{
+
   display:block;
+
 }
+
+
+/* =====================================================
+   FOLHAS
+===================================================== */
 
 .wind-layer{
+
   position:absolute;
+
   inset:0;
+
   pointer-events:none;
+
   overflow:hidden;
+
   z-index:4;
+
 }
+
 
 .leaf{
+
   position:absolute;
+
   width:9px;
+
   height:5px;
-  border-radius:100% 0 100% 0;
-  background:rgba(255,244,250,.7);
-  animation:windLeaf linear infinite;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    rgba(255,244,250,.7);
+
+  animation:
+    windLeaf
+    linear
+    infinite;
+
 }
+
 
 .leaf:nth-child(1){
+
   left:5%;
   top:20%;
+
   animation-duration:8s;
+
 }
+
 
 .leaf:nth-child(2){
+
   left:32%;
   top:8%;
+
   animation-duration:10s;
+
   animation-delay:2s;
+
 }
+
 
 .leaf:nth-child(3){
+
   left:65%;
   top:18%;
+
   animation-duration:7s;
+
   animation-delay:1s;
+
 }
+
 
 .leaf:nth-child(4){
+
   left:85%;
   top:28%;
+
   animation-duration:11s;
+
   animation-delay:3s;
+
 }
+
 
 @keyframes windLeaf{
+
   0%{
-    transform:translate(-20px,-20px) rotate(0);
+
+    transform:
+      translate(-20px,-20px)
+      rotate(0);
+
     opacity:0;
+
   }
+
 
   15%{
+
     opacity:.8;
+
   }
+
 
   100%{
-    transform:translate(150px,90vh) rotate(360deg);
+
+    transform:
+      translate(150px,90vh)
+      rotate(360deg);
+
     opacity:0;
+
   }
+
 }
 
 
-/* =========================
+/* =====================================================
    HUD
-========================= */
+===================================================== */
 
 .hud{
+
   position:absolute;
+
   top:15px;
+
   left:15px;
   right:15px;
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   z-index:25;
+
 }
+
 
 .player-card,
 .affinity,
 .sound-button{
-  border:1px solid rgba(255,255,255,.7);
-  background:rgba(255,255,255,.58);
+
+  border:
+    1px solid
+    rgba(255,255,255,.7);
+
+  background:
+    rgba(255,255,255,.58);
+
   backdrop-filter:blur(8px);
-  box-shadow:0 3px 14px rgba(80,50,70,.1);
+
+  box-shadow:
+    0 3px 14px
+    rgba(80,50,70,.1);
+
 }
+
 
 .player-card{
+
   display:flex;
+
   align-items:center;
+
   gap:8px;
-  padding:6px 11px 6px 7px;
+
+  padding:
+    6px 11px 6px 7px;
+
   border-radius:30px;
+
 }
+
 
 .player-avatar{
+
   width:32px;
+
   height:32px;
+
   border-radius:50%;
-  background:rgba(255,255,255,.82);
-  border:1px solid rgba(160,120,145,.35);
+
+  background:
+    rgba(255,255,255,.82);
+
+  border:
+    1px solid
+    rgba(160,120,145,.35);
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   color:#a47792;
+
   font-size:17px;
+
 }
+
 
 .player-name{
+
   font-size:13px;
+
   color:#684d60;
+
 }
+
 
 .affinity{
+
   padding:7px 11px;
+
   border-radius:20px;
+
   color:#76516a;
+
   font-size:12px;
+
 }
+
+
+/* =====================================================
+   BOTÃO DE SOM
+===================================================== */
 
 .sound-button{
+
   position:absolute;
+
   right:15px;
+
   top:61px;
+
   z-index:30;
+
   width:36px;
+
   height:36px;
+
   border-radius:50%;
+
   color:#76516a;
+
   font-size:16px;
+
 }
+
 
 .audio-panel{
+
   display:none;
+
   position:absolute;
+
   right:15px;
+
   top:105px;
+
   z-index:35;
+
   width:205px;
+
   padding:15px;
+
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.7);
-  background:rgba(255,248,252,.92);
+
+  border:
+    1px solid
+    rgba(255,255,255,.7);
+
+  background:
+    rgba(255,248,252,.92);
+
   backdrop-filter:blur(12px);
-  box-shadow:0 8px 25px rgba(80,50,70,.16);
+
+  box-shadow:
+    0 8px 25px
+    rgba(80,50,70,.16);
+
 }
+
 
 .audio-row{
+
   margin-bottom:12px;
+
 }
+
 
 .audio-row label{
+
   display:block;
+
   font-size:11px;
+
   color:#76516a;
+
   margin-bottom:5px;
+
 }
+
 
 .audio-row input{
+
   width:100%;
+
 }
+
 
 .mute-button{
-  border:1px solid rgba(159,111,143,.4);
+
+  border:
+    1px solid
+    rgba(159,111,143,.4);
+
   background:white;
+
   color:#76516a;
+
   padding:6px 12px;
+
   font-size:11px;
+
   border-radius:14px;
+
 }
 
 
-/* =========================
-   CHILDE GRANDE E VIVO
-========================= */
+/* =====================================================
+   CHILDE
+   SOMENTE 2 SPRITES
+===================================================== */
 
 .childe-layer{
+
   display:none;
+
   position:absolute;
+
   left:0;
   right:0;
+
   top:-18%;
+
   bottom:5%;
+
   z-index:12;
+
   pointer-events:none;
+
   align-items:flex-end;
+
   justify-content:flex-end;
 
-  /* corrigido */
   padding-right:0;
 
   overflow:visible;
+
 }
+
 
 .childe-layer.visible{
+
   display:flex;
+
 }
 
+
+/*
+   O personagem é grande e ocupa
+   boa parte da tela.
+*/
+
 .childe-sprite{
+
   height:175%;
+
   width:auto;
+
   max-width:none;
+
   min-width:52%;
+
   object-fit:contain;
+
   object-position:center bottom;
 
   filter:
-    drop-shadow(0 12px 22px rgba(55,35,50,.30))
+
+    drop-shadow(
+      0 12px 22px
+      rgba(55,35,50,.30)
+    )
+
     brightness(1.14)
+
     saturate(1.28)
+
     contrast(1.10);
 
-  transform-origin:center bottom;
+  transform-origin:
+    center bottom;
 
   animation:
-    childeAlive 4.2s ease-in-out infinite;
+    childeAlive
+    4.2s
+    ease-in-out
+    infinite;
 
   will-change:transform;
+
 }
+
 
 @keyframes childeAlive{
 
-  0%,100%{
+  0%,
+  100%{
+
     transform:
       translate3d(0,0,0)
       rotate(0deg)
       scale(1);
+
   }
 
+
   18%{
+
     transform:
       translate3d(-1px,-3px,0)
       rotate(-.15deg)
       scale(1.006);
+
   }
 
+
   38%{
+
     transform:
       translate3d(1px,-7px,0)
       rotate(.18deg)
       scale(1.012);
+
   }
 
+
   58%{
+
     transform:
       translate3d(2px,-4px,0)
       rotate(.08deg)
       scale(1.008);
+
   }
 
+
   78%{
+
     transform:
       translate3d(-1px,-2px,0)
       rotate(-.12deg)
       scale(1.004);
+
   }
+
 }
 
-.childe-layer.visible .childe-sprite{
+
+.childe-layer.visible
+.childe-sprite{
+
   animation:
-    childeEnter .55s cubic-bezier(.2,.8,.2,1) both,
-    childeAlive 4.2s ease-in-out .55s infinite;
+
+    childeEnter
+    .55s
+    cubic-bezier(.2,.8,.2,1)
+    both,
+
+    childeAlive
+    4.2s
+    ease-in-out
+    .55s
+    infinite;
+
 }
+
 
 @keyframes childeEnter{
 
   from{
+
     opacity:0;
+
     transform:
       translate3d(34px,18px,0)
       scale(.92);
+
   }
 
+
   to{
+
     opacity:1;
+
     transform:
       translate3d(0,0,0)
       scale(1);
+
   }
+
 }
 
 
-/* =========================
+/* =====================================================
    BOLHA DO CHILDE
-========================= */
+===================================================== */
 
 .childe-bubble{
+
   display:none;
 
   position:absolute;
 
-  /* canto superior direito */
+  /*
+     canto superior direito,
+     longe do rosto
+  */
+
   right:3%;
+
   top:8%;
 
-  /* menor para não cobrir o rosto */
   width:min(42%,300px);
 
-  padding:12px 15px 13px;
+  padding:
+    12px 15px 13px;
 
-  border-radius:20px 20px 5px 20px;
+  border-radius:
+    20px 20px 5px 20px;
 
-  background:rgba(255,249,252,.94);
+  background:
+    rgba(255,249,252,.94);
 
-  border:1px solid rgba(255,255,255,.95);
+  border:
+    1px solid
+    rgba(255,255,255,.95);
 
   box-shadow:
-    0 6px 22px rgba(74,48,67,.15),
-    inset 0 1px rgba(255,255,255,.8);
+
+    0 6px 22px
+    rgba(74,48,67,.15),
+
+    inset 0 1px
+    rgba(255,255,255,.8);
 
   z-index:18;
 
-  animation:bubbleIn .22s ease-out;
+  animation:
+    bubbleIn
+    .22s
+    ease-out;
+
 }
+
 
 .childe-bubble.visible{
+
   display:block;
+
 }
 
 
-/* pontinha da fala apontando para o personagem */
-
 .childe-bubble::after{
+
   content:"";
 
   position:absolute;
 
   left:28px;
+
   right:auto;
 
   bottom:-10px;
 
   width:19px;
+
   height:19px;
 
-  background:rgba(255,249,252,.94);
+  background:
+    rgba(255,249,252,.94);
 
-  border-right:1px solid rgba(255,255,255,.8);
-  border-bottom:1px solid rgba(255,255,255,.8);
+  border-right:
+    1px solid
+    rgba(255,255,255,.8);
 
-  transform:rotate(45deg);
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.8);
+
+  transform:
+    rotate(45deg);
+
 }
+
 
 .childe-bubble-speaker{
+
   font-size:11px;
+
   font-weight:600;
+
   color:#966582;
+
   margin-bottom:5px;
+
 }
 
+
 .childe-bubble-text{
+
   font-size:13px;
+
   line-height:1.45;
+
   color:#4d3c49;
+
 }
+
 
 @keyframes bubbleIn{
 
   from{
+
     opacity:0;
-    transform:translateY(5px) scale(.98);
+
+    transform:
+      translateY(5px)
+      scale(.98);
+
   }
+
 
   to{
+
     opacity:1;
-    transform:translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
+
   }
+
 }
 
 
-/* =========================
-   DIÁLOGO
-========================= */
+/* =====================================================
+   CAIXA DE DIÁLOGO
+===================================================== */
 
 .bottom-area{
+
   position:absolute;
+
   left:0;
   right:0;
+
   bottom:0;
-  padding:0 12px 12px;
+
+  padding:
+    0 12px 12px;
+
   z-index:22;
+
 }
 
+
 .dialogue-box{
+
   position:relative;
+
   width:100%;
+
   min-height:115px;
+
   max-height:29vh;
 
-  padding:16px 20px 24px;
+  padding:
+    16px 20px 24px;
 
-  border:1px solid rgba(255,255,255,.9);
+  border:
+    1px solid
+    rgba(255,255,255,.9);
 
   border-radius:21px;
 
-  background:rgba(255,250,253,.86);
+  background:
+    rgba(255,250,253,.86);
 
   backdrop-filter:blur(13px);
 
   box-shadow:
-    0 7px 28px rgba(71,46,65,.18),
-    inset 0 1px rgba(255,255,255,.7);
+
+    0 7px 28px
+    rgba(71,46,65,.18),
+
+    inset 0 1px
+    rgba(255,255,255,.7);
 
   cursor:pointer;
 
   touch-action:manipulation;
+
 }
+
 
 .dialogue-speaker{
+
   font-size:12px;
+
   letter-spacing:.3px;
+
   font-weight:600;
+
   color:#966582;
+
   margin-bottom:6px;
+
 }
+
 
 .dialogue-text{
+
   font-size:14px;
+
   line-height:1.58;
+
   color:#4d3c49;
+
   min-height:62px;
+
 }
+
 
 .dialogue-box.thought{
-  background:rgba(250,244,250,.88);
-  border:1px solid rgba(188,151,180,.45);
+
+  background:
+    rgba(250,244,250,.88);
+
+  border:
+    1px solid
+    rgba(188,151,180,.45);
 
   box-shadow:
-    0 7px 28px rgba(90,60,85,.12),
-    inset 0 1px rgba(255,255,255,.7);
+
+    0 7px 28px
+    rgba(90,60,85,.12),
+
+    inset 0 1px
+    rgba(255,255,255,.7);
+
 }
 
-.dialogue-box.thought .dialogue-text{
+
+.dialogue-box.thought
+.dialogue-text{
+
   font-style:italic;
+
   color:#80657a;
+
   font-size:14px;
+
 }
 
-.dialogue-box.thought .dialogue-speaker{
+
+.dialogue-box.thought
+.dialogue-speaker{
+
   font-style:italic;
+
   font-weight:500;
+
   color:#ad829f;
+
 }
+
 
 .tap-indicator{
+
   position:absolute;
+
   right:18px;
+
   bottom:9px;
+
   color:#a77b97;
+
   font-size:12px;
+
   letter-spacing:.4px;
+
   font-weight:500;
-  animation:tapPulse 1.5s ease-in-out infinite;
+
+  animation:
+    tapPulse
+    1.5s
+    ease-in-out
+    infinite;
+
 }
+
 
 @keyframes tapPulse{
 
-  0%,100%{
+  0%,
+  100%{
+
     opacity:.35;
-    transform:translateX(0);
+
+    transform:
+      translateX(0);
+
   }
+
 
   50%{
+
     opacity:1;
-    transform:translateX(4px);
+
+    transform:
+      translateX(4px);
+
   }
+
 }
+
+
+/* =====================================================
+   ESCOLHAS
+===================================================== */
 
 .choice-area{
+
   display:flex;
+
   flex-direction:column;
+
   gap:8px;
+
   margin-top:9px;
+
 }
 
+
 .choice-button{
+
   width:100%;
-  padding:10px 14px;
+
+  padding:
+    10px 14px;
 
   font-size:13px;
+
   line-height:1.3;
 
-  border:1px solid rgba(159,111,143,.5);
+  border:
+    1px solid
+    rgba(159,111,143,.5);
 
-  background:rgba(255,255,255,.84);
+  background:
+    rgba(255,255,255,.84);
 
   color:#76516a;
 
   border-radius:22px;
 
   box-shadow:
-    0 5px 18px rgba(126,76,110,.08);
+    0 5px 18px
+    rgba(126,76,110,.08);
+
 }
+
 
 .choice-button::before{
+
   content:"♡";
+
   margin-right:8px;
+
   color:#bd8baa;
+
 }
 
+
 .restart-button{
-  padding:9px 20px;
+
+  padding:
+    9px 20px;
+
   font-size:12px;
+
   margin-top:8px;
 
-  border:1px solid rgba(159,111,143,.5);
+  border:
+    1px solid
+    rgba(159,111,143,.5);
 
   background:white;
 
   color:#76516a;
 
   border-radius:22px;
+
 }
 
 
-/* =========================
+/* =====================================================
    RESPONSIVO
-========================= */
+===================================================== */
 
 @media(min-width:700px){
 
   .bottom-area{
+
     left:50%;
-    transform:translateX(-50%);
+
+    transform:
+      translateX(-50%);
+
     width:650px;
+
   }
+
 
   .hud{
+
     left:25px;
     right:25px;
+
   }
+
 
   .sound-button{
+
     right:25px;
+
   }
+
 
   .audio-panel{
+
     right:25px;
+
   }
 
+
   .childe-sprite{
+
     height:145%;
+
     max-width:none;
+
     min-width:0;
+
   }
+
 }
+
 
 @media(max-height:700px){
 
   .childe-layer{
+
     top:-12%;
+
     bottom:8%;
+
   }
+
 
   .childe-sprite{
+
     height:170%;
+
     max-width:none;
+
     min-width:50%;
+
   }
+
 
   .childe-bubble{
+
     top:7%;
+
     width:min(44%,280px);
+
   }
+
 
   .dialogue-box{
+
     min-height:103px;
+
     padding-top:13px;
+
   }
 
+
   .dialogue-text{
+
     font-size:13px;
+
     min-height:55px;
+
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="start-screen" id="startScreen">
+
+<!-- =====================================================
+     TELA INICIAL
+===================================================== -->
+
+<div
+  class="start-screen"
+  id="startScreen"
+>
 
   <div class="start-content">
 
-    <div class="start-decoration">♡</div>
+    <div class="start-decoration">
+      ♡
+    </div>
 
     <div class="logo">
       Doce Destino
@@ -853,7 +1572,10 @@ button{
       Seu coração escolhe o caminho.
     </div>
 
-    <button class="start-button" id="startButton">
+    <button
+      class="start-button"
+      id="startButton"
+    >
       Começar minha história
     </button>
 
@@ -862,25 +1584,50 @@ button{
 </div>
 
 
-<div class="story-screen" id="storyScreen">
+
+<!-- =====================================================
+     TELA DO JOGO
+===================================================== -->
+
+<div
+  class="story-screen"
+  id="storyScreen"
+>
+
 
   <div class="scene">
 
-    <div class="city-scene" id="cityScene">
+
+    <!-- CIDADE -->
+
+    <div
+      class="city-scene"
+      id="cityScene"
+    >
 
       <div class="city-sky"></div>
 
-      <div class="city-building">
-        <div class="windows"></div>
-      </div>
 
       <div class="city-building">
+
         <div class="windows"></div>
+
       </div>
 
+
       <div class="city-building">
+
         <div class="windows"></div>
+
       </div>
+
+
+      <div class="city-building">
+
+        <div class="windows"></div>
+
+      </div>
+
 
       <div class="cafe">
 
@@ -892,6 +1639,7 @@ button{
 
       </div>
 
+
       <div class="sidewalk"></div>
 
       <div class="street"></div>
@@ -901,25 +1649,40 @@ button{
     </div>
 
 
+
+    <!-- UNIVERSIDADE -->
+
     <div
       class="university-scene"
       id="universityScene"
     ></div>
 
+
   </div>
 
+
+
+  <!-- =================================================
+       FOLHAS
+  ================================================== -->
 
   <div class="wind-layer">
 
     <span class="leaf"></span>
+
     <span class="leaf"></span>
+
     <span class="leaf"></span>
+
     <span class="leaf"></span>
 
   </div>
 
 
-  <!-- CHILDE -->
+
+  <!-- =================================================
+       CHILDE
+  ================================================== -->
 
   <div
     class="childe-layer"
@@ -930,13 +1693,16 @@ button{
       class="childe-sprite"
       id="childeSprite"
       src=""
-      alt=""
+      alt="Childe"
     >
 
   </div>
 
 
-  <!-- BOLHA DO CHILDE -->
+
+  <!-- =================================================
+       BOLHA DE FALA
+  ================================================== -->
 
   <div
     class="childe-bubble"
@@ -950,6 +1716,7 @@ button{
       ???
     </div>
 
+
     <div
       class="childe-bubble-text"
       id="childeBubbleText"
@@ -958,15 +1725,20 @@ button{
   </div>
 
 
-  <!-- HUD -->
+
+  <!-- =================================================
+       HUD
+  ================================================== -->
 
   <div class="hud">
+
 
     <div class="player-card">
 
       <div class="player-avatar">
         ♡
       </div>
+
 
       <div
         class="player-name"
@@ -978,6 +1750,7 @@ button{
     </div>
 
 
+
     <div
       class="affinity"
       id="affinity"
@@ -985,10 +1758,14 @@ button{
       ♡ Afinidade 0
     </div>
 
+
   </div>
 
 
-  <!-- SOM -->
+
+  <!-- =================================================
+       SOM
+  ================================================== -->
 
   <button
     class="sound-button"
@@ -996,6 +1773,7 @@ button{
   >
     ♫
   </button>
+
 
 
   <div
@@ -1049,9 +1827,13 @@ button{
   </div>
 
 
-  <!-- DIÁLOGO -->
+
+  <!-- =================================================
+       DIÁLOGO
+  ================================================== -->
 
   <div class="bottom-area">
+
 
     <div
       class="dialogue-box"
@@ -1063,10 +1845,12 @@ button{
         id="dialogueSpeaker"
       ></div>
 
+
       <div
         class="dialogue-text"
         id="dialogueText"
       ></div>
+
 
       <div
         class="tap-indicator"
@@ -1083,29 +1867,35 @@ button{
       id="choiceArea"
     ></div>
 
+
   </div>
+
 
 </div>
 
 
+
 <script>
+
+/* =====================================================
+   APENAS 2 SPRITES
+===================================================== */
 
 const sprites = {
 
   alegre:
-    "childe-alegre-transparente.png.PNG",
+    "childe-alegre-transparente.png",
 
   franzindo:
-    "childe-Franzindo a testa-transparente.png.PNG",
-
-  raiva:
-    "childe-Com raiva-transparente.png.PNG",
-
-  decepcionado:
-    "childe-Decepcionado-transparente.png.PNG"
+    "childe-Franzindo a testa-transparente.png"
 
 };
 
+
+
+/* =====================================================
+   MEMÓRIA
+===================================================== */
 
 const memory = {
 
@@ -1132,71 +1922,105 @@ const memory = {
 };
 
 
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
 const startScreen =
   document.getElementById("startScreen");
+
 
 const storyScreen =
   document.getElementById("storyScreen");
 
+
 const startButton =
   document.getElementById("startButton");
+
 
 const cityScene =
   document.getElementById("cityScene");
 
+
 const universityScene =
   document.getElementById("universityScene");
+
 
 const childeLayer =
   document.getElementById("childeLayer");
 
+
 const childeSprite =
   document.getElementById("childeSprite");
+
 
 const childeBubble =
   document.getElementById("childeBubble");
 
+
 const childeBubbleSpeaker =
   document.getElementById("childeBubbleSpeaker");
+
 
 const childeBubbleText =
   document.getElementById("childeBubbleText");
 
+
 const dialogueBox =
   document.getElementById("dialogueBox");
+
 
 const dialogueSpeaker =
   document.getElementById("dialogueSpeaker");
 
+
 const dialogueText =
   document.getElementById("dialogueText");
+
 
 const tapIndicator =
   document.getElementById("tapIndicator");
 
+
 const choiceArea =
   document.getElementById("choiceArea");
+
 
 const affinity =
   document.getElementById("affinity");
 
+
 const soundButton =
   document.getElementById("soundButton");
 
+
 const audioPanel =
   document.getElementById("audioPanel");
+
 
 const muteButton =
   document.getElementById("muteButton");
 
 
+
+/* =====================================================
+   AFINIDADE
+===================================================== */
+
 function updateAffinity(){
 
   affinity.textContent =
-    "♡ Afinidade " + memory.affinity;
+    "♡ Afinidade " +
+    memory.affinity;
 
 }
 
+
+
+/* =====================================================
+   MOSTRAR CHILDE
+===================================================== */
 
 function showChilde(expression){
 
@@ -1205,910 +2029,1677 @@ function showChilde(expression){
     memory.expression ||
     "franzindo";
 
+
   memory.expression = exp;
+
 
   childeSprite.src =
     sprites[exp] ||
     sprites.franzindo;
 
-  childeLayer.classList.add("visible");
+
+  childeLayer.classList.add(
+    "visible"
+  );
 
 }
 
 
+
+/* =====================================================
+   ESCONDER CHILDE
+===================================================== */
+
 function hideChilde(){
 
-  childeLayer.classList.remove("visible");
+  childeLayer.classList.remove(
+    "visible"
+  );
 
-  childeBubble.classList.remove("visible");
+
+  childeBubble.classList.remove(
+    "visible"
+  );
+
 
   childeSprite.src = "";
 
 }
 
 
-function showChildeBubble(speaker,text){
+
+/* =====================================================
+   BOLHA DO CHILDE
+===================================================== */
+
+function showChildeBubble(
+  speaker,
+  text
+){
 
   childeBubbleSpeaker.textContent =
     speaker || "???";
 
+
   childeBubbleText.textContent =
     text || "";
 
-  childeBubble.classList.add("visible");
+
+  childeBubble.classList.add(
+    "visible"
+  );
 
 }
 
 
 function hideChildeBubble(){
 
-  childeBubble.classList.remove("visible");
+  childeBubble.classList.remove(
+    "visible"
+  );
 
 }
 
 
+
+/* =====================================================
+   CENÁRIOS
+===================================================== */
+
 function showUniversity(){
 
-  cityScene.style.display = "none";
+  cityScene.style.display =
+    "none";
 
-  universityScene.classList.add("active");
+
+  universityScene.classList.add(
+    "active"
+  );
 
 }
 
 
 function showCity(){
 
-  cityScene.style.display = "block";
+  cityScene.style.display =
+    "block";
 
-  universityScene.classList.remove("active");
+
+  universityScene.classList.remove(
+    "active"
+  );
 
 }
 
 
-/* =========================
+
+/* =====================================================
    HISTÓRIA
-========================= */
+===================================================== */
 
 const story = {
 
+
   start:{
+
     type:"narration",
-    text:"Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
+
+    text:
+      "Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
+
     next:"cityWalk"
+
   },
 
 
   cityWalk:{
+
     type:"thought",
-    text:"Ah... o que eu vou fazer agora? Por onde eu começo?",
+
+    text:
+      "Ah... o que eu vou fazer agora? Por onde eu começo?",
+
     next:"lost"
+
   },
 
 
   lost:{
+
     type:"narration",
-    text:"Com uma pequena mala ao lado, você observa as ruas e percebe que está completamente perdida.",
+
+    text:
+      "Com uma pequena mala ao lado, você observa as ruas e percebe que está completamente perdida.",
+
     next:"lostThought"
+
   },
 
 
   lostThought:{
+
     type:"thought",
-    text:"Eu deveria ter olhado melhor o mapa antes de sair...",
+
+    text:
+      "Eu deveria ter olhado melhor o mapa antes de sair...",
+
     next:"encounter"
+
   },
 
 
   encounter:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Você está procurando alguma coisa?",
+
+    text:
+      "Você está procurando alguma coisa?",
+
     expression:"franzindo",
+
     next:"encounter2"
+
   },
 
 
   encounter2:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Estou procurando a Universidade Aurora.",
+
+    text:
+      "Estou procurando a Universidade Aurora.",
+
     next:"encounter3"
+
   },
 
 
   encounter3:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Aurora? É um pouco difícil de achar daqui.",
+
+    text:
+      "Aurora? É um pouco difícil de achar daqui.",
+
     expression:"alegre",
+
     next:"encounter4"
+
   },
 
 
   encounter4:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Sério? Então acho que estou mais perdida do que imaginava.",
+
+    text:
+      "Sério. Então acho que estou mais perdida do que imaginava.",
+
     next:"firstChoice"
+
   },
 
 
+  /* =================================================
+     PRIMEIRA ESCOLHA
+  ================================================= */
+
   firstChoice:{
+
     type:"choice",
 
-    text:"Como você reage?",
+    text:
+      "Como você reage?",
+
 
     choices:[
 
+
       {
-        text:"Peço ajuda com educação.",
+
+        text:
+          "Peço ajuda com educação.",
+
 
         action(){
 
-          memory.encontrouChilde = true;
-          memory.foiGentil = true;
+          memory.encontrouChilde =
+            true;
+
+          memory.foiGentil =
+            true;
+
           memory.affinity += 2;
 
-          showChilde("alegre");
-          showNode("help");
+
+          showChilde(
+            "alegre"
+          );
+
+
+          showNode(
+            "help"
+          );
 
         }
+
       },
 
 
       {
-        text:"Brinco que consigo me virar sozinha.",
+
+        text:
+          "Brinco que consigo me virar sozinha.",
+
 
         action(){
 
-          memory.encontrouChilde = true;
-          memory.foiProvocadora = true;
+          memory.encontrouChilde =
+            true;
+
+          memory.foiProvocadora =
+            true;
+
           memory.affinity += 1;
 
-          showChilde("alegre");
-          showNode("denyLost");
+
+          showChilde(
+            "alegre"
+          );
+
+
+          showNode(
+            "denyLost"
+          );
 
         }
+
       },
 
 
       {
-        text:"Agradeço e mantenho certa distância.",
+
+        text:
+          "Agradeço, mas digo que consigo me virar.",
+
 
         action(){
 
-          memory.encontrouChilde = true;
-          memory.manteveDistancia = true;
+          memory.encontrouChilde =
+            true;
 
-          showChilde("franzindo");
-          showNode("keepDistance");
+          memory.manteveDistancia =
+            true;
+
+
+          showChilde(
+            "franzindo"
+          );
+
+
+          showNode(
+            "keepDistance"
+          );
 
         }
+
       }
 
     ]
+
   },
 
 
+  /* =================================================
+     CAMINHO GENTIL
+  ================================================= */
+
   help:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Você poderia me indicar o caminho?",
+
+    text:
+      "Você poderia me indicar o caminho?",
+
     next:"help2"
+
   },
 
 
   help2:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Claro. Eu estava indo naquela direção mesmo.",
+
+    text:
+      "Claro. Eu estava indo naquela direção mesmo.",
+
     expression:"alegre",
+
     next:"walking"
+
   },
 
 
+  /* =================================================
+     CAMINHO PROVOCADOR
+  ================================================= */
+
   denyLost:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Eu acho que consigo encontrar sozinha.",
+
+    text:
+      "Eu acho que consigo encontrar sozinha.",
+
     next:"denyLost2"
+
   },
 
 
   denyLost2:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Tem certeza? Você não parece muito convencida.",
+
+    text:
+      "Tem certeza? Você não parece muito convencida.",
+
     expression:"alegre",
+
     next:"walking"
+
   },
 
 
+  /* =================================================
+     CAMINHO DISTANTE
+  ================================================= */
+
   keepDistance:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Obrigada. Vou tentar encontrar.",
+
+    text:
+      "Obrigada. Vou tentar encontrar.",
+
     next:"keepDistance2"
+
   },
 
 
   keepDistance2:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Tudo bem. Boa sorte, então.",
+
+    text:
+      "Tudo bem. Boa sorte, então.",
+
     expression:"franzindo",
+
     next:"walking"
+
   },
 
 
+  /* =================================================
+     CAMINHADA
+  ================================================= */
+
   walking:{
+
     type:"narration",
-    text:"Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
+
+    text:
+      "Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
+
     next:"walking2"
+
   },
 
 
   walking2:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Então... você é nova por aqui?",
+
+    text:
+      "Então... você é nova por aqui?",
+
     expression:"alegre",
+
     next:"walking3"
+
   },
 
 
   walking3:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Sou. Vou começar na Universidade Aurora.",
+
+    text:
+      "Sou. Vou começar na Universidade Aurora.",
+
     next:"nameQuestion"
+
   },
 
 
+  /* =================================================
+     NOME
+  ================================================= */
+
   nameQuestion:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Aliás... acho que ainda não perguntei seu nome.",
+
+    text:
+      "Aliás... acho que ainda não perguntei seu nome.",
+
     expression:"alegre",
+
     next:"nameChoice"
+
   },
 
 
   nameChoice:{
+
     type:"choice",
 
-    text:"O que você responde?",
+    text:
+      "O que você responde?",
+
 
     choices:[
 
+
       {
-        text:"Digo meu nome.",
+
+        text:
+          "Digo meu nome.",
+
 
         action(){
 
-          memory.perguntouNome = true;
-          memory.disseNome = true;
+          memory.perguntouNome =
+            true;
+
+          memory.disseNome =
+            true;
+
           memory.affinity += 2;
 
-          showChilde("alegre");
-          showNode("sheSaysName");
+
+          showChilde(
+            "alegre"
+          );
+
+
+          showNode(
+            "sheSaysName"
+          );
 
         }
+
       },
 
 
       {
-        text:"Brinco e digo que é segredo.",
+
+        text:
+          "Brinco e digo que é segredo.",
+
 
         action(){
 
-          memory.perguntouNome = true;
+          memory.perguntouNome =
+            true;
+
           memory.affinity += 1;
 
-          showChilde("alegre");
-          showNode("secretName");
+
+          showChilde(
+            "alegre"
+          );
+
+
+          showNode(
+            "secretName"
+          );
 
         }
+
       }
 
     ]
+
   },
 
 
   sheSaysName:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Meu nome é seu nome.",
+
+    text:
+      "Meu nome é seu nome.",
+
     next:"hisName"
+
   },
 
 
   secretName:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Isso é segredo.",
+
+    text:
+      "Isso é segredo.",
+
     next:"hisName"
+
   },
 
 
+  /* =================================================
+     CHILDE SE APRESENTA
+  ================================================= */
+
   hisName:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Ah... e eu nem me apresentei.",
+
+    text:
+      "Ah... e eu nem me apresentei.",
+
     expression:"franzindo",
+
     next:"hisName2"
+
   },
 
 
   hisName2:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Eu sou Childe.",
+
+    text:
+      "Eu sou Childe.",
+
     expression:"alegre",
+
     next:"hisName3"
+
   },
 
 
   hisName3:{
+
     type:"dialogue",
+
     speaker:"Childe",
-    text:"Prazer em te conhecer.",
+
+    text:
+      "Prazer em te conhecer.",
+
     expression:"alegre",
+
     next:"beforeUniversity"
+
   },
 
 
   beforeUniversity:{
+
     type:"dialogue",
+
     speaker:"Childe",
-    text:"Você disse que vai estudar na Aurora, não foi?",
+
+    text:
+      "Você disse que vai estudar na Aurora, não foi?",
+
     expression:"franzindo",
+
     next:"beforeUniversity2"
+
   },
 
 
   beforeUniversity2:{
+
     type:"dialogue",
+
     speaker:"Você",
-    text:"Sim.",
+
+    text:
+      "Sim.",
+
     next:"beforeUniversity3"
+
   },
 
 
   beforeUniversity3:{
+
     type:"dialogue",
+
     speaker:"Childe",
-    text:"Então talvez a gente se encontre de novo.",
+
+    text:
+      "Então talvez a gente se encontre de novo.",
+
     expression:"alegre",
+
     next:"separate"
+
   },
 
 
+  /* =================================================
+     DESPEDIDA
+  ================================================= */
+
   separate:{
+
     type:"narration",
-    text:"Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+
+    text:
+      "Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+
     hideCharacter:true,
+
     next:"afterMeetingThought"
+
   },
 
 
   afterMeetingThought:{
+
     type:"thought",
-    text:"Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
+
+    text:
+      "Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
+
     next:"afterMeetingThought2"
+
   },
 
 
   afterMeetingThought2:{
+
     type:"thought",
-    text:"Mas agora eu preciso me preocupar com uma coisa muito mais importante: encontrar a Universidade Aurora.",
+
+    text:
+      "Mas agora eu preciso me preocupar com uma coisa muito mais importante: encontrar a Universidade Aurora.",
+
     next:"universityArrival"
+
   },
 
 
+  /* =================================================
+     UNIVERSIDADE
+  ================================================= */
+
   universityArrival:{
+
     type:"narration",
-    text:"No dia seguinte, você finalmente chega à Universidade Aurora.",
+
+    text:
+      "No dia seguinte, você finalmente chega à Universidade Aurora.",
+
     scene:"university",
+
     hideCharacter:true,
+
     next:"universityArrival2"
+
   },
 
 
   universityArrival2:{
+
     type:"narration",
-    text:"O campus é ainda mais bonito do que nas fotos.",
+
+    text:
+      "O campus é ainda mais bonito do que nas fotos.",
+
     next:"universityThought"
+
   },
 
 
   universityThought:{
+
     type:"thought",
-    text:"Tá... respira. Primeiro eu preciso descobrir onde fica minha sala. Depois eu vejo o resto.",
+
+    text:
+      "Tá... respira. Primeiro eu preciso descobrir onde fica minha sala. Depois eu vejo o resto.",
+
     next:"universityThought2"
+
   },
 
 
   universityThought2:{
+
     type:"thought",
-    text:"Por onde eu começo?",
+
+    text:
+      "Por onde eu começo?",
+
     next:"universityFirstChoice"
+
   },
 
 
   universityFirstChoice:{
+
     type:"choice",
 
-    text:"O que você decide fazer?",
+    text:
+      "O que você decide fazer?",
+
 
     choices:[
 
+
       {
-        text:"Vou procurar a secretaria para pedir informações.",
+
+        text:
+          "Vou procurar a secretaria para pedir informações.",
+
 
         action(){
 
-          memory.descobriuUniversidade = true;
+          memory.descobriuUniversidade =
+            true;
+
           memory.affinity += 1;
 
-          showNode("secretaria");
+
+          showNode(
+            "secretaria"
+          );
 
         }
+
       },
 
 
       {
-        text:"Vou procurar minha sala sozinha.",
+
+        text:
+          "Vou procurar minha sala sozinha.",
+
 
         action(){
 
-          memory.descobriuUniversidade = true;
+          memory.descobriuUniversidade =
+            true;
 
-          showNode("sozinha");
+
+          showNode(
+            "sozinha"
+          );
 
         }
+
       },
 
 
       {
-        text:"Paro um pouco e observo os estudantes ao meu redor.",
+
+        text:
+          "Paro um pouco e observo os estudantes ao meu redor.",
+
 
         action(){
 
-          memory.descobriuUniversidade = true;
-          memory.foiProvocadora = true;
+          memory.descobriuUniversidade =
+            true;
+
+          memory.foiProvocadora =
+            true;
+
           memory.affinity += 1;
 
-          showNode("observeStudents");
+
+          showNode(
+            "observeStudents"
+          );
 
         }
+
       }
 
     ]
+
   },
 
 
+  /* =================================================
+     SECRETARIA
+  ================================================= */
+
   secretaria:{
+
     type:"narration",
-    text:"Você decide seguir as placas espalhadas pelo campus em busca da secretaria.",
+
+    text:
+      "Você decide seguir as placas espalhadas pelo campus em busca da secretaria.",
+
     next:"secretariaThought"
+
   },
 
 
   secretariaThought:{
+
     type:"thought",
-    text:"Talvez seja melhor perguntar logo. Eu não quero chegar atrasada na minha primeira aula.",
+
+    text:
+      "Talvez seja melhor perguntar logo. Eu não quero chegar atrasada na minha primeira aula.",
+
     next:"futureCharacterCheck"
+
   },
 
 
+  /* =================================================
+     SALA SOZINHA
+  ================================================= */
+
   sozinha:{
+
     type:"narration",
-    text:"Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
+
+    text:
+      "Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
+
     next:"sozinhaThought"
+
   },
 
 
   sozinhaThought:{
+
     type:"thought",
-    text:"Eu consigo. Só preciso prestar atenção nas placas.",
+
+    text:
+      "Eu consigo. Só preciso prestar atenção nas placas.",
+
     next:"futureCharacterCheck"
+
   },
 
 
+  /* =================================================
+     OBSERVAR ESTUDANTES
+  ================================================= */
+
   observeStudents:{
+
     type:"narration",
-    text:"Você para por alguns segundos e observa os estudantes ao redor, tentando entender a dinâmica do campus.",
+
+    text:
+      "Você para por alguns segundos e observa os estudantes ao redor, tentando entender a dinâmica do campus.",
+
     next:"observeStudentsThought"
+
   },
 
 
   observeStudentsThought:{
+
     type:"thought",
-    text:"Tem tanta gente nova... será que alguém aqui vai mudar minha história?",
+
+    text:
+      "Tem tanta gente nova... será que alguém aqui vai mudar minha história?",
+
     next:"futureCharacterCheck"
+
   },
 
 
+  /* =================================================
+     RAMIFICAÇÃO
+  ================================================= */
+
   futureCharacterCheck:{
+
     type:"branch",
 
     condition(){
 
-      if(memory.foiProvocadora)
+      if(
+        memory.foiProvocadora
+      ){
+
         return "newCharacterA";
 
-      if(memory.manteveDistancia)
+      }
+
+
+      if(
+        memory.manteveDistancia
+      ){
+
         return "newCharacterB";
+
+      }
+
 
       return "neutralCharacter";
 
     }
+
   },
 
 
+  /* =================================================
+     NOVO PERSONAGEM A
+  ================================================= */
+
   newCharacterA:{
+
     type:"narration",
-    text:"Enquanto você observa o campus, uma voz desconhecida chama sua atenção ao passar por perto.",
+
+    text:
+      "Enquanto você observa o campus, uma voz desconhecida chama sua atenção ao passar por perto.",
+
     next:"newCharacterA2"
+
   },
 
 
   newCharacterA2:{
+
     type:"thought",
-    text:"Quem é ele?",
+
+    text:
+      "Quem é ele?",
+
     next:"newCharacterA3"
+
   },
 
 
   newCharacterA3:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Você está procurando a sala de alguma turma?",
+
+    text:
+      "Você está procurando a sala de alguma turma?",
+
     next:"endEpisode"
+
   },
 
 
+  /* =================================================
+     NOVO PERSONAGEM B
+  ================================================= */
+
   newCharacterB:{
+
     type:"narration",
-    text:"Você segue sozinha pelo corredor. Quando dobra uma esquina, quase esbarra em alguém.",
+
+    text:
+      "Você segue sozinha pelo corredor. Quando dobra uma esquina, quase esbarra em alguém.",
+
     next:"newCharacterB2"
+
   },
 
 
   newCharacterB2:{
+
     type:"thought",
-    text:"Ótimo... primeiro dia e eu já quase derrubo alguém.",
+
+    text:
+      "Ótimo... primeiro dia e eu já quase derrubo alguém.",
+
     next:"newCharacterB3"
+
   },
 
 
   newCharacterB3:{
+
     type:"dialogue",
+
     speaker:"???",
-    text:"Você está bem?",
+
+    text:
+      "Você está bem?",
+
     next:"endEpisode"
+
   },
 
 
+  /* =================================================
+     FINAL DO EPISÓDIO
+  ================================================= */
+
   neutralCharacter:{
+
     type:"narration",
-    text:"Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
+
+    text:
+      "Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
+
     next:"endEpisode"
+
   },
 
 
   endEpisode:{
+
     type:"end",
-    text:"EPISÓDIO 1 — Um encontro inesperado"
+
+    text:
+      "EPISÓDIO 1 — Um encontro inesperado"
+
   }
 
 };
 
 
+
+/* =====================================================
+   CONTROLE DA HISTÓRIA
+===================================================== */
+
 let currentNode = null;
+
 
 
 function showNode(id){
 
-  const node = story[id];
+  const node =
+    story[id];
+
 
   if(!node)
     return;
 
-  currentNode = node;
 
-  choiceArea.innerHTML = "";
-
-  tapIndicator.style.display = "none";
+  currentNode =
+    node;
 
 
-  if(node.scene === "university")
-    showUniversity();
+  choiceArea.innerHTML =
+    "";
 
 
-  if(node.hideCharacter)
-    hideChilde();
-
-
-  if(node.expression)
-    showChilde(node.expression);
+  tapIndicator.style.display =
+    "none";
 
 
   if(
-    node.type === "dialogue" &&
-    node.speaker !== "Você"
+    node.scene === "university"
+  ){
+
+    showUniversity();
+
+  }
+
+
+  if(
+    node.hideCharacter
+  ){
+
+    hideChilde();
+
+  }
+
+
+  if(
+    node.expression
   ){
 
     showChilde(
+      node.expression
+    );
+
+  }
+
+
+  /* -----------------------------------------------
+     FALA DE PERSONAGEM
+  ------------------------------------------------ */
+
+  if(
+
+    node.type === "dialogue" &&
+
+    node.speaker !== "Você"
+
+  ){
+
+    showChilde(
+
       node.expression ||
       memory.expression ||
       "franzindo"
+
     );
+
 
     showChildeBubble(
-      node.speaker || "???",
+
+      node.speaker ||
+      "???",
+
       node.text
+
     );
 
-    dialogueBox.classList.remove("thought");
 
-    dialogueSpeaker.textContent = "";
+    dialogueBox.classList.remove(
+      "thought"
+    );
 
-    dialogueText.textContent = "";
+
+    dialogueSpeaker.textContent =
+      "";
+
+
+    dialogueText.textContent =
+      "";
 
   }
 
+
+  /* -----------------------------------------------
+     FALA DA PROTAGONISTA
+  ------------------------------------------------ */
 
   if(
+
     node.type === "dialogue" &&
+
     node.speaker === "Você"
+
   ){
 
-    dialogueBox.classList.remove("thought");
-
-    if(memory.encontrouChilde)
-      childeLayer.classList.add("visible");
-
-    hideChildeBubble();
-
-    dialogueSpeaker.textContent = "Você";
-
-    dialogueText.textContent = node.text;
-
-  }
+    dialogueBox.classList.remove(
+      "thought"
+    );
 
 
-  if(node.type === "narration"){
+    if(
+      memory.encontrouChilde
+    ){
 
-    dialogueBox.classList.remove("thought");
-
-    dialogueSpeaker.textContent = "";
-
-    dialogueText.textContent = node.text;
-
-    hideChildeBubble();
-
-    tapIndicator.style.display = "block";
-
-    return;
-
-  }
-
-
-  if(node.type === "thought"){
-
-    dialogueBox.classList.add("thought");
-
-    dialogueSpeaker.textContent = "Pensamento";
-
-    dialogueText.textContent = node.text;
-
-    hideChildeBubble();
-
-    tapIndicator.style.display = "block";
-
-    return;
-
-  }
-
-
-  if(node.type === "dialogue"){
-
-    tapIndicator.style.display = "block";
-
-    return;
-
-  }
-
-
-  if(node.type === "choice"){
-
-    dialogueBox.classList.remove("thought");
-
-    dialogueSpeaker.textContent = "";
-
-    dialogueText.textContent = node.text;
-
-    hideChildeBubble();
-
-
-    node.choices.forEach(choice => {
-
-      const button =
-        document.createElement("button");
-
-      button.className =
-        "choice-button";
-
-      button.textContent =
-        choice.text;
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          choice.action();
-
-          updateAffinity();
-
-        }
+      childeLayer.classList.add(
+        "visible"
       );
 
-      choiceArea.appendChild(button);
+    }
 
-    });
+
+    hideChildeBubble();
+
+
+    dialogueSpeaker.textContent =
+      "Você";
+
+
+    dialogueText.textContent =
+      node.text;
+
+  }
+
+
+  /* -----------------------------------------------
+     NARRAÇÃO
+  ------------------------------------------------ */
+
+  if(
+    node.type === "narration"
+  ){
+
+    dialogueBox.classList.remove(
+      "thought"
+    );
+
+
+    dialogueSpeaker.textContent =
+      "";
+
+
+    dialogueText.textContent =
+      node.text;
+
+
+    hideChildeBubble();
+
+
+    tapIndicator.style.display =
+      "block";
+
 
     return;
 
   }
 
 
-  if(node.type === "branch"){
+  /* -----------------------------------------------
+     PENSAMENTO
+  ------------------------------------------------ */
+
+  if(
+    node.type === "thought"
+  ){
+
+    dialogueBox.classList.add(
+      "thought"
+    );
+
+
+    dialogueSpeaker.textContent =
+      "Pensamento";
+
+
+    dialogueText.textContent =
+      node.text;
+
+
+    hideChildeBubble();
+
+
+    tapIndicator.style.display =
+      "block";
+
+
+    return;
+
+  }
+
+
+  /* -----------------------------------------------
+     DIÁLOGO
+  ------------------------------------------------ */
+
+  if(
+    node.type === "dialogue"
+  ){
+
+    tapIndicator.style.display =
+      "block";
+
+
+    return;
+
+  }
+
+
+  /* -----------------------------------------------
+     ESCOLHA
+  ------------------------------------------------ */
+
+  if(
+    node.type === "choice"
+  ){
+
+    dialogueBox.classList.remove(
+      "thought"
+    );
+
+
+    dialogueSpeaker.textContent =
+      "";
+
+
+    dialogueText.textContent =
+      node.text;
+
+
+    hideChildeBubble();
+
+
+    node.choices.forEach(
+      choice => {
+
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+
+        button.className =
+          "choice-button";
+
+
+        button.textContent =
+          choice.text;
+
+
+        button.addEventListener(
+          "click",
+
+          () => {
+
+            choice.action();
+
+            updateAffinity();
+
+          }
+
+        );
+
+
+        choiceArea.appendChild(
+          button
+        );
+
+
+      }
+    );
+
+
+    return;
+
+  }
+
+
+  /* -----------------------------------------------
+     RAMIFICAÇÃO
+  ------------------------------------------------ */
+
+  if(
+    node.type === "branch"
+  ){
 
     showNode(
       node.condition()
     );
 
+
     return;
 
   }
 
 
-  if(node.type === "end"){
+  /* -----------------------------------------------
+     FINAL
+  ------------------------------------------------ */
+
+  if(
+    node.type === "end"
+  ){
 
     hideChilde();
 
-    dialogueBox.classList.remove("thought");
 
-    dialogueSpeaker.textContent = "";
+    dialogueBox.classList.remove(
+      "thought"
+    );
 
-    dialogueText.textContent = node.text;
 
-    tapIndicator.style.display = "none";
+    dialogueSpeaker.textContent =
+      "";
+
+
+    dialogueText.textContent =
+      node.text;
+
+
+    tapIndicator.style.display =
+      "none";
 
 
     const button =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
+
 
     button.className =
       "restart-button";
 
+
     button.textContent =
       "Recomeçar";
+
 
     button.addEventListener(
       "click",
       resetStory
     );
 
-    choiceArea.appendChild(button);
+
+    choiceArea.appendChild(
+      button
+    );
 
   }
 
 }
 
 
+
+/* =====================================================
+   TOQUE NA CAIXA
+===================================================== */
+
 dialogueBox.addEventListener(
   "click",
+
   () => {
 
     if(!currentNode)
       return;
 
+
     if(
+
       currentNode.type === "narration" ||
+
       currentNode.type === "dialogue" ||
+
       currentNode.type === "thought"
+
     ){
 
-      if(currentNode.next)
-        showNode(currentNode.next);
+      if(
+        currentNode.next
+      ){
+
+        showNode(
+          currentNode.next
+        );
+
+      }
 
     }
 
   }
+
 );
 
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 function resetStory(){
 
   Object.assign(
+
     memory,
+
     {
+
       encontrouChilde:false,
+
       foiGentil:false,
+
       foiProvocadora:false,
+
       manteveDistancia:false,
+
       perguntouNome:false,
+
       disseNome:false,
+
       childeSeApresentou:false,
+
       descobriuUniversidade:false,
+
       affinity:0,
+
       expression:"franzindo"
+
     }
+
   );
+
 
   showCity();
 
+
   hideChilde();
+
 
   updateAffinity();
 
-  showNode("start");
+
+  showNode(
+    "start"
+  );
 
 }
 
 
+
+/* =====================================================
+   COMEÇAR
+===================================================== */
+
 startButton.addEventListener(
+
   "click",
+
   () => {
 
-    startScreen.style.display = "none";
+    startScreen.style.display =
+      "none";
 
-    storyScreen.style.display = "block";
+
+    storyScreen.style.display =
+      "block";
+
 
     showCity();
 
+
     updateAffinity();
 
-    showNode("start");
+
+    showNode(
+      "start"
+    );
 
   }
+
 );
 
 
+
+/* =====================================================
+   SOM
+===================================================== */
+
 soundButton.addEventListener(
+
   "click",
+
   e => {
 
     e.stopPropagation();
 
+
     audioPanel.style.display =
+
       audioPanel.style.display === "block"
+
         ? "none"
+
         : "block";
 
   }
+
 );
+
 
 
 muteButton.addEventListener(
+
   "click",
+
   () => {
 
     muteButton.textContent =
+
       muteButton.textContent === "Som ligado"
+
         ? "Som desligado"
+
         : "Som ligado";
 
   }
+
 );
 
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
 
 resetStory();
 
 </script>
+
 
 </body>
 </html>
