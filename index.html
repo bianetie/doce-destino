@@ -12,9 +12,9 @@
 
 <style>
 
-/* ================================
+/* =====================================================
    BASE
-================================ */
+===================================================== */
 
 * {
   box-sizing: border-box;
@@ -25,12 +25,14 @@ html,
 body {
   margin: 0;
   padding: 0;
+
   width: 100%;
   height: 100%;
+
   overflow: hidden;
 
   background: #130d18;
-  color: #fff;
+  color: white;
 
   font-family:
     Georgia,
@@ -48,29 +50,33 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
    JOGO
-================================ */
+===================================================== */
 
 .game {
   position: relative;
+
   width: 100%;
   height: 100dvh;
+
   overflow: hidden;
 }
 
 
-/* ================================
+/* =====================================================
    TELA INICIAL
-================================ */
+===================================================== */
 
 .start-screen {
   position: absolute;
   inset: 0;
+
   z-index: 100;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -94,9 +100,11 @@ button {
 .start-title {
   margin: 0;
 
-  font-size: clamp(38px, 10vw, 58px);
+  font-size:
+    clamp(38px, 10vw, 58px);
 
   font-weight: normal;
+
   letter-spacing: 1px;
 
   color: #fff4fb;
@@ -106,7 +114,8 @@ button {
 }
 
 .start-subtitle {
-  margin: 10px 0 32px;
+  margin:
+    10px 0 32px;
 
   font-size: 16px;
 
@@ -118,14 +127,18 @@ button {
 .name-input {
   width: min(310px, 88vw);
 
-  padding: 14px 18px;
+  padding:
+    14px 18px;
 
-  border: 1px solid rgba(255,255,255,.4);
+  border:
+    1px solid rgba(255,255,255,.4);
+
   border-radius: 16px;
 
   outline: none;
 
-  background: rgba(30,16,34,.72);
+  background:
+    rgba(30,16,34,.72);
 
   color: white;
 
@@ -135,7 +148,8 @@ button {
 }
 
 .name-input::placeholder {
-  color: rgba(255,255,255,.65);
+  color:
+    rgba(255,255,255,.65);
 }
 
 .start-button {
@@ -143,9 +157,12 @@ button {
 
   margin-top: 14px;
 
-  padding: 14px 20px;
+  padding:
+    14px 20px;
 
-  border: 1px solid rgba(255,255,255,.32);
+  border:
+    1px solid rgba(255,255,255,.32);
+
   border-radius: 16px;
 
   background:
@@ -168,9 +185,9 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
    HISTÓRIA
-================================ */
+===================================================== */
 
 .story-screen {
   position: absolute;
@@ -188,9 +205,9 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
    CENÁRIO
-================================ */
+===================================================== */
 
 .scene {
   position: absolute;
@@ -244,11 +261,6 @@ button {
   }
 }
 
-
-/* ================================
-   SOMBRA DELICADA
-================================ */
-
 .scene::after {
   content: "";
 
@@ -269,9 +281,9 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
    PÉTALAS
-================================ */
+===================================================== */
 
 .wind-layer {
   position: absolute;
@@ -364,6 +376,7 @@ button {
     transform:
       translate3d(-20px,-10px,0)
       rotate(0);
+
     opacity: 0;
   }
 
@@ -387,14 +400,15 @@ button {
     transform:
       translate3d(420px,140px,0)
       rotate(430deg);
+
     opacity: 0;
   }
 }
 
 
-/* ================================
+/* =====================================================
    ÁGUA
-================================ */
+===================================================== */
 
 .water-effect {
   position: absolute;
@@ -503,9 +517,9 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
    HUD
-================================ */
+===================================================== */
 
 .hud {
   position: absolute;
@@ -575,7 +589,8 @@ button {
 
   gap: 6px;
 
-  padding: 9px 13px;
+  padding:
+    9px 13px;
 
   border-radius: 20px;
 
@@ -593,9 +608,9 @@ button {
 }
 
 
-/* ================================
-   PARTE INFERIOR
-================================ */
+/* =====================================================
+   ÁREA DE DIÁLOGO
+===================================================== */
 
 .bottom-area {
   position: absolute;
@@ -607,13 +622,9 @@ button {
   z-index: 20;
 }
 
-
-/* ================================
-   TEXTO
-================================ */
-
 .dialogue-box {
-  padding: 17px 19px;
+  padding:
+    17px 19px;
 
   border-radius: 20px;
 
@@ -647,9 +658,48 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
+   BOTÃO CONTINUAR
+===================================================== */
+
+.continue-area {
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 9px;
+}
+
+.continue-button {
+  padding:
+    10px 18px;
+
+  border:
+    1px solid rgba(255,255,255,.3);
+
+  border-radius: 15px;
+
+  background:
+    rgba(116,61,107,.88);
+
+  color: #fff;
+
+  font-size: 14px;
+
+  font-weight: normal;
+
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.2);
+}
+
+.continue-button::after {
+  content: "  ›";
+}
+
+
+/* =====================================================
    ESCOLHAS
-================================ */
+===================================================== */
 
 .choices {
   display: flex;
@@ -664,7 +714,8 @@ button {
 .choice-button {
   width: 100%;
 
-  padding: 12px 17px;
+  padding:
+    12px 17px;
 
   border-radius: 15px;
 
@@ -705,19 +756,12 @@ button {
 
 .choice-button:active {
   transform: scale(.985);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(170,94,151,.95),
-      rgba(115,62,108,.95)
-    );
 }
 
 
-/* ================================
-   BOTÃO DE CONFIGURAÇÕES
-================================ */
+/* =====================================================
+   SOM
+===================================================== */
 
 .sound-button {
   position: absolute;
@@ -741,15 +785,7 @@ button {
   color: white;
 
   font-size: 19px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.3);
 }
-
-
-/* ================================
-   PAINEL DE SOM
-================================ */
 
 .audio-panel {
   position: absolute;
@@ -788,7 +824,8 @@ button {
 }
 
 .audio-title {
-  margin: 0 0 13px;
+  margin:
+    0 0 13px;
 
   font-size: 17px;
 
@@ -842,9 +879,9 @@ button {
 }
 
 
-/* ================================
+/* =====================================================
    CELULARES PEQUENOS
-================================ */
+===================================================== */
 
 @media (max-height: 700px) {
 
@@ -863,7 +900,8 @@ button {
   }
 
   .affinity {
-    padding: 7px 10px;
+    padding:
+      7px 10px;
   }
 
   .bottom-area {
@@ -871,7 +909,8 @@ button {
   }
 
   .dialogue-box {
-    padding: 14px 16px;
+    padding:
+      14px 16px;
   }
 
   .dialogue-text {
@@ -879,7 +918,9 @@ button {
   }
 
   .choice-button {
-    padding: 10px 14px;
+    padding:
+      10px 14px;
+
     font-size: 14px;
   }
 
@@ -901,298 +942,311 @@ button {
 <div class="game">
 
 
-  <!-- ================================
-       INÍCIO
-  ================================= -->
+<!-- ===================================================
+     TELA INICIAL
+=================================================== -->
 
-  <section
-    id="startScreen"
-    class="start-screen"
+<section
+  id="startScreen"
+  class="start-screen"
+>
+
+  <h1 class="start-title">
+    Doce Destino
+  </h1>
+
+  <p class="start-subtitle">
+    Seu coração escolhe o caminho.
+  </p>
+
+  <input
+    id="nameInput"
+    class="name-input"
+    type="text"
+    maxlength="20"
+    placeholder="Digite seu nome..."
+    autocomplete="off"
   >
 
-    <h1 class="start-title">
-      Doce Destino
-    </h1>
+  <button
+    id="startButton"
+    class="start-button"
+    type="button"
+  >
+    Começar minha história ♡
+  </button>
 
-    <p class="start-subtitle">
-      Seu coração escolhe o caminho.
-    </p>
-
-    <input
-      id="nameInput"
-      class="name-input"
-      type="text"
-      maxlength="20"
-      placeholder="Digite seu nome..."
-      autocomplete="off"
-    >
-
-    <button
-      id="startButton"
-      class="start-button"
-      type="button"
-    >
-      Começar minha história ♡
-    </button>
-
-  </section>
+</section>
 
 
-  <!-- ================================
-       HISTÓRIA
-  ================================= -->
+<!-- ===================================================
+     HISTÓRIA
+=================================================== -->
 
-  <section
-    id="storyScreen"
-    class="story-screen"
+<section
+  id="storyScreen"
+  class="story-screen"
+>
+
+
+<!-- CENÁRIO -->
+
+<div class="scene">
+
+  <img
+    src="universidade-aurora.png.PNG"
+    alt="Universidade Aurora"
   >
 
+  <div class="wind-layer">
 
-    <div class="scene">
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
 
-      <img
-        src="universidade-aurora.png.PNG"
-        alt="Universidade Aurora"
-      >
-
-
-      <!-- PÉTALAS -->
-
-      <div class="wind-layer">
-
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-
-      </div>
+  </div>
 
 
-      <!-- ÁGUA -->
+  <div class="water-effect">
 
-      <div class="water-effect">
+    <span class="ripple"></span>
+    <span class="ripple"></span>
+    <span class="ripple"></span>
 
-        <span class="ripple"></span>
-        <span class="ripple"></span>
-        <span class="ripple"></span>
+  </div>
 
-      </div>
+  <div class="water-shimmer"></div>
 
-      <div class="water-shimmer"></div>
-
-    </div>
+</div>
 
 
-    <!-- HUD -->
+<!-- HUD -->
 
-    <div class="hud">
+<div class="hud">
 
-      <div class="player-info">
-
-        <div
-          id="playerAvatar"
-          class="player-avatar"
-        >
-          ♡
-        </div>
-
-        <div
-          id="playerName"
-          class="player-name"
-        >
-          Bia
-        </div>
-
-      </div>
-
-
-      <div class="affinity">
-
-        <span class="affinity-heart">
-          ❤️
-        </span>
-
-        <span id="affinityValue">
-          0
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <!-- CONFIGURAÇÕES DE SOM -->
-
-    <button
-      id="soundButton"
-      class="sound-button"
-      type="button"
-      aria-label="Abrir configurações de som"
-    >
-      ♫
-    </button>
-
+  <div class="player-info">
 
     <div
-      id="audioPanel"
-      class="audio-panel"
+      id="playerAvatar"
+      class="player-avatar"
+    >
+      ♡
+    </div>
+
+    <div
+      id="playerName"
+      class="player-name"
+    >
+      Bia
+    </div>
+
+  </div>
+
+
+  <div class="affinity">
+
+    <span class="affinity-heart">
+      ❤️
+    </span>
+
+    <span id="affinityValue">
+      0
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- SOM -->
+
+<button
+  id="soundButton"
+  class="sound-button"
+  type="button"
+  aria-label="Abrir configurações de som"
+>
+  ♫
+</button>
+
+
+<div
+  id="audioPanel"
+  class="audio-panel"
+>
+
+  <p class="audio-title">
+    ♡ Som do ambiente
+  </p>
+
+
+  <div class="volume-row">
+
+    <div class="volume-label">
+
+      <span>🎵 Música</span>
+
+      <span
+        id="musicValue"
+        class="volume-value"
+      >
+        35%
+      </span>
+
+    </div>
+
+    <input
+      id="musicSlider"
+      class="volume-slider"
+      type="range"
+      min="0"
+      max="100"
+      value="35"
     >
 
-      <p class="audio-title">
-        ♡ Som do ambiente
-      </p>
+  </div>
 
 
-      <div class="volume-row">
+  <div class="volume-row">
 
-        <div class="volume-label">
-          <span>🎵 Música</span>
-          <span
-            id="musicValue"
-            class="volume-value"
-          >
-            35%
-          </span>
-        </div>
+    <div class="volume-label">
 
-        <input
-          id="musicSlider"
-          class="volume-slider"
-          type="range"
-          min="0"
-          max="100"
-          value="35"
-        >
+      <span>🐦 Ambiente</span>
 
-      </div>
-
-
-      <div class="volume-row">
-
-        <div class="volume-label">
-          <span>🐦 Ambiente</span>
-          <span
-            id="ambienceValue"
-            class="volume-value"
-          >
-            10%
-          </span>
-        </div>
-
-        <input
-          id="ambienceSlider"
-          class="volume-slider"
-          type="range"
-          min="0"
-          max="100"
-          value="10"
-        >
-
-      </div>
-
-
-      <div class="volume-row">
-
-        <div class="volume-label">
-          <span>✨ Efeitos</span>
-          <span
-            id="effectsValue"
-            class="volume-value"
-          >
-            35%
-          </span>
-        </div>
-
-        <input
-          id="effectsSlider"
-          class="volume-slider"
-          type="range"
-          min="0"
-          max="100"
-          value="35"
-        >
-
-      </div>
-
-
-      <button
-        id="muteButton"
-        class="mute-button"
-        type="button"
+      <span
+        id="ambienceValue"
+        class="volume-value"
       >
-        🔇 Silenciar tudo
-      </button>
+        10%
+      </span>
 
     </div>
 
+    <input
+      id="ambienceSlider"
+      class="volume-slider"
+      type="range"
+      min="0"
+      max="100"
+      value="10"
+    >
 
-    <!-- HISTÓRIA -->
-
-    <div class="bottom-area">
-
-      <div class="dialogue-box">
-
-        <p
-          id="dialogueText"
-          class="dialogue-text"
-        ></p>
-
-      </div>
+  </div>
 
 
-      <div
-        id="choices"
-        class="choices"
-      ></div>
+  <div class="volume-row">
+
+    <div class="volume-label">
+
+      <span>✨ Efeitos</span>
+
+      <span
+        id="effectsValue"
+        class="volume-value"
+      >
+        35%
+      </span>
 
     </div>
 
+    <input
+      id="effectsSlider"
+      class="volume-slider"
+      type="range"
+      min="0"
+      max="100"
+      value="35"
+    >
 
-  </section>
+  </div>
+
+
+  <button
+    id="muteButton"
+    class="mute-button"
+    type="button"
+  >
+    🔇 Silenciar tudo
+  </button>
+
+</div>
+
+
+<!-- ===================================================
+     DIÁLOGO
+=================================================== -->
+
+<div class="bottom-area">
+
+  <div class="dialogue-box">
+
+    <p
+      id="dialogueText"
+      class="dialogue-text"
+    ></p>
+
+  </div>
+
+
+  <div
+    id="continueArea"
+    class="continue-area"
+  ></div>
+
+
+  <div
+    id="choices"
+    class="choices"
+  ></div>
+
+</div>
+
+
+</section>
 
 </div>
 
 
 <script>
 
-/* =========================================
-   ESTADO
-========================================= */
+/* =====================================================
+   ESTADO DO JOGO
+===================================================== */
 
 let playerName = "Bia";
 
 let affinity = 0;
 
-let currentScene = 0;
-
-let audioContext = null;
-
-let musicTimer = null;
-
-let birdTimer = null;
-
-let soundEnabled = true;
-
-let musicVolume = 0.35;
-
-let ambienceVolume = 0.10;
-
-let effectsVolume = 0.35;
-
-let musicGain = null;
-
-let ambienceGain = null;
-
-let effectsGain = null;
+let currentNode = "intro_01";
 
 
-/* =========================================
+/*
+   🦋 MEMÓRIA DA HISTÓRIA
+
+   Tudo que o jogador fizer pode ser guardado aqui.
+*/
+
+const memory = {
+
+  conversouComEstranho: false,
+
+  foiSozinha: false,
+
+  observouUniversidade: false,
+
+  entrouImediatamente: false
+
+};
+
+
+/* =====================================================
    ELEMENTOS
-========================================= */
+===================================================== */
 
 const startScreen =
   document.getElementById("startScreen");
@@ -1217,6 +1271,9 @@ const dialogueText =
 
 const choicesElement =
   document.getElementById("choices");
+
+const continueArea =
+  document.getElementById("continueArea");
 
 const soundButton =
   document.getElementById("soundButton");
@@ -1246,227 +1303,819 @@ const muteButton =
   document.getElementById("muteButton");
 
 
-/* =========================================
+/* =====================================================
    HISTÓRIA
-========================================= */
 
-const story = [
+   "dialogue" = conversa normal
+   "narration" = narrativa
+   "choice" = decisão importante
+===================================================== */
 
-  {
+const story = {
+
+
+  /* ===================================================
+     COMEÇO
+  =================================================== */
+
+  intro_01: {
+
+    type: "narration",
+
     text:
-      "Seu primeiro dia na Universidade Aurora finalmente chegou. {name}, você respira fundo antes de entrar no campus.",
+      "O portão da Universidade Aurora se ergue diante de você. É seu primeiro dia, e por alguns segundos você simplesmente observa o lugar.",
+
+    next: "intro_02"
+
+  },
+
+
+  intro_02: {
+
+    type: "narration",
+
+    text:
+      "Uma brisa atravessa as árvores. Algumas pétalas passam diante dos seus olhos enquanto o som distante da fonte se mistura ao movimento dos estudantes.",
+
+    next: "intro_03"
+
+  },
+
+
+  intro_03: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Você respira fundo. Uma nova cidade, uma nova universidade... e uma vida inteira que ainda não sabe como vai ser.",
+
+    next: "intro_04"
+
+  },
+
+
+  intro_04: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "— Primeiro dia?",
+
+    next: "intro_05"
+
+  },
+
+
+  intro_05: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
+    text:
+      "Você olha para o lado. Um estudante está parado alguns passos atrás, segurando alguns livros.",
+
+    next: "intro_06"
+
+  },
+
+
+  intro_06: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
+    text:
+      "— Dá para perceber?",
+
+    next: "intro_choice"
+
+  },
+
+
+  /* ===================================================
+     PRIMEIRA ESCOLHA IMPORTANTE
+  =================================================== */
+
+  intro_choice: {
+
+    type: "choice",
+
+    text:
+      "Como você responde?",
 
     choices: [
 
       {
-        text: "Entrar imediatamente.",
-        affinity: 1,
-        next: 1
+
+        text:
+          "Sorrir e continuar conversando.",
+
+        affinity:
+          2,
+
+        consequence:
+          "conversouComEstranho",
+
+        next:
+          "talk_01"
+
       },
 
       {
-        text: "Parar por alguns segundos e observar.",
-        affinity: 2,
-        next: 1
+
+        text:
+          "Agradecer e seguir sozinha.",
+
+        affinity:
+          0,
+
+        consequence:
+          "foiSozinha",
+
+        next:
+          "alone_01"
+
       }
 
     ]
+
   },
 
-  {
+
+  /* ===================================================
+     CAMINHO: CONVERSOU
+  =================================================== */
+
+  talk_01: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
     text:
-      "A brisa passa suavemente pelo jardim. Pétalas rosadas atravessam seu campo de visão enquanto a água da fonte dança ao longe.",
+      "— Um pouco. Mas não se preocupe. Eu também demorei para descobrir onde ficavam as coisas quando cheguei.",
+
+    next: "talk_02"
+
+  },
+
+
+  talk_02: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Ele sorri de maneira tranquila. Por algum motivo, a tensão do seu primeiro dia diminui um pouco.",
+
+    next: "talk_03"
+
+  },
+
+
+  talk_03: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
+    text:
+      "— Se estiver procurando o prédio principal, é por ali.",
+
+    next: "talk_04"
+
+  },
+
+
+  talk_04: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Você olha na direção que ele aponta. O caminho parece muito mais simples agora.",
+
+    next: "talk_choice"
+
+  },
+
+
+  /* ===================================================
+     SEGUNDA ESCOLHA
+  =================================================== */
+
+  talk_choice: {
+
+    type: "choice",
+
+    text:
+      "O que você faz?",
 
     choices: [
 
       {
-        text: "Sorrir e continuar caminhando.",
-        affinity: 1,
-        next: 2
+
+        text:
+          "Perguntar o nome dele.",
+
+        affinity:
+          2,
+
+        consequence:
+          "perguntouNome",
+
+        next:
+          "name_01"
+
       },
 
       {
-        text: "Observar a universidade com atenção.",
-        affinity: 2,
-        next: 2
+
+        text:
+          "Agradecer e ir para o prédio.",
+
+        affinity:
+          1,
+
+        consequence:
+          "seguiuSozinhaDepois",
+
+        next:
+          "name_02"
+
       }
 
     ]
+
   },
 
-  {
+
+  name_01: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
     text:
-      "Há algo naquele lugar que faz seu coração bater um pouco mais rápido. Talvez seja apenas a ansiedade de começar uma nova vida.",
+      "— Ah, verdade. Eu nem me apresentei.",
 
-    choices: [
+    next: "name_01b"
 
-      {
-        text: "Pensar no futuro.",
-        affinity: 1,
-        next: 3
-      },
-
-      {
-        text: "Deixar o momento simplesmente acontecer.",
-        affinity: 2,
-        next: 3
-      }
-
-    ]
   },
 
-  {
+
+  name_01b: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
     text:
-      "Você atravessa os portões da Universidade Aurora. O som distante dos pássaros acompanha seus primeiros passos pelo campus.",
+      "— Acho que vamos nos encontrar bastante por aqui.",
 
-    choices: [
+    next: "campus_01"
 
-      {
-        text: "Continuar explorando.",
-        affinity: 1,
-        next: 4
-      },
-
-      {
-        text: "Procurar alguém para conversar.",
-        affinity: 2,
-        next: 4
-      }
-
-    ]
   },
 
-  {
+
+  name_02: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
     text:
-      "Então, entre os estudantes que atravessam o jardim, uma presença chama sua atenção.",
+      "— Claro. Boa sorte no seu primeiro dia.",
 
-    choices: [
+    next: "campus_01"
 
-      {
-        text: "Olhar discretamente.",
-        affinity: 2,
-        next: 5
-      },
-
-      {
-        text: "Desviar o olhar.",
-        affinity: 1,
-        next: 5
-      }
-
-    ]
   },
 
-  {
+
+  /* ===================================================
+     CAMINHO: SOZINHA
+  =================================================== */
+
+  alone_01: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
     text:
-      "Por alguns segundos, seus olhares parecem se encontrar. Você ainda não sabe, mas aquele momento será o começo de algo importante.",
+      "— Tudo bem. Boa sorte por aqui.",
 
-    choices: [
+    next: "alone_02"
 
-      {
-        text: "Sustentar o olhar.",
-        affinity: 2,
-        next: 6
-      },
-
-      {
-        text: "Continuar andando.",
-        affinity: 1,
-        next: 6
-      }
-
-    ]
   },
 
-  {
+
+  alone_02: {
+
+    type: "narration",
+
     text:
-      "Um novo capítulo começa. E talvez seu coração já saiba que essa universidade guarda muito mais do que você imaginava.",
+      "Você segue pelo caminho indicado. O estudante desaparece entre os outros alunos antes que você consiga olhar novamente.",
 
-    choices: [
+    next: "campus_01"
 
-      {
-        text: "Continuar.",
-        affinity: 2,
-        next: 0
+  },
+
+
+  /* ===================================================
+     PRIMEIRA CONSEQUÊNCIA
+  =================================================== */
+
+  campus_01: {
+
+    type: "narration",
+
+    text:
+      "Dentro do campus, o movimento é maior do que você imaginava. Você olha ao redor, tentando memorizar os caminhos.",
+
+    next: "campus_02"
+
+  },
+
+
+  campus_02: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Talvez aquele encontro tenha sido apenas uma coincidência.",
+
+    next: "campus_03"
+
+  },
+
+
+  campus_03: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Ou talvez não.",
+
+    next: "butterfly_check"
+
+  },
+
+
+  /* ===================================================
+     EFEITO BORBOLETA
+  =================================================== */
+
+  butterfly_check: {
+
+    type: "conditional",
+
+    next() {
+
+      if (
+        memory.conversouComEstranho &&
+        memory.perguntouNome
+      ) {
+
+        return "butterfly_special";
+
       }
 
-    ]
-  }
+      if (
+        memory.conversouComEstranho
+      ) {
 
-];
+        return "butterfly_small";
 
+      }
 
-/* =========================================
-   MOSTRAR CENA
-========================================= */
-
-function showScene() {
-
-  const scene =
-    story[currentScene];
-
-  dialogueText.textContent =
-    scene.text.replace(
-      "{name}",
-      playerName
-    );
-
-  affinityElement.textContent =
-    affinity;
-
-  choicesElement.innerHTML = "";
-
-
-  scene.choices.forEach(
-    choice => {
-
-      const button =
-        document.createElement("button");
-
-      button.type = "button";
-
-      button.className =
-        "choice-button";
-
-      button.textContent =
-        choice.text;
-
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          affinity +=
-            choice.affinity || 0;
-
-          currentScene =
-            choice.next;
-
-          showScene();
-
-        }
-      );
-
-
-      choicesElement.appendChild(
-        button
-      );
+      return "butterfly_none";
 
     }
+
+  },
+
+
+  butterfly_special: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Enquanto você procura sua sala, escuta uma voz conhecida alguns metros atrás.",
+
+    next: "butterfly_special_02"
+
+  },
+
+
+  butterfly_special_02: {
+
+    type: "dialogue",
+
+    speaker: "???",
+
+    text:
+      "— Ei! Você esqueceu de me dizer seu nome.",
+
+    next: "ending_01"
+
+  },
+
+
+  butterfly_small: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Por um instante, você pensa no estudante que encontrou no portão. Talvez vocês nunca mais se encontrem.",
+
+    next: "ending_01"
+
+  },
+
+
+  butterfly_none: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Você continua andando. O primeiro dia ainda está apenas começando.",
+
+    next: "ending_01"
+
+  },
+
+
+  /* ===================================================
+     FINAL DO MINI EPISÓDIO
+  =================================================== */
+
+  ending_01: {
+
+    type: "narration",
+
+    text:
+      "O sinal toca ao longe. Você segura sua mochila e segue em direção à primeira aula.",
+
+    next: "ending_02"
+
+  },
+
+
+  ending_02: {
+
+    type: "dialogue",
+
+    speaker: "",
+
+    text:
+      "Você ainda não sabe, mas algumas escolhas aparentemente pequenas podem mudar completamente o que acontecerá daqui para frente.",
+
+    next: "end"
+
+  },
+
+
+  end: {
+
+    type: "end",
+
+    text:
+      "EPISÓDIO 01 — UM NOVO COMEÇO",
+
+    next: null
+
+  }
+
+};
+
+
+/* =====================================================
+   MOSTRAR NÓ
+===================================================== */
+
+function showNode(nodeId) {
+
+  currentNode =
+    nodeId;
+
+  const node =
+    story[nodeId];
+
+
+  dialogueText.textContent =
+    "";
+
+
+  continueArea.innerHTML =
+    "";
+
+
+  choicesElement.innerHTML =
+    "";
+
+
+  if (!node) {
+    return;
+  }
+
+
+  /* ==============================================
+     CONDICIONAL
+  ============================================== */
+
+  if (node.type === "conditional") {
+
+    const nextNode =
+      node.next();
+
+    showNode(nextNode);
+
+    return;
+
+  }
+
+
+  /* ==============================================
+     TEXTO
+  ============================================== */
+
+  if (node.text) {
+
+    let text =
+      node.text.replace(
+        "{name}",
+        playerName
+      );
+
+    dialogueText.textContent =
+      text;
+
+  }
+
+
+  /* ==============================================
+     FALA DE PERSONAGEM
+  ============================================== */
+
+  if (
+    node.speaker &&
+    node.speaker !== ""
+  ) {
+
+    dialogueText.textContent =
+      node.speaker +
+      " — " +
+      dialogueText.textContent;
+
+  }
+
+
+  /* ==============================================
+     NARRAÇÃO / DIÁLOGO
+  ============================================== */
+
+  if (
+    node.type === "narration" ||
+    node.type === "dialogue"
+  ) {
+
+    const button =
+      document.createElement("button");
+
+    button.type =
+      "button";
+
+    button.className =
+      "continue-button";
+
+    button.textContent =
+      "Continuar";
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        if (node.next) {
+
+          showNode(
+            node.next
+          );
+
+        }
+
+      }
+    );
+
+
+    continueArea.appendChild(
+      button
+    );
+
+    return;
+
+  }
+
+
+  /* ==============================================
+     ESCOLHA
+  ============================================== */
+
+  if (node.type === "choice") {
+
+    node.choices.forEach(
+      choice => {
+
+        const button =
+          document.createElement("button");
+
+        button.type =
+          "button";
+
+        button.className =
+          "choice-button";
+
+        button.textContent =
+          choice.text;
+
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            /* Afinidade */
+
+            affinity +=
+              choice.affinity || 0;
+
+
+            affinityElement.textContent =
+              affinity;
+
+
+            /* 🦋 Memória */
+
+            if (
+              choice.consequence
+            ) {
+
+              memory[
+                choice.consequence
+              ] = true;
+
+            }
+
+
+            /* Próximo acontecimento */
+
+            showNode(
+              choice.next
+            );
+
+          }
+        );
+
+
+        choicesElement.appendChild(
+          button
+        );
+
+      }
+    );
+
+  }
+
+
+  /* ==============================================
+     FINAL
+  ============================================== */
+
+  if (node.type === "end") {
+
+    const button =
+      document.createElement("button");
+
+    button.type =
+      "button";
+
+    button.className =
+      "continue-button";
+
+    button.textContent =
+      "Voltar ao início";
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        resetStory();
+
+      }
+    );
+
+
+    continueArea.appendChild(
+      button
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   RESETAR HISTÓRIA
+===================================================== */
+
+function resetStory() {
+
+  affinity = 0;
+
+  currentNode =
+    "intro_01";
+
+
+  memory.conversouComEstranho =
+    false;
+
+  memory.foiSozinha =
+    false;
+
+  memory.observouUniversidade =
+    false;
+
+  memory.entrouImediatamente =
+    false;
+
+  memory.perguntouNome =
+    false;
+
+  memory.seguiuSozinhaDepois =
+    false;
+
+
+  affinityElement.textContent =
+    "0";
+
+
+  showNode(
+    "intro_01"
   );
 
 }
 
 
-/* =========================================
+/* =====================================================
    ÁUDIO
-========================================= */
+===================================================== */
+
+let audioContext = null;
+
+let musicGain = null;
+
+let ambienceGain = null;
+
+let effectsGain = null;
+
+let musicTimer = null;
+
+let birdTimer = null;
+
+let soundEnabled = true;
+
+let musicVolume = .35;
+
+let ambienceVolume = .10;
+
+let effectsVolume = .35;
+
 
 function createAudio() {
 
   if (audioContext) {
     return;
   }
+
 
   try {
 
@@ -1526,9 +2175,9 @@ function createAudio() {
 }
 
 
-/* =========================================
-   NOTA MUSICAL
-========================================= */
+/* =====================================================
+   MÚSICA
+===================================================== */
 
 const melody = [
 
@@ -1591,7 +2240,7 @@ function playMusicNote(
   );
 
   gain.gain.linearRampToValueAtTime(
-    0.07,
+    .07,
     audioContext.currentTime + .08
   );
 
@@ -1603,7 +2252,9 @@ function playMusicNote(
 
   oscillator.connect(gain);
 
-  gain.connect(musicGain);
+  gain.connect(
+    musicGain
+  );
 
 
   oscillator.start();
@@ -1615,10 +2266,6 @@ function playMusicNote(
 
 }
 
-
-/* =========================================
-   MÚSICA
-========================================= */
 
 function startMusic() {
 
@@ -1635,10 +2282,12 @@ function startMusic() {
           return;
         }
 
+
         playMusicNote(
           melody[melodyIndex],
           1.6
         );
+
 
         melodyIndex =
           (melodyIndex + 1)
@@ -1651,9 +2300,9 @@ function startMusic() {
 }
 
 
-/* =========================================
-   PASSARINHO
-========================================= */
+/* =====================================================
+   PÁSSARO
+===================================================== */
 
 function playBird() {
 
@@ -1715,7 +2364,9 @@ function playBird() {
 
   oscillator.connect(gain);
 
-  gain.connect(ambienceGain);
+  gain.connect(
+    ambienceGain
+  );
 
 
   oscillator.start(now);
@@ -1754,9 +2405,9 @@ function startBirds() {
 }
 
 
-/* =========================================
-   INICIAR JOGO
-========================================= */
+/* =====================================================
+   INICIAR
+===================================================== */
 
 startButton.addEventListener(
   "click",
@@ -1787,12 +2438,8 @@ startButton.addEventListener(
     );
 
 
-    currentScene = 0;
+    resetStory();
 
-    affinity = 0;
-
-
-    showScene();
 
     createAudio();
 
@@ -1811,9 +2458,9 @@ startButton.addEventListener(
 );
 
 
-/* =========================================
-   ABRIR / FECHAR ÁUDIO
-========================================= */
+/* =====================================================
+   PAINEL DE SOM
+===================================================== */
 
 soundButton.addEventListener(
   "click",
@@ -1827,16 +2474,18 @@ soundButton.addEventListener(
 );
 
 
-/* =========================================
-   VOLUME DA MÚSICA
-========================================= */
+/* =====================================================
+   SLIDERS
+===================================================== */
 
 musicSlider.addEventListener(
   "input",
   () => {
 
     musicVolume =
-      Number(musicSlider.value) / 100;
+      Number(
+        musicSlider.value
+      ) / 100;
 
 
     musicValue.textContent =
@@ -1856,16 +2505,14 @@ musicSlider.addEventListener(
 );
 
 
-/* =========================================
-   VOLUME DO AMBIENTE
-========================================= */
-
 ambienceSlider.addEventListener(
   "input",
   () => {
 
     ambienceVolume =
-      Number(ambienceSlider.value) / 100;
+      Number(
+        ambienceSlider.value
+      ) / 100;
 
 
     ambienceValue.textContent =
@@ -1885,16 +2532,14 @@ ambienceSlider.addEventListener(
 );
 
 
-/* =========================================
-   VOLUME DOS EFEITOS
-========================================= */
-
 effectsSlider.addEventListener(
   "input",
   () => {
 
     effectsVolume =
-      Number(effectsSlider.value) / 100;
+      Number(
+        effectsSlider.value
+      ) / 100;
 
 
     effectsValue.textContent =
@@ -1914,9 +2559,9 @@ effectsSlider.addEventListener(
 );
 
 
-/* =========================================
+/* =====================================================
    SILENCIAR
-========================================= */
+===================================================== */
 
 muteButton.addEventListener(
   "click",
