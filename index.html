@@ -1304,50 +1304,93 @@ let currentExpression=null;
 
 function scheduleBlink(){
 
- clearTimeout(blinkTimer);
+  clearTimeout(blinkTimer);
 
- const delay=
-  2800+
-  Math.random()*4200;
+  const delay =
+    3200 +
+    Math.random() * 4800;
 
- blinkTimer=setTimeout(()=>{
+  blinkTimer =
+    setTimeout(()=>{
 
-  blinkChilde();
+      blinkChilde();
 
-  scheduleBlink();
+      /*
+        Pequena chance de um segundo
+        piscar logo depois.
+      */
 
- },delay);
+      if(Math.random() < 0.12){
+
+        setTimeout(()=>{
+
+          blinkChilde();
+
+        },260);
+
+      }
+
+      scheduleBlink();
+
+    },delay);
 
 }
 
 
 function blinkChilde(){
 
- if(currentExpression!=="alegre")
-  return;
+  if(currentExpression !== "alegre")
+    return;
 
- if(!childe.classList.contains("visible"))
-  return;
+  if(!childe.classList.contains("visible"))
+    return;
 
- const blinkSprite=
-  spriteCache.alegrePiscando;
+  const blinkSprite =
+    spriteCache.alegrePiscando;
 
- if(!blinkSprite || !blinkSprite.src)
-  return;
+  if(!blinkSprite || !blinkSprite.src)
+    return;
 
- if(!childeBlink.getAttribute("src")){
-  childeBlink.src=blinkSprite.src;
- }
+  const activeLayer =
+    activeChildeLayer === "A"
+      ? childeImgA
+      : childeImgB;
 
- childeBlink.classList.add("on");
+  if(!activeLayer)
+    return;
 
- clearTimeout(blinkHideTimer);
+  /*
+    Guarda a imagem normal.
+  */
 
- blinkHideTimer=setTimeout(()=>{
+  const normalSrc =
+    activeLayer.src;
 
-  childeBlink.classList.remove("on");
+  /*
+    Fecha os olhos no MESMO elemento
+    que já está respirando.
+  */
 
- },120);
+  activeLayer.src =
+    blinkSprite.src;
+
+  clearTimeout(blinkHideTimer);
+
+  /*
+    Duração curta e natural.
+  */
+
+  blinkHideTimer =
+    setTimeout(()=>{
+
+      if(activeLayer.src === blinkSprite.src){
+
+        activeLayer.src =
+          normalSrc;
+
+      }
+
+    },105);
 
 }
 
