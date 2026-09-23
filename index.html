@@ -9,21 +9,21 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 html,body{
-  margin:0;width:100%;height:100%;overflow:hidden;
-  font-family:Georgia,"Times New Roman",serif;
-  color:#4b3948;background:#f8edf5
+ margin:0;width:100%;height:100%;overflow:hidden;
+ font-family:Georgia,"Times New Roman",serif;
+ color:#4b3948;background:#f8edf5
 }
 
 button{font-family:inherit}
 
 #startScreen,#game{
-  position:fixed;inset:0;overflow:hidden
+ position:fixed;inset:0;overflow:hidden
 }
 
 #startScreen{
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;
-  background:radial-gradient(circle,#fff 0%,#f9e8f4 60%,#ead0e4)
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;
+ background:radial-gradient(circle,#fff,#f9e8f4 60%,#ead0e4)
 }
 
 .startContent{width:88%;max-width:420px}
@@ -32,229 +32,225 @@ button{font-family:inherit}
 .subtitle{font-size:14px;color:#9b718d;margin:8px 0 40px}
 
 .startButton{
-  padding:13px 30px;border:1px solid #c69bb8;
-  border-radius:25px;background:#fff;color:#76516a;
-  box-shadow:0 5px 18px #7e4c6e18
+ padding:13px 30px;border:1px solid #c69bb8;
+ border-radius:25px;background:#fff;color:#76516a;
+ box-shadow:0 5px 18px #7e4c6e18
 }
 
 #game{display:none}
 
-.scene{
-  position:absolute;inset:0;overflow:hidden
+/* CENÁRIO */
+
+.scene{position:absolute;inset:0;overflow:hidden}
+
+#cafe,#university{
+ position:absolute;inset:0;
+ background-position:center;
+ background-size:cover;
+ background-repeat:no-repeat
 }
 
-/* CENÁRIOS */
-
-#cafe{
-  position:absolute;inset:0;
-  background:url("cafe-aurora-manha.png.PNG") center center/cover no-repeat;
-}
-
+#cafe{background-image:url("cafe-aurora-manha.png.PNG")}
 #university{
-  position:absolute;inset:0;display:none;
-  background:url("universidade-aurora.png.PNG") center center/cover no-repeat;
+ display:none;
+ background-image:url("universidade-aurora.png.PNG")
 }
 
 /* HUD */
 
 .hud{
-  position:absolute;top:15px;left:15px;right:15px;
-  display:flex;justify-content:space-between;align-items:center;
-  z-index:30
+ position:absolute;top:15px;left:15px;right:15px;
+ display:flex;justify-content:space-between;
+ z-index:30
 }
 
 .player,.affinity{
-  background:#ffffff99;
-  backdrop-filter:blur(8px);
-  border:1px solid #ffffffbb;
-  box-shadow:0 3px 14px #50324618;
-  color:#76516a
+ background:#ffffff99;
+ backdrop-filter:blur(8px);
+ border:1px solid #ffffffbb;
+ box-shadow:0 3px 14px #50324618;
+ color:#76516a
 }
 
 .player{
-  display:flex;align-items:center;gap:8px;
-  padding:6px 11px 6px 7px;border-radius:30px;
-  font-size:13px
+ display:flex;align-items:center;gap:8px;
+ padding:6px 11px 6px 7px;
+ border-radius:30px;font-size:13px
 }
 
 .avatar{
-  width:32px;height:32px;border-radius:50%;
-  background:#fff;display:flex;align-items:center;
-  justify-content:center;color:#a47792
+ width:32px;height:32px;border-radius:50%;
+ background:#fff;display:flex;
+ align-items:center;justify-content:center
 }
 
 .affinity{
-  padding:8px 12px;border-radius:20px;font-size:12px
+ padding:8px 12px;border-radius:20px;font-size:12px
 }
 
 /* CHILDE */
 
 #childe{
-  display:none;
-  position:absolute;
-  inset:0 0 115px 0;
-  z-index:12;
-  pointer-events:none;
-  align-items:flex-end;
-  justify-content:flex-end;
-  padding-right:2%;
-  overflow:visible
+ display:none;
+ position:absolute;
+ inset:0;
+ z-index:12;
+ pointer-events:none;
+ overflow:hidden
 }
 
-#childe.visible{display:flex}
+#childe.visible{display:block}
 
 #childe img{
-  height:92vh;
-  width:auto;
-  max-width:75vw;
-  object-fit:contain;
-  object-position:center bottom;
-  filter:
-    drop-shadow(0 12px 22px #3723324d)
-    brightness(1.14)
-    saturate(1.28)
-    contrast(1.10);
-  transform-origin:center bottom;
-  animation:alive 4.2s ease-in-out infinite
+ position:absolute;
+ height:108vh;
+ width:auto;
+ max-width:none;
+ right:-7vw;
+ bottom:-12vh;
+
+ object-fit:contain;
+ object-position:center bottom;
+
+ filter:
+  drop-shadow(0 12px 22px #3723324d)
+  brightness(1.14)
+  saturate(1.28)
+  contrast(1.10);
+
+ transform-origin:center bottom;
+ animation:alive 4.2s ease-in-out infinite
 }
 
 @keyframes alive{
-  0%,100%{transform:translateY(0) rotate(0)}
-  35%{transform:translate(-1px,-6px) rotate(.15deg)}
-  60%{transform:translate(2px,-3px) rotate(.08deg)}
+ 0%,100%{transform:translateY(0) rotate(0)}
+ 35%{transform:translate(-1px,-6px) rotate(.15deg)}
+ 60%{transform:translate(2px,-3px) rotate(.08deg)}
 }
 
 /* BALÃO */
 
 #bubble{
-  display:none;
-  position:absolute;
-  right:3%;top:8%;
-  width:min(42%,300px);
-  padding:12px 15px;
-  border-radius:20px 20px 6px 20px;
-  background:#fff9fcf2;
-  border:1px solid #fff;
-  box-shadow:0 6px 22px #4a30431f;
-  z-index:20
+ display:none;
+ position:absolute;
+ right:3%;top:8%;
+ width:min(42%,300px);
+ padding:12px 15px;
+ border-radius:20px 20px 6px 20px;
+ background:#fff9fcf2;
+ border:1px solid #fff;
+ box-shadow:0 6px 22px #4a30431f;
+ z-index:20
 }
 
 #bubble.visible{display:block}
 
 #bubble:after{
-  content:"";
-  position:absolute;
-  left:28px;bottom:-10px;
-  width:19px;height:19px;
-  background:#fff9fcf2;
-  transform:rotate(45deg);
-  border-right:1px solid #fff;
-  border-bottom:1px solid #fff
+ content:"";
+ position:absolute;
+ left:28px;bottom:-10px;
+ width:19px;height:19px;
+ background:#fff9fcf2;
+ transform:rotate(45deg);
+ border-right:1px solid #fff;
+ border-bottom:1px solid #fff
 }
 
 .bubbleName{
-  color:#966582;font-size:11px;font-weight:bold;
-  margin-bottom:5px
+ color:#966582;font-size:11px;
+ font-weight:bold;margin-bottom:5px
 }
 
 .bubbleText{
-  font-size:13px;line-height:1.45
+ font-size:13px;line-height:1.45
 }
 
 /* DIÁLOGO */
 
 .bottom{
-  position:absolute;
-  left:12px;right:12px;bottom:12px;
-  z-index:25
+ position:absolute;
+ left:12px;right:12px;bottom:12px;
+ z-index:25
 }
 
 .dialogue{
-  min-height:92px;
-  padding:13px 18px 21px;
-  border:1px solid #ffffffdd;
-  border-radius:20px;
-  background:#fffafdD9;
-  backdrop-filter:blur(13px);
-  box-shadow:0 7px 28px #472e411f;
-  cursor:pointer
+ min-height:92px;
+ padding:13px 18px 21px;
+ border:1px solid #ffffffdd;
+ border-radius:20px;
+ background:#fffafdD9;
+ backdrop-filter:blur(13px);
+ box-shadow:0 7px 28px #472e411f;
+ cursor:pointer
 }
 
 .speaker{
-  color:#966582;font-size:12px;
-  font-weight:bold;margin-bottom:6px
+ color:#966582;font-size:12px;
+ font-weight:bold;margin-bottom:6px
 }
 
 .text{
-  font-size:13.5px;
-  line-height:1.52;
-  min-height:45px
+ font-size:13.5px;
+ line-height:1.52;
+ min-height:45px
 }
 
-.thought{
-  background:#faf4fadd
-}
-
-.thought .text{
-  font-style:italic;color:#80657a
-}
+.thought{background:#faf4fadd}
+.thought .text{font-style:italic;color:#80657a}
 
 .continue{
-  position:absolute;right:17px;bottom:8px;
-  color:#ad809b;font-size:11px;
-  animation:pulse 1.7s ease-in-out infinite
+ position:absolute;right:17px;bottom:8px;
+ color:#ad809b;font-size:11px;
+ animation:pulse 1.7s ease-in-out infinite
 }
 
 @keyframes pulse{
-  50%{opacity:.4;transform:translateX(3px)}
+ 50%{opacity:.4;transform:translateX(3px)}
 }
 
 /* ESCOLHAS */
 
 .choices{
-  display:flex;flex-direction:column;
-  gap:8px;margin-top:8px
+ display:flex;flex-direction:column;
+ gap:8px;margin-top:8px
 }
 
 .choice{
-  width:100%;padding:10px 14px;
-  border:1px solid #c69bb880;
-  border-radius:22px;
-  background:#fffdfde8;
-  color:#76516a;font-size:13px;
-  box-shadow:0 5px 18px #7e4c6e12
+ width:100%;padding:10px 14px;
+ border:1px solid #c69bb880;
+ border-radius:22px;
+ background:#fffdfde8;
+ color:#76516a;font-size:13px;
+ box-shadow:0 5px 18px #7e4c6e12
 }
 
 .choice:before{
-  content:"♡";margin-right:8px;color:#bd8baa
+ content:"♡";margin-right:8px;color:#bd8baa
 }
 
 .restart{
-  margin-top:8px;padding:9px 20px;
-  border:1px solid #c69bb8;
-  border-radius:22px;background:#fff;
-  color:#76516a
+ margin-top:8px;padding:9px 20px;
+ border:1px solid #c69bb8;
+ border-radius:22px;background:#fff;
+ color:#76516a
 }
 
 /* SOM */
 
 .sound{
-  position:absolute;right:15px;top:61px;
-  z-index:35;width:36px;height:36px;
-  border:1px solid #ffffffbb;border-radius:50%;
-  background:#ffffff99;color:#76516a
+ position:absolute;right:15px;top:61px;
+ z-index:35;width:36px;height:36px;
+ border:1px solid #ffffffbb;border-radius:50%;
+ background:#ffffff99;color:#76516a
 }
 
-/* CELULAR */
-
-@media(max-height:700px){
-  #childe{bottom:103px}
-  #childe img{height:84vh}
-  .dialogue{min-height:85px}
-}
+/* DESKTOP */
 
 @media(min-width:700px){
-  .bottom{width:650px;left:50%;right:auto;transform:translateX(-50%)}
+ .bottom{
+  width:650px;left:50%;right:auto;
+  transform:translateX(-50%)
+ }
 }
 </style>
 </head>
@@ -264,159 +260,146 @@ button{font-family:inherit}
 <!-- TELA INICIAL -->
 
 <div id="startScreen">
-  <div class="startContent">
-    <div class="heart">♡</div>
-    <div class="logo">Doce Destino</div>
-    <div class="subtitle">Seu coração escolhe o caminho.</div>
-    <button class="startButton" id="startButton">
-      Começar minha história
-    </button>
-  </div>
+ <div class="startContent">
+  <div class="heart">♡</div>
+  <div class="logo">Doce Destino</div>
+  <div class="subtitle">Seu coração escolhe o caminho.</div>
+  <button class="startButton" id="startButton">
+   Começar minha história
+  </button>
+ </div>
 </div>
-
 
 <!-- JOGO -->
 
 <div id="game">
 
-  <div class="scene">
+ <div class="scene">
 
-    <div id="cafe"></div>
-    <div id="university"></div>
+  <div id="cafe"></div>
+  <div id="university"></div>
 
-    <div id="childe">
-      <img id="childeImg" alt="Childe">
-    </div>
-
-    <div id="bubble">
-      <div class="bubbleName" id="bubbleName">???</div>
-      <div class="bubbleText" id="bubbleText"></div>
-    </div>
-
+  <div id="childe">
+   <img id="childeImg" alt="Childe">
   </div>
 
-
-  <!-- HUD -->
-
-  <div class="hud">
-
-    <div class="player">
-      <div class="avatar">♡</div>
-      <span>Você</span>
-    </div>
-
-    <div class="affinity" id="affinity">
-      ♡ Afinidade 0
-    </div>
-
+  <div id="bubble">
+   <div class="bubbleName" id="bubbleName">???</div>
+   <div class="bubbleText" id="bubbleText"></div>
   </div>
 
+ </div>
 
-  <button class="sound">♫</button>
-
-
-  <!-- DIÁLOGO -->
-
-  <div class="bottom">
-
-    <div class="dialogue" id="dialogue">
-
-      <div class="speaker" id="speaker"></div>
-
-      <div class="text" id="text"></div>
-
-      <div class="continue" id="continue">
-        Continuar ›
-      </div>
-
-    </div>
-
-    <div class="choices" id="choices"></div>
-
+ <div class="hud">
+  <div class="player">
+   <div class="avatar">♡</div>
+   <span>Você</span>
   </div>
+
+  <div class="affinity" id="affinity">
+   ♡ Afinidade 0
+  </div>
+ </div>
+
+ <button class="sound">♫</button>
+
+ <div class="bottom">
+
+  <div class="dialogue" id="dialogue">
+   <div class="speaker" id="speaker"></div>
+   <div class="text" id="text"></div>
+
+   <div class="continue" id="continue">
+    Continuar ›
+   </div>
+  </div>
+
+  <div class="choices" id="choices"></div>
+
+ </div>
 
 </div>
-
 
 <script>
 
 /* ARQUIVOS */
 
 const sprites={
-  alegre:"childe-alegre-transparente.png.PNG",
-  franzindo:"childe-Franzindo a testa-transparente.png.PNG"
+ alegre:"childe-alegre-transparente.png.PNG",
+ franzindo:"childe-Franzindo a testa-transparente.png.PNG"
 };
 
 
 /* MEMÓRIA */
 
 const memory={
-  affinity:0,
-  gentil:false,
-  provocadora:false,
-  distancia:false
+ affinity:0,
+ gentil:false,
+ provocadora:false,
+ distancia:false
 };
 
 
 /* ELEMENTOS */
 
-const startScreen=document.getElementById("startScreen");
-const game=document.getElementById("game");
-const startButton=document.getElementById("startButton");
+const $=id=>document.getElementById(id);
 
-const cafe=document.getElementById("cafe");
-const university=document.getElementById("university");
+const startScreen=$("startScreen");
+const game=$("game");
+const startButton=$("startButton");
 
-const childe=document.getElementById("childe");
-const childeImg=document.getElementById("childeImg");
+const cafe=$("cafe");
+const university=$("university");
+const childe=$("childe");
+const childeImg=$("childeImg");
 
-const bubble=document.getElementById("bubble");
-const bubbleName=document.getElementById("bubbleName");
-const bubbleText=document.getElementById("bubbleText");
+const bubble=$("bubble");
+const bubbleName=$("bubbleName");
+const bubbleText=$("bubbleText");
 
-const dialogue=document.getElementById("dialogue");
-const speaker=document.getElementById("speaker");
-const text=document.getElementById("text");
-const choices=document.getElementById("choices");
-const continueText=document.getElementById("continue");
-const affinity=document.getElementById("affinity");
+const dialogue=$("dialogue");
+const speaker=$("speaker");
+const text=$("text");
+const choices=$("choices");
+const continueText=$("continue");
+const affinity=$("affinity");
 
 
 /* FUNÇÕES */
 
 function showChilde(expression="franzindo"){
-  childeImg.src=sprites[expression]||sprites.franzindo;
-  childe.classList.add("visible");
+ childeImg.src=sprites[expression]||sprites.franzindo;
+ childe.classList.add("visible");
 }
 
 function hideChilde(){
-  childe.classList.remove("visible");
-  bubble.classList.remove("visible");
-  childeImg.src="";
+ childe.classList.remove("visible");
+ bubble.classList.remove("visible");
+ childeImg.src="";
 }
 
-function showBubble(name,textValue){
-  bubbleName.textContent=name;
-  bubbleText.textContent=textValue;
-  bubble.classList.add("visible");
+function showBubble(name,msg){
+ bubbleName.textContent=name;
+ bubbleText.textContent=msg;
+ bubble.classList.add("visible");
 }
 
 function hideBubble(){
-  bubble.classList.remove("visible");
+ bubble.classList.remove("visible");
 }
 
 function updateAffinity(){
-  affinity.textContent="♡ Afinidade "+memory.affinity;
+ affinity.textContent="♡ Afinidade "+memory.affinity;
 }
 
 function universityScene(){
-  cafe.style.display="none";
-  university.style.display="block";
+ cafe.style.display="none";
+ university.style.display="block";
 }
 
 function cafeScene(){
-  cafe.style.display="block";
-  university.style.display="none";
+ cafe.style.display="block";
+ university.style.display="none";
 }
 
 
@@ -468,9 +451,7 @@ childe3:{
 choice1:{
  type:"choice",
  text:"Como você reage?",
-
  choices:[
-
   {
    text:"Peço ajuda com educação.",
    action(){
@@ -480,7 +461,6 @@ choice1:{
     showNode("help");
    }
   },
-
   {
    text:"Brinco que consigo me virar sozinha.",
    action(){
@@ -490,7 +470,6 @@ choice1:{
     showNode("joke");
    }
   },
-
   {
    text:"Agradeço, mas digo que consigo me virar.",
    action(){
@@ -499,9 +478,7 @@ choice1:{
     showNode("distance");
    }
   }
-
  ]
-
 },
 
 help:{
@@ -630,9 +607,7 @@ thought3:{
 choice2:{
  type:"choice",
  text:"O que você decide fazer?",
-
  choices:[
-
   {
    text:"Vou procurar a secretaria.",
    action(){
@@ -640,14 +615,12 @@ choice2:{
     showNode("secretary");
    }
   },
-
   {
    text:"Vou procurar minha sala sozinha.",
    action(){
     showNode("alone");
    }
   },
-
   {
    text:"Observo os estudantes ao meu redor.",
    action(){
@@ -655,9 +628,7 @@ choice2:{
     showNode("students");
    }
   }
-
  ]
-
 },
 
 secretary:{
@@ -681,9 +652,9 @@ students:{
 future:{
  type:"branch",
  condition(){
-  if(memory.provocadora)return "newA";
-  if(memory.distancia)return "newB";
-  return "neutral";
+  if(memory.provocadora)return"newA";
+  if(memory.distancia)return"newB";
+  return"neutral";
  }
 },
 
@@ -733,155 +704,115 @@ let current=null;
 
 function showNode(id){
 
-  const node=story[id];
-  if(!node)return;
+ const node=story[id];
+ if(!node)return;
 
-  current=node;
-  choices.innerHTML="";
-  continueText.style.display="none";
+ current=node;
+ choices.innerHTML="";
+ continueText.style.display="none";
 
-  if(node.university)universityScene();
-  if(node.hide)hideChilde();
+ if(node.university)universityScene();
+ if(node.hide)hideChilde();
+ if(node.expression)showChilde(node.expression);
 
-  if(node.expression)showChilde(node.expression);
+ if(node.type==="narration"){
+  dialogue.classList.remove("thought");
+  speaker.textContent="";
+  text.textContent=node.text;
+  hideBubble();
+  continueText.style.display="block";
+  return;
+ }
 
+ if(node.type==="thought"){
+  dialogue.classList.add("thought");
+  speaker.textContent="Pensamento";
+  text.textContent=node.text;
+  hideBubble();
+  continueText.style.display="block";
+  return;
+ }
 
-  /* NARRAÇÃO */
+ if(node.type==="dialogue"){
 
-  if(node.type==="narration"){
+  dialogue.classList.remove("thought");
 
-    dialogue.classList.remove("thought");
-    speaker.textContent="";
-    text.textContent=node.text;
-    hideBubble();
-
-    continueText.style.display="block";
-    return;
+  if(node.speaker==="Você"){
+   speaker.textContent="Você";
+   text.textContent=node.text;
+   hideBubble();
+  }else{
+   speaker.textContent="";
+   text.textContent="";
+   showChilde(node.expression||"franzindo");
+   showBubble(node.speaker||"???",node.text);
   }
 
+  continueText.style.display="block";
+  return;
+ }
 
-  /* PENSAMENTO */
+ if(node.type==="choice"){
 
-  if(node.type==="thought"){
+  dialogue.classList.remove("thought");
+  speaker.textContent="";
+  text.textContent=node.text;
+  hideBubble();
 
-    dialogue.classList.add("thought");
-    speaker.textContent="Pensamento";
-    text.textContent=node.text;
-    hideBubble();
+  node.choices.forEach(c=>{
 
-    continueText.style.display="block";
-    return;
-  }
+   const b=document.createElement("button");
+   b.className="choice";
+   b.textContent=c.text;
 
+   b.onclick=e=>{
+    e.stopPropagation();
+    c.action();
+    updateAffinity();
+   };
 
-  /* DIÁLOGO */
+   choices.appendChild(b);
+  });
 
-  if(node.type==="dialogue"){
+  return;
+ }
 
-    dialogue.classList.remove("thought");
+ if(node.type==="branch"){
+  showNode(node.condition());
+  return;
+ }
 
-    if(node.speaker==="Você"){
+ if(node.type==="end"){
 
-      speaker.textContent="Você";
-      text.textContent=node.text;
-      hideBubble();
+  hideChilde();
 
-      if(memory.gentil||memory.provocadora||memory.distancia)
-        childe.classList.add("visible");
+  speaker.textContent="";
+  text.textContent=node.text;
 
-    }else{
+  const b=document.createElement("button");
 
-      speaker.textContent="";
-      text.textContent="";
+  b.className="restart";
+  b.textContent="Recomeçar";
+  b.onclick=reset;
 
-      showChilde(node.expression||"franzindo");
-
-      showBubble(
-        node.speaker||"???",
-        node.text
-      );
-    }
-
-    continueText.style.display="block";
-    return;
-  }
-
-
-  /* ESCOLHAS */
-
-  if(node.type==="choice"){
-
-    dialogue.classList.remove("thought");
-    speaker.textContent="";
-    text.textContent=node.text;
-    hideBubble();
-
-    node.choices.forEach(c=>{
-
-      const b=document.createElement("button");
-
-      b.className="choice";
-      b.textContent=c.text;
-
-      b.onclick=e=>{
-        e.stopPropagation();
-        c.action();
-        updateAffinity();
-      };
-
-      choices.appendChild(b);
-
-    });
-
-    return;
-  }
-
-
-  /* RAMIFICAÇÃO */
-
-  if(node.type==="branch"){
-    showNode(node.condition());
-    return;
-  }
-
-
-  /* FINAL */
-
-  if(node.type==="end"){
-
-    hideChilde();
-
-    speaker.textContent="";
-    text.textContent=node.text;
-    continueText.style.display="none";
-
-    const b=document.createElement("button");
-
-    b.className="restart";
-    b.textContent="Recomeçar";
-
-    b.onclick=reset;
-
-    choices.appendChild(b);
-  }
+  choices.appendChild(b);
+ }
 }
 
 
-/* TOQUE PARA CONTINUAR */
+/* CONTINUAR */
 
 dialogue.onclick=()=>{
 
-  if(!current)return;
+ if(!current)return;
 
-  if(
-    current.type==="narration"||
-    current.type==="dialogue"||
-    current.type==="thought"
-  ){
-
-    if(current.next)
-      showNode(current.next);
-  }
+ if(
+  current.type==="narration"||
+  current.type==="dialogue"||
+  current.type==="thought"
+ ){
+  if(current.next)showNode(current.next);
+ }
 };
 
 
@@ -889,16 +820,15 @@ dialogue.onclick=()=>{
 
 function reset(){
 
-  memory.affinity=0;
-  memory.gentil=false;
-  memory.provocadora=false;
-  memory.distancia=false;
+ memory.affinity=0;
+ memory.gentil=false;
+ memory.provocadora=false;
+ memory.distancia=false;
 
-  cafeScene();
-  hideChilde();
-  updateAffinity();
-
-  showNode("start");
+ cafeScene();
+ hideChilde();
+ updateAffinity();
+ showNode("start");
 }
 
 
@@ -906,12 +836,12 @@ function reset(){
 
 startButton.onclick=()=>{
 
-  startScreen.style.display="none";
-  game.style.display="block";
+ startScreen.style.display="none";
+ game.style.display="block";
 
-  cafeScene();
-  updateAffinity();
-  showNode("start");
+ cafeScene();
+ updateAffinity();
+ showNode("start");
 };
 
 </script>
