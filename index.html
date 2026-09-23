@@ -343,24 +343,31 @@ function blinkChilde(){
 if(currentChildeExpression!=="alegre")return;
 
 const img=
+
 activeChildeLayer==="A"
+
 ?childeImgA
+
 :childeImgB;
 
 if(!img)return;
 
-const normal=img.src;
-const blink=spriteCache.alegrePiscando.src;
+const normal=sprites.alegre;
 
-if(!blink)return;
+const blink=sprites.alegrePiscando;
 
-img.classList.add("blinking");
 img.src=blink;
 
+img.classList.add("blinking");
+
 setTimeout(()=>{
+
 img.src=normal;
+
 img.classList.remove("blinking");
+
 },150);
+
 }
 
 function startChildeLife(){
@@ -383,53 +390,78 @@ function showChilde(expression="alegre"){
 currentChildeExpression=expression;
 
 const selected=
-spriteCache[expression]||
-spriteCache.alegre;
+
+sprites[expression]||
+
+sprites.alegre;
 
 if(!selected)return;
 
 if(!activeChildeLayer){
 
-childeImgA.src=selected.src;
+childeImgA.src=selected;
+
 childeImgA.classList.add("active");
+
 activeChildeLayer="A";
+
 childe.classList.add("visible");
+
 startChildeLife();
+
 return;
 
 }
 
 const next=
+
 activeChildeLayer==="A"
+
 ?childeImgB
+
 :childeImgA;
 
 const current=
+
 activeChildeLayer==="A"
+
 ?childeImgA
+
 :childeImgB;
 
-if(current.src===selected.src){
+if(current.getAttribute("src")===selected){
+
 childe.classList.add("visible");
+
 startChildeLife();
+
 return;
+
 }
 
-next.src=selected.src;
+next.src=selected;
+
 next.classList.remove("active");
+
 void next.offsetWidth;
+
 next.classList.add("active");
+
 current.classList.remove("active");
 
 activeChildeLayer=
+
 activeChildeLayer==="A"
+
 ?"B"
+
 :"A";
 
 childe.classList.add("visible");
-startChildeLife();
-}
 
+startChildeLife();
+
+}
 function hideChilde(){
 
 stopChildeLife();
