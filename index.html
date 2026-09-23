@@ -1338,6 +1338,10 @@ function scheduleBlink(){
 
 function blinkChilde(){
 
+  // Por enquanto, só temos a piscada da expressão alegre.
+  if(currentChildeExpression!=="alegre")
+    return;
+
   const activeLayer =
     activeChildeLayer==="A"
       ? childeImgA
@@ -1346,7 +1350,7 @@ function blinkChilde(){
   if(!activeLayer)
     return;
 
-  const originalSrc = activeLayer.src;
+  const originalSrc=activeLayer.src;
 
   const blinkSrc =
     spriteCache.alegrePiscando
@@ -1357,13 +1361,16 @@ function blinkChilde(){
     return;
 
   // Fecha os olhos
-  activeLayer.src = blinkSrc;
+  activeLayer.src=blinkSrc;
 
-  // Abre os olhos novamente
+  // Abre novamente
   setTimeout(()=>{
 
-    if(activeLayer.src === blinkSrc){
-      activeLayer.src = originalSrc;
+    if(activeLayer.src===blinkSrc){
+
+      activeLayer.src=
+        originalSrc;
+
     }
 
   },150);
@@ -1398,9 +1405,12 @@ function stopChildeLife(){
 ===================================================== */
 
 let activeChildeLayer=null;
+let currentChildeExpression="alegre";
 
 
 function showChilde(expression="alegre"){
+
+ currentChildeExpression=expression;
 
  const selected=
   spriteCache[expression]||
