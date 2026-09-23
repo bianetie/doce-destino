@@ -164,27 +164,25 @@ button{
   inset:0;
   z-index:12;
   pointer-events:none;
-  align-items:flex-end;
-  justify-content:flex-end;
-  overflow:visible
+  overflow:hidden
 }
 
 #childe.visible{
-  display:flex
+  display:block
 }
 
 #childe img{
   position:absolute;
 
-  /* CHILDE MAIOR */
-  height:102vh;
+  /* TAMANHO */
+  height:108vh;
 
   width:auto;
   max-width:none;
 
   /* POSIÇÃO */
-  right:-3vw;
-  bottom:-6vh;
+  right:-7vw;
+  bottom:-12vh;
 
   object-fit:contain;
   object-position:center bottom;
@@ -197,12 +195,11 @@ button{
 
   transform-origin:center bottom;
 
-  /* movimento suave */
   animation:childeAlive 4.2s ease-in-out infinite
 }
 
 
-/* movimento do personagem */
+/* movimento suave */
 
 @keyframes childeAlive{
 
@@ -214,8 +211,8 @@ button{
 
   35%{
     transform:
-      translate(-1px,-6px)
-      rotate(.15deg)
+      translate(-1px,-5px)
+      rotate(.12deg)
   }
 
   60%{
@@ -227,7 +224,7 @@ button{
 
 
 /* =========================
-   BALÃO DO CHILDE
+   BALÃO
 ========================= */
 
 #bubble{
@@ -235,11 +232,10 @@ button{
 
   position:absolute;
 
-  /* agora fica À ESQUERDA dele */
   left:5%;
   top:9%;
 
-  width:min(46%,360px);
+  width:min(43%,340px);
 
   padding:15px 18px;
 
@@ -291,7 +287,7 @@ button{
 
 
 /* =========================
-   DIÁLOGO
+   CAIXA DE DIÁLOGO
 ========================= */
 
 .bottom{
@@ -301,8 +297,6 @@ button{
   right:12px;
   bottom:12px;
 
-  /* IMPORTANTE:
-     fica NA FRENTE do Childe */
   z-index:25
 }
 
@@ -445,8 +439,9 @@ button{
 @media(max-height:700px){
 
   #childe img{
-    height:105vh;
-    bottom:-6vh
+    height:108vh;
+    right:-7vw;
+    bottom:-12vh
   }
 
   .dialogue{
@@ -454,7 +449,7 @@ button{
   }
 
   #bubble{
-    width:48%;
+    width:43%;
     top:8%
   }
 }
@@ -480,9 +475,7 @@ button{
 <body>
 
 
-<!-- =========================
-     TELA INICIAL
-========================= -->
+<!-- TELA INICIAL -->
 
 <div id="startScreen">
 
@@ -508,9 +501,7 @@ button{
 
 
 
-<!-- =========================
-     JOGO
-========================= -->
+<!-- JOGO -->
 
 <div id="game">
 
@@ -555,9 +546,7 @@ button{
 
 
 
-  <!-- =========================
-       HUD
-  ========================= -->
+  <!-- HUD -->
 
   <div class="hud">
 
@@ -591,9 +580,7 @@ button{
 
 
 
-  <!-- =========================
-       DIÁLOGO
-  ========================= -->
+  <!-- DIÁLOGO -->
 
   <div class="bottom">
 
@@ -683,20 +670,17 @@ const game=
 const startButton=
   document.getElementById("startButton");
 
-
 const cafe=
   document.getElementById("cafe");
 
 const university=
   document.getElementById("university");
 
-
 const childe=
   document.getElementById("childe");
 
 const childeImg=
   document.getElementById("childeImg");
-
 
 const bubble=
   document.getElementById("bubble");
@@ -706,7 +690,6 @@ const bubbleName=
 
 const bubbleText=
   document.getElementById("bubbleText");
-
 
 const dialogue=
   document.getElementById("dialogue");
@@ -725,7 +708,6 @@ const continueText=
 
 const affinity=
   document.getElementById("affinity");
-
 
 
 /* =========================
@@ -799,428 +781,234 @@ function cafeScene(){
 }
 
 
-
 /* =========================
    HISTÓRIA
 ========================= */
 
 const story={
 
-
 start:{
-
   type:"narration",
-
-  text:
-    "Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
-
+  text:"Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
   next:"thought1"
-
 },
-
 
 thought1:{
-
   type:"thought",
-
-  text:
-    "Ah... o que eu vou fazer agora? Por onde eu começo?",
-
+  text:"Ah... o que eu vou fazer agora? Por onde eu começo?",
   next:"lost"
-
 },
-
 
 lost:{
-
   type:"narration",
-
-  text:
-    "Com uma pequena mala ao lado, você percebe que está completamente perdida.",
-
+  text:"Com uma pequena mala ao lado, você percebe que está completamente perdida.",
   next:"childe1"
-
 },
-
 
 childe1:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Você está procurando alguma coisa?",
-
+  text:"Você está procurando alguma coisa?",
   expression:"franzindo",
-
   next:"childe2"
-
 },
-
 
 childe2:{
-
   type:"dialogue",
-
   speaker:"Você",
-
-  text:
-    "Estou procurando a Universidade Aurora.",
-
+  text:"Estou procurando a Universidade Aurora.",
   next:"childe3"
-
 },
-
 
 childe3:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Aurora? É um pouco difícil de achar daqui.",
-
+  text:"Aurora? É um pouco difícil de achar daqui.",
   expression:"alegre",
-
   next:"choice1"
-
 },
 
-
 choice1:{
-
   type:"choice",
-
-  text:
-    "Como você reage?",
+  text:"Como você reage?",
 
   choices:[
 
-
     {
-
-      text:
-        "Peço ajuda com educação.",
+      text:"Peço ajuda com educação.",
 
       action(){
 
         memory.gentil=true;
-
         memory.affinity+=2;
 
         showChilde("alegre");
-
         showNode("help");
 
       }
-
     },
 
-
     {
-
-      text:
-        "Brinco que consigo me virar sozinha.",
+      text:"Brinco que consigo me virar sozinha.",
 
       action(){
 
         memory.provocadora=true;
-
         memory.affinity++;
 
         showChilde("alegre");
-
         showNode("joke");
 
       }
-
     },
 
-
     {
-
-      text:
-        "Agradeço, mas digo que consigo me virar.",
+      text:"Agradeço, mas digo que consigo me virar.",
 
       action(){
 
         memory.distancia=true;
 
         showChilde("franzindo");
-
         showNode("distance");
 
       }
-
     }
 
   ]
-
 },
-
 
 help:{
-
   type:"dialogue",
-
   speaker:"Você",
-
-  text:
-    "Você poderia me indicar o caminho?",
-
+  text:"Você poderia me indicar o caminho?",
   next:"help2"
-
 },
-
 
 help2:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Claro. Eu estava indo naquela direção mesmo.",
-
+  text:"Claro. Eu estava indo naquela direção mesmo.",
   expression:"alegre",
-
   next:"walk"
-
 },
-
 
 joke:{
-
   type:"dialogue",
-
   speaker:"Você",
-
-  text:
-    "Eu acho que consigo encontrar sozinha.",
-
+  text:"Eu acho que consigo encontrar sozinha.",
   next:"joke2"
-
 },
-
 
 joke2:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Tem certeza? Você não parece muito convencida.",
-
+  text:"Tem certeza? Você não parece muito convencida.",
   expression:"alegre",
-
   next:"walk"
-
 },
-
 
 distance:{
-
   type:"dialogue",
-
   speaker:"Você",
-
-  text:
-    "Obrigada. Vou tentar encontrar.",
-
+  text:"Obrigada. Vou tentar encontrar.",
   next:"distance2"
-
 },
-
 
 distance2:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Tudo bem. Boa sorte, então.",
-
+  text:"Tudo bem. Boa sorte, então.",
   expression:"franzindo",
-
   next:"walk"
-
 },
-
 
 walk:{
-
   type:"narration",
-
-  text:
-    "Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
-
+  text:"Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
   next:"name"
-
 },
-
 
 name:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Aliás... acho que ainda não perguntei seu nome.",
-
+  text:"Aliás... acho que ainda não perguntei seu nome.",
   expression:"alegre",
-
   next:"name2"
-
 },
-
 
 name2:{
-
   type:"dialogue",
-
   speaker:"Você",
-
-  text:
-    "Meu nome é seu nome.",
-
+  text:"Meu nome é seu nome.",
   next:"name3"
-
 },
-
 
 name3:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Ah... e eu nem me apresentei.",
-
+  text:"Ah... e eu nem me apresentei.",
   expression:"franzindo",
-
   next:"name4"
-
 },
-
 
 name4:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Eu sou Childe.",
-
+  text:"Eu sou Childe.",
   expression:"alegre",
-
   next:"name5"
-
 },
-
 
 name5:{
-
   type:"dialogue",
-
   speaker:"Childe",
-
-  text:
-    "Prazer em te conhecer.",
-
+  text:"Prazer em te conhecer.",
   expression:"alegre",
-
   next:"separate"
-
 },
-
 
 separate:{
-
   type:"narration",
-
-  text:
-    "Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
-
+  text:"Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
   hide:true,
-
   next:"thought2"
-
 },
-
 
 thought2:{
-
   type:"thought",
-
-  text:
-    "Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
-
+  text:"Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
   next:"arrival"
-
 },
-
 
 arrival:{
-
   type:"narration",
-
-  text:
-    "No dia seguinte, você finalmente chega à Universidade Aurora.",
-
+  text:"No dia seguinte, você finalmente chega à Universidade Aurora.",
   university:true,
-
   hide:true,
-
   next:"arrival2"
-
 },
-
 
 arrival2:{
-
   type:"narration",
-
-  text:
-    "O campus é ainda mais bonito do que nas fotos.",
-
+  text:"O campus é ainda mais bonito do que nas fotos.",
   next:"thought3"
-
 },
-
 
 thought3:{
-
   type:"thought",
-
-  text:
-    "Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
-
+  text:"Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
   next:"choice2"
-
 },
 
-
 choice2:{
-
   type:"choice",
-
-  text:
-    "O que você decide fazer?",
+  text:"O que você decide fazer?",
 
   choices:[
 
-
     {
-
-      text:
-        "Vou procurar a secretaria.",
+      text:"Vou procurar a secretaria.",
 
       action(){
 
@@ -1229,28 +1017,20 @@ choice2:{
         showNode("secretary");
 
       }
-
     },
 
-
     {
-
-      text:
-        "Vou procurar minha sala sozinha.",
+      text:"Vou procurar minha sala sozinha.",
 
       action(){
 
         showNode("alone");
 
       }
-
     },
 
-
     {
-
-      text:
-        "Observo os estudantes ao meu redor.",
+      text:"Observo os estudantes ao meu redor.",
 
       action(){
 
@@ -1259,52 +1039,30 @@ choice2:{
         showNode("students");
 
       }
-
     }
 
   ]
-
 },
-
 
 secretary:{
-
   type:"narration",
-
-  text:
-    "Você segue as placas espalhadas pelo campus em busca da secretaria.",
-
+  text:"Você segue as placas espalhadas pelo campus em busca da secretaria.",
   next:"future"
-
 },
-
 
 alone:{
-
   type:"narration",
-
-  text:
-    "Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
-
+  text:"Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
   next:"future"
-
 },
-
 
 students:{
-
   type:"narration",
-
-  text:
-    "Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
-
+  text:"Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
   next:"future"
-
 },
 
-
 future:{
-
   type:"branch",
 
   condition(){
@@ -1318,85 +1076,46 @@ future:{
     return "neutral";
 
   }
-
 },
-
 
 newA:{
-
   type:"narration",
-
-  text:
-    "Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
-
+  text:"Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
   next:"newA2"
-
 },
-
 
 newA2:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Você está procurando a sala de alguma turma?",
-
+  text:"Você está procurando a sala de alguma turma?",
   next:"end"
-
 },
-
 
 newB:{
-
   type:"narration",
-
-  text:
-    "Ao dobrar uma esquina, você quase esbarra em alguém.",
-
+  text:"Ao dobrar uma esquina, você quase esbarra em alguém.",
   next:"newB2"
-
 },
-
 
 newB2:{
-
   type:"dialogue",
-
   speaker:"???",
-
-  text:
-    "Você está bem?",
-
+  text:"Você está bem?",
   next:"end"
-
 },
-
 
 neutral:{
-
   type:"narration",
-
-  text:
-    "Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
-
+  text:"Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
   next:"end"
-
 },
 
-
 end:{
-
   type:"end",
-
-  text:
-    "EPISÓDIO 1 — Um encontro inesperado"
-
+  text:"EPISÓDIO 1 — Um encontro inesperado"
 }
 
 };
-
 
 
 /* =========================
@@ -1404,7 +1123,6 @@ end:{
 ========================= */
 
 let current=null;
-
 
 function showNode(id){
 
@@ -1431,7 +1149,6 @@ function showNode(id){
     showChilde(node.expression);
 
 
-
   /* NARRAÇÃO */
 
   if(node.type==="narration"){
@@ -1447,9 +1164,7 @@ function showNode(id){
     continueText.style.display="block";
 
     return;
-
   }
-
 
 
   /* PENSAMENTO */
@@ -1467,9 +1182,7 @@ function showNode(id){
     continueText.style.display="block";
 
     return;
-
   }
-
 
 
   /* DIÁLOGO */
@@ -1487,7 +1200,6 @@ function showNode(id){
 
       hideBubble();
 
-
       if(
         memory.gentil ||
         memory.provocadora ||
@@ -1498,9 +1210,7 @@ function showNode(id){
 
       }
 
-    }
-
-    else{
+    }else{
 
       speaker.textContent="";
 
@@ -1511,25 +1221,18 @@ function showNode(id){
         "franzindo"
       );
 
-
       showBubble(
-
         node.speaker ||
         "???",
-
         node.text
-
       );
 
     }
 
-
     continueText.style.display="block";
 
     return;
-
   }
-
 
 
   /* ESCOLHAS */
@@ -1570,11 +1273,8 @@ function showNode(id){
 
     });
 
-
     return;
-
   }
-
 
 
   /* RAMIFICAÇÃO */
@@ -1586,9 +1286,7 @@ function showNode(id){
     );
 
     return;
-
   }
-
 
 
   /* FINAL */
@@ -1620,7 +1318,6 @@ function showNode(id){
 }
 
 
-
 /* =========================
    TOQUE PARA CONTINUAR
 ========================= */
@@ -1629,25 +1326,18 @@ dialogue.onclick=()=>{
 
   if(!current)return;
 
-
   if(
-
     current.type==="narration" ||
-
     current.type==="dialogue" ||
-
     current.type==="thought"
-
   ){
 
     if(current.next)
-
       showNode(current.next);
 
   }
 
 };
-
 
 
 /* =========================
@@ -1659,11 +1349,8 @@ function reset(){
   memory.affinity=0;
 
   memory.gentil=false;
-
   memory.provocadora=false;
-
   memory.distancia=false;
-
 
   cafeScene();
 
@@ -1674,7 +1361,6 @@ function reset(){
   showNode("start");
 
 }
-
 
 
 /* =========================
