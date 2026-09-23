@@ -592,7 +592,17 @@ function updatePlayerName(){
 playerName.textContent=memory.playerName;
 menuPlayerName.textContent=memory.playerName;
 }
+function updateMusicMenu(){
+musicMenuSubtitle.textContent=
+memory.music
+?"Ativada"
+:"Desativada";
 
+musicMenuButton.style.opacity=
+memory.music
+?"1"
+:".65";
+}
 
 /* =========================
    MENU
