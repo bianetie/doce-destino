@@ -1338,29 +1338,35 @@ function scheduleBlink(){
 
 function blinkChilde(){
 
- const activeLayer=
-  activeChildeLayer==="A"
-   ? childeImgA
-   : childeImgB;
+  const activeLayer =
+    activeChildeLayer==="A"
+      ? childeImgA
+      : childeImgB;
 
- if(!activeLayer)
-  return;
+  if(!activeLayer)
+    return;
 
- /*
-   Preparação para a piscada.
- */
+  const originalSrc = activeLayer.src;
 
- activeLayer.classList.add(
-  "blink"
- );
+  const blinkSrc =
+    spriteCache.alegrePiscando
+      ? spriteCache.alegrePiscando.src
+      : sprites.alegrePiscando;
 
- setTimeout(()=>{
+  if(!blinkSrc)
+    return;
 
-  activeLayer.classList.remove(
-   "blink"
-  );
+  // Fecha os olhos
+  activeLayer.src = blinkSrc;
 
- },150);
+  // Abre os olhos novamente
+  setTimeout(()=>{
+
+    if(activeLayer.src === blinkSrc){
+      activeLayer.src = originalSrc;
+    }
+
+  },150);
 
 }
 
