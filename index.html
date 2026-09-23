@@ -1167,6 +1167,9 @@ const sprites={
  alegre:
  "childe-alegre-transparente.png.PNG",
 
+ alegrePiscando:
+ "childe-alegre-piscando.png",
+
  franzindo:
  "childe-Franzindo a testa-transparente.png.PNG"
 
@@ -1343,19 +1346,22 @@ function blinkChilde(){
  if(!activeLayer)
   return;
 
- /*
-   Preparação para a piscada.
- */
+ const normalSrc=
+  activeLayer.src;
 
- activeLayer.classList.add(
-  "blink"
- );
+ const blinkSprite=
+  spriteCache.alegrePiscando;
+
+ if(!blinkSprite)
+  return;
+
+ activeLayer.src=
+  blinkSprite.src;
 
  setTimeout(()=>{
 
-  activeLayer.classList.remove(
-   "blink"
-  );
+  activeLayer.src=
+   normalSrc;
 
  },150);
 
