@@ -21,7 +21,9 @@ html,body{
  background:#f8edf5
 }
 
-button{font-family:inherit}
+button,input{
+ font-family:inherit
+}
 
 #startScreen,#game{
  position:fixed;
@@ -68,7 +70,9 @@ button{font-family:inherit}
  box-shadow:0 5px 18px #7e4c6e18
 }
 
-#game{display:none}
+#game{
+ display:none
+}
 
 /* =========================
    CENÁRIOS
@@ -95,10 +99,12 @@ button{font-family:inherit}
 
 #university{
  display:none;
- background-image:url("universidade-aurora.png.PNG")
+ background-image:url("universidade-aurora.png")
 }
 
-/* TRANSIÇÃO DE HORÁRIO */
+/* =========================
+   TRANSIÇÃO
+========================= */
 
 #timeFade{
  position:absolute;
@@ -123,12 +129,21 @@ button{font-family:inherit}
  top:15px;
  left:15px;
  right:15px;
+
  display:flex;
  justify-content:space-between;
+ align-items:center;
+
  z-index:30
 }
 
-.player,.affinity{
+.hudRight{
+ display:flex;
+ align-items:center;
+ gap:7px
+}
+
+.player,.affinity,.clock{
  background:#ffffff99;
  backdrop-filter:blur(8px);
  border:1px solid #ffffffbb;
@@ -140,7 +155,9 @@ button{font-family:inherit}
  display:flex;
  align-items:center;
  gap:8px;
+
  padding:6px 11px 6px 7px;
+
  border-radius:30px;
  font-size:13px
 }
@@ -150,6 +167,7 @@ button{font-family:inherit}
  height:32px;
  border-radius:50%;
  background:#fff;
+
  display:flex;
  align-items:center;
  justify-content:center
@@ -161,15 +179,25 @@ button{font-family:inherit}
  font-size:12px
 }
 
+.clock{
+ padding:8px 11px;
+ border-radius:20px;
+ font-size:12px;
+ cursor:pointer
+}
+
 /* =========================
    CHILDE
 ========================= */
 
 #childe{
  display:none;
+
  position:absolute;
  inset:0;
+
  z-index:12;
+
  pointer-events:none;
  overflow:hidden
 }
@@ -223,15 +251,20 @@ button{font-family:inherit}
 
 #bubble{
  display:none;
+
  position:absolute;
+
  right:3%;
  top:8%;
+
  width:min(42%,300px);
+
  padding:12px 15px;
 
  border-radius:20px 20px 6px 20px;
 
  background:#fff9fcf2;
+
  border:1px solid #fff;
 
  box-shadow:0 6px 22px #4a30431f;
@@ -245,7 +278,9 @@ button{font-family:inherit}
 
 #bubble:after{
  content:"";
+
  position:absolute;
+
  left:28px;
  bottom:-10px;
 
@@ -278,9 +313,11 @@ button{font-family:inherit}
 
 .bottom{
  position:absolute;
+
  left:12px;
  right:12px;
  bottom:12px;
+
  z-index:25
 }
 
@@ -325,6 +362,7 @@ button{font-family:inherit}
 
 .continue{
  position:absolute;
+
  right:17px;
  bottom:8px;
 
@@ -354,6 +392,7 @@ button{font-family:inherit}
 
 .choice{
  width:100%;
+
  padding:10px 14px;
 
  border:1px solid #c69bb880;
@@ -385,11 +424,99 @@ button{font-family:inherit}
 }
 
 /* =========================
+   JANELA DO HORÁRIO
+========================= */
+
+#clockPanel{
+ display:none;
+
+ position:absolute;
+
+ left:50%;
+ top:50%;
+
+ transform:translate(-50%,-50%);
+
+ width:min(86%,330px);
+
+ padding:22px;
+
+ background:#fffafdF5;
+
+ border:1px solid #ffffff;
+
+ border-radius:24px;
+
+ box-shadow:0 12px 40px #4a304344;
+
+ z-index:60;
+
+ text-align:center
+}
+
+#clockPanel.visible{
+ display:block
+}
+
+.clockTitle{
+ color:#79536d;
+ font-size:18px;
+ margin-bottom:6px
+}
+
+.clockSubtitle{
+ color:#9b718d;
+ font-size:12px;
+ margin-bottom:18px
+}
+
+#timeInput{
+ width:100%;
+
+ padding:12px;
+
+ border:1px solid #c69bb880;
+ border-radius:16px;
+
+ background:#fff;
+
+ color:#76516a;
+
+ font-size:22px;
+ text-align:center
+}
+
+.clockButtons{
+ display:flex;
+ gap:8px;
+ margin-top:12px
+}
+
+.clockButton{
+ flex:1;
+
+ padding:10px;
+
+ border:1px solid #c69bb8;
+ border-radius:18px;
+
+ background:#fff;
+
+ color:#76516a;
+ font-size:12px
+}
+
+.clockButton.confirm{
+ background:#f6e5ef
+}
+
+/* =========================
    SOM
 ========================= */
 
 .sound{
  position:absolute;
+
  right:15px;
  top:61px;
 
@@ -464,9 +591,7 @@ button{font-family:inherit}
   <div id="university"></div>
 
   <div id="childe">
-
    <img id="childeImg" alt="Childe">
-
   </div>
 
   <div id="bubble">
@@ -484,7 +609,9 @@ button{font-family:inherit}
  </div>
 
 
- <!-- HUD -->
+ <!-- =========================
+      HUD
+ ========================= -->
 
  <div class="hud">
 
@@ -501,8 +628,16 @@ button{font-family:inherit}
   </div>
 
 
-  <div class="affinity" id="affinity">
-   ♡ Afinidade 0
+  <div class="hudRight">
+
+   <div class="clock" id="clock">
+    🕐 08:00
+   </div>
+
+   <div class="affinity" id="affinity">
+    ♡ Afinidade 0
+   </div>
+
   </div>
 
  </div>
@@ -513,7 +648,9 @@ button{font-family:inherit}
  </button>
 
 
- <!-- DIÁLOGO -->
+ <!-- =========================
+      DIÁLOGO
+ ========================= -->
 
  <div class="bottom">
 
@@ -529,8 +666,48 @@ button{font-family:inherit}
 
   </div>
 
-
   <div class="choices" id="choices"></div>
+
+ </div>
+
+
+ <!-- =========================
+      RELÓGIO
+ ========================= -->
+
+ <div id="clockPanel">
+
+  <div class="clockTitle">
+   Escolha o horário
+  </div>
+
+  <div class="clockSubtitle">
+   O tempo da história é controlado por você.
+  </div>
+
+  <input
+   type="time"
+   id="timeInput"
+   value="08:00"
+  >
+
+  <div class="clockButtons">
+
+   <button
+    class="clockButton"
+    id="cancelClock"
+   >
+    Cancelar
+   </button>
+
+   <button
+    class="clockButton confirm"
+    id="confirmClock"
+   >
+    Confirmar
+   </button>
+
+  </div>
 
  </div>
 
@@ -545,7 +722,8 @@ button{font-family:inherit}
 
 const sprites={
 
- alegre:"childe-alegre-transparente.png.PNG",
+ alegre:
+ "childe-alegre-transparente.png.PNG",
 
  franzindo:
  "childe-Franzindo a testa-transparente.png.PNG"
@@ -566,9 +744,9 @@ const backgrounds={
  },
 
  university:{
-  morning:"universidade-aurora.png.PNG",
-  afternoon:"universidade-aurora-tarde.png.PNG",
-  night:"universidade-aurora-noite.png.PNG"
+  morning:"universidade-aurora.png",
+  afternoon:"universidade-aurora-tarde.png",
+  night:"universidade-aurora-noite.png"
  }
 
 };
@@ -587,6 +765,8 @@ const memory={
  provocadora:false,
 
  distancia:false,
+
+ hour:8,
 
  period:"morning",
 
@@ -624,7 +804,194 @@ const continueText=$("continue");
 
 const affinity=$("affinity");
 
+const clock=$("clock");
+const clockPanel=$("clockPanel");
+const timeInput=$("timeInput");
+
+const cancelClock=$("cancelClock");
+const confirmClock=$("confirmClock");
+
 const timeFade=$("timeFade");
+
+
+/* =========================
+   PERÍODO DO DIA
+========================= */
+
+function getPeriod(hour){
+
+ if(hour>=6 && hour<12)
+  return"morning";
+
+ if(hour>=12 && hour<18)
+  return"afternoon";
+
+ return"night";
+}
+
+
+/* =========================
+   NOME DO PERÍODO
+========================= */
+
+function periodName(period){
+
+ if(period==="morning")
+  return"manhã";
+
+ if(period==="afternoon")
+  return"tarde";
+
+ return"noite";
+}
+
+
+/* =========================
+   RELÓGIO
+========================= */
+
+function formatTime(hour){
+
+ const h=String(
+  Math.floor(hour)
+ ).padStart(2,"0");
+
+ const minutes=String(
+  Math.round((hour%1)*60)
+ ).padStart(2,"0");
+
+ return`${h}:${minutes}`;
+}
+
+
+function updateClock(){
+
+ clock.textContent=
+  "🕐 "+formatTime(memory.hour);
+
+ timeInput.value=formatTime(memory.hour);
+
+}
+
+
+/* =========================
+   MUDAR HORÁRIO
+========================= */
+
+function changeTime(newTime){
+
+ const parts=newTime.split(":");
+
+ const hour=
+  Number(parts[0])+
+  Number(parts[1])/60;
+
+ const newPeriod=
+  getPeriod(hour);
+
+ const oldPeriod=
+  memory.period;
+
+ memory.hour=hour;
+
+ updateClock();
+
+
+ if(newPeriod===oldPeriod)
+  return;
+
+
+ memory.period=newPeriod;
+
+ changeBackground(
+  memory.place,
+  newPeriod
+ );
+
+}
+
+
+/* =========================
+   MUDAR FUNDO
+========================= */
+
+function changeBackground(place,period){
+
+ const image=
+  backgrounds[place][period];
+
+ if(!image)return;
+
+
+ timeFade.classList.add("active");
+
+
+ setTimeout(()=>{
+
+  if(place==="cafe"){
+
+   cafe.style.backgroundImage=
+    `url("${image}")`;
+
+   cafe.style.display="block";
+
+   university.style.display="none";
+
+  }else{
+
+   university.style.backgroundImage=
+    `url("${image}")`;
+
+   university.style.display="block";
+
+   cafe.style.display="none";
+
+  }
+
+
+  setTimeout(()=>{
+
+   timeFade.classList.remove("active");
+
+  },180);
+
+ },420);
+
+}
+
+
+/* =========================
+   APLICAR LOCAL
+========================= */
+
+function applyPlace(place){
+
+ memory.place=place;
+
+ const image=
+  backgrounds[place][memory.period];
+
+ if(place==="cafe"){
+
+  cafe.style.backgroundImage=
+   `url("${image}")`;
+
+  cafe.style.display="block";
+
+  university.style.display="none";
+
+ }else{
+
+  university.style.backgroundImage=
+   `url("${image}")`;
+
+  university.style.display="block";
+
+  cafe.style.display="none";
+
+ }
+
+}
 
 
 /* =========================
@@ -634,7 +1001,7 @@ const timeFade=$("timeFade");
 function showChilde(expression="franzindo"){
 
  childeImg.src=
-  sprites[expression] || sprites.franzindo;
+  sprites[expression]||sprites.franzindo;
 
  childe.classList.add("visible");
 
@@ -687,159 +1054,19 @@ function updateAffinity(){
 
 
 /* =========================
-   FUNDO
-========================= */
-
-function getBackground(place,period){
-
- return backgrounds[place][period];
-
-}
-
-
-/* =========================
-   MUDAR HORÁRIO
-========================= */
-
-function setPeriod(period,place=memory.place,instant=false){
-
- const image=
-  getBackground(place,period);
-
- if(!image)return;
-
-
- if(
-  memory.period===period &&
-  memory.place===place &&
-  !instant
- ){
-  return;
- }
-
-
- if(instant){
-
-  applyBackground(place,period);
-
-  memory.period=period;
-  memory.place=place;
-
-  return;
- }
-
-
- timeFade.classList.add("active");
-
-
- setTimeout(()=>{
-
-  applyBackground(place,period);
-
-  memory.period=period;
-  memory.place=place;
-
-
-  setTimeout(()=>{
-
-   timeFade.classList.remove("active");
-
-  },180);
-
- },420);
-
-}
-
-
-/* =========================
-   APLICAR FUNDO
-========================= */
-
-function applyBackground(place,period){
-
- const image=
-  getBackground(place,period);
-
-
- if(place==="cafe"){
-
-  cafe.style.backgroundImage=
-   `url("${image}")`;
-
-  cafe.style.display="block";
-
-  university.style.display="none";
-
- }else{
-
-  university.style.backgroundImage=
-   `url("${image}")`;
-
-  university.style.display="block";
-
-  cafe.style.display="none";
-
- }
-
-}
-
-
-/* =========================
-   CENAS
-========================= */
-
-function cafeScene(period=memory.period){
-
- const image=
-  backgrounds.cafe[period];
-
- cafe.style.backgroundImage=
-  `url("${image}")`;
-
- cafe.style.display="block";
-
- university.style.display="none";
-
- memory.place="cafe";
-
-}
-
-
-function universityScene(period=memory.period){
-
- const image=
-  backgrounds.university[period];
-
- university.style.backgroundImage=
-  `url("${image}")`;
-
- university.style.display="block";
-
- cafe.style.display="none";
-
- memory.place="university";
-
-}
-
-
-/* =========================
    HISTÓRIA
 ========================= */
 
 const story={
 
-
 start:{
  type:"narration",
- period:"morning",
- place:"cafe",
 
  text:
  "Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
 
  next:"thought1"
 },
-
 
 thought1:{
  type:"thought",
@@ -850,7 +1077,6 @@ thought1:{
  next:"lost"
 },
 
-
 lost:{
  type:"narration",
 
@@ -859,7 +1085,6 @@ lost:{
 
  next:"childe1"
 },
-
 
 childe1:{
  type:"dialogue",
@@ -874,7 +1099,6 @@ childe1:{
  next:"childe2"
 },
 
-
 childe2:{
  type:"dialogue",
 
@@ -885,7 +1109,6 @@ childe2:{
 
  next:"childe3"
 },
-
 
 childe3:{
  type:"dialogue",
@@ -900,7 +1123,6 @@ childe3:{
  next:"choice1"
 },
 
-
 choice1:{
 
  type:"choice",
@@ -911,49 +1133,35 @@ choice1:{
  choices:[
 
   {
-
-   text:
-   "Peço ajuda com educação.",
+   text:"Peço ajuda com educação.",
 
    action(){
 
     memory.gentil=true;
-
     memory.affinity+=2;
 
     showChilde("alegre");
 
     showNode("help");
-
    }
-
   },
 
-
   {
-
-   text:
-   "Brinco que consigo me virar sozinha.",
+   text:"Brinco que consigo me virar sozinha.",
 
    action(){
 
     memory.provocadora=true;
-
     memory.affinity++;
 
     showChilde("alegre");
 
     showNode("joke");
-
    }
-
   },
 
-
   {
-
-   text:
-   "Agradeço, mas digo que consigo me virar.",
+   text:"Agradeço, mas digo que consigo me virar.",
 
    action(){
 
@@ -962,9 +1170,7 @@ choice1:{
     showChilde("franzindo");
 
     showNode("distance");
-
    }
-
   }
 
  ]
@@ -973,7 +1179,6 @@ choice1:{
 
 
 help:{
-
  type:"dialogue",
 
  speaker:"Você",
@@ -982,12 +1187,9 @@ help:{
  "Você poderia me indicar o caminho?",
 
  next:"help2"
-
 },
 
-
 help2:{
-
  type:"dialogue",
 
  speaker:"???",
@@ -998,12 +1200,9 @@ help2:{
  expression:"alegre",
 
  next:"walk"
-
 },
 
-
 joke:{
-
  type:"dialogue",
 
  speaker:"Você",
@@ -1012,12 +1211,9 @@ joke:{
  "Eu acho que consigo encontrar sozinha.",
 
  next:"joke2"
-
 },
 
-
 joke2:{
-
  type:"dialogue",
 
  speaker:"???",
@@ -1028,12 +1224,9 @@ joke2:{
  expression:"alegre",
 
  next:"walk"
-
 },
 
-
 distance:{
-
  type:"dialogue",
 
  speaker:"Você",
@@ -1042,12 +1235,9 @@ distance:{
  "Obrigada. Vou tentar encontrar.",
 
  next:"distance2"
-
 },
 
-
 distance2:{
-
  type:"dialogue",
 
  speaker:"???",
@@ -1058,29 +1248,18 @@ distance2:{
  expression:"franzindo",
 
  next:"walk"
-
 },
-
-
-/* TARDE */
 
 walk:{
-
  type:"narration",
 
- period:"afternoon",
- place:"cafe",
-
  text:
- "Vocês caminham juntos por alguns minutos, enquanto a luz da tarde deixa a cidade ainda mais bonita.",
+ "Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
 
  next:"name"
-
 },
 
-
 name:{
-
  type:"dialogue",
 
  speaker:"???",
@@ -1091,12 +1270,9 @@ name:{
  expression:"alegre",
 
  next:"name2"
-
 },
 
-
 name2:{
-
  type:"dialogue",
 
  speaker:"Você",
@@ -1105,12 +1281,9 @@ name2:{
  "Meu nome é seu nome.",
 
  next:"name3"
-
 },
 
-
 name3:{
-
  type:"dialogue",
 
  speaker:"???",
@@ -1121,12 +1294,9 @@ name3:{
  expression:"franzindo",
 
  next:"name4"
-
 },
 
-
 name4:{
-
  type:"dialogue",
 
  speaker:"???",
@@ -1137,12 +1307,9 @@ name4:{
  expression:"alegre",
 
  next:"name5"
-
 },
 
-
 name5:{
-
  type:"dialogue",
 
  speaker:"Childe",
@@ -1153,85 +1320,58 @@ name5:{
  expression:"alegre",
 
  next:"separate"
-
 },
 
-
-/* NOITE */
-
 separate:{
-
  type:"narration",
 
- period:"night",
- place:"cafe",
-
  text:
- "Horas depois, as primeiras luzes da cidade começam a se acender. Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+ "Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
 
  hide:true,
 
  next:"thought2"
-
 },
 
-
 thought2:{
-
  type:"thought",
 
  text:
  "Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
 
  next:"arrival"
-
 },
 
-
-/* DIA SEGUINTE */
-
 arrival:{
-
  type:"narration",
 
- period:"morning",
- place:"university",
-
  text:
- "Na manhã seguinte, você finalmente chega à Universidade Aurora.",
+ "No dia seguinte, você finalmente chega à Universidade Aurora.",
+
+ place:"university",
 
  hide:true,
 
  next:"arrival2"
-
 },
 
-
 arrival2:{
-
  type:"narration",
-
- place:"university",
 
  text:
  "O campus é ainda mais bonito do que nas fotos.",
 
  next:"thought3"
-
 },
 
-
 thought3:{
-
  type:"thought",
 
  text:
  "Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
 
  next:"choice2"
-
 },
-
 
 choice2:{
 
@@ -1243,96 +1383,66 @@ choice2:{
  choices:[
 
   {
-
-   text:
-   "Vou procurar a secretaria.",
+   text:"Vou procurar a secretaria.",
 
    action(){
 
     memory.affinity++;
 
     showNode("secretary");
-
    }
-
   },
 
-
   {
-
-   text:
-   "Vou procurar minha sala sozinha.",
+   text:"Vou procurar minha sala sozinha.",
 
    action(){
 
     showNode("alone");
-
    }
-
   },
 
-
   {
-
-   text:
-   "Observo os estudantes ao meu redor.",
+   text:"Observo os estudantes ao meu redor.",
 
    action(){
 
     memory.affinity++;
 
     showNode("students");
-
    }
-
   }
 
  ]
 
 },
 
-
 secretary:{
-
  type:"narration",
-
- place:"university",
 
  text:
  "Você segue as placas espalhadas pelo campus em busca da secretaria.",
 
  next:"future"
-
 },
 
-
 alone:{
-
  type:"narration",
-
- place:"university",
 
  text:
  "Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
 
  next:"future"
-
 },
 
-
 students:{
-
  type:"narration",
-
- place:"university",
 
  text:
  "Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
 
  next:"future"
-
 },
-
 
 future:{
 
@@ -1352,12 +1462,9 @@ future:{
 
 },
 
-
 newA:{
 
  type:"narration",
-
- place:"university",
 
  text:
  "Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
@@ -1365,7 +1472,6 @@ newA:{
  next:"newA2"
 
 },
-
 
 newA2:{
 
@@ -1380,12 +1486,9 @@ newA2:{
 
 },
 
-
 newB:{
 
  type:"narration",
-
- place:"university",
 
  text:
  "Ao dobrar uma esquina, você quase esbarra em alguém.",
@@ -1393,7 +1496,6 @@ newB:{
  next:"newB2"
 
 },
-
 
 newB2:{
 
@@ -1408,12 +1510,9 @@ newB2:{
 
 },
 
-
 neutral:{
 
  type:"narration",
-
- place:"university",
 
  text:
  "Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
@@ -1421,7 +1520,6 @@ neutral:{
  next:"end"
 
 },
-
 
 end:{
 
@@ -1448,7 +1546,6 @@ function showNode(id){
 
  if(!node)return;
 
-
  current=node;
 
  choices.innerHTML="";
@@ -1456,24 +1553,11 @@ function showNode(id){
  continueText.style.display="none";
 
 
- /* LOCAL E HORÁRIO */
+ /* LOCAL DA CENA */
 
- if(node.period){
+ if(node.place){
 
-  setPeriod(
-   node.period,
-   node.place || memory.place
-  );
-
- }else if(node.place){
-
-  const place=node.place;
-
-  if(place==="cafe")
-   cafeScene(memory.period);
-
-  else
-   universityScene(memory.period);
+  applyPlace(node.place);
 
  }
 
@@ -1545,11 +1629,11 @@ function showNode(id){
    text.textContent="";
 
    showChilde(
-    node.expression || "franzindo"
+    node.expression||"franzindo"
    );
 
    showBubble(
-    node.speaker || "???",
+    node.speaker||"???",
     node.text
    );
 
@@ -1600,7 +1684,6 @@ function showNode(id){
 
   });
 
-
   return;
  }
 
@@ -1637,7 +1720,6 @@ function showNode(id){
 
   b.onclick=reset;
 
-
   choices.appendChild(b);
 
  }
@@ -1653,7 +1735,6 @@ dialogue.onclick=()=>{
 
  if(!current)return;
 
-
  if(
   current.type==="narration"||
   current.type==="dialogue"||
@@ -1664,6 +1745,39 @@ dialogue.onclick=()=>{
    showNode(current.next);
 
  }
+
+};
+
+
+/* =========================
+   RELÓGIO
+========================= */
+
+clock.onclick=()=>{
+
+ timeInput.value=
+  formatTime(memory.hour);
+
+ clockPanel.classList.add("visible");
+
+};
+
+
+cancelClock.onclick=()=>{
+
+ clockPanel.classList.remove("visible");
+
+};
+
+
+confirmClock.onclick=()=>{
+
+ if(!timeInput.value)
+  return;
+
+ changeTime(timeInput.value);
+
+ clockPanel.classList.remove("visible");
 
 };
 
@@ -1682,16 +1796,20 @@ function reset(){
 
  memory.distancia=false;
 
+ memory.hour=8;
+
  memory.period="morning";
 
  memory.place="cafe";
 
 
- cafeScene("morning");
+ applyPlace("cafe");
 
- hideChilde();
+ updateClock();
 
  updateAffinity();
+
+ hideChilde();
 
  showNode("start");
 
@@ -1709,12 +1827,16 @@ startButton.onclick=()=>{
  game.style.display="block";
 
 
- cafeScene("morning");
+ memory.hour=8;
 
  memory.period="morning";
 
  memory.place="cafe";
 
+
+ applyPlace("cafe");
+
+ updateClock();
 
  updateAffinity();
 
