@@ -482,17 +482,20 @@ button,input{
 
 
 /*
-   AS DUAS EXPRESSÕES FICAM SOBREPOSTAS.
-   Isso permite fazer um fade suave entre elas.
+   DUAS CAMADAS PARA A TROCA SUAVE
+   DE EXPRESSÃO
 */
 
 #childe img{
  position:absolute;
+
  height:95vh;
  width:auto;
  max-width:none;
+
  right:-18vw;
  bottom:-18vh;
+
  object-fit:contain;
  object-position:center bottom;
 
@@ -504,30 +507,49 @@ button,input{
 
  transform-origin:center bottom;
 
- animation:alive 4.2s ease-in-out infinite;
+ /*
+   Movimento muito mais discreto.
+   A ideia é parecer respiração,
+   não movimento constante.
+ */
+
+ animation:alive 6.8s ease-in-out infinite;
 
  opacity:0;
 
- transition:opacity .28s ease;
+ transition:
+  opacity .28s ease;
 }
 
 #childe img.active{
  opacity:1;
 }
 
+
+/* =====================================================
+   MOVIMENTO SUTIL
+===================================================== */
+
 @keyframes alive{
 
  0%,100%{
-  transform:translateY(0) rotate(0);
+  transform:
+   translateY(0)
+   rotate(0);
  }
 
- 35%{
-  transform:translate(-1px,-6px) rotate(.15deg);
+ 45%{
+  transform:
+   translateY(-2px)
+   rotate(.04deg);
  }
 
- 60%{
-  transform:translate(2px,-3px) rotate(.08deg);
+ 70%{
+  transform:
+   translateY(-1px)
+   rotate(.02deg);
  }
+
 }
 
 
@@ -744,11 +766,11 @@ button,input{
   <div id="university"></div>
 
 
-  <!-- CHILDE -->
+  <!-- =================================================
+       CHILDE
+  ================================================== -->
 
   <div id="childe">
-
-   <!-- DUAS CAMADAS PARA CROSSFADE -->
 
    <img
     id="childeImgA"
@@ -763,7 +785,9 @@ button,input{
   </div>
 
 
-  <!-- BALÃO -->
+  <!-- =================================================
+       BALÃO
+  ================================================== -->
 
   <div id="bubble">
 
@@ -782,7 +806,9 @@ button,input{
   </div>
 
 
-  <!-- TRANSIÇÃO -->
+  <!-- =================================================
+       TRANSIÇÃO
+  ================================================== -->
 
   <div id="timeFade"></div>
 
@@ -1048,7 +1074,7 @@ button,input{
 
 
 /* =====================================================
-   SPRITES
+   SPRITES DO CHILDE
 ===================================================== */
 
 const sprites={
@@ -1137,13 +1163,15 @@ const backgrounds={
 const memory={
 
  affinity:0,
- gentil:false,
- provocadora:false,
- distancia:false,
+
  hour:0,
+
  period:"night",
+
  place:"cafe",
+
  playerName:"Você",
+
  music:true
 
 };
@@ -1196,21 +1224,21 @@ const timeFade=$("timeFade");
 
 
 /* =====================================================
-   CONTROLE DO CROSSFADE
+   CONTROLE DO CHILDE
 ===================================================== */
 
 let activeChildeLayer=null;
 
 
 /*
-   Mostra o Childe pela primeira vez.
+   Childe começa SEMPRE sorrindo.
 */
 
-function showChilde(expression="franzindo"){
+function showChilde(expression="alegre"){
 
  const selected=
   spriteCache[expression]||
-  spriteCache.franzindo;
+  spriteCache.alegre;
 
 
  if(!selected)
@@ -1218,34 +1246,34 @@ function showChilde(expression="franzindo"){
 
 
  /*
-   Se ainda não existe nenhuma camada ativa,
-   usamos a primeira diretamente.
+   Primeira aparição.
  */
 
  if(!activeChildeLayer){
 
-  childeImgA.src=selected.src;
+  childeImgA.src=
+   selected.src;
 
-  childeImgA.classList.add("active");
+  childeImgA.classList.add(
+   "active"
+  );
 
   activeChildeLayer="A";
 
-  childe.classList.add("visible");
+  childe.classList.add(
+   "visible"
+  );
 
   return;
 
  }
 
 
- /*
-   Descobrimos qual camada está visível
-   e usamos a outra para fazer o fade.
- */
-
  const nextLayer=
   activeChildeLayer==="A"
    ? childeImgB
    : childeImgA;
+
 
  const currentLayer=
   activeChildeLayer==="A"
@@ -1254,13 +1282,15 @@ function showChilde(expression="franzindo"){
 
 
  /*
-   Se for exatamente a mesma imagem,
-   não precisamos fazer troca.
+   Se a expressão já é a mesma,
+   não faz uma troca desnecessária.
  */
 
  if(currentLayer.src===selected.src){
 
-  childe.classList.add("visible");
+  childe.classList.add(
+   "visible"
+  );
 
   return;
 
@@ -1268,37 +1298,37 @@ function showChilde(expression="franzindo"){
 
 
  /*
-   Coloca a nova expressão na camada
-   que está escondida.
+   Coloca a nova expressão
+   na camada escondida.
  */
 
  nextLayer.src=
   selected.src;
 
-
- /*
-   Garante que ela comece invisível.
- */
-
- nextLayer.classList.remove("active");
+ nextLayer.classList.remove(
+  "active"
+ );
 
 
  /*
-   Força o navegador a reconhecer
-   o estado inicial antes do fade.
+   Força o navegador a registrar
+   o estado invisível antes do fade.
  */
 
  void nextLayer.offsetWidth;
 
 
  /*
-   A nova expressão aparece
-   enquanto a antiga desaparece.
+   Troca suavemente.
  */
 
- nextLayer.classList.add("active");
+ nextLayer.classList.add(
+  "active"
+ );
 
- currentLayer.classList.remove("active");
+ currentLayer.classList.remove(
+  "active"
+ );
 
 
  activeChildeLayer=
@@ -1307,23 +1337,34 @@ function showChilde(expression="franzindo"){
    : "A";
 
 
- childe.classList.add("visible");
+ childe.classList.add(
+  "visible"
+ );
 
 }
 
 
 /*
-   Esconde as duas camadas.
-*/
+   Childe desaparece completamente.
+ */
 
 function hideChilde(){
 
- childe.classList.remove("visible");
+ childe.classList.remove(
+  "visible"
+ );
 
- childeImgA.classList.remove("active");
- childeImgB.classList.remove("active");
+ childeImgA.classList.remove(
+  "active"
+ );
 
- bubble.classList.remove("visible");
+ childeImgB.classList.remove(
+  "active"
+ );
+
+ bubble.classList.remove(
+  "visible"
+ );
 
  activeChildeLayer=null;
 
@@ -1348,7 +1389,7 @@ function getPeriod(hour){
 
 
 /* =====================================================
-   ÍCONE
+   ÍCONE DO PERÍODO
 ===================================================== */
 
 function getPeriodIcon(period){
@@ -1378,21 +1419,25 @@ function updateBrowserTheme(period){
  if(!meta)
   return;
 
+
  if(period==="morning"){
 
-  meta.content="#ead7e3";
+  meta.content=
+   "#ead7e3";
 
  }
 
  else if(period==="afternoon"){
 
-  meta.content="#e6d5d0";
+  meta.content=
+   "#e6d5d0";
 
  }
 
  else{
 
-  meta.content="#282137";
+  meta.content=
+   "#282137";
 
  }
 
@@ -1400,38 +1445,68 @@ function updateBrowserTheme(period){
 
 
 /* =====================================================
-   RELÓGIO
+   RELÓGIO REAL
 ===================================================== */
 
 function updateRealClock(){
 
- const now=new Date();
+ const now=
+  new Date();
 
- const hours=now.getHours();
- const minutes=now.getMinutes();
+ const hours=
+  now.getHours();
 
- const newPeriod=getPeriod(hours);
- const oldPeriod=memory.period;
+ const minutes=
+  now.getMinutes();
 
- memory.hour=hours;
- memory.period=newPeriod;
+ const newPeriod=
+  getPeriod(hours);
+
+ const oldPeriod=
+  memory.period;
+
+
+ memory.hour=
+  hours;
+
+ memory.period=
+  newPeriod;
+
 
  const formattedTime=
   String(hours).padStart(2,"0")
-  +":"
-  +String(minutes).padStart(2,"0");
+  +
+  ":"
+  +
+  String(minutes).padStart(2,"0");
+
 
  clockTime.textContent=
   formattedTime;
 
- clockIcon.textContent=
-  getPeriodIcon(newPeriod);
 
- updateBrowserTheme(newPeriod);
+ clockIcon.textContent=
+  getPeriodIcon(
+   newPeriod
+  );
+
+
+ updateBrowserTheme(
+  newPeriod
+ );
+
+
+ /*
+   O cenário muda somente
+   quando muda manhã/tarde/noite.
+ */
 
  if(
+
   newPeriod!==oldPeriod &&
+
   game.style.display==="block"
+
  ){
 
   changeBackground(
@@ -1448,15 +1523,23 @@ function updateRealClock(){
    MUDAR FUNDO
 ===================================================== */
 
-function changeBackground(place,period){
+function changeBackground(
+ place,
+ period
+){
 
  const image=
   backgrounds[place][period];
 
+
  if(!image)
   return;
 
- timeFade.classList.add("active");
+
+ timeFade.classList.add(
+  "active"
+ );
+
 
  setTimeout(()=>{
 
@@ -1465,9 +1548,11 @@ function changeBackground(place,period){
    cafe.style.backgroundImage=
     `url("${image}")`;
 
-   cafe.style.display="block";
+   cafe.style.display=
+    "block";
 
-   university.style.display="none";
+   university.style.display=
+    "none";
 
   }
 
@@ -1476,17 +1561,23 @@ function changeBackground(place,period){
    university.style.backgroundImage=
     `url("${image}")`;
 
-   university.style.display="block";
+   university.style.display=
+    "block";
 
-   cafe.style.display="none";
+   cafe.style.display=
+    "none";
 
   }
 
+
   setTimeout(()=>{
 
-   timeFade.classList.remove("active");
+   timeFade.classList.remove(
+    "active"
+   );
 
   },180);
+
 
  },420);
 
@@ -1499,19 +1590,24 @@ function changeBackground(place,period){
 
 function applyPlace(place){
 
- memory.place=place;
+ memory.place=
+  place;
+
 
  const image=
   backgrounds[place][memory.period];
+
 
  if(place==="cafe"){
 
   cafe.style.backgroundImage=
    `url("${image}")`;
 
-  cafe.style.display="block";
+  cafe.style.display=
+   "block";
 
-  university.style.display="none";
+  university.style.display=
+   "none";
 
  }
 
@@ -1520,9 +1616,11 @@ function applyPlace(place){
   university.style.backgroundImage=
    `url("${image}")`;
 
-  university.style.display="block";
+  university.style.display=
+   "block";
 
-  cafe.style.display="none";
+  cafe.style.display=
+   "none";
 
  }
 
@@ -1533,19 +1631,29 @@ function applyPlace(place){
    BALÃO
 ===================================================== */
 
-function showBubble(name,msg){
+function showBubble(
+ name,
+ msg
+){
 
- bubbleName.textContent=name;
+ bubbleName.textContent=
+  name;
 
- bubbleText.textContent=msg;
+ bubbleText.textContent=
+  msg;
 
- bubble.classList.add("visible");
+ bubble.classList.add(
+  "visible"
+ );
 
 }
 
+
 function hideBubble(){
 
- bubble.classList.remove("visible");
+ bubble.classList.remove(
+  "visible"
+ );
 
 }
 
@@ -1563,7 +1671,7 @@ function updateAffinity(){
 
 
 /* =====================================================
-   NOME
+   NOME DA JOGADORA
 ===================================================== */
 
 function updatePlayerName(){
@@ -1584,18 +1692,26 @@ function updatePlayerName(){
 function togglePlayerMenu(){
 
  const open=
-  playerMenu.classList.toggle("visible");
+  playerMenu.classList.toggle(
+   "visible"
+  );
+
 
  playerMenu.setAttribute(
   "aria-hidden",
-  open?"false":"true"
+  open
+   ? "false"
+   : "true"
  );
 
 }
 
+
 function closePlayerMenu(){
 
- playerMenu.classList.remove("visible");
+ playerMenu.classList.remove(
+  "visible"
+ );
 
  playerMenu.setAttribute(
   "aria-hidden",
@@ -1603,6 +1719,7 @@ function closePlayerMenu(){
  );
 
 }
+
 
 playerCard.addEventListener(
  "click",
@@ -1616,14 +1733,32 @@ playerCard.addEventListener(
 );
 
 
+/* =====================================================
+   FECHAR MENU AO TOCAR FORA
+===================================================== */
+
 document.addEventListener(
  "click",
  e=>{
 
   if(
-   playerMenu.classList.contains("visible") &&
-   !playerMenu.contains(e.target) &&
-   !playerCard.contains(e.target)
+
+   playerMenu.classList.contains(
+    "visible"
+   )
+
+   &&
+
+   !playerMenu.contains(
+    e.target
+   )
+
+   &&
+
+   !playerCard.contains(
+    e.target
+   )
+
   ){
 
    closePlayerMenu();
@@ -1641,17 +1776,21 @@ function updateMusicMenu(){
 
  if(memory.music){
 
-  musicMenuSubtitle.textContent="Ativada";
+  musicMenuSubtitle.textContent=
+   "Ativada";
 
-  musicMenuButton.style.opacity="1";
+  musicMenuButton.style.opacity=
+   "1";
 
  }
 
  else{
 
-  musicMenuSubtitle.textContent="Desativada";
+  musicMenuSubtitle.textContent=
+   "Desativada";
 
-  musicMenuButton.style.opacity=".65";
+  musicMenuButton.style.opacity=
+   ".65";
 
  }
 
@@ -1664,7 +1803,8 @@ musicMenuButton.addEventListener(
 
   e.stopPropagation();
 
-  memory.music=!memory.music;
+  memory.music=
+   !memory.music;
 
   updateMusicMenu();
 
@@ -1678,328 +1818,1145 @@ musicMenuButton.addEventListener(
 
 const story={
 
+
+/* =====================================================
+   CHEGADA
+===================================================== */
+
 start:{
+
  type:"narration",
- text:"Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
+
+ text:
+ "Você acabou de chegar a uma cidade completamente nova. A universidade onde vai estudar fica a poucos minutos dali, mas o mapa no seu celular parece decidido a não colaborar.",
+
  next:"thought1"
+
 },
+
 
 thought1:{
+
  type:"thought",
- text:"Ah... o que eu vou fazer agora? Por onde eu começo?",
+
+ text:
+ "Ótimo... primeiro dia e eu já estou perdida.",
+
  next:"lost"
+
 },
+
 
 lost:{
+
  type:"narration",
- text:"Com uma pequena mala ao lado, você percebe que está completamente perdida.",
- next:"childe1"
+
+ text:
+ "Você olha ao redor, tentando reconhecer algum ponto de referência. Pessoas passam pela rua, ocupadas demais para perceber sua confusão.",
+
+ next:"notice"
+
 },
+
+
+notice:{
+
+ type:"thought",
+
+ text:
+ "Espera... aquele garoto sabe onde fica a universidade?",
+
+ next:"observe"
+
+},
+
+
+observe:{
+
+ type:"narration",
+
+ text:
+ "Perto da entrada de um café, um garoto mexe distraidamente no celular. Ele parece conhecer bem a região.",
+
+ next:"approach"
+
+},
+
+
+approach:{
+
+ type:"thought",
+
+ text:
+ "Ele é bonito... talvez eu possa perguntar.",
+
+ next:"childeAppear"
+
+},
+
+
+/* =====================================================
+   PRIMEIRO CONTATO
+===================================================== */
+
+childeAppear:{
+
+ type:"narration",
+
+ text:
+ "Você se aproxima.",
+
+ next:"childe1"
+
+},
+
 
 childe1:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Você está procurando alguma coisa?",
- expression:"franzindo",
+
+ text:
+ "Hm?",
+
+ expression:"alegre",
+
  next:"childe2"
+
 },
+
 
 childe2:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Estou procurando a Universidade Aurora.",
+
+ text:
+ "Desculpa... você sabe onde fica a Universidade Aurora?",
+
  next:"childe3"
+
 },
+
 
 childe3:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Aurora? É um pouco difícil de achar daqui.",
+
+ text:
+ "Sei.",
+
  expression:"alegre",
- next:"choice1"
+
+ next:"childeChoice1"
+
 },
 
-choice1:{
+
+/* =====================================================
+   PRIMEIRA ESCOLHA
+===================================================== */
+
+childeChoice1:{
+
  type:"choice",
- text:"Como você reage?",
+
+ text:
+ "O que você responde?",
+
  choices:[
 
+
   {
-   text:"Peço ajuda com educação.",
-   action(){
 
-    memory.gentil=true;
-    memory.affinity+=2;
+   text:
+   "Você poderia me mostrar o caminho?",
 
-    showChilde("alegre");
-    showNode("help");
+   affinity:2,
 
-   }
+   expression:"alegre",
+
+   next:"friendly1"
+
   },
 
+
   {
-   text:"Brinco que consigo me virar sozinha.",
-   action(){
 
-    memory.provocadora=true;
-    memory.affinity++;
+   text:
+   "Só saber já ajuda. Obrigada.",
 
-    showChilde("alegre");
-    showNode("joke");
+   affinity:0,
 
-   }
+   expression:"alegre",
+
+   next:"neutral1"
+
   },
 
+
   {
-   text:"Agradeço, mas digo que consigo me virar.",
-   action(){
 
-    memory.distancia=true;
+   text:
+   "Então poderia falar de uma vez, né?",
 
-    showChilde("franzindo");
-    showNode("distance");
+   affinity:-3,
 
-   }
+   expression:"franzindo",
+
+   next:"rude1"
+
   }
 
  ]
+
 },
 
-help:{
- type:"dialogue",
- speaker:"Você",
- text:"Você poderia me indicar o caminho?",
- next:"help2"
-},
 
-help2:{
+/* =====================================================
+   RESPOSTA GENTIL
+===================================================== */
+
+friendly1:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Claro. Eu estava indo naquela direção mesmo.",
+
+ text:
+ "Posso. Não fica muito longe daqui.",
+
  expression:"alegre",
- next:"walk"
+
+ next:"friendly2"
+
 },
 
-joke:{
+
+friendly2:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Eu acho que consigo encontrar sozinha.",
- next:"joke2"
+
+ text:
+ "Sério? Eu estava começando a achar que tinha ido para o lado errado da cidade.",
+
+ next:"friendly3"
+
 },
 
-joke2:{
+
+friendly3:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Tem certeza? Você não parece muito convencida.",
+
+ text:
+ "Pelo menos você percebeu antes de ficar completamente perdida.",
+
  expression:"alegre",
- next:"walk"
+
+ next:"friendly4"
+
 },
 
-distance:{
+
+friendly4:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Obrigada. Vou tentar encontrar.",
- next:"distance2"
+
+ text:
+ "Então eu ainda tenho alguma dignidade.",
+
+ next:"friendly5"
+
 },
 
-distance2:{
+
+friendly5:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Tudo bem. Boa sorte, então.",
+
+ text:
+ "Ainda estou avaliando.",
+
+ expression:"alegre",
+
+ next:"friendlyChoice"
+
+},
+
+
+friendlyChoice:{
+
+ type:"choice",
+
+ text:
+ "A conversa parece mais descontraída. O que você faz?",
+
+ choices:[
+
+
+  {
+
+   text:
+   "Brinco com ele.",
+
+   affinity:2,
+
+   expression:"alegre",
+
+   next:"jokeGood"
+
+  },
+
+
+  {
+
+   text:
+   "Pergunto se ele estuda na universidade.",
+
+   affinity:1,
+
+   expression:"alegre",
+
+   next:"askUniversity"
+
+  },
+
+
+  {
+
+   text:
+   "Agradeço e sigo meu caminho.",
+
+   affinity:0,
+
+   expression:"alegre",
+
+   next:"leaveEarly"
+
+  }
+
+ ]
+
+},
+
+
+jokeGood:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Você sempre recebe pessoas perdidas desse jeito?",
+
+ next:"jokeGood2"
+
+},
+
+
+jokeGood2:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Só as que parecem precisar de supervisão.",
+
+ expression:"alegre",
+
+ next:"jokeGood3"
+
+},
+
+
+jokeGood3:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Nossa. Então estou em boas mãos.",
+
+ next:"goodEnd"
+
+},
+
+
+askUniversity:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Você estuda na Aurora?",
+
+ next:"askUniversity2"
+
+},
+
+
+askUniversity2:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Estudo. Por quê?",
+
+ expression:"alegre",
+
+ next:"askUniversity3"
+
+},
+
+
+askUniversity3:{
+
+ type:"choice",
+
+ text:
+ "O que você responde?",
+
+ choices:[
+
+
+  {
+
+   text:
+   "Curiosidade. Você parece conhecer o lugar.",
+
+   affinity:2,
+
+   expression:"alegre",
+
+   next:"goodEnd"
+
+  },
+
+
+  {
+
+   text:
+   "Nada. Só perguntei.",
+
+   affinity:0,
+
+   expression:"alegre",
+
+   next:"neutralEnd"
+
+  },
+
+
+  {
+
+   text:
+   "Porque você tem cara de quem não faz outra coisa.",
+
+   affinity:-3,
+
+   expression:"franzindo",
+
+   next:"rudeEnd"
+
+  }
+
+ ]
+
+},
+
+
+/* =====================================================
+   RESPOSTA NEUTRA
+===================================================== */
+
+neutral1:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "É só seguir aquela rua e virar à esquerda depois da praça.",
+
+ expression:"alegre",
+
+ next:"neutral2"
+
+},
+
+
+neutral2:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Entendi. Obrigada.",
+
+ next:"neutral3"
+
+},
+
+
+neutral3:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "De nada.",
+
+ expression:"alegre",
+
+ next:"neutralChoice"
+
+},
+
+
+neutralChoice:{
+
+ type:"choice",
+
+ text:
+ "Você ainda tem uma chance de continuar a conversa.",
+
+ choices:[
+
+
+  {
+
+   text:
+   "Pergunto o nome dele.",
+
+   affinity:1,
+
+   expression:"alegre",
+
+   next:"nameQuestion"
+
+  },
+
+
+  {
+
+   text:
+   "Pergunto se ele conhece algum lugar interessante por perto.",
+
+   affinity:1,
+
+   expression:"alegre",
+
+   next:"placeQuestion"
+
+  },
+
+
+  {
+
+   text:
+   "Só agradeço novamente e vou embora.",
+
+   affinity:0,
+
+   expression:"alegre",
+
+   next:"leaveEarly"
+
+  }
+
+ ]
+
+},
+
+
+nameQuestion:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Ah... qual é o seu nome?",
+
+ next:"nameAnswer"
+
+},
+
+
+nameAnswer:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Childe.",
+
+ expression:"alegre",
+
+ next:"nameAnswer2"
+
+},
+
+
+nameAnswer2:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Prazer, Childe.",
+
+ next:"goodEnd"
+
+},
+
+
+placeQuestion:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Você conhece algum lugar legal por aqui?",
+
+ next:"placeAnswer"
+
+},
+
+
+placeAnswer:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Depende do que você considera legal.",
+
+ expression:"alegre",
+
+ next:"placeChoice"
+
+},
+
+
+placeChoice:{
+
+ type:"choice",
+
+ text:
+ "Como você responde?",
+
+ choices:[
+
+
+  {
+
+   text:
+   "Um lugar tranquilo.",
+
+   affinity:1,
+
+   expression:"alegre",
+
+   next:"goodEnd"
+
+  },
+
+
+  {
+
+   text:
+   "Um lugar onde tenha comida.",
+
+   affinity:2,
+
+   expression:"alegre",
+
+   next:"foodAnswer"
+
+  },
+
+
+  {
+
+   text:
+   "Qualquer lugar melhor que ficar perdida.",
+
+   affinity:-1,
+
+   expression:"alegre",
+
+   next:"neutralEnd"
+
+  }
+
+ ]
+
+},
+
+
+foodAnswer:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Nesse caso, talvez eu conheça um lugar.",
+
+ expression:"alegre",
+
+ next:"goodEnd"
+
+},
+
+
+/* =====================================================
+   RESPOSTA RUDE
+===================================================== */
+
+rude1:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Nossa. Calma.",
+
  expression:"franzindo",
- next:"walk"
+
+ next:"rude2"
+
 },
 
-walk:{
+
+rude2:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Eu só estou com pressa.",
+
+ next:"rudeChoice"
+
+},
+
+
+rudeChoice:{
+
+ type:"choice",
+
+ text:
+ "Você percebe que talvez tenha sido um pouco ríspida.",
+
+ choices:[
+
+
+  {
+
+   text:
+   "Desculpa. Meu primeiro dia está sendo caótico.",
+
+   affinity:2,
+
+   expression:"alegre",
+
+   next:"apology"
+
+  },
+
+
+  {
+
+   text:
+   "Enfim... você vai me mostrar ou não?",
+
+   affinity:-4,
+
+   expression:"franzindo",
+
+   next:"leaveRude"
+
+  },
+
+
+  {
+
+   text:
+   "Esquece. Eu descubro sozinha.",
+
+   affinity:-2,
+
+   expression:"franzindo",
+
+   next:"leaveRude"
+
+  }
+
+ ]
+
+},
+
+
+apology:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "Tudo bem.",
+
+ expression:"alegre",
+
+ next:"apology2"
+
+},
+
+
+apology2:{
+
+ type:"dialogue",
+
+ speaker:"???",
+
+ text:
+ "A universidade fica naquela direção.",
+
+ expression:"alegre",
+
+ next:"apology3"
+
+},
+
+
+apology3:{
+
+ type:"dialogue",
+
+ speaker:"Você",
+
+ text:
+ "Obrigada.",
+
+ next:"neutralEnd"
+
+},
+
+
+/* =====================================================
+   ELE VAI EMBORA
+===================================================== */
+
+leaveRude:{
+
  type:"narration",
- text:"Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
- next:"name"
+
+ text:
+ "Childe observa você por alguns segundos, como se decidisse se vale a pena continuar aquela conversa.",
+
+ next:"leaveRude2"
+
 },
 
-name:{
- type:"dialogue",
- speaker:"???",
- text:"Aliás... acho que ainda não perguntei seu nome.",
- expression:"alegre",
- next:"name2"
-},
 
-name2:{
- type:"dialogue",
- speaker:"Você",
- text:"Meu nome é seu nome.",
- next:"name3"
-},
+leaveRude2:{
 
-name3:{
  type:"dialogue",
- speaker:"???",
- text:"Ah... e eu nem me apresentei.",
- expression:"franzindo",
- next:"name4"
-},
 
-name4:{
- type:"dialogue",
- speaker:"???",
- text:"Eu sou Childe.",
- expression:"alegre",
- next:"name5"
-},
-
-name5:{
- type:"dialogue",
  speaker:"Childe",
- text:"Prazer em te conhecer.",
- expression:"alegre",
- next:"separate"
+
+ text:
+ "Acho que você consegue descobrir sozinha.",
+
+ expression:"franzindo",
+
+ next:"leaveRude3"
+
 },
 
-separate:{
+
+leaveRude3:{
+
  type:"narration",
- text:"Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+
+ text:
+ "Sem esperar uma resposta, ele guarda o celular no bolso e segue pela rua.",
+
  hide:true,
- next:"thought2"
+
+ next:"afterLeave"
+
 },
 
-thought2:{
- type:"thought",
- text:"Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
- next:"arrival"
+
+/* =====================================================
+   ELA DECIDE IR EMBORA
+===================================================== */
+
+leaveEarly:{
+
+ type:"narration",
+
+ text:
+ "Você agradece e segue seu caminho. Quando olha para trás, ele já está indo na direção oposta.",
+
+ hide:true,
+
+ next:"afterLeave"
+
 },
+
+
+afterLeave:{
+
+ type:"thought",
+
+ text:
+ "Ele nem parecia muito interessado em conversar... mas, admito, era bonito.",
+
+ next:"arrival"
+
+},
+
+
+/* =====================================================
+   FINAL BOM DA CONVERSA
+===================================================== */
+
+goodEnd:{
+
+ type:"narration",
+
+ text:
+ "Depois de mais alguns minutos de conversa, vocês seguem caminhos diferentes.",
+
+ hide:true,
+
+ next:"goodThought"
+
+},
+
+
+goodThought:{
+
+ type:"thought",
+
+ text:
+ "Estranho... eu não esperava gostar tanto daquela conversa.",
+
+ next:"arrival"
+
+},
+
+
+/* =====================================================
+   FINAL NEUTRO
+===================================================== */
+
+neutralEnd:{
+
+ type:"narration",
+
+ text:
+ "Depois de se despedirem, cada um segue seu caminho.",
+
+ hide:true,
+
+ next:"neutralThought"
+
+},
+
+
+neutralThought:{
+
+ type:"thought",
+
+ text:
+ "Talvez eu nunca mais veja aquele garoto.",
+
+ next:"arrival"
+
+},
+
+
+/* =====================================================
+   UNIVERSIDADE
+===================================================== */
 
 arrival:{
+
  type:"narration",
- text:"No dia seguinte, você finalmente chega à Universidade Aurora.",
+
+ text:
+ "Mais tarde, você finalmente chega à Universidade Aurora.",
+
  place:"university",
- hide:true,
+
  next:"arrival2"
+
 },
+
 
 arrival2:{
+
  type:"narration",
- text:"O campus é ainda mais bonito do que nas fotos.",
+
+ text:
+ "O campus é ainda maior do que você imaginava.",
+
  next:"thought3"
+
 },
+
 
 thought3:{
+
  type:"thought",
- text:"Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
+
+ text:
+ "Certo... agora preciso descobrir onde fica minha sala.",
+
  next:"choice2"
+
 },
 
+
+/* =====================================================
+   SEGUNDA ESCOLHA
+===================================================== */
+
 choice2:{
+
  type:"choice",
- text:"O que você decide fazer?",
+
+ text:
+ "O que você decide fazer?",
+
  choices:[
 
+
   {
-   text:"Vou procurar a secretaria.",
-   action(){
 
-    memory.affinity++;
-    showNode("secretary");
+   text:
+   "Vou procurar a secretaria.",
 
-   }
+   affinity:0,
+
+   next:"secretary"
+
   },
 
+
   {
-   text:"Vou procurar minha sala sozinha.",
-   action(){
 
-    showNode("alone");
+   text:
+   "Vou tentar descobrir sozinha.",
 
-   }
+   affinity:0,
+
+   next:"alone"
+
   },
 
+
   {
-   text:"Observo os estudantes ao meu redor.",
-   action(){
 
-    memory.affinity++;
-    showNode("students");
+   text:
+   "Vou observar os estudantes primeiro.",
 
-   }
+   affinity:0,
+
+   next:"students"
+
   }
 
  ]
+
 },
+
 
 secretary:{
+
  type:"narration",
- text:"Você segue as placas espalhadas pelo campus em busca da secretaria.",
- next:"future"
+
+ text:
+ "Você segue as placas pelo campus em busca da secretaria.",
+
+ next:"end"
+
 },
+
 
 alone:{
+
  type:"narration",
- text:"Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
- next:"future"
+
+ text:
+ "Você decide explorar o campus por conta própria e tenta memorizar os corredores.",
+
+ next:"end"
+
 },
+
 
 students:{
+
  type:"narration",
- text:"Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
- next:"future"
-},
 
-future:{
- type:"branch",
- condition(){
+ text:
+ "Você observa os estudantes ao redor, tentando entender como funciona aquele lugar.",
 
-  if(memory.provocadora)
-   return"newA";
-
-  if(memory.distancia)
-   return"newB";
-
-  return"neutral";
-
- }
-},
-
-newA:{
- type:"narration",
- text:"Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
- next:"newA2"
-},
-
-newA2:{
- type:"dialogue",
- speaker:"???",
- text:"Você está procurando a sala de alguma turma?",
  next:"end"
+
 },
 
-newB:{
- type:"narration",
- text:"Ao dobrar uma esquina, você quase esbarra em alguém.",
- next:"newB2"
-},
 
-newB2:{
- type:"dialogue",
- speaker:"???",
- text:"Você está bem?",
- next:"end"
-},
-
-neutral:{
- type:"narration",
- text:"Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
- next:"end"
-},
+/* =====================================================
+   FINAL DO EPISÓDIO
+===================================================== */
 
 end:{
+
  type:"end",
- text:"EPISÓDIO 1 — Um encontro inesperado"
+
+ text:
+ "EPISÓDIO 1 — Um encontro inesperado"
+
 }
 
 };
 
 
 /* =====================================================
-   MOTOR
+   MOTOR DA HISTÓRIA
 ===================================================== */
 
 let current=null;
@@ -2007,84 +2964,144 @@ let current=null;
 
 function showNode(id){
 
- const node=story[id];
+ const node=
+  story[id];
+
 
  if(!node)
   return;
 
- current=node;
+
+ current=
+  node;
+
 
  choices.innerHTML="";
 
- continueText.style.display="none";
 
+ continueText.style.display=
+  "none";
+
+
+ /* ===================================================
+    LOCAL
+ =================================================== */
 
  if(node.place){
 
-  applyPlace(node.place);
+  applyPlace(
+   node.place
+  );
 
  }
 
 
- if(node.hide)
+ /* ===================================================
+    CHILDE — ESCONDER
+ =================================================== */
+
+ if(node.hide){
+
   hideChilde();
 
+ }
+
+
+ /* ===================================================
+    CHILDE — EXPRESSÃO
+ =================================================== */
 
  if(node.expression){
 
-  showChilde(node.expression);
+  showChilde(
+   node.expression
+  );
 
  }
 
+
+ /* ===================================================
+    NARRAÇÃO
+ =================================================== */
 
  if(node.type==="narration"){
 
-  dialogue.classList.remove("thought");
+  dialogue.classList.remove(
+   "thought"
+  );
 
   speaker.textContent="";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
   hideBubble();
 
-  continueText.style.display="block";
+  continueText.style.display=
+   "block";
 
   return;
 
  }
 
+
+ /* ===================================================
+    PENSAMENTO
+ =================================================== */
 
  if(node.type==="thought"){
 
-  dialogue.classList.add("thought");
+  dialogue.classList.add(
+   "thought"
+  );
 
-  speaker.textContent="Pensamento";
+  speaker.textContent=
+   "Pensamento";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
   hideBubble();
 
-  continueText.style.display="block";
+  continueText.style.display=
+   "block";
 
   return;
 
  }
 
 
+ /* ===================================================
+    DIÁLOGO
+ =================================================== */
+
  if(node.type==="dialogue"){
 
-  dialogue.classList.remove("thought");
+  dialogue.classList.remove(
+   "thought"
+  );
 
+
+  /*
+     Fala da protagonista.
+  */
 
   if(node.speaker==="Você"){
 
-   speaker.textContent="Você";
+   speaker.textContent=
+    "Você";
 
-   text.textContent=node.text;
+   text.textContent=
+    node.text;
 
    hideBubble();
 
   }
+
+
+  /*
+     Fala de Childe.
+  */
 
   else{
 
@@ -2092,73 +3109,165 @@ function showNode(id){
 
    text.textContent="";
 
+
+   /*
+      Se não houver expressão
+      especificada, ele permanece
+      sorrindo.
+   */
+
    showChilde(
-    node.expression||"franzindo"
+    node.expression||
+    "alegre"
    );
 
+
    showBubble(
-    node.speaker||"???",
+    node.speaker||
+    "???",
+
     node.text
    );
 
   }
 
 
-  continueText.style.display="block";
+  continueText.style.display=
+   "block";
 
   return;
 
  }
 
 
+ /* ===================================================
+    ESCOLHA
+ =================================================== */
+
  if(node.type==="choice"){
 
-  dialogue.classList.remove("thought");
+  dialogue.classList.remove(
+   "thought"
+  );
 
   speaker.textContent="";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
   hideBubble();
 
 
-  node.choices.forEach(c=>{
+  node.choices.forEach(
+   choiceData=>{
 
-   const b=document.createElement("button");
-
-   b.className="choice";
-
-   b.textContent=c.text;
-
-   b.onclick=e=>{
-
-    e.stopPropagation();
-
-    c.action();
-
-    updateAffinity();
-
-   };
-
-   choices.appendChild(b);
-
-  });
-
-  return;
-
- }
+    const button=
+     document.createElement(
+      "button"
+     );
 
 
- if(node.type==="branch"){
+    button.className=
+     "choice";
 
-  showNode(
-   node.condition()
+
+    button.textContent=
+     choiceData.text;
+
+
+    button.onclick=
+     event=>{
+
+      event.stopPropagation();
+
+
+      /*
+         ==============================================
+         AFINIDADE
+         ==============================================
+
+         A afinidade SOMENTE muda aqui.
+
+         Diálogo normal não altera.
+         Pensamento não altera.
+         Narração não altera.
+
+         Apenas escolhas podem:
+         +2
+         +1
+          0
+         -1
+         -2
+         -3
+         -4
+         etc.
+      */
+
+      if(
+       typeof choiceData.affinity===
+       "number"
+      ){
+
+       memory.affinity+=
+        choiceData.affinity;
+
+       updateAffinity();
+
+      }
+
+
+      /*
+         ==============================================
+         REAÇÃO DO CHILDE
+         ==============================================
+      */
+
+      if(
+       choiceData.expression
+      ){
+
+       showChilde(
+        choiceData.expression
+       );
+
+      }
+
+
+      /*
+         ==============================================
+         CONSEQUÊNCIA
+         ==============================================
+      */
+
+      if(
+       choiceData.next
+      ){
+
+       showNode(
+        choiceData.next
+       );
+
+      }
+
+     };
+
+
+    choices.appendChild(
+     button
+    );
+
+   }
   );
 
+
   return;
 
  }
 
+
+ /* ===================================================
+    FINAL
+ =================================================== */
 
  if(node.type==="end"){
 
@@ -2166,18 +3275,31 @@ function showNode(id){
 
   speaker.textContent="";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
 
-  const b=document.createElement("button");
+  const restartButton=
+   document.createElement(
+    "button"
+   );
 
-  b.className="restart";
 
-  b.textContent="Recomeçar";
+  restartButton.className=
+   "restart";
 
-  b.onclick=reset;
 
-  choices.appendChild(b);
+  restartButton.textContent=
+   "Recomeçar";
+
+
+  restartButton.onclick=
+   reset;
+
+
+  choices.appendChild(
+   restartButton
+  );
 
  }
 
@@ -2193,10 +3315,15 @@ dialogue.onclick=()=>{
  if(!current)
   return;
 
+
  if(
+
   current.type==="narration" ||
+
   current.type==="dialogue" ||
+
   current.type==="thought"
+
  ){
 
   if(current.next){
@@ -2218,34 +3345,56 @@ dialogue.onclick=()=>{
 
 function reset(){
 
- memory.affinity=0;
- memory.gentil=false;
- memory.provocadora=false;
- memory.distancia=false;
- memory.playerName="Você";
- memory.music=true;
+ memory.affinity=
+  0;
 
- const now=new Date();
 
- memory.hour=now.getHours();
+ memory.playerName=
+  "Você";
+
+
+ memory.music=
+  true;
+
+
+ const now=
+  new Date();
+
+
+ memory.hour=
+  now.getHours();
+
 
  memory.period=
-  getPeriod(now.getHours());
+  getPeriod(
+   now.getHours()
+  );
 
- memory.place="cafe";
+
+ memory.place=
+  "cafe";
+
 
  updatePlayerName();
+
  updateMusicMenu();
 
- applyPlace("cafe");
+ applyPlace(
+  "cafe"
+ );
 
  updateRealClock();
+
  updateAffinity();
 
  hideChilde();
+
  closePlayerMenu();
 
- showNode("start");
+
+ showNode(
+  "start"
+ );
 
 }
 
@@ -2256,29 +3405,47 @@ function reset(){
 
 startButton.onclick=()=>{
 
- startScreen.style.display="none";
+ startScreen.style.display=
+  "none";
 
- game.style.display="block";
+ game.style.display=
+  "block";
 
 
- const now=new Date();
+ const now=
+  new Date();
 
- memory.hour=now.getHours();
+
+ memory.hour=
+  now.getHours();
+
 
  memory.period=
-  getPeriod(now.getHours());
+  getPeriod(
+   now.getHours()
+  );
 
- memory.place="cafe";
+
+ memory.place=
+  "cafe";
+
 
  updatePlayerName();
+
  updateMusicMenu();
 
- applyPlace("cafe");
+ applyPlace(
+  "cafe"
+ );
 
  updateRealClock();
+
  updateAffinity();
 
- showNode("start");
+
+ showNode(
+  "start"
+ );
 
 };
 
@@ -2289,7 +3456,10 @@ startButton.onclick=()=>{
 
 setInterval(()=>{
 
- if(game.style.display==="block"){
+ if(
+  game.style.display===
+  "block"
+ ){
 
   updateRealClock();
 
@@ -2307,8 +3477,12 @@ document.addEventListener(
  ()=>{
 
   if(
+
    !document.hidden &&
-   game.style.display==="block"
+
+   game.style.display===
+   "block"
+
   ){
 
    updateRealClock();
