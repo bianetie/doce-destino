@@ -6,61 +6,125 @@
 <title>Doce Destino</title>
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent
+}
 
 html,body{
- margin:0;width:100%;height:100%;overflow:hidden;
+ margin:0;
+ width:100%;
+ height:100%;
+ overflow:hidden;
  font-family:Georgia,"Times New Roman",serif;
- color:#4b3948;background:#f8edf5
+ color:#4b3948;
+ background:#f8edf5
 }
 
 button{font-family:inherit}
 
 #startScreen,#game{
- position:fixed;inset:0;overflow:hidden
+ position:fixed;
+ inset:0;
+ overflow:hidden
 }
 
 #startScreen{
- display:flex;align-items:center;justify-content:center;
+ display:flex;
+ align-items:center;
+ justify-content:center;
  text-align:center;
  background:radial-gradient(circle,#fff,#f9e8f4 60%,#ead0e4)
 }
 
-.startContent{width:88%;max-width:420px}
-.heart{font-size:34px;color:#c99ab9}
-.logo{font-size:40px;letter-spacing:2px;color:#79536d}
-.subtitle{font-size:14px;color:#9b718d;margin:8px 0 40px}
+.startContent{
+ width:88%;
+ max-width:420px
+}
+
+.heart{
+ font-size:34px;
+ color:#c99ab9
+}
+
+.logo{
+ font-size:40px;
+ letter-spacing:2px;
+ color:#79536d
+}
+
+.subtitle{
+ font-size:14px;
+ color:#9b718d;
+ margin:8px 0 40px
+}
 
 .startButton{
- padding:13px 30px;border:1px solid #c69bb8;
- border-radius:25px;background:#fff;color:#76516a;
+ padding:13px 30px;
+ border:1px solid #c69bb8;
+ border-radius:25px;
+ background:#fff;
+ color:#76516a;
  box-shadow:0 5px 18px #7e4c6e18
 }
 
 #game{display:none}
 
-/* CENÁRIO */
+/* =========================
+   CENÁRIOS
+========================= */
 
-.scene{position:absolute;inset:0;overflow:hidden}
+.scene{
+ position:absolute;
+ inset:0;
+ overflow:hidden
+}
 
 #cafe,#university{
- position:absolute;inset:0;
+ position:absolute;
+ inset:0;
  background-position:center;
  background-size:cover;
- background-repeat:no-repeat
+ background-repeat:no-repeat;
+ transition:opacity .55s ease
 }
 
-#cafe{background-image:url("cafe-aurora-manha.png.PNG")}
+#cafe{
+ background-image:url("cafe-aurora-manha.png.PNG")
+}
+
 #university{
  display:none;
- background-image:url("universidade-aurora.png.PNG")
+ background-image:url("universidade-aurora.png")
 }
 
-/* HUD */
+/* TRANSIÇÃO DE HORÁRIO */
+
+#timeFade{
+ position:absolute;
+ inset:0;
+ z-index:40;
+ background:#fff;
+ opacity:0;
+ pointer-events:none;
+ transition:opacity .45s ease
+}
+
+#timeFade.active{
+ opacity:1
+}
+
+/* =========================
+   HUD
+========================= */
 
 .hud{
- position:absolute;top:15px;left:15px;right:15px;
- display:flex;justify-content:space-between;
+ position:absolute;
+ top:15px;
+ left:15px;
+ right:15px;
+ display:flex;
+ justify-content:space-between;
  z-index:30
 }
 
@@ -73,22 +137,33 @@ button{font-family:inherit}
 }
 
 .player{
- display:flex;align-items:center;gap:8px;
+ display:flex;
+ align-items:center;
+ gap:8px;
  padding:6px 11px 6px 7px;
- border-radius:30px;font-size:13px
+ border-radius:30px;
+ font-size:13px
 }
 
 .avatar{
- width:32px;height:32px;border-radius:50%;
- background:#fff;display:flex;
- align-items:center;justify-content:center
+ width:32px;
+ height:32px;
+ border-radius:50%;
+ background:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:center
 }
 
 .affinity{
- padding:8px 12px;border-radius:20px;font-size:12px
+ padding:8px 12px;
+ border-radius:20px;
+ font-size:12px
 }
 
-/* CHILDE */
+/* =========================
+   CHILDE
+========================= */
 
 #childe{
  display:none;
@@ -99,10 +174,13 @@ button{font-family:inherit}
  overflow:hidden
 }
 
-#childe.visible{display:block}
+#childe.visible{
+ display:block
+}
 
 #childe img{
  position:absolute;
+
  height:95vh;
  width:auto;
  max-width:none;
@@ -120,74 +198,114 @@ button{font-family:inherit}
   contrast(1.10);
 
  transform-origin:center bottom;
+
  animation:alive 4.2s ease-in-out infinite
 }
 
 @keyframes alive{
- 0%,100%{transform:translateY(0) rotate(0)}
- 35%{transform:translate(-1px,-6px) rotate(.15deg)}
- 60%{transform:translate(2px,-3px) rotate(.08deg)}
+
+ 0%,100%{
+  transform:translateY(0) rotate(0)
+ }
+
+ 35%{
+  transform:translate(-1px,-6px) rotate(.15deg)
+ }
+
+ 60%{
+  transform:translate(2px,-3px) rotate(.08deg)
+ }
 }
 
-/* BALÃO */
+/* =========================
+   BALÃO
+========================= */
 
 #bubble{
  display:none;
  position:absolute;
- right:3%;top:8%;
+ right:3%;
+ top:8%;
  width:min(42%,300px);
  padding:12px 15px;
+
  border-radius:20px 20px 6px 20px;
+
  background:#fff9fcf2;
  border:1px solid #fff;
+
  box-shadow:0 6px 22px #4a30431f;
+
  z-index:20
 }
 
-#bubble.visible{display:block}
+#bubble.visible{
+ display:block
+}
 
 #bubble:after{
  content:"";
  position:absolute;
- left:28px;bottom:-10px;
- width:19px;height:19px;
+ left:28px;
+ bottom:-10px;
+
+ width:19px;
+ height:19px;
+
  background:#fff9fcf2;
+
  transform:rotate(45deg);
+
  border-right:1px solid #fff;
  border-bottom:1px solid #fff
 }
 
 .bubbleName{
- color:#966582;font-size:11px;
- font-weight:bold;margin-bottom:5px
+ color:#966582;
+ font-size:11px;
+ font-weight:bold;
+ margin-bottom:5px
 }
 
 .bubbleText{
- font-size:13px;line-height:1.45
+ font-size:13px;
+ line-height:1.45
 }
 
-/* DIÁLOGO */
+/* =========================
+   DIÁLOGO
+========================= */
 
 .bottom{
  position:absolute;
- left:12px;right:12px;bottom:12px;
+ left:12px;
+ right:12px;
+ bottom:12px;
  z-index:25
 }
 
 .dialogue{
  min-height:92px;
+
  padding:13px 18px 21px;
+
  border:1px solid #ffffffdd;
  border-radius:20px;
+
  background:#fffafdD9;
+
  backdrop-filter:blur(13px);
+
  box-shadow:0 7px 28px #472e411f;
+
  cursor:pointer
 }
 
 .speaker{
- color:#966582;font-size:12px;
- font-weight:bold;margin-bottom:6px
+ color:#966582;
+ font-size:12px;
+ font-weight:bold;
+ margin-bottom:6px
 }
 
 .text{
@@ -196,124 +314,221 @@ button{font-family:inherit}
  min-height:45px
 }
 
-.thought{background:#faf4fadd}
-.thought .text{font-style:italic;color:#80657a}
+.thought{
+ background:#faf4fadd
+}
+
+.thought .text{
+ font-style:italic;
+ color:#80657a
+}
 
 .continue{
- position:absolute;right:17px;bottom:8px;
- color:#ad809b;font-size:11px;
+ position:absolute;
+ right:17px;
+ bottom:8px;
+
+ color:#ad809b;
+ font-size:11px;
+
  animation:pulse 1.7s ease-in-out infinite
 }
 
 @keyframes pulse{
- 50%{opacity:.4;transform:translateX(3px)}
+ 50%{
+  opacity:.4;
+  transform:translateX(3px)
+ }
 }
 
-/* ESCOLHAS */
+/* =========================
+   ESCOLHAS
+========================= */
 
 .choices{
- display:flex;flex-direction:column;
- gap:8px;margin-top:8px
+ display:flex;
+ flex-direction:column;
+ gap:8px;
+ margin-top:8px
 }
 
 .choice{
- width:100%;padding:10px 14px;
+ width:100%;
+ padding:10px 14px;
+
  border:1px solid #c69bb880;
  border-radius:22px;
+
  background:#fffdfde8;
- color:#76516a;font-size:13px;
+
+ color:#76516a;
+ font-size:13px;
+
  box-shadow:0 5px 18px #7e4c6e12
 }
 
 .choice:before{
- content:"♡";margin-right:8px;color:#bd8baa
+ content:"♡";
+ margin-right:8px;
+ color:#bd8baa
 }
 
 .restart{
- margin-top:8px;padding:9px 20px;
+ margin-top:8px;
+ padding:9px 20px;
+
  border:1px solid #c69bb8;
- border-radius:22px;background:#fff;
+ border-radius:22px;
+
+ background:#fff;
  color:#76516a
 }
 
-/* SOM */
+/* =========================
+   SOM
+========================= */
 
 .sound{
- position:absolute;right:15px;top:61px;
- z-index:35;width:36px;height:36px;
- border:1px solid #ffffffbb;border-radius:50%;
- background:#ffffff99;color:#76516a
+ position:absolute;
+ right:15px;
+ top:61px;
+
+ z-index:35;
+
+ width:36px;
+ height:36px;
+
+ border:1px solid #ffffffbb;
+ border-radius:50%;
+
+ background:#ffffff99;
+ color:#76516a
 }
 
-/* DESKTOP */
+/* =========================
+   DESKTOP
+========================= */
 
 @media(min-width:700px){
+
  .bottom{
-  width:650px;left:50%;right:auto;
+  width:650px;
+  left:50%;
+  right:auto;
   transform:translateX(-50%)
  }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- TELA INICIAL -->
+<!-- =========================
+     TELA INICIAL
+========================= -->
 
 <div id="startScreen">
+
  <div class="startContent">
+
   <div class="heart">♡</div>
-  <div class="logo">Doce Destino</div>
-  <div class="subtitle">Seu coração escolhe o caminho.</div>
+
+  <div class="logo">
+   Doce Destino
+  </div>
+
+  <div class="subtitle">
+   Seu coração escolhe o caminho.
+  </div>
+
   <button class="startButton" id="startButton">
    Começar minha história
   </button>
+
  </div>
+
 </div>
 
-<!-- JOGO -->
+
+<!-- =========================
+     JOGO
+========================= -->
 
 <div id="game">
 
  <div class="scene">
 
   <div id="cafe"></div>
+
   <div id="university"></div>
 
   <div id="childe">
+
    <img id="childeImg" alt="Childe">
+
   </div>
 
   <div id="bubble">
-   <div class="bubbleName" id="bubbleName">???</div>
+
+   <div class="bubbleName" id="bubbleName">
+    ???
+   </div>
+
    <div class="bubbleText" id="bubbleText"></div>
+
   </div>
+
+  <div id="timeFade"></div>
 
  </div>
 
+
+ <!-- HUD -->
+
  <div class="hud">
+
   <div class="player">
-   <div class="avatar">♡</div>
-   <span>Você</span>
+
+   <div class="avatar">
+    ♡
+   </div>
+
+   <span>
+    Você
+   </span>
+
   </div>
+
 
   <div class="affinity" id="affinity">
    ♡ Afinidade 0
   </div>
+
  </div>
 
- <button class="sound">♫</button>
+
+ <button class="sound">
+  ♫
+ </button>
+
+
+ <!-- DIÁLOGO -->
 
  <div class="bottom">
 
   <div class="dialogue" id="dialogue">
+
    <div class="speaker" id="speaker"></div>
+
    <div class="text" id="text"></div>
 
    <div class="continue" id="continue">
     Continuar ›
    </div>
+
   </div>
+
 
   <div class="choices" id="choices"></div>
 
@@ -321,27 +536,68 @@ button{font-family:inherit}
 
 </div>
 
+
 <script>
 
-/* ARQUIVOS */
+/* =========================
+   ARQUIVOS
+========================= */
 
 const sprites={
+
  alegre:"childe-alegre-transparente.png.PNG",
- franzindo:"childe-Franzindo a testa-transparente.png.PNG"
+
+ franzindo:
+ "childe-Franzindo a testa-transparente.png.PNG"
+
 };
 
 
-/* MEMÓRIA */
+/* =========================
+   FUNDOS
+========================= */
+
+const backgrounds={
+
+ cafe:{
+  morning:"cafe-aurora-manha.png.PNG",
+  afternoon:"cafe-aurora-tarde.png.PNG",
+  night:"cafe-aurora-noite.png.PNG"
+ },
+
+ university:{
+  morning:"universidade-aurora.png",
+  afternoon:"universidade-aurora-tarde.png",
+  night:"universidade-aurora-noite.png"
+ }
+
+};
+
+
+/* =========================
+   MEMÓRIA
+========================= */
 
 const memory={
+
  affinity:0,
+
  gentil:false,
+
  provocadora:false,
- distancia:false
+
+ distancia:false,
+
+ period:"morning",
+
+ place:"cafe"
+
 };
 
 
-/* ELEMENTOS */
+/* =========================
+   ELEMENTOS
+========================= */
 
 const $=id=>document.getElementById(id);
 
@@ -351,6 +607,7 @@ const startButton=$("startButton");
 
 const cafe=$("cafe");
 const university=$("university");
+
 const childe=$("childe");
 const childeImg=$("childeImg");
 
@@ -361,488 +618,1108 @@ const bubbleText=$("bubbleText");
 const dialogue=$("dialogue");
 const speaker=$("speaker");
 const text=$("text");
+
 const choices=$("choices");
 const continueText=$("continue");
+
 const affinity=$("affinity");
 
+const timeFade=$("timeFade");
 
-/* FUNÇÕES */
+
+/* =========================
+   CHILDE
+========================= */
 
 function showChilde(expression="franzindo"){
- childeImg.src=sprites[expression]||sprites.franzindo;
+
+ childeImg.src=
+  sprites[expression] || sprites.franzindo;
+
  childe.classList.add("visible");
+
 }
+
 
 function hideChilde(){
+
  childe.classList.remove("visible");
+
  bubble.classList.remove("visible");
+
  childeImg.src="";
+
 }
+
+
+/* =========================
+   BALÃO
+========================= */
 
 function showBubble(name,msg){
+
  bubbleName.textContent=name;
+
  bubbleText.textContent=msg;
+
  bubble.classList.add("visible");
+
 }
+
 
 function hideBubble(){
+
  bubble.classList.remove("visible");
+
 }
+
+
+/* =========================
+   AFINIDADE
+========================= */
 
 function updateAffinity(){
- affinity.textContent="♡ Afinidade "+memory.affinity;
+
+ affinity.textContent=
+  "♡ Afinidade "+memory.affinity;
+
 }
 
-function universityScene(){
- cafe.style.display="none";
- university.style.display="block";
+
+/* =========================
+   FUNDO
+========================= */
+
+function getBackground(place,period){
+
+ return backgrounds[place][period];
+
 }
 
-function cafeScene(){
+
+/* =========================
+   MUDAR HORÁRIO
+========================= */
+
+function setPeriod(period,place=memory.place,instant=false){
+
+ const image=
+  getBackground(place,period);
+
+ if(!image)return;
+
+
+ if(
+  memory.period===period &&
+  memory.place===place &&
+  !instant
+ ){
+  return;
+ }
+
+
+ if(instant){
+
+  applyBackground(place,period);
+
+  memory.period=period;
+  memory.place=place;
+
+  return;
+ }
+
+
+ timeFade.classList.add("active");
+
+
+ setTimeout(()=>{
+
+  applyBackground(place,period);
+
+  memory.period=period;
+  memory.place=place;
+
+
+  setTimeout(()=>{
+
+   timeFade.classList.remove("active");
+
+  },180);
+
+ },420);
+
+}
+
+
+/* =========================
+   APLICAR FUNDO
+========================= */
+
+function applyBackground(place,period){
+
+ const image=
+  getBackground(place,period);
+
+
+ if(place==="cafe"){
+
+  cafe.style.backgroundImage=
+   `url("${image}")`;
+
+  cafe.style.display="block";
+
+  university.style.display="none";
+
+ }else{
+
+  university.style.backgroundImage=
+   `url("${image}")`;
+
+  university.style.display="block";
+
+  cafe.style.display="none";
+
+ }
+
+}
+
+
+/* =========================
+   CENAS
+========================= */
+
+function cafeScene(period=memory.period){
+
+ const image=
+  backgrounds.cafe[period];
+
+ cafe.style.backgroundImage=
+  `url("${image}")`;
+
  cafe.style.display="block";
+
  university.style.display="none";
+
+ memory.place="cafe";
+
 }
 
 
-/* HISTÓRIA */
+function universityScene(period=memory.period){
+
+ const image=
+  backgrounds.university[period];
+
+ university.style.backgroundImage=
+  `url("${image}")`;
+
+ university.style.display="block";
+
+ cafe.style.display="none";
+
+ memory.place="university";
+
+}
+
+
+/* =========================
+   HISTÓRIA
+========================= */
 
 const story={
 
+
 start:{
  type:"narration",
- text:"Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
+ period:"morning",
+ place:"cafe",
+
+ text:
+ "Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
+
  next:"thought1"
 },
 
+
 thought1:{
  type:"thought",
- text:"Ah... o que eu vou fazer agora? Por onde eu começo?",
+
+ text:
+ "Ah... o que eu vou fazer agora? Por onde eu começo?",
+
  next:"lost"
 },
 
+
 lost:{
  type:"narration",
- text:"Com uma pequena mala ao lado, você percebe que está completamente perdida.",
+
+ text:
+ "Com uma pequena mala ao lado, você percebe que está completamente perdida.",
+
  next:"childe1"
 },
 
+
 childe1:{
  type:"dialogue",
+
  speaker:"???",
- text:"Você está procurando alguma coisa?",
+
+ text:
+ "Você está procurando alguma coisa?",
+
  expression:"franzindo",
+
  next:"childe2"
 },
 
+
 childe2:{
  type:"dialogue",
+
  speaker:"Você",
- text:"Estou procurando a Universidade Aurora.",
+
+ text:
+ "Estou procurando a Universidade Aurora.",
+
  next:"childe3"
 },
 
+
 childe3:{
  type:"dialogue",
+
  speaker:"???",
- text:"Aurora? É um pouco difícil de achar daqui.",
+
+ text:
+ "Aurora? É um pouco difícil de achar daqui.",
+
  expression:"alegre",
+
  next:"choice1"
 },
 
+
 choice1:{
+
  type:"choice",
- text:"Como você reage?",
+
+ text:
+ "Como você reage?",
+
  choices:[
+
   {
-   text:"Peço ajuda com educação.",
+
+   text:
+   "Peço ajuda com educação.",
+
    action(){
+
     memory.gentil=true;
+
     memory.affinity+=2;
+
     showChilde("alegre");
+
     showNode("help");
+
    }
+
   },
+
+
   {
-   text:"Brinco que consigo me virar sozinha.",
+
+   text:
+   "Brinco que consigo me virar sozinha.",
+
    action(){
+
     memory.provocadora=true;
+
     memory.affinity++;
+
     showChilde("alegre");
+
     showNode("joke");
+
    }
+
   },
+
+
   {
-   text:"Agradeço, mas digo que consigo me virar.",
+
+   text:
+   "Agradeço, mas digo que consigo me virar.",
+
    action(){
+
     memory.distancia=true;
+
     showChilde("franzindo");
+
     showNode("distance");
+
    }
+
   }
+
  ]
+
 },
+
 
 help:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Você poderia me indicar o caminho?",
+
+ text:
+ "Você poderia me indicar o caminho?",
+
  next:"help2"
+
 },
+
 
 help2:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Claro. Eu estava indo naquela direção mesmo.",
+
+ text:
+ "Claro. Eu estava indo naquela direção mesmo.",
+
  expression:"alegre",
+
  next:"walk"
+
 },
+
 
 joke:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Eu acho que consigo encontrar sozinha.",
+
+ text:
+ "Eu acho que consigo encontrar sozinha.",
+
  next:"joke2"
+
 },
+
 
 joke2:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Tem certeza? Você não parece muito convencida.",
+
+ text:
+ "Tem certeza? Você não parece muito convencida.",
+
  expression:"alegre",
+
  next:"walk"
+
 },
+
 
 distance:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Obrigada. Vou tentar encontrar.",
+
+ text:
+ "Obrigada. Vou tentar encontrar.",
+
  next:"distance2"
+
 },
+
 
 distance2:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Tudo bem. Boa sorte, então.",
+
+ text:
+ "Tudo bem. Boa sorte, então.",
+
  expression:"franzindo",
+
  next:"walk"
+
 },
+
+
+/* TARDE */
 
 walk:{
+
  type:"narration",
- text:"Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
+
+ period:"afternoon",
+ place:"cafe",
+
+ text:
+ "Vocês caminham juntos por alguns minutos, enquanto a luz da tarde deixa a cidade ainda mais bonita.",
+
  next:"name"
+
 },
+
 
 name:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Aliás... acho que ainda não perguntei seu nome.",
+
+ text:
+ "Aliás... acho que ainda não perguntei seu nome.",
+
  expression:"alegre",
+
  next:"name2"
+
 },
+
 
 name2:{
+
  type:"dialogue",
+
  speaker:"Você",
- text:"Meu nome é seu nome.",
+
+ text:
+ "Meu nome é seu nome.",
+
  next:"name3"
+
 },
+
 
 name3:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Ah... e eu nem me apresentei.",
+
+ text:
+ "Ah... e eu nem me apresentei.",
+
  expression:"franzindo",
+
  next:"name4"
+
 },
+
 
 name4:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Eu sou Childe.",
+
+ text:
+ "Eu sou Childe.",
+
  expression:"alegre",
+
  next:"name5"
+
 },
+
 
 name5:{
+
  type:"dialogue",
+
  speaker:"Childe",
- text:"Prazer em te conhecer.",
+
+ text:
+ "Prazer em te conhecer.",
+
  expression:"alegre",
+
  next:"separate"
+
 },
+
+
+/* NOITE */
 
 separate:{
+
  type:"narration",
- text:"Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+
+ period:"night",
+ place:"cafe",
+
+ text:
+ "Horas depois, as primeiras luzes da cidade começam a se acender. Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
+
  hide:true,
+
  next:"thought2"
+
 },
+
 
 thought2:{
+
  type:"thought",
- text:"Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
+
+ text:
+ "Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
+
  next:"arrival"
+
 },
+
+
+/* DIA SEGUINTE */
 
 arrival:{
+
  type:"narration",
- text:"No dia seguinte, você finalmente chega à Universidade Aurora.",
- university:true,
+
+ period:"morning",
+ place:"university",
+
+ text:
+ "Na manhã seguinte, você finalmente chega à Universidade Aurora.",
+
  hide:true,
+
  next:"arrival2"
+
 },
+
 
 arrival2:{
+
  type:"narration",
- text:"O campus é ainda mais bonito do que nas fotos.",
+
+ place:"university",
+
+ text:
+ "O campus é ainda mais bonito do que nas fotos.",
+
  next:"thought3"
+
 },
+
 
 thought3:{
+
  type:"thought",
- text:"Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
+
+ text:
+ "Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
+
  next:"choice2"
+
 },
+
 
 choice2:{
+
  type:"choice",
- text:"O que você decide fazer?",
+
+ text:
+ "O que você decide fazer?",
+
  choices:[
+
   {
-   text:"Vou procurar a secretaria.",
+
+   text:
+   "Vou procurar a secretaria.",
+
    action(){
+
     memory.affinity++;
+
     showNode("secretary");
+
    }
+
   },
+
+
   {
-   text:"Vou procurar minha sala sozinha.",
+
+   text:
+   "Vou procurar minha sala sozinha.",
+
    action(){
+
     showNode("alone");
+
    }
+
   },
+
+
   {
-   text:"Observo os estudantes ao meu redor.",
+
+   text:
+   "Observo os estudantes ao meu redor.",
+
    action(){
+
     memory.affinity++;
+
     showNode("students");
+
    }
+
   }
+
  ]
+
 },
+
 
 secretary:{
+
  type:"narration",
- text:"Você segue as placas espalhadas pelo campus em busca da secretaria.",
+
+ place:"university",
+
+ text:
+ "Você segue as placas espalhadas pelo campus em busca da secretaria.",
+
  next:"future"
+
 },
+
 
 alone:{
+
  type:"narration",
- text:"Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
+
+ place:"university",
+
+ text:
+ "Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
+
  next:"future"
+
 },
+
 
 students:{
+
  type:"narration",
- text:"Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
+
+ place:"university",
+
+ text:
+ "Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
+
  next:"future"
+
 },
+
 
 future:{
+
  type:"branch",
+
  condition(){
-  if(memory.provocadora)return"newA";
-  if(memory.distancia)return"newB";
+
+  if(memory.provocadora)
+   return"newA";
+
+  if(memory.distancia)
+   return"newB";
+
   return"neutral";
+
  }
+
 },
+
 
 newA:{
+
  type:"narration",
- text:"Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
+
+ place:"university",
+
+ text:
+ "Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
+
  next:"newA2"
+
 },
+
 
 newA2:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Você está procurando a sala de alguma turma?",
+
+ text:
+ "Você está procurando a sala de alguma turma?",
+
  next:"end"
+
 },
+
 
 newB:{
+
  type:"narration",
- text:"Ao dobrar uma esquina, você quase esbarra em alguém.",
+
+ place:"university",
+
+ text:
+ "Ao dobrar uma esquina, você quase esbarra em alguém.",
+
  next:"newB2"
+
 },
+
 
 newB2:{
+
  type:"dialogue",
+
  speaker:"???",
- text:"Você está bem?",
+
+ text:
+ "Você está bem?",
+
  next:"end"
+
 },
+
 
 neutral:{
+
  type:"narration",
- text:"Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
+
+ place:"university",
+
+ text:
+ "Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
+
  next:"end"
+
 },
 
+
 end:{
+
  type:"end",
- text:"EPISÓDIO 1 — Um encontro inesperado"
+
+ text:
+ "EPISÓDIO 1 — Um encontro inesperado"
+
 }
 
 };
 
 
-/* MOTOR */
+/* =========================
+   MOTOR
+========================= */
 
 let current=null;
+
 
 function showNode(id){
 
  const node=story[id];
+
  if(!node)return;
 
+
  current=node;
+
  choices.innerHTML="";
+
  continueText.style.display="none";
 
- if(node.university)universityScene();
- if(node.hide)hideChilde();
- if(node.expression)showChilde(node.expression);
+
+ /* LOCAL E HORÁRIO */
+
+ if(node.period){
+
+  setPeriod(
+   node.period,
+   node.place || memory.place
+  );
+
+ }else if(node.place){
+
+  const place=node.place;
+
+  if(place==="cafe")
+   cafeScene(memory.period);
+
+  else
+   universityScene(memory.period);
+
+ }
+
+
+ /* CHILDE */
+
+ if(node.hide)
+  hideChilde();
+
+ if(node.expression)
+  showChilde(node.expression);
+
+
+ /* NARRAÇÃO */
 
  if(node.type==="narration"){
+
   dialogue.classList.remove("thought");
+
   speaker.textContent="";
+
   text.textContent=node.text;
+
   hideBubble();
+
   continueText.style.display="block";
+
   return;
  }
 
+
+ /* PENSAMENTO */
+
  if(node.type==="thought"){
+
   dialogue.classList.add("thought");
+
   speaker.textContent="Pensamento";
+
   text.textContent=node.text;
+
   hideBubble();
+
   continueText.style.display="block";
+
   return;
  }
+
+
+ /* DIÁLOGO */
 
  if(node.type==="dialogue"){
 
   dialogue.classList.remove("thought");
 
+
   if(node.speaker==="Você"){
+
    speaker.textContent="Você";
+
    text.textContent=node.text;
+
    hideBubble();
+
   }else{
+
    speaker.textContent="";
+
    text.textContent="";
-   showChilde(node.expression||"franzindo");
-   showBubble(node.speaker||"???",node.text);
+
+   showChilde(
+    node.expression || "franzindo"
+   );
+
+   showBubble(
+    node.speaker || "???",
+    node.text
+   );
+
   }
 
+
   continueText.style.display="block";
+
   return;
  }
+
+
+ /* ESCOLHAS */
 
  if(node.type==="choice"){
 
   dialogue.classList.remove("thought");
+
   speaker.textContent="";
+
   text.textContent=node.text;
+
   hideBubble();
+
 
   node.choices.forEach(c=>{
 
-   const b=document.createElement("button");
+   const b=
+    document.createElement("button");
+
    b.className="choice";
+
    b.textContent=c.text;
 
+
    b.onclick=e=>{
+
     e.stopPropagation();
+
     c.action();
+
     updateAffinity();
+
    };
 
+
    choices.appendChild(b);
+
   });
 
+
   return;
  }
 
+
+ /* RAMIFICAÇÃO */
+
  if(node.type==="branch"){
-  showNode(node.condition());
+
+  showNode(
+   node.condition()
+  );
+
   return;
  }
+
+
+ /* FINAL */
 
  if(node.type==="end"){
 
   hideChilde();
 
   speaker.textContent="";
+
   text.textContent=node.text;
 
-  const b=document.createElement("button");
+
+  const b=
+   document.createElement("button");
 
   b.className="restart";
+
   b.textContent="Recomeçar";
+
   b.onclick=reset;
 
+
   choices.appendChild(b);
+
  }
+
 }
 
 
-/* CONTINUAR */
+/* =========================
+   CONTINUAR
+========================= */
 
 dialogue.onclick=()=>{
 
  if(!current)return;
+
 
  if(
   current.type==="narration"||
   current.type==="dialogue"||
   current.type==="thought"
  ){
-  if(current.next)showNode(current.next);
+
+  if(current.next)
+   showNode(current.next);
+
  }
+
 };
 
 
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 function reset(){
 
  memory.affinity=0;
+
  memory.gentil=false;
+
  memory.provocadora=false;
+
  memory.distancia=false;
 
- cafeScene();
+ memory.period="morning";
+
+ memory.place="cafe";
+
+
+ cafeScene("morning");
+
  hideChilde();
+
  updateAffinity();
+
  showNode("start");
+
 }
 
 
-/* COMEÇAR */
+/* =========================
+   COMEÇAR
+========================= */
 
 startButton.onclick=()=>{
 
  startScreen.style.display="none";
+
  game.style.display="block";
 
- cafeScene();
+
+ cafeScene("morning");
+
+ memory.period="morning";
+
+ memory.place="cafe";
+
+
  updateAffinity();
+
  showNode("start");
+
 };
 
 </script>
