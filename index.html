@@ -1549,6 +1549,74 @@ const sprites={
 
 
 /* =====================================================
+   PRÉ-CARREGAMENTO DOS SPRITES
+===================================================== */
+
+/*
+   O jogo carrega os sprites do Childe
+   assim que a página abre.
+
+   Dessa forma, quando a história chegar
+   à primeira fala dele, a imagem já estará
+   carregada e pronta para aparecer.
+*/
+
+const spriteCache={};
+
+
+function preloadSprites(){
+
+ Object.entries(sprites).forEach(
+  ([expression,src])=>{
+
+   const img=
+    new Image();
+
+   /*
+    * Carregamento assíncrono da imagem.
+    */
+
+   img.decoding=
+    "async";
+
+   img.src=
+    src;
+
+   spriteCache[expression]=
+    img;
+
+
+   /*
+    * Se o navegador oferecer decode(),
+    * pedimos para ele preparar a imagem
+    * antes de ela aparecer na tela.
+    */
+
+   if(
+    typeof img.decode===
+    "function"
+   ){
+
+    img.decode()
+     .catch(
+      ()=>{}
+     );
+
+   }
+
+  }
+);
+
+
+/*
+   Inicia o pré-carregamento
+   imediatamente.
+*/
+
+preloadSprites();
+
+
+/* =====================================================
    FUNDOS
 ===================================================== */
 
@@ -1976,9 +2044,36 @@ function showChilde(
  expression="franzindo"
 ){
 
- childeImg.src=
-  sprites[expression]||
-  sprites.franzindo;
+ /*
+    Pega o sprite que já foi
+    pré-carregado.
+ */
+
+ const selected=
+  spriteCache[expression]||
+  spriteCache.franzindo;
+
+
+ if(selected){
+
+  childeImg.src=
+   selected.src;
+
+ }
+
+ else{
+
+  /*
+     Fallback caso o cache ainda
+     não esteja disponível.
+  */
+
+  childeImg.src=
+   sprites[expression]||
+   sprites.franzindo;
+
+ }
+
 
  childe.classList.add(
   "visible"
