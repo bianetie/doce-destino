@@ -182,8 +182,7 @@ button,input{
 .clock{
  padding:8px 11px;
  border-radius:20px;
- font-size:12px;
- cursor:pointer
+ font-size:12px
 }
 
 /* =========================
@@ -424,93 +423,6 @@ button,input{
 }
 
 /* =========================
-   JANELA DO HORÁRIO
-========================= */
-
-#clockPanel{
- display:none;
-
- position:absolute;
-
- left:50%;
- top:50%;
-
- transform:translate(-50%,-50%);
-
- width:min(86%,330px);
-
- padding:22px;
-
- background:#fffafdF5;
-
- border:1px solid #ffffff;
-
- border-radius:24px;
-
- box-shadow:0 12px 40px #4a304344;
-
- z-index:60;
-
- text-align:center
-}
-
-#clockPanel.visible{
- display:block
-}
-
-.clockTitle{
- color:#79536d;
- font-size:18px;
- margin-bottom:6px
-}
-
-.clockSubtitle{
- color:#9b718d;
- font-size:12px;
- margin-bottom:18px
-}
-
-#timeInput{
- width:100%;
-
- padding:12px;
-
- border:1px solid #c69bb880;
- border-radius:16px;
-
- background:#fff;
-
- color:#76516a;
-
- font-size:22px;
- text-align:center
-}
-
-.clockButtons{
- display:flex;
- gap:8px;
- margin-top:12px
-}
-
-.clockButton{
- flex:1;
-
- padding:10px;
-
- border:1px solid #c69bb8;
- border-radius:18px;
-
- background:#fff;
-
- color:#76516a;
- font-size:12px
-}
-
-.clockButton.confirm{
- background:#f6e5ef
-}
-
-/* =========================
    SOM
 ========================= */
 
@@ -631,7 +543,7 @@ button,input{
   <div class="hudRight">
 
    <div class="clock" id="clock">
-    🕐 08:00
+    🕐 00:00
    </div>
 
    <div class="affinity" id="affinity">
@@ -667,47 +579,6 @@ button,input{
   </div>
 
   <div class="choices" id="choices"></div>
-
- </div>
-
-
- <!-- =========================
-      RELÓGIO
- ========================= -->
-
- <div id="clockPanel">
-
-  <div class="clockTitle">
-   Escolha o horário
-  </div>
-
-  <div class="clockSubtitle">
-   O tempo da história é controlado por você.
-  </div>
-
-  <input
-   type="time"
-   id="timeInput"
-   value="08:00"
-  >
-
-  <div class="clockButtons">
-
-   <button
-    class="clockButton"
-    id="cancelClock"
-   >
-    Cancelar
-   </button>
-
-   <button
-    class="clockButton confirm"
-    id="confirmClock"
-   >
-    Confirmar
-   </button>
-
-  </div>
 
  </div>
 
@@ -766,9 +637,9 @@ const memory={
 
  distancia:false,
 
- hour:8,
+ hour:0,
 
- period:"morning",
+ period:"night",
 
  place:"cafe"
 
@@ -805,11 +676,6 @@ const continueText=$("continue");
 const affinity=$("affinity");
 
 const clock=$("clock");
-const clockPanel=$("clockPanel");
-const timeInput=$("timeInput");
-
-const cancelClock=$("cancelClock");
-const confirmClock=$("confirmClock");
 
 const timeFade=$("timeFade");
 
@@ -827,86 +693,55 @@ function getPeriod(hour){
   return"afternoon";
 
  return"night";
-}
-
-
-/* =========================
-   NOME DO PERÍODO
-========================= */
-
-function periodName(period){
-
- if(period==="morning")
-  return"manhã";
-
- if(period==="afternoon")
-  return"tarde";
-
- return"noite";
-}
-
-
-/* =========================
-   RELÓGIO
-========================= */
-
-function formatTime(hour){
-
- const h=String(
-  Math.floor(hour)
- ).padStart(2,"0");
-
- const minutes=String(
-  Math.round((hour%1)*60)
- ).padStart(2,"0");
-
- return`${h}:${minutes}`;
-}
-
-
-function updateClock(){
-
- clock.textContent=
-  "🕐 "+formatTime(memory.hour);
-
- timeInput.value=formatTime(memory.hour);
 
 }
 
 
 /* =========================
-   MUDAR HORÁRIO
+   RELÓGIO REAL
 ========================= */
 
-function changeTime(newTime){
+function updateRealClock(){
 
- const parts=newTime.split(":");
+ const now=new Date();
 
- const hour=
-  Number(parts[0])+
-  Number(parts[1])/60;
+ const hours=now.getHours();
+ const minutes=now.getMinutes();
 
  const newPeriod=
-  getPeriod(hour);
+  getPeriod(hours);
 
  const oldPeriod=
   memory.period;
 
- memory.hour=hour;
-
- updateClock();
-
-
- if(newPeriod===oldPeriod)
-  return;
-
-
+ memory.hour=hours;
  memory.period=newPeriod;
 
- changeBackground(
-  memory.place,
-  newPeriod
- );
+
+ clock.textContent=
+  "🕐 "+
+  String(hours).padStart(2,"0")+
+  ":"+
+  String(minutes).padStart(2,"0");
+
+
+ /*
+  Só muda o cenário quando
+  realmente muda manhã,
+  tarde ou noite.
+ */
+
+ if(
+  newPeriod!==oldPeriod &&
+  game.style.display==="block"
+ ){
+
+  changeBackground(
+   memory.place,
+   newPeriod
+  );
+
+ }
 
 }
 
@@ -1750,39 +1585,6 @@ dialogue.onclick=()=>{
 
 
 /* =========================
-   RELÓGIO
-========================= */
-
-clock.onclick=()=>{
-
- timeInput.value=
-  formatTime(memory.hour);
-
- clockPanel.classList.add("visible");
-
-};
-
-
-cancelClock.onclick=()=>{
-
- clockPanel.classList.remove("visible");
-
-};
-
-
-confirmClock.onclick=()=>{
-
- if(!timeInput.value)
-  return;
-
- changeTime(timeInput.value);
-
- clockPanel.classList.remove("visible");
-
-};
-
-
-/* =========================
    RESET
 ========================= */
 
@@ -1796,16 +1598,18 @@ function reset(){
 
  memory.distancia=false;
 
- memory.hour=8;
+ const now=new Date();
 
- memory.period="morning";
+ memory.hour=now.getHours();
+
+ memory.period=getPeriod(now.getHours());
 
  memory.place="cafe";
 
 
  applyPlace("cafe");
 
- updateClock();
+ updateRealClock();
 
  updateAffinity();
 
@@ -1827,22 +1631,71 @@ startButton.onclick=()=>{
  game.style.display="block";
 
 
- memory.hour=8;
+ const now=new Date();
 
- memory.period="morning";
+ memory.hour=now.getHours();
+
+ memory.period=getPeriod(now.getHours());
 
  memory.place="cafe";
 
 
  applyPlace("cafe");
 
- updateClock();
+ updateRealClock();
 
  updateAffinity();
 
  showNode("start");
 
 };
+
+
+/* =========================
+   RELÓGIO EM TEMPO REAL
+========================= */
+
+/*
+ O jogo verifica o horário real
+ do aparelho a cada segundo.
+
+ O relógio continua passando
+ mesmo enquanto o jogador está
+ parado em um diálogo.
+*/
+
+setInterval(()=>{
+
+ if(game.style.display==="block"){
+
+  updateRealClock();
+
+ }
+
+},1000);
+
+
+/*
+ Atualiza imediatamente quando
+ a página volta a ficar visível.
+ Isso evita que o relógio fique
+ desatualizado depois de o Safari
+ ficar em segundo plano.
+*/
+
+document.addEventListener(
+ "visibilitychange",
+ ()=>{
+
+  if(!document.hidden &&
+     game.style.display==="block"){
+
+   updateRealClock();
+
+  }
+
+ }
+);
 
 </script>
 
