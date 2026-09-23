@@ -1307,91 +1307,46 @@ function scheduleBlink(){
   clearTimeout(blinkTimer);
 
   const delay =
-    3200 +
-    Math.random() * 4800;
+    3500 + Math.random() * 5000;
 
-  blinkTimer =
-    setTimeout(()=>{
+  blinkTimer = setTimeout(() => {
 
-      blinkChilde();
+    blinkChilde();
 
-      /*
-        Pequena chance de um segundo
-        piscar logo depois.
-      */
+    scheduleBlink();
 
-      if(Math.random() < 0.12){
-
-        setTimeout(()=>{
-
-          blinkChilde();
-
-        },260);
-
-      }
-
-      scheduleBlink();
-
-    },delay);
-
+  }, delay);
 }
 
 
 function blinkChilde(){
 
-  if(currentExpression !== "alegre")
-    return;
-
-  if(!childe.classList.contains("visible"))
-    return;
-
-  const blinkSprite =
-    spriteCache.alegrePiscando;
-
-  if(!blinkSprite || !blinkSprite.src)
-    return;
+  if(currentExpression !== "alegre") return;
+  if(!childe.classList.contains("visible")) return;
 
   const activeLayer =
     activeChildeLayer === "A"
       ? childeImgA
       : childeImgB;
 
-  if(!activeLayer)
-    return;
+  if(!activeLayer) return;
 
-  /*
-    Guarda a imagem normal.
-  */
+  const normalSrc = activeLayer.src;
+  const blinkSrc = spriteCache.alegrePiscando?.src;
 
-  const normalSrc =
-    activeLayer.src;
+  if(!blinkSrc) return;
 
-  /*
-    Fecha os olhos no MESMO elemento
-    que já está respirando.
-  */
+  // Fecha os olhos
+  activeLayer.src = blinkSrc;
 
-  activeLayer.src =
-    blinkSprite.src;
+  // Abre novamente
+  setTimeout(() => {
 
-  clearTimeout(blinkHideTimer);
+    if(activeLayer.src === blinkSrc){
+      activeLayer.src = normalSrc;
+    }
 
-  /*
-    Duração curta e natural.
-  */
-
-  blinkHideTimer =
-    setTimeout(()=>{
-
-      if(activeLayer.src === blinkSprite.src){
-
-        activeLayer.src =
-          normalSrc;
-
-      }
-
-    },105);
-
+  }, 110);
 }
 
 
