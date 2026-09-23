@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,7 +10,13 @@
  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 >
 
+<meta
+ name="theme-color"
+ content="#282137"
+>
+
 <title>Doce Destino</title>
+
 
 <style>
 
@@ -35,7 +42,6 @@ body{
  serif;
 
  color:#4b3948;
-
  background:#f8edf5;
 }
 
@@ -57,7 +63,9 @@ input{
 }
 
 #startScreen{
+
  display:flex;
+
  align-items:center;
  justify-content:center;
 
@@ -66,7 +74,7 @@ input{
  background:
  radial-gradient(
   circle,
-  #ffffff 0%,
+  #fff 0%,
   #f9e8f4 60%,
   #ead0e4 100%
  );
@@ -87,7 +95,9 @@ input{
 
 .logo{
  font-size:40px;
+
  letter-spacing:2px;
+
  color:#79536d;
 
  text-shadow:
@@ -95,29 +105,37 @@ input{
 }
 
 .subtitle{
+
  font-size:14px;
+
  color:#9b718d;
- margin:8px 0 40px;
+
+ margin:
+ 8px 0 40px;
 }
 
 .startButton{
- padding:13px 30px;
 
- border:1px solid #c69bb8;
+ padding:
+ 13px 30px;
+
+ border:
+ 1px solid #c69bb8;
+
  border-radius:25px;
 
  background:
  linear-gradient(
  180deg,
- #fff,
- #f9edf5
+  #fff,
+  #f9edf5
  );
 
  color:#76516a;
 
  box-shadow:
  0 5px 18px #7e4c6e18,
- inset 0 1px 0 #ffffff;
+ inset 0 1px 0 #fff;
 }
 
 #game{
@@ -130,7 +148,9 @@ input{
 ===================================================== */
 
 .scene{
+
  position:absolute;
+
  inset:0;
 
  overflow:hidden;
@@ -138,11 +158,15 @@ input{
 
 #cafe,
 #university{
+
  position:absolute;
+
  inset:0;
 
  background-position:center;
+
  background-size:cover;
+
  background-repeat:no-repeat;
 
  transition:
@@ -150,11 +174,13 @@ input{
 }
 
 #cafe{
+
  background-image:
  url("cafe-aurora-manha.png.PNG");
 }
 
 #university{
+
  display:none;
 
  background-image:
@@ -163,11 +189,13 @@ input{
 
 
 /* =====================================================
-   TRANSIÇÃO DE HORÁRIO
+   TRANSIÇÃO
 ===================================================== */
 
 #timeFade{
+
  position:absolute;
+
  inset:0;
 
  z-index:40;
@@ -188,18 +216,23 @@ input{
 
 
 /* =====================================================
-   HUD — NOVA INTERFACE
+   HUD PRINCIPAL
 ===================================================== */
 
 .hud{
+
  position:absolute;
 
- top:14px;
- left:14px;
- right:14px;
+ top:12px;
+
+ left:12px;
+
+ right:12px;
 
  display:flex;
+
  justify-content:space-between;
+
  align-items:flex-start;
 
  z-index:30;
@@ -208,120 +241,111 @@ input{
 }
 
 
-/* -----------------------------------------------------
-   ESQUERDA — JOGADOR
------------------------------------------------------ */
+/* =====================================================
+   JOGADORA
+===================================================== */
 
 .playerCard{
 
  display:flex;
+
  align-items:center;
 
- gap:8px;
+ gap:7px;
 
- padding:5px 13px 5px 5px;
+ padding:
+ 4px 11px 4px 4px;
 
- min-height:48px;
+ min-height:43px;
 
- border-radius:28px;
+ border-radius:24px;
 
  background:
  linear-gradient(
  135deg,
- #fffdfef0,
- #f7eaf3e8
+  #fffdfef0,
+  #f7eaf3e8
  );
 
- border:1px solid #ffffff;
+ border:
+ 1px solid #fff;
 
  box-shadow:
- 0 5px 18px #4a30431c,
- inset 0 1px 0 #ffffff;
+ 0 4px 14px #4a304318,
+ inset 0 1px 0 #fff;
 
- backdrop-filter:blur(12px);
+ backdrop-filter:
+  blur(12px);
 
  color:#76516a;
 
  position:relative;
 
  overflow:hidden;
+
+ pointer-events:auto;
+
+ cursor:pointer;
+
+ transition:
+  transform .2s ease;
 }
 
+.playerCard:active{
 
-/* brilho delicado */
-
-.playerCard:before{
-
- content:"";
-
- position:absolute;
-
- left:-20px;
- top:-20px;
-
- width:70px;
- height:70px;
-
- border-radius:50%;
-
- background:#ffffff55;
-
- pointer-events:none;
+ transform:
+  scale(.97);
 }
-
-
-/* círculo do avatar */
 
 .avatar{
 
- width:38px;
- height:38px;
+ width:33px;
+
+ height:33px;
 
  flex-shrink:0;
 
  border-radius:50%;
 
  display:flex;
+
  align-items:center;
+
  justify-content:center;
 
  background:
  linear-gradient(
  145deg,
- #fff,
- #f5e5ef
+  #fff,
+  #f5e5ef
  );
 
- border:1px solid #d9b7cb;
+ border:
+ 1px solid #d9b7cb;
 
  color:#b17f9c;
 
- font-size:20px;
+ font-size:17px;
 
  box-shadow:
- 0 2px 8px #76516a18,
- inset 0 1px 2px #ffffff;
-
- position:relative;
- z-index:1;
+ 0 2px 7px #76516a18,
+ inset 0 1px 2px #fff;
 }
 
 .playerInfo{
 
  display:flex;
+
  flex-direction:column;
 
- gap:1px;
-
- position:relative;
- z-index:1;
+ gap:0;
 }
 
 .playerMini{
 
- font-size:9px;
+ font-size:8px;
 
- letter-spacing:1.2px;
+ letter-spacing:1px;
 
  text-transform:uppercase;
 
@@ -330,7 +354,7 @@ input{
 
 .playerName{
 
- font-size:13px;
+ font-size:12px;
 
  color:#76516a;
 
@@ -338,148 +362,55 @@ input{
 }
 
 
-/* -----------------------------------------------------
-   DIREITA
------------------------------------------------------ */
-
-.hudRight{
-
- display:flex;
-
- align-items:center;
-
- gap:6px;
-
- pointer-events:auto;
-}
-
-
-/* -----------------------------------------------------
-   MEDALHÃO DO RELÓGIO
------------------------------------------------------ */
-
-.clock{
-
- display:flex;
- align-items:center;
-
- gap:5px;
-
- min-height:42px;
-
- padding:6px 11px 6px 8px;
-
- border-radius:23px;
-
- background:
- linear-gradient(
- 145deg,
- #fffdfef2,
- #f7eaf3e8
- );
-
- border:1px solid #ffffff;
-
- box-shadow:
- 0 5px 18px #4a30431c,
- inset 0 1px 0 #ffffff;
-
- backdrop-filter:blur(12px);
-
- color:#76516a;
-
- font-size:12px;
-
- white-space:nowrap;
-
- position:relative;
-}
-
-
-/* círculo do horário */
-
-.clockIcon{
-
- width:29px;
- height:29px;
-
- border-radius:50%;
-
- display:flex;
- align-items:center;
- justify-content:center;
-
- background:
- linear-gradient(
- 145deg,
- #fff,
- #f3e2ed
- );
-
- border:1px solid #d9b7cb;
-
- box-shadow:
- 0 2px 7px #76516a16,
- inset 0 1px 2px #ffffff;
-
- font-size:13px;
-}
-
-.clockTime{
-
- font-size:12px;
-
- letter-spacing:.2px;
-
- color:#76516a;
-}
-
-
-/* -----------------------------------------------------
+/* =====================================================
    AFINIDADE
------------------------------------------------------ */
+===================================================== */
 
 .affinity{
 
  display:flex;
+
  align-items:center;
 
  gap:6px;
 
- min-height:42px;
+ min-height:43px;
 
- padding:6px 11px 6px 7px;
+ padding:
+ 5px 10px 5px 6px;
 
- border-radius:23px;
+ border-radius:24px;
 
  background:
  linear-gradient(
  145deg,
- #fffdfef2,
- #f7eaf3e8
+  #fffdfef2,
+  #f7eaf3e8
  );
 
- border:1px solid #ffffff;
+ border:
+ 1px solid #fff;
 
  box-shadow:
- 0 5px 18px #4a30431c,
- inset 0 1px 0 #ffffff;
+ 0 4px 14px #4a304318,
+ inset 0 1px 0 #fff;
 
- backdrop-filter:blur(12px);
+ backdrop-filter:
+  blur(12px);
 
  color:#76516a;
 }
 
-
-/* coração */
-
 .affinityHeart{
 
- width:29px;
- height:29px;
+ width:31px;
+
+ height:31px;
 
  display:flex;
+
  align-items:center;
+
  justify-content:center;
 
  border-radius:50%;
@@ -487,34 +418,36 @@ input{
  background:
  linear-gradient(
  145deg,
- #fff,
- #f3e2ed
+  #fff,
+  #f3e2ed
  );
 
- border:1px solid #d9b7cb;
+ border:
+ 1px solid #d9b7cb;
 
  color:#b77799;
 
- font-size:15px;
+ font-size:16px;
 
  box-shadow:
  0 2px 7px #76516a16,
- inset 0 1px 2px #ffffff;
+ inset 0 1px 2px #fff;
 }
 
 .affinityInfo{
 
  display:flex;
+
  flex-direction:column;
 
- gap:1px;
+ gap:0;
 }
 
 .affinityMini{
 
- font-size:8px;
+ font-size:7px;
 
- letter-spacing:1px;
+ letter-spacing:.9px;
 
  text-transform:uppercase;
 
@@ -532,45 +465,344 @@ input{
 
 
 /* =====================================================
-   MÚSICA
+   MENU DA JOGADORA
 ===================================================== */
 
-.sound{
+#playerMenu{
 
  position:absolute;
 
- right:15px;
- top:69px;
+ top:64px;
 
- z-index:35;
+ left:12px;
 
- width:37px;
- height:37px;
+ width:225px;
 
- border-radius:50%;
+ padding:10px;
 
- border:1px solid #ffffff;
+ z-index:55;
+
+ display:none;
+
+ border-radius:22px;
 
  background:
  linear-gradient(
  145deg,
- #fffdfef0,
- #f7eaf3e8
+  #fffdfef8,
+  #f8edf5f5
  );
 
- color:#9b6d88;
+ border:
+ 1px solid #fff;
 
  box-shadow:
- 0 5px 16px #4a30431c,
- inset 0 1px 0 #ffffff;
+ 0 10px 35px #4a304330,
+ inset 0 1px 0 #fff;
 
- backdrop-filter:blur(10px);
+ backdrop-filter:
+  blur(16px);
+}
 
- font-size:14px;
+#playerMenu.visible{
+
+ display:block;
+
+ animation:
+  menuAppear .2s ease-out;
+}
+
+@keyframes menuAppear{
+
+ from{
+
+  opacity:0;
+
+  transform:
+   translateY(-5px)
+   scale(.98);
+ }
+
+ to{
+
+  opacity:1;
+
+  transform:
+   translateY(0)
+   scale(1);
+ }
+
+}
+
+
+/* =====================================================
+   CABEÇALHO DO MENU
+===================================================== */
+
+.menuHeader{
 
  display:flex;
+
  align-items:center;
+
+ gap:8px;
+
+ padding:
+ 6px 8px 10px;
+
+ border-bottom:
+ 1px solid #dcbfd033;
+
+ color:#76516a;
+}
+
+.menuHeaderIcon{
+
+ width:29px;
+
+ height:29px;
+
+ border-radius:50%;
+
+ display:flex;
+
+ align-items:center;
+
  justify-content:center;
+
+ background:#fff;
+
+ border:
+ 1px solid #d9b7cb;
+
+ color:#b77799;
+}
+
+.menuHeaderText{
+
+ display:flex;
+
+ flex-direction:column;
+}
+
+.menuHeaderSmall{
+
+ font-size:8px;
+
+ letter-spacing:1px;
+
+ text-transform:uppercase;
+
+ color:#b08a9f;
+}
+
+.menuHeaderName{
+
+ font-size:13px;
+
+ font-weight:bold;
+
+ color:#76516a;
+}
+
+
+/* =====================================================
+   ITENS DO MENU
+===================================================== */
+
+.menuItems{
+
+ display:flex;
+
+ flex-direction:column;
+
+ gap:5px;
+
+ padding-top:8px;
+}
+
+.menuItem{
+
+ width:100%;
+
+ min-height:43px;
+
+ display:flex;
+
+ align-items:center;
+
+ gap:10px;
+
+ padding:
+ 7px 9px;
+
+ border:
+ 1px solid transparent;
+
+ border-radius:15px;
+
+ background:#ffffff80;
+
+ color:#76516a;
+
+ text-align:left;
+
+ font-size:12px;
+
+ transition:
+  background .2s ease,
+  transform .2s ease;
+}
+
+.menuItem:active{
+
+ transform:
+  scale(.98);
+
+ background:#f9edf5;
+}
+
+.menuIcon{
+
+ width:29px;
+
+ height:29px;
+
+ flex-shrink:0;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ border-radius:50%;
+
+ background:
+ linear-gradient(
+ 145deg,
+  #fff,
+  #f5e5ef
+ );
+
+ border:
+ 1px solid #dec2d2;
+
+ font-size:13px;
+}
+
+.menuItemInfo{
+
+ display:flex;
+
+ flex-direction:column;
+
+ gap:1px;
+}
+
+.menuItemTitle{
+
+ font-size:12px;
+
+ color:#76516a;
+
+ font-weight:bold;
+}
+
+.menuItemSubtitle{
+
+ font-size:9px;
+
+ color:#aa8299;
+}
+
+.menuItem.disabled{
+
+ opacity:.55;
+}
+
+
+/* =====================================================
+   RELÓGIO
+===================================================== */
+
+.menuClock{
+
+ margin-top:8px;
+
+ padding:
+ 9px 10px;
+
+ border-radius:15px;
+
+ background:#f9edf580;
+
+ border:
+ 1px solid #dcbfd044;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:space-between;
+}
+
+.menuClockLeft{
+
+ display:flex;
+
+ align-items:center;
+
+ gap:8px;
+}
+
+.menuClockIcon{
+
+ width:30px;
+
+ height:30px;
+
+ border-radius:50%;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ background:#fff;
+
+ border:
+ 1px solid #d9b7cb;
+
+ font-size:14px;
+}
+
+.menuClockText{
+
+ display:flex;
+
+ flex-direction:column;
+}
+
+.menuClockLabel{
+
+ font-size:8px;
+
+ letter-spacing:1px;
+
+ text-transform:uppercase;
+
+ color:#b08a9f;
+}
+
+.menuClockValue{
+
+ font-size:13px;
+
+ font-weight:bold;
+
+ color:#76516a;
 }
 
 
@@ -583,11 +815,13 @@ input{
  display:none;
 
  position:absolute;
+
  inset:0;
 
  z-index:12;
 
  pointer-events:none;
+
  overflow:hidden;
 }
 
@@ -614,7 +848,9 @@ input{
  object-position:center bottom;
 
  filter:
-  drop-shadow(0 12px 22px #3723324d)
+  drop-shadow(
+   0 12px 22px #3723324d
+  )
   brightness(1.14)
   saturate(1.28)
   contrast(1.10);
@@ -628,18 +864,21 @@ input{
 @keyframes alive{
 
  0%,100%{
+
   transform:
    translateY(0)
    rotate(0);
  }
 
  35%{
+
   transform:
    translate(-1px,-6px)
    rotate(.15deg);
  }
 
  60%{
+
   transform:
    translate(2px,-3px)
    rotate(.08deg);
@@ -658,21 +897,21 @@ input{
  position:absolute;
 
  right:3%;
+
  top:8%;
 
  width:min(42%,300px);
 
- padding:12px 15px;
+ padding:
+ 12px 15px;
 
  border-radius:
- 20px
- 20px
- 6px
- 20px;
+ 20px 20px 6px 20px;
 
  background:#fff9fcf2;
 
- border:1px solid #fff;
+ border:
+ 1px solid #fff;
 
  box-shadow:
  0 6px 22px #4a30431f;
@@ -691,17 +930,23 @@ input{
  position:absolute;
 
  left:28px;
+
  bottom:-10px;
 
  width:19px;
+
  height:19px;
 
  background:#fff9fcf2;
 
- transform:rotate(45deg);
+ transform:
+  rotate(45deg);
 
- border-right:1px solid #fff;
- border-bottom:1px solid #fff;
+ border-right:
+ 1px solid #fff;
+
+ border-bottom:
+ 1px solid #fff;
 }
 
 .bubbleName{
@@ -732,7 +977,9 @@ input{
  position:absolute;
 
  left:12px;
+
  right:12px;
+
  bottom:12px;
 
  z-index:25;
@@ -742,15 +989,18 @@ input{
 
  min-height:92px;
 
- padding:13px 18px 21px;
+ padding:
+ 13px 18px 21px;
 
- border:1px solid #ffffffdd;
+ border:
+ 1px solid #ffffffdd;
 
  border-radius:20px;
 
  background:#fffafdD9;
 
- backdrop-filter:blur(13px);
+ backdrop-filter:
+  blur(13px);
 
  box-shadow:
  0 7px 28px #472e411f;
@@ -795,6 +1045,7 @@ input{
  position:absolute;
 
  right:17px;
+
  bottom:8px;
 
  color:#ad809b;
@@ -808,6 +1059,7 @@ input{
 @keyframes pulse{
 
  50%{
+
   opacity:.4;
 
   transform:
@@ -835,9 +1087,11 @@ input{
 
  width:100%;
 
- padding:10px 14px;
+ padding:
+ 10px 14px;
 
- border:1px solid #c69bb880;
+ border:
+ 1px solid #c69bb880;
 
  border-radius:22px;
 
@@ -864,9 +1118,11 @@ input{
 
  margin-top:8px;
 
- padding:9px 20px;
+ padding:
+ 9px 20px;
 
- border:1px solid #c69bb8;
+ border:
+ 1px solid #c69bb8;
 
  border-radius:22px;
 
@@ -887,6 +1143,7 @@ input{
   width:650px;
 
   left:50%;
+
   right:auto;
 
   transform:
@@ -896,6 +1153,7 @@ input{
 }
 
 </style>
+
 </head>
 
 
@@ -986,7 +1244,6 @@ input{
 
   <div id="timeFade"></div>
 
-
  </div>
 
 
@@ -998,9 +1255,12 @@ input{
  <div class="hud">
 
 
-  <!-- VOCÊ -->
+  <!-- JOGADORA -->
 
-  <div class="playerCard">
+  <div
+   class="playerCard"
+   id="playerCard"
+  >
 
    <div class="avatar">
     ♡
@@ -1012,7 +1272,10 @@ input{
      Jogadora
     </div>
 
-    <div class="playerName">
+    <div
+     class="playerName"
+     id="playerName"
+    >
      Você
     </div>
 
@@ -1022,83 +1285,203 @@ input{
 
 
 
-  <!-- DIREITA -->
+  <!-- AFINIDADE -->
 
-  <div class="hudRight">
+  <div
+   class="affinity"
+   id="affinity"
+  >
 
+   <div class="affinityHeart">
+    ♡
+   </div>
 
-   <!-- RELÓGIO -->
+   <div class="affinityInfo">
 
-   <div
-    class="clock"
-    id="clock"
-   >
-
-    <div
-     class="clockIcon"
-     id="clockIcon"
-    >
-     🌙
+    <div class="affinityMini">
+     Afinidade
     </div>
 
     <div
-     class="clockTime"
-     id="clockTime"
+     class="affinityValue"
+     id="affinityValue"
     >
-     00:00
+     0
     </div>
 
    </div>
-
-
-
-   <!-- AFINIDADE -->
-
-   <div
-    class="affinity"
-    id="affinity"
-   >
-
-    <div class="affinityHeart">
-     ♡
-    </div>
-
-    <div class="affinityInfo">
-
-     <div class="affinityMini">
-      Afinidade
-     </div>
-
-     <div
-      class="affinityValue"
-      id="affinityValue"
-     >
-      0
-     </div>
-
-    </div>
-
-   </div>
-
 
   </div>
+
 
  </div>
 
 
 
  <!-- ===================================================
-      MÚSICA
+      MENU DA JOGADORA
  =================================================== -->
 
- <button
-  class="sound"
-  id="soundButton"
+ <div
+  id="playerMenu"
+  aria-hidden="true"
  >
 
-  ♫
 
- </button>
+  <div class="menuHeader">
+
+   <div class="menuHeaderIcon">
+    ♡
+   </div>
+
+   <div class="menuHeaderText">
+
+    <div class="menuHeaderSmall">
+     Seu perfil
+    </div>
+
+    <div
+     class="menuHeaderName"
+     id="menuPlayerName"
+    >
+     Você
+    </div>
+
+   </div>
+
+  </div>
+
+
+
+  <div class="menuItems">
+
+
+   <!-- HORÁRIO -->
+
+   <div class="menuClock">
+
+    <div class="menuClockLeft">
+
+     <div
+      class="menuClockIcon"
+      id="menuClockIcon"
+     >
+      🌙
+     </div>
+
+     <div class="menuClockText">
+
+      <div class="menuClockLabel">
+       Horário
+      </div>
+
+      <div
+       class="menuClockValue"
+       id="menuClockValue"
+      >
+       00:00
+      </div>
+
+     </div>
+
+    </div>
+
+   </div>
+
+
+
+   <!-- MÚSICA -->
+
+   <button
+    class="menuItem"
+    id="musicMenuButton"
+    type="button"
+   >
+
+    <div class="menuIcon">
+     ♫
+    </div>
+
+    <div class="menuItemInfo">
+
+     <div
+      class="menuItemTitle"
+      id="musicMenuTitle"
+     >
+      Música
+     </div>
+
+     <div
+      class="menuItemSubtitle"
+      id="musicMenuSubtitle"
+     >
+      Ativada
+     </div>
+
+    </div>
+
+   </button>
+
+
+
+   <!-- LOJA -->
+
+   <button
+    class="menuItem disabled"
+    type="button"
+    disabled
+   >
+
+    <div class="menuIcon">
+     ♡
+    </div>
+
+    <div class="menuItemInfo">
+
+     <div class="menuItemTitle">
+      Loja
+     </div>
+
+     <div class="menuItemSubtitle">
+      Em breve
+     </div>
+
+    </div>
+
+   </button>
+
+
+
+   <!-- GUARDA-ROUPA -->
+
+   <button
+    class="menuItem disabled"
+    type="button"
+    disabled
+   >
+
+    <div class="menuIcon">
+     ♢
+    </div>
+
+    <div class="menuItemInfo">
+
+     <div class="menuItemTitle">
+      Guarda-roupa
+     </div>
+
+     <div class="menuItemSubtitle">
+      Em breve
+     </div>
+
+    </div>
+
+   </button>
+
+
+  </div>
+
+ </div>
 
 
 
@@ -1151,7 +1534,7 @@ input{
 
 
 /* =====================================================
-   ARQUIVOS
+   ARQUIVOS DOS PERSONAGENS
 ===================================================== */
 
 const sprites={
@@ -1163,7 +1546,6 @@ const sprites={
  "childe-Franzindo a testa-transparente.png.PNG"
 
 };
-
 
 
 /* =====================================================
@@ -1201,7 +1583,6 @@ const backgrounds={
 };
 
 
-
 /* =====================================================
    MEMÓRIA
 ===================================================== */
@@ -1220,10 +1601,13 @@ const memory={
 
  period:"night",
 
- place:"cafe"
+ place:"cafe",
+
+ playerName:"Você",
+
+ music:true
 
 };
-
 
 
 /* =====================================================
@@ -1285,30 +1669,47 @@ const continueText=
  $("continue");
 
 
-const affinity=
- $("affinity");
-
 const affinityValue=
  $("affinityValue");
 
 
-const clock=
- $("clock");
-
 const clockIcon=
- $("clockIcon");
+ $("menuClockIcon");
 
 const clockTime=
- $("clockTime");
+ $("menuClockValue");
+
+
+const playerCard=
+ $("playerCard");
+
+const playerMenu=
+ $("playerMenu");
+
+
+const playerName=
+ $("playerName");
+
+const menuPlayerName=
+ $("menuPlayerName");
+
+
+const musicMenuButton=
+ $("musicMenuButton");
+
+const musicMenuTitle=
+ $("musicMenuTitle");
+
+const musicMenuSubtitle=
+ $("musicMenuSubtitle");
 
 
 const timeFade=
  $("timeFade");
 
 
-
 /* =====================================================
-   PERÍODO
+   PERÍODO DO DIA
 ===================================================== */
 
 function getPeriod(hour){
@@ -1324,9 +1725,8 @@ function getPeriod(hour){
 }
 
 
-
 /* =====================================================
-   ÍCONE DO HORÁRIO
+   ÍCONE DO PERÍODO
 ===================================================== */
 
 function getPeriodIcon(period){
@@ -1341,6 +1741,44 @@ function getPeriodIcon(period){
 
 }
 
+
+/* =====================================================
+   COR DA INTERFACE DO NAVEGADOR
+===================================================== */
+
+function updateBrowserTheme(period){
+
+ const meta=
+  document.querySelector(
+   'meta[name="theme-color"]'
+  );
+
+ if(!meta)
+  return;
+
+
+ if(period==="morning"){
+
+  meta.content=
+   "#ead7e3";
+
+ }
+
+ else if(period==="afternoon"){
+
+  meta.content=
+   "#e6d5d0";
+
+ }
+
+ else{
+
+  meta.content=
+   "#282137";
+
+ }
+
+}
 
 
 /* =====================================================
@@ -1363,7 +1801,6 @@ function updateRealClock(){
  const newPeriod=
   getPeriod(hours);
 
-
  const oldPeriod=
   memory.period;
 
@@ -1375,19 +1812,41 @@ function updateRealClock(){
   newPeriod;
 
 
- clockTime.textContent=
-  String(hours).padStart(2,"0")+
-  ":"+
+ const formattedTime=
+
+  String(hours).padStart(2,"0")
+  +
+  ":"
+  +
   String(minutes).padStart(2,"0");
 
 
- clockIcon.textContent=
-  getPeriodIcon(newPeriod);
+ clockTime.textContent=
+  formattedTime;
 
+
+ clockIcon.textContent=
+  getPeriodIcon(
+   newPeriod
+  );
+
+
+ /* Safari / navegador */
+
+ updateBrowserTheme(
+  newPeriod
+ );
+
+
+ /* muda cenário somente quando
+    muda manhã/tarde/noite */
 
  if(
+
   newPeriod!==oldPeriod &&
+
   game.style.display==="block"
+
  ){
 
   changeBackground(
@@ -1400,12 +1859,14 @@ function updateRealClock(){
 }
 
 
-
 /* =====================================================
    MUDAR FUNDO
 ===================================================== */
 
-function changeBackground(place,period){
+function changeBackground(
+ place,
+ period
+){
 
  const image=
   backgrounds[place][period];
@@ -1464,7 +1925,6 @@ function changeBackground(place,period){
 }
 
 
-
 /* =====================================================
    APLICAR LOCAL
 ===================================================== */
@@ -1508,7 +1968,6 @@ function applyPlace(place){
 }
 
 
-
 /* =====================================================
    CHILDE
 ===================================================== */
@@ -1543,7 +2002,6 @@ function hideChilde(){
 }
 
 
-
 /* =====================================================
    BALÃO
 ===================================================== */
@@ -1575,7 +2033,6 @@ function hideBubble(){
 }
 
 
-
 /* =====================================================
    AFINIDADE
 ===================================================== */
@@ -1587,6 +2044,145 @@ function updateAffinity(){
 
 }
 
+
+/* =====================================================
+   NOME DA JOGADORA
+===================================================== */
+
+function updatePlayerName(){
+
+ playerName.textContent=
+  memory.playerName;
+
+ menuPlayerName.textContent=
+  memory.playerName;
+
+}
+
+
+/* =====================================================
+   MENU DA JOGADORA
+===================================================== */
+
+function togglePlayerMenu(){
+
+ const open=
+  playerMenu.classList.toggle(
+   "visible"
+  );
+
+
+ playerMenu.setAttribute(
+  "aria-hidden",
+  open ? "false" : "true"
+ );
+
+}
+
+
+function closePlayerMenu(){
+
+ playerMenu.classList.remove(
+  "visible"
+ );
+
+ playerMenu.setAttribute(
+  "aria-hidden",
+  "true"
+ );
+
+}
+
+
+playerCard.addEventListener(
+ "click",
+ e=>{
+
+  e.stopPropagation();
+
+  togglePlayerMenu();
+
+ }
+);
+
+
+/* =====================================================
+   FECHAR MENU AO TOCAR FORA
+===================================================== */
+
+document.addEventListener(
+ "click",
+ e=>{
+
+  if(
+
+   playerMenu.classList.contains(
+    "visible"
+   )
+
+   &&
+
+   !playerMenu.contains(
+    e.target
+   )
+
+   &&
+
+   !playerCard.contains(
+    e.target
+   )
+
+  ){
+
+   closePlayerMenu();
+
+  }
+
+ });
+
+
+/* =====================================================
+   MÚSICA
+===================================================== */
+
+function updateMusicMenu(){
+
+ if(memory.music){
+
+  musicMenuSubtitle.textContent=
+   "Ativada";
+
+  musicMenuButton.style.opacity=
+   "1";
+
+ }
+
+ else{
+
+  musicMenuSubtitle.textContent=
+   "Desativada";
+
+  musicMenuButton.style.opacity=
+   ".65";
+
+ }
+
+}
+
+
+musicMenuButton.addEventListener(
+ "click",
+ e=>{
+
+  e.stopPropagation();
+
+  memory.music=
+   !memory.music;
+
+  updateMusicMenu();
+
+ }
+);
 
 
 /* =====================================================
@@ -1699,9 +2295,13 @@ choice1:{
 
     memory.affinity+=2;
 
-    showChilde("alegre");
+    showChilde(
+     "alegre"
+    );
 
-    showNode("help");
+    showNode(
+     "help"
+    );
 
    }
 
@@ -1719,9 +2319,13 @@ choice1:{
 
     memory.affinity++;
 
-    showChilde("alegre");
+    showChilde(
+     "alegre"
+    );
 
-    showNode("joke");
+    showNode(
+     "joke"
+    );
 
    }
 
@@ -1737,9 +2341,13 @@ choice1:{
 
     memory.distancia=true;
 
-    showChilde("franzindo");
+    showChilde(
+     "franzindo"
+    );
 
-    showNode("distance");
+    showNode(
+     "distance"
+    );
 
    }
 
@@ -1748,7 +2356,6 @@ choice1:{
  ]
 
 },
-
 
 
 help:{
@@ -2016,7 +2623,9 @@ choice2:{
 
     memory.affinity++;
 
-    showNode("secretary");
+    showNode(
+     "secretary"
+    );
 
    }
 
@@ -2030,7 +2639,9 @@ choice2:{
 
    action(){
 
-    showNode("alone");
+    showNode(
+     "alone"
+    );
 
    }
 
@@ -2046,7 +2657,9 @@ choice2:{
 
     memory.affinity++;
 
-    showNode("students");
+    showNode(
+     "students"
+    );
 
    }
 
@@ -2188,7 +2801,6 @@ end:{
 };
 
 
-
 /* =====================================================
    MOTOR
 ===================================================== */
@@ -2234,10 +2846,13 @@ function showNode(id){
   hideChilde();
 
 
- if(node.expression)
+ if(node.expression){
+
   showChilde(
    node.expression
   );
+
+ }
 
 
  /* NARRAÇÃO */
@@ -2442,7 +3057,6 @@ function showNode(id){
 }
 
 
-
 /* =====================================================
    CONTINUAR
 ===================================================== */
@@ -2463,15 +3077,17 @@ dialogue.onclick=()=>{
 
  ){
 
-  if(current.next)
+  if(current.next){
+
    showNode(
     current.next
    );
 
+  }
+
  }
 
 };
-
 
 
 /* =====================================================
@@ -2487,6 +3103,12 @@ function reset(){
  memory.provocadora=false;
 
  memory.distancia=false;
+
+ memory.playerName=
+  "Você";
+
+ memory.music=
+  true;
 
 
  const now=
@@ -2507,10 +3129,13 @@ function reset(){
   "cafe";
 
 
+ updatePlayerName();
+
+ updateMusicMenu();
+
  applyPlace(
   "cafe"
  );
-
 
  updateRealClock();
 
@@ -2518,12 +3143,13 @@ function reset(){
 
  hideChilde();
 
+ closePlayerMenu();
+
  showNode(
   "start"
  );
 
 }
-
 
 
 /* =====================================================
@@ -2557,10 +3183,13 @@ startButton.onclick=()=>{
   "cafe";
 
 
+ updatePlayerName();
+
+ updateMusicMenu();
+
  applyPlace(
   "cafe"
  );
-
 
  updateRealClock();
 
@@ -2573,9 +3202,8 @@ startButton.onclick=()=>{
 };
 
 
-
 /* =====================================================
-   RELÓGIO EM TEMPO REAL
+   RELÓGIO REAL
 ===================================================== */
 
 setInterval(()=>{
@@ -2592,9 +3220,8 @@ setInterval(()=>{
 },1000);
 
 
-
 /* =====================================================
-   ATUALIZAÇÃO AO VOLTAR PARA O JOGO
+   QUANDO VOLTA PARA O JOGO
 ===================================================== */
 
 document.addEventListener(
@@ -2602,17 +3229,19 @@ document.addEventListener(
  ()=>{
 
   if(
+
    !document.hidden &&
+
    game.style.display===
    "block"
+
   ){
 
    updateRealClock();
 
   }
 
- }
-);
+ });
 
 
 </script>
