@@ -5,18 +5,12 @@
 
 <meta charset="UTF-8">
 
-<meta
- name="viewport"
- content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
->
+<meta name="viewport"
+ content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<meta
- name="theme-color"
- content="#282137"
->
+<meta name="theme-color" content="#282137">
 
 <title>Doce Destino</title>
-
 
 <style>
 
@@ -29,24 +23,17 @@
  -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
  margin:0;
  width:100%;
  height:100%;
  overflow:hidden;
-
- font-family:
- Georgia,
- "Times New Roman",
- serif;
-
+ font-family:Georgia,"Times New Roman",serif;
  color:#4b3948;
  background:#f8edf5;
 }
 
-button,
-input{
+button,input{
  font-family:inherit;
 }
 
@@ -55,29 +42,19 @@ input{
    TELAS
 ===================================================== */
 
-#startScreen,
-#game{
+#startScreen,#game{
  position:fixed;
  inset:0;
  overflow:hidden;
 }
 
 #startScreen{
-
  display:flex;
-
  align-items:center;
  justify-content:center;
-
  text-align:center;
-
  background:
- radial-gradient(
-  circle,
-  #fff 0%,
-  #f9e8f4 60%,
-  #ead0e4 100%
- );
+ radial-gradient(circle,#fff 0%,#f9e8f4 60%,#ead0e4 100%);
 }
 
 .startContent{
@@ -88,54 +65,29 @@ input{
 .heart{
  font-size:34px;
  color:#c99ab9;
-
- text-shadow:
- 0 2px 10px #c99ab955;
+ text-shadow:0 2px 10px #c99ab955;
 }
 
 .logo{
  font-size:40px;
-
  letter-spacing:2px;
-
  color:#79536d;
-
- text-shadow:
- 0 2px 8px #79536d18;
+ text-shadow:0 2px 8px #79536d18;
 }
 
 .subtitle{
-
  font-size:14px;
-
  color:#9b718d;
-
- margin:
- 8px 0 40px;
+ margin:8px 0 40px;
 }
 
 .startButton{
-
- padding:
- 13px 30px;
-
- border:
- 1px solid #c69bb8;
-
+ padding:13px 30px;
+ border:1px solid #c69bb8;
  border-radius:25px;
-
- background:
- linear-gradient(
- 180deg,
-  #fff,
-  #f9edf5
- );
-
+ background:linear-gradient(180deg,#fff,#f9edf5);
  color:#76516a;
-
- box-shadow:
- 0 5px 18px #7e4c6e18,
- inset 0 1px 0 #fff;
+ box-shadow:0 5px 18px #7e4c6e18,inset 0 1px 0 #fff;
 }
 
 #game{
@@ -148,43 +100,27 @@ input{
 ===================================================== */
 
 .scene{
-
  position:absolute;
-
  inset:0;
-
  overflow:hidden;
 }
 
-#cafe,
-#university{
-
+#cafe,#university{
  position:absolute;
-
  inset:0;
-
  background-position:center;
-
  background-size:cover;
-
  background-repeat:no-repeat;
-
- transition:
-  opacity .55s ease;
+ transition:opacity .55s ease;
 }
 
 #cafe{
-
- background-image:
- url("cafe-aurora-manha.png.PNG");
+ background-image:url("cafe-aurora-manha.png.PNG");
 }
 
 #university{
-
  display:none;
-
- background-image:
- url("universidade-aurora.png.PNG");
+ background-image:url("universidade-aurora.png.PNG");
 }
 
 
@@ -193,21 +129,13 @@ input{
 ===================================================== */
 
 #timeFade{
-
  position:absolute;
-
  inset:0;
-
  z-index:40;
-
  background:#fff;
-
  opacity:0;
-
  pointer-events:none;
-
- transition:
-  opacity .45s ease;
+ transition:opacity .45s ease;
 }
 
 #timeFade.active{
@@ -216,27 +144,18 @@ input{
 
 
 /* =====================================================
-   HUD PRINCIPAL
+   HUD
 ===================================================== */
 
 .hud{
-
  position:absolute;
-
  top:12px;
-
  left:12px;
-
  right:12px;
-
  display:flex;
-
  justify-content:space-between;
-
  align-items:flex-start;
-
  z-index:30;
-
  pointer-events:none;
 }
 
@@ -246,118 +165,59 @@ input{
 ===================================================== */
 
 .playerCard{
-
  display:flex;
-
  align-items:center;
-
  gap:7px;
-
- padding:
- 4px 11px 4px 4px;
-
+ padding:4px 11px 4px 4px;
  min-height:43px;
-
  border-radius:24px;
-
- background:
- linear-gradient(
- 135deg,
-  #fffdfef0,
-  #f7eaf3e8
- );
-
- border:
- 1px solid #fff;
-
- box-shadow:
- 0 4px 14px #4a304318,
- inset 0 1px 0 #fff;
-
- backdrop-filter:
-  blur(12px);
-
+ background:linear-gradient(135deg,#fffdfef0,#f7eaf3e8);
+ border:1px solid #fff;
+ box-shadow:0 4px 14px #4a304318,inset 0 1px 0 #fff;
+ backdrop-filter:blur(12px);
  color:#76516a;
-
  position:relative;
-
  overflow:hidden;
-
  pointer-events:auto;
-
  cursor:pointer;
-
- transition:
-  transform .2s ease;
+ transition:transform .2s ease;
 }
 
 .playerCard:active{
-
- transform:
-  scale(.97);
+ transform:scale(.97);
 }
 
 .avatar{
-
  width:33px;
-
  height:33px;
-
  flex-shrink:0;
-
  border-radius:50%;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
- background:
- linear-gradient(
- 145deg,
-  #fff,
-  #f5e5ef
- );
-
- border:
- 1px solid #d9b7cb;
-
+ background:linear-gradient(145deg,#fff,#f5e5ef);
+ border:1px solid #d9b7cb;
  color:#b17f9c;
-
  font-size:17px;
-
- box-shadow:
- 0 2px 7px #76516a18,
- inset 0 1px 2px #fff;
+ box-shadow:0 2px 7px #76516a18,inset 0 1px 2px #fff;
 }
 
 .playerInfo{
-
  display:flex;
-
  flex-direction:column;
-
  gap:0;
 }
 
 .playerMini{
-
  font-size:8px;
-
  letter-spacing:1px;
-
  text-transform:uppercase;
-
  color:#b08a9f;
 }
 
 .playerName{
-
  font-size:12px;
-
  color:#76516a;
-
  font-weight:bold;
 }
 
@@ -367,357 +227,186 @@ input{
 ===================================================== */
 
 .affinity{
-
  display:flex;
-
  align-items:center;
-
  gap:6px;
-
  min-height:43px;
-
- padding:
- 5px 10px 5px 6px;
-
+ padding:5px 10px 5px 6px;
  border-radius:24px;
-
- background:
- linear-gradient(
- 145deg,
-  #fffdfef2,
-  #f7eaf3e8
- );
-
- border:
- 1px solid #fff;
-
- box-shadow:
- 0 4px 14px #4a304318,
- inset 0 1px 0 #fff;
-
- backdrop-filter:
-  blur(12px);
-
+ background:linear-gradient(145deg,#fffdfef2,#f7eaf3e8);
+ border:1px solid #fff;
+ box-shadow:0 4px 14px #4a304318,inset 0 1px 0 #fff;
+ backdrop-filter:blur(12px);
  color:#76516a;
 }
 
 .affinityHeart{
-
  width:31px;
-
  height:31px;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
  border-radius:50%;
-
- background:
- linear-gradient(
- 145deg,
-  #fff,
-  #f3e2ed
- );
-
- border:
- 1px solid #d9b7cb;
-
+ background:linear-gradient(145deg,#fff,#f3e2ed);
+ border:1px solid #d9b7cb;
  color:#b77799;
-
  font-size:16px;
-
- box-shadow:
- 0 2px 7px #76516a16,
- inset 0 1px 2px #fff;
+ box-shadow:0 2px 7px #76516a16,inset 0 1px 2px #fff;
 }
 
 .affinityInfo{
-
  display:flex;
-
  flex-direction:column;
-
  gap:0;
 }
 
 .affinityMini{
-
  font-size:7px;
-
  letter-spacing:.9px;
-
  text-transform:uppercase;
-
  color:#b08a9f;
 }
 
 .affinityValue{
-
  font-size:12px;
-
  color:#76516a;
-
  font-weight:bold;
 }
 
 
 /* =====================================================
-   MENU DA JOGADORA
+   MENU
 ===================================================== */
 
 #playerMenu{
-
  position:absolute;
-
  top:64px;
-
  left:12px;
-
  width:225px;
-
  padding:10px;
-
  z-index:55;
-
  display:none;
-
  border-radius:22px;
-
- background:
- linear-gradient(
- 145deg,
-  #fffdfef8,
-  #f8edf5f5
- );
-
- border:
- 1px solid #fff;
-
- box-shadow:
- 0 10px 35px #4a304330,
- inset 0 1px 0 #fff;
-
- backdrop-filter:
-  blur(16px);
+ background:linear-gradient(145deg,#fffdfef8,#f8edf5f5);
+ border:1px solid #fff;
+ box-shadow:0 10px 35px #4a304330,inset 0 1px 0 #fff;
+ backdrop-filter:blur(16px);
 }
 
 #playerMenu.visible{
-
  display:block;
-
- animation:
-  menuAppear .2s ease-out;
+ animation:menuAppear .2s ease-out;
 }
 
 @keyframes menuAppear{
-
  from{
-
   opacity:0;
-
-  transform:
-   translateY(-5px)
-   scale(.98);
+  transform:translateY(-5px) scale(.98);
  }
-
  to{
-
   opacity:1;
-
-  transform:
-   translateY(0)
-   scale(1);
+  transform:translateY(0) scale(1);
  }
-
 }
 
-
-/* =====================================================
-   CABEÇALHO DO MENU
-===================================================== */
-
 .menuHeader{
-
  display:flex;
-
  align-items:center;
-
  gap:8px;
-
- padding:
- 6px 8px 10px;
-
- border-bottom:
- 1px solid #dcbfd033;
-
+ padding:6px 8px 10px;
+ border-bottom:1px solid #dcbfd033;
  color:#76516a;
 }
 
 .menuHeaderIcon{
-
  width:29px;
-
  height:29px;
-
  border-radius:50%;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
  background:#fff;
-
- border:
- 1px solid #d9b7cb;
-
+ border:1px solid #d9b7cb;
  color:#b77799;
 }
 
 .menuHeaderText{
-
  display:flex;
-
  flex-direction:column;
 }
 
 .menuHeaderSmall{
-
  font-size:8px;
-
  letter-spacing:1px;
-
  text-transform:uppercase;
-
  color:#b08a9f;
 }
 
 .menuHeaderName{
-
  font-size:13px;
-
  font-weight:bold;
-
  color:#76516a;
 }
 
-
-/* =====================================================
-   ITENS DO MENU
-===================================================== */
-
 .menuItems{
-
  display:flex;
-
  flex-direction:column;
-
  gap:5px;
-
  padding-top:8px;
 }
 
 .menuItem{
-
  width:100%;
-
  min-height:43px;
-
  display:flex;
-
  align-items:center;
-
  gap:10px;
-
- padding:
- 7px 9px;
-
- border:
- 1px solid transparent;
-
+ padding:7px 9px;
+ border:1px solid transparent;
  border-radius:15px;
-
  background:#ffffff80;
-
  color:#76516a;
-
  text-align:left;
-
  font-size:12px;
-
- transition:
-  background .2s ease,
-  transform .2s ease;
+ transition:background .2s ease,transform .2s ease;
 }
 
 .menuItem:active{
-
- transform:
-  scale(.98);
-
+ transform:scale(.98);
  background:#f9edf5;
 }
 
 .menuIcon{
-
  width:29px;
-
  height:29px;
-
  flex-shrink:0;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
  border-radius:50%;
-
- background:
- linear-gradient(
- 145deg,
-  #fff,
-  #f5e5ef
- );
-
- border:
- 1px solid #dec2d2;
-
+ background:linear-gradient(145deg,#fff,#f5e5ef);
+ border:1px solid #dec2d2;
  font-size:13px;
 }
 
 .menuItemInfo{
-
  display:flex;
-
  flex-direction:column;
-
  gap:1px;
 }
 
 .menuItemTitle{
-
  font-size:12px;
-
  color:#76516a;
-
  font-weight:bold;
 }
 
 .menuItemSubtitle{
-
  font-size:9px;
-
  color:#aa8299;
 }
 
 .menuItem.disabled{
-
  opacity:.55;
 }
 
@@ -727,81 +416,49 @@ input{
 ===================================================== */
 
 .menuClock{
-
  margin-top:8px;
-
- padding:
- 9px 10px;
-
+ padding:9px 10px;
  border-radius:15px;
-
  background:#f9edf580;
-
- border:
- 1px solid #dcbfd044;
-
+ border:1px solid #dcbfd044;
  display:flex;
-
  align-items:center;
-
  justify-content:space-between;
 }
 
 .menuClockLeft{
-
  display:flex;
-
  align-items:center;
-
  gap:8px;
 }
 
 .menuClockIcon{
-
  width:30px;
-
  height:30px;
-
  border-radius:50%;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
  background:#fff;
-
- border:
- 1px solid #d9b7cb;
-
+ border:1px solid #d9b7cb;
  font-size:14px;
 }
 
 .menuClockText{
-
  display:flex;
-
  flex-direction:column;
 }
 
 .menuClockLabel{
-
  font-size:8px;
-
  letter-spacing:1px;
-
  text-transform:uppercase;
-
  color:#b08a9f;
 }
 
 .menuClockValue{
-
  font-size:13px;
-
  font-weight:bold;
-
  color:#76516a;
 }
 
@@ -811,17 +468,11 @@ input{
 ===================================================== */
 
 #childe{
-
  display:none;
-
  position:absolute;
-
  inset:0;
-
  z-index:12;
-
  pointer-events:none;
-
  overflow:hidden;
 }
 
@@ -829,59 +480,53 @@ input{
  display:block;
 }
 
+
+/*
+   AS DUAS EXPRESSÕES FICAM SOBREPOSTAS.
+   Isso permite fazer um fade suave entre elas.
+*/
+
 #childe img{
-
  position:absolute;
-
  height:95vh;
-
  width:auto;
-
  max-width:none;
-
  right:-18vw;
-
  bottom:-18vh;
-
  object-fit:contain;
-
  object-position:center bottom;
 
  filter:
-  drop-shadow(
-   0 12px 22px #3723324d
-  )
+  drop-shadow(0 12px 22px #3723324d)
   brightness(1.14)
   saturate(1.28)
   contrast(1.10);
 
  transform-origin:center bottom;
 
- animation:
-  alive 4.2s ease-in-out infinite;
+ animation:alive 4.2s ease-in-out infinite;
+
+ opacity:0;
+
+ transition:opacity .28s ease;
+}
+
+#childe img.active{
+ opacity:1;
 }
 
 @keyframes alive{
 
  0%,100%{
-
-  transform:
-   translateY(0)
-   rotate(0);
+  transform:translateY(0) rotate(0);
  }
 
  35%{
-
-  transform:
-   translate(-1px,-6px)
-   rotate(.15deg);
+  transform:translate(-1px,-6px) rotate(.15deg);
  }
 
  60%{
-
-  transform:
-   translate(2px,-3px)
-   rotate(.08deg);
+  transform:translate(2px,-3px) rotate(.08deg);
  }
 }
 
@@ -891,31 +536,16 @@ input{
 ===================================================== */
 
 #bubble{
-
  display:none;
-
  position:absolute;
-
  right:3%;
-
  top:8%;
-
  width:min(42%,300px);
-
- padding:
- 12px 15px;
-
- border-radius:
- 20px 20px 6px 20px;
-
+ padding:12px 15px;
+ border-radius:20px 20px 6px 20px;
  background:#fff9fcf2;
-
- border:
- 1px solid #fff;
-
- box-shadow:
- 0 6px 22px #4a30431f;
-
+ border:1px solid #fff;
+ box-shadow:0 6px 22px #4a30431f;
  z-index:20;
 }
 
@@ -924,46 +554,27 @@ input{
 }
 
 #bubble:after{
-
  content:"";
-
  position:absolute;
-
  left:28px;
-
  bottom:-10px;
-
  width:19px;
-
  height:19px;
-
  background:#fff9fcf2;
-
- transform:
-  rotate(45deg);
-
- border-right:
- 1px solid #fff;
-
- border-bottom:
- 1px solid #fff;
+ transform:rotate(45deg);
+ border-right:1px solid #fff;
+ border-bottom:1px solid #fff;
 }
 
 .bubbleName{
-
  color:#966582;
-
  font-size:11px;
-
  font-weight:bold;
-
  margin-bottom:5px;
 }
 
 .bubbleText{
-
  font-size:13px;
-
  line-height:1.45;
 }
 
@@ -973,97 +584,59 @@ input{
 ===================================================== */
 
 .bottom{
-
  position:absolute;
-
  left:12px;
-
  right:12px;
-
  bottom:12px;
-
  z-index:25;
 }
 
 .dialogue{
-
  min-height:92px;
-
- padding:
- 13px 18px 21px;
-
- border:
- 1px solid #ffffffdd;
-
+ padding:13px 18px 21px;
+ border:1px solid #ffffffdd;
  border-radius:20px;
-
  background:#fffafdD9;
-
- backdrop-filter:
-  blur(13px);
-
- box-shadow:
- 0 7px 28px #472e411f;
-
+ backdrop-filter:blur(13px);
+ box-shadow:0 7px 28px #472e411f;
  cursor:pointer;
 }
 
 .speaker{
-
  color:#966582;
-
  font-size:12px;
-
  font-weight:bold;
-
  margin-bottom:6px;
 }
 
 .text{
-
  font-size:13.5px;
-
  line-height:1.52;
-
  min-height:45px;
 }
 
 .thought{
-
  background:#faf4fadd;
 }
 
 .thought .text{
-
  font-style:italic;
-
  color:#80657a;
 }
 
 .continue{
-
  position:absolute;
-
  right:17px;
-
  bottom:8px;
-
  color:#ad809b;
-
  font-size:11px;
-
- animation:
-  pulse 1.7s ease-in-out infinite;
+ animation:pulse 1.7s ease-in-out infinite;
 }
 
 @keyframes pulse{
-
  50%{
-
   opacity:.4;
-
-  transform:
-   translateX(3px);
+  transform:translateX(3px);
  }
 }
 
@@ -1073,61 +646,35 @@ input{
 ===================================================== */
 
 .choices{
-
  display:flex;
-
  flex-direction:column;
-
  gap:8px;
-
  margin-top:8px;
 }
 
 .choice{
-
  width:100%;
-
- padding:
- 10px 14px;
-
- border:
- 1px solid #c69bb880;
-
+ padding:10px 14px;
+ border:1px solid #c69bb880;
  border-radius:22px;
-
  background:#fffdfde8;
-
  color:#76516a;
-
  font-size:13px;
-
- box-shadow:
- 0 5px 18px #7e4c6e12;
+ box-shadow:0 5px 18px #7e4c6e12;
 }
 
 .choice:before{
-
  content:"♡";
-
  margin-right:8px;
-
  color:#bd8baa;
 }
 
 .restart{
-
  margin-top:8px;
-
- padding:
- 9px 20px;
-
- border:
- 1px solid #c69bb8;
-
+ padding:9px 20px;
+ border:1px solid #c69bb8;
  border-radius:22px;
-
  background:#fff;
-
  color:#76516a;
 }
 
@@ -1139,15 +686,10 @@ input{
 @media(min-width:700px){
 
  .bottom{
-
   width:650px;
-
   left:50%;
-
   right:auto;
-
-  transform:
-   translateX(-50%);
+  transform:translateX(-50%);
  }
 
 }
@@ -1155,7 +697,6 @@ input{
 </style>
 
 </head>
-
 
 <body>
 
@@ -1168,9 +709,7 @@ input{
 
  <div class="startContent">
 
-  <div class="heart">
-   ♡
-  </div>
+  <div class="heart">♡</div>
 
   <div class="logo">
    Doce Destino
@@ -1192,19 +731,15 @@ input{
 </div>
 
 
-
 <!-- =====================================================
      JOGO
 ===================================================== -->
 
 <div id="game">
 
-
  <div class="scene">
 
-
   <div id="cafe"></div>
-
 
   <div id="university"></div>
 
@@ -1213,8 +748,15 @@ input{
 
   <div id="childe">
 
+   <!-- DUAS CAMADAS PARA CROSSFADE -->
+
    <img
-    id="childeImg"
+    id="childeImgA"
+    alt="Childe"
+   >
+
+   <img
+    id="childeImgB"
     alt="Childe"
    >
 
@@ -1247,15 +789,11 @@ input{
  </div>
 
 
-
  <!-- ===================================================
       HUD
  =================================================== -->
 
  <div class="hud">
-
-
-  <!-- JOGADORA -->
 
   <div
    class="playerCard"
@@ -1284,9 +822,6 @@ input{
   </div>
 
 
-
-  <!-- AFINIDADE -->
-
   <div
    class="affinity"
    id="affinity"
@@ -1313,20 +848,17 @@ input{
 
   </div>
 
-
  </div>
 
 
-
  <!-- ===================================================
-      MENU DA JOGADORA
+      MENU
  =================================================== -->
 
  <div
   id="playerMenu"
   aria-hidden="true"
  >
-
 
   <div class="menuHeader">
 
@@ -1352,11 +884,8 @@ input{
   </div>
 
 
-
   <div class="menuItems">
 
-
-   <!-- HORÁRIO -->
 
    <div class="menuClock">
 
@@ -1389,9 +918,6 @@ input{
    </div>
 
 
-
-   <!-- MÚSICA -->
-
    <button
     class="menuItem"
     id="musicMenuButton"
@@ -1423,9 +949,6 @@ input{
    </button>
 
 
-
-   <!-- LOJA -->
-
    <button
     class="menuItem disabled"
     type="button"
@@ -1451,9 +974,6 @@ input{
    </button>
 
 
-
-   <!-- GUARDA-ROUPA -->
-
    <button
     class="menuItem disabled"
     type="button"
@@ -1478,11 +998,9 @@ input{
 
    </button>
 
-
   </div>
 
  </div>
-
 
 
  <!-- ===================================================
@@ -1490,7 +1008,6 @@ input{
  =================================================== -->
 
  <div class="bottom">
-
 
   <div
    class="dialogue"
@@ -1522,19 +1039,16 @@ input{
    id="choices"
   ></div>
 
-
  </div>
 
-
 </div>
-
 
 
 <script>
 
 
 /* =====================================================
-   ARQUIVOS DOS PERSONAGENS
+   SPRITES
 ===================================================== */
 
 const sprites={
@@ -1549,69 +1063,34 @@ const sprites={
 
 
 /* =====================================================
-   PRÉ-CARREGAMENTO DOS SPRITES
+   PRÉ-CARREGAMENTO
 ===================================================== */
 
-/*
-   O jogo carrega os sprites do Childe
-   assim que a página abre.
-
-   Dessa forma, quando a história chegar
-   à primeira fala dele, a imagem já estará
-   carregada e pronta para aparecer.
-*/
-
 const spriteCache={};
-
 
 function preloadSprites(){
 
  Object.entries(sprites).forEach(
   ([expression,src])=>{
 
-   const img=
-    new Image();
+   const img=new Image();
 
-   /*
-    * Carregamento assíncrono da imagem.
-    */
+   img.decoding="async";
 
-   img.decoding=
-    "async";
+   img.src=src;
 
-   img.src=
-    src;
+   spriteCache[expression]=img;
 
-   spriteCache[expression]=
-    img;
+   if(typeof img.decode==="function"){
 
-
-   /*
-    * Se o navegador oferecer decode(),
-    * pedimos para ele preparar a imagem
-    * antes de ela aparecer na tela.
-    */
-
-   if(
-    typeof img.decode===
-    "function"
-   ){
-
-    img.decode()
-     .catch(
-      ()=>{}
-     );
+    img.decode().catch(()=>{});
 
    }
 
   }
 );
 
-
-/*
-   Inicia o pré-carregamento
-   imediatamente.
-*/
+}
 
 preloadSprites();
 
@@ -1658,21 +1137,13 @@ const backgrounds={
 const memory={
 
  affinity:0,
-
  gentil:false,
-
  provocadora:false,
-
  distancia:false,
-
  hour:0,
-
  period:"night",
-
  place:"cafe",
-
  playerName:"Você",
-
  music:true
 
 };
@@ -1682,102 +1153,185 @@ const memory={
    ELEMENTOS
 ===================================================== */
 
-const $=
- id=>document.getElementById(id);
+const $=id=>document.getElementById(id);
 
+const startScreen=$("startScreen");
+const game=$("game");
+const startButton=$("startButton");
 
-const startScreen=
- $("startScreen");
+const cafe=$("cafe");
+const university=$("university");
 
-const game=
- $("game");
+const childe=$("childe");
 
-const startButton=
- $("startButton");
+const childeImgA=$("childeImgA");
+const childeImgB=$("childeImgB");
 
+const bubble=$("bubble");
+const bubbleName=$("bubbleName");
+const bubbleText=$("bubbleText");
 
-const cafe=
- $("cafe");
+const dialogue=$("dialogue");
+const speaker=$("speaker");
+const text=$("text");
 
-const university=
- $("university");
+const choices=$("choices");
+const continueText=$("continue");
 
+const affinityValue=$("affinityValue");
 
-const childe=
- $("childe");
+const clockIcon=$("menuClockIcon");
+const clockTime=$("menuClockValue");
 
-const childeImg=
- $("childeImg");
+const playerCard=$("playerCard");
+const playerMenu=$("playerMenu");
 
+const playerName=$("playerName");
+const menuPlayerName=$("menuPlayerName");
 
-const bubble=
- $("bubble");
+const musicMenuButton=$("musicMenuButton");
+const musicMenuSubtitle=$("musicMenuSubtitle");
 
-const bubbleName=
- $("bubbleName");
-
-const bubbleText=
- $("bubbleText");
-
-
-const dialogue=
- $("dialogue");
-
-const speaker=
- $("speaker");
-
-const text=
- $("text");
-
-
-const choices=
- $("choices");
-
-const continueText=
- $("continue");
-
-
-const affinityValue=
- $("affinityValue");
-
-
-const clockIcon=
- $("menuClockIcon");
-
-const clockTime=
- $("menuClockValue");
-
-
-const playerCard=
- $("playerCard");
-
-const playerMenu=
- $("playerMenu");
-
-
-const playerName=
- $("playerName");
-
-const menuPlayerName=
- $("menuPlayerName");
-
-
-const musicMenuButton=
- $("musicMenuButton");
-
-const musicMenuTitle=
- $("musicMenuTitle");
-
-const musicMenuSubtitle=
- $("musicMenuSubtitle");
-
-
-const timeFade=
- $("timeFade");
+const timeFade=$("timeFade");
 
 
 /* =====================================================
-   PERÍODO DO DIA
+   CONTROLE DO CROSSFADE
+===================================================== */
+
+let activeChildeLayer=null;
+
+
+/*
+   Mostra o Childe pela primeira vez.
+*/
+
+function showChilde(expression="franzindo"){
+
+ const selected=
+  spriteCache[expression]||
+  spriteCache.franzindo;
+
+
+ if(!selected)
+  return;
+
+
+ /*
+   Se ainda não existe nenhuma camada ativa,
+   usamos a primeira diretamente.
+ */
+
+ if(!activeChildeLayer){
+
+  childeImgA.src=selected.src;
+
+  childeImgA.classList.add("active");
+
+  activeChildeLayer="A";
+
+  childe.classList.add("visible");
+
+  return;
+
+ }
+
+
+ /*
+   Descobrimos qual camada está visível
+   e usamos a outra para fazer o fade.
+ */
+
+ const nextLayer=
+  activeChildeLayer==="A"
+   ? childeImgB
+   : childeImgA;
+
+ const currentLayer=
+  activeChildeLayer==="A"
+   ? childeImgA
+   : childeImgB;
+
+
+ /*
+   Se for exatamente a mesma imagem,
+   não precisamos fazer troca.
+ */
+
+ if(currentLayer.src===selected.src){
+
+  childe.classList.add("visible");
+
+  return;
+
+ }
+
+
+ /*
+   Coloca a nova expressão na camada
+   que está escondida.
+ */
+
+ nextLayer.src=
+  selected.src;
+
+
+ /*
+   Garante que ela comece invisível.
+ */
+
+ nextLayer.classList.remove("active");
+
+
+ /*
+   Força o navegador a reconhecer
+   o estado inicial antes do fade.
+ */
+
+ void nextLayer.offsetWidth;
+
+
+ /*
+   A nova expressão aparece
+   enquanto a antiga desaparece.
+ */
+
+ nextLayer.classList.add("active");
+
+ currentLayer.classList.remove("active");
+
+
+ activeChildeLayer=
+  activeChildeLayer==="A"
+   ? "B"
+   : "A";
+
+
+ childe.classList.add("visible");
+
+}
+
+
+/*
+   Esconde as duas camadas.
+*/
+
+function hideChilde(){
+
+ childe.classList.remove("visible");
+
+ childeImgA.classList.remove("active");
+ childeImgB.classList.remove("active");
+
+ bubble.classList.remove("visible");
+
+ activeChildeLayer=null;
+
+}
+
+
+/* =====================================================
+   PERÍODO
 ===================================================== */
 
 function getPeriod(hour){
@@ -1794,7 +1348,7 @@ function getPeriod(hour){
 
 
 /* =====================================================
-   ÍCONE DO PERÍODO
+   ÍCONE
 ===================================================== */
 
 function getPeriodIcon(period){
@@ -1811,7 +1365,7 @@ function getPeriodIcon(period){
 
 
 /* =====================================================
-   COR DA INTERFACE DO NAVEGADOR
+   TEMA DO NAVEGADOR
 ===================================================== */
 
 function updateBrowserTheme(period){
@@ -1824,25 +1378,21 @@ function updateBrowserTheme(period){
  if(!meta)
   return;
 
-
  if(period==="morning"){
 
-  meta.content=
-   "#ead7e3";
+  meta.content="#ead7e3";
 
  }
 
  else if(period==="afternoon"){
 
-  meta.content=
-   "#e6d5d0";
+  meta.content="#e6d5d0";
 
  }
 
  else{
 
-  meta.content=
-   "#282137";
+  meta.content="#282137";
 
  }
 
@@ -1850,71 +1400,38 @@ function updateBrowserTheme(period){
 
 
 /* =====================================================
-   RELÓGIO REAL
+   RELÓGIO
 ===================================================== */
 
 function updateRealClock(){
 
- const now=
-  new Date();
+ const now=new Date();
 
+ const hours=now.getHours();
+ const minutes=now.getMinutes();
 
- const hours=
-  now.getHours();
+ const newPeriod=getPeriod(hours);
+ const oldPeriod=memory.period;
 
- const minutes=
-  now.getMinutes();
-
-
- const newPeriod=
-  getPeriod(hours);
-
- const oldPeriod=
-  memory.period;
-
-
- memory.hour=
-  hours;
-
- memory.period=
-  newPeriod;
-
+ memory.hour=hours;
+ memory.period=newPeriod;
 
  const formattedTime=
-
   String(hours).padStart(2,"0")
-  +
-  ":"
-  +
-  String(minutes).padStart(2,"0");
-
+  +":"
+  +String(minutes).padStart(2,"0");
 
  clockTime.textContent=
   formattedTime;
 
-
  clockIcon.textContent=
-  getPeriodIcon(
-   newPeriod
-  );
+  getPeriodIcon(newPeriod);
 
-
- /* Safari / navegador */
-
- updateBrowserTheme(
-  newPeriod
- );
-
-
- /* muda cenário somente quando
-    muda manhã/tarde/noite */
+ updateBrowserTheme(newPeriod);
 
  if(
-
   newPeriod!==oldPeriod &&
-
   game.style.display==="block"
-
  ){
 
   changeBackground(
@@ -1931,37 +1448,26 @@ function updateRealClock(){
    MUDAR FUNDO
 ===================================================== */
 
-function changeBackground(
- place,
- period
-){
+function changeBackground(place,period){
 
  const image=
   backgrounds[place][period];
 
-
  if(!image)
   return;
 
-
- timeFade.classList.add(
-  "active"
- );
-
+ timeFade.classList.add("active");
 
  setTimeout(()=>{
-
 
   if(place==="cafe"){
 
    cafe.style.backgroundImage=
     `url("${image}")`;
 
-   cafe.style.display=
-    "block";
+   cafe.style.display="block";
 
-   university.style.display=
-    "none";
+   university.style.display="none";
 
   }
 
@@ -1970,23 +1476,17 @@ function changeBackground(
    university.style.backgroundImage=
     `url("${image}")`;
 
-   university.style.display=
-    "block";
+   university.style.display="block";
 
-   cafe.style.display=
-    "none";
+   cafe.style.display="none";
 
   }
 
-
   setTimeout(()=>{
 
-   timeFade.classList.remove(
-    "active"
-   );
+   timeFade.classList.remove("active");
 
   },180);
-
 
  },420);
 
@@ -1999,24 +1499,19 @@ function changeBackground(
 
 function applyPlace(place){
 
- memory.place=
-  place;
-
+ memory.place=place;
 
  const image=
   backgrounds[place][memory.period];
-
 
  if(place==="cafe"){
 
   cafe.style.backgroundImage=
    `url("${image}")`;
 
-  cafe.style.display=
-   "block";
+  cafe.style.display="block";
 
-  university.style.display=
-   "none";
+  university.style.display="none";
 
  }
 
@@ -2025,74 +1520,11 @@ function applyPlace(place){
   university.style.backgroundImage=
    `url("${image}")`;
 
-  university.style.display=
-   "block";
+  university.style.display="block";
 
-  cafe.style.display=
-   "none";
+  cafe.style.display="none";
 
  }
-
-}
-
-
-/* =====================================================
-   CHILDE
-===================================================== */
-
-function showChilde(
- expression="franzindo"
-){
-
- /*
-    Pega o sprite que já foi
-    pré-carregado.
- */
-
- const selected=
-  spriteCache[expression]||
-  spriteCache.franzindo;
-
-
- if(selected){
-
-  childeImg.src=
-   selected.src;
-
- }
-
- else{
-
-  /*
-     Fallback caso o cache ainda
-     não esteja disponível.
-  */
-
-  childeImg.src=
-   sprites[expression]||
-   sprites.franzindo;
-
- }
-
-
- childe.classList.add(
-  "visible"
- );
-
-}
-
-
-function hideChilde(){
-
- childe.classList.remove(
-  "visible"
- );
-
- bubble.classList.remove(
-  "visible"
- );
-
- childeImg.src="";
 
 }
 
@@ -2101,29 +1533,19 @@ function hideChilde(){
    BALÃO
 ===================================================== */
 
-function showBubble(
- name,
- msg
-){
+function showBubble(name,msg){
 
- bubbleName.textContent=
-  name;
+ bubbleName.textContent=name;
 
- bubbleText.textContent=
-  msg;
+ bubbleText.textContent=msg;
 
- bubble.classList.add(
-  "visible"
- );
+ bubble.classList.add("visible");
 
 }
 
-
 function hideBubble(){
 
- bubble.classList.remove(
-  "visible"
- );
+ bubble.classList.remove("visible");
 
 }
 
@@ -2141,7 +1563,7 @@ function updateAffinity(){
 
 
 /* =====================================================
-   NOME DA JOGADORA
+   NOME
 ===================================================== */
 
 function updatePlayerName(){
@@ -2156,30 +1578,24 @@ function updatePlayerName(){
 
 
 /* =====================================================
-   MENU DA JOGADORA
+   MENU
 ===================================================== */
 
 function togglePlayerMenu(){
 
  const open=
-  playerMenu.classList.toggle(
-   "visible"
-  );
-
+  playerMenu.classList.toggle("visible");
 
  playerMenu.setAttribute(
   "aria-hidden",
-  open ? "false" : "true"
+  open?"false":"true"
  );
 
 }
 
-
 function closePlayerMenu(){
 
- playerMenu.classList.remove(
-  "visible"
- );
+ playerMenu.classList.remove("visible");
 
  playerMenu.setAttribute(
   "aria-hidden",
@@ -2187,7 +1603,6 @@ function closePlayerMenu(){
  );
 
 }
-
 
 playerCard.addEventListener(
  "click",
@@ -2201,32 +1616,14 @@ playerCard.addEventListener(
 );
 
 
-/* =====================================================
-   FECHAR MENU AO TOCAR FORA
-===================================================== */
-
 document.addEventListener(
  "click",
  e=>{
 
   if(
-
-   playerMenu.classList.contains(
-    "visible"
-   )
-
-   &&
-
-   !playerMenu.contains(
-    e.target
-   )
-
-   &&
-
-   !playerCard.contains(
-    e.target
-   )
-
+   playerMenu.classList.contains("visible") &&
+   !playerMenu.contains(e.target) &&
+   !playerCard.contains(e.target)
   ){
 
    closePlayerMenu();
@@ -2244,21 +1641,17 @@ function updateMusicMenu(){
 
  if(memory.music){
 
-  musicMenuSubtitle.textContent=
-   "Ativada";
+  musicMenuSubtitle.textContent="Ativada";
 
-  musicMenuButton.style.opacity=
-   "1";
+  musicMenuButton.style.opacity="1";
 
  }
 
  else{
 
-  musicMenuSubtitle.textContent=
-   "Desativada";
+  musicMenuSubtitle.textContent="Desativada";
 
-  musicMenuButton.style.opacity=
-   ".65";
+  musicMenuButton.style.opacity=".65";
 
  }
 
@@ -2271,8 +1664,7 @@ musicMenuButton.addEventListener(
 
   e.stopPropagation();
 
-  memory.music=
-   !memory.music;
+  memory.music=!memory.music;
 
   updateMusicMenu();
 
@@ -2286,525 +1678,273 @@ musicMenuButton.addEventListener(
 
 const story={
 
-
 start:{
-
  type:"narration",
-
- text:
- "Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
-
+ text:"Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
  next:"thought1"
-
 },
-
 
 thought1:{
-
  type:"thought",
-
- text:
- "Ah... o que eu vou fazer agora? Por onde eu começo?",
-
+ text:"Ah... o que eu vou fazer agora? Por onde eu começo?",
  next:"lost"
-
 },
-
 
 lost:{
-
  type:"narration",
-
- text:
- "Com uma pequena mala ao lado, você percebe que está completamente perdida.",
-
+ text:"Com uma pequena mala ao lado, você percebe que está completamente perdida.",
  next:"childe1"
-
 },
-
 
 childe1:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Você está procurando alguma coisa?",
-
+ text:"Você está procurando alguma coisa?",
  expression:"franzindo",
-
  next:"childe2"
-
 },
-
 
 childe2:{
-
  type:"dialogue",
-
  speaker:"Você",
-
- text:
- "Estou procurando a Universidade Aurora.",
-
+ text:"Estou procurando a Universidade Aurora.",
  next:"childe3"
-
 },
-
 
 childe3:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Aurora? É um pouco difícil de achar daqui.",
-
+ text:"Aurora? É um pouco difícil de achar daqui.",
  expression:"alegre",
-
  next:"choice1"
-
 },
 
-
 choice1:{
-
  type:"choice",
-
- text:
- "Como você reage?",
-
+ text:"Como você reage?",
  choices:[
 
-
   {
-
-   text:
-   "Peço ajuda com educação.",
-
+   text:"Peço ajuda com educação.",
    action(){
 
     memory.gentil=true;
-
     memory.affinity+=2;
 
-    showChilde(
-     "alegre"
-    );
-
-    showNode(
-     "help"
-    );
+    showChilde("alegre");
+    showNode("help");
 
    }
-
   },
 
-
   {
-
-   text:
-   "Brinco que consigo me virar sozinha.",
-
+   text:"Brinco que consigo me virar sozinha.",
    action(){
 
     memory.provocadora=true;
-
     memory.affinity++;
 
-    showChilde(
-     "alegre"
-    );
-
-    showNode(
-     "joke"
-    );
+    showChilde("alegre");
+    showNode("joke");
 
    }
-
   },
 
-
   {
-
-   text:
-   "Agradeço, mas digo que consigo me virar.",
-
+   text:"Agradeço, mas digo que consigo me virar.",
    action(){
 
     memory.distancia=true;
 
-    showChilde(
-     "franzindo"
-    );
-
-    showNode(
-     "distance"
-    );
+    showChilde("franzindo");
+    showNode("distance");
 
    }
-
   }
 
  ]
-
 },
-
 
 help:{
-
  type:"dialogue",
-
  speaker:"Você",
-
- text:
- "Você poderia me indicar o caminho?",
-
+ text:"Você poderia me indicar o caminho?",
  next:"help2"
-
 },
-
 
 help2:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Claro. Eu estava indo naquela direção mesmo.",
-
+ text:"Claro. Eu estava indo naquela direção mesmo.",
  expression:"alegre",
-
  next:"walk"
-
 },
-
 
 joke:{
-
  type:"dialogue",
-
  speaker:"Você",
-
- text:
- "Eu acho que consigo encontrar sozinha.",
-
+ text:"Eu acho que consigo encontrar sozinha.",
  next:"joke2"
-
 },
-
 
 joke2:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Tem certeza? Você não parece muito convencida.",
-
+ text:"Tem certeza? Você não parece muito convencida.",
  expression:"alegre",
-
  next:"walk"
-
 },
-
 
 distance:{
-
  type:"dialogue",
-
  speaker:"Você",
-
- text:
- "Obrigada. Vou tentar encontrar.",
-
+ text:"Obrigada. Vou tentar encontrar.",
  next:"distance2"
-
 },
-
 
 distance2:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Tudo bem. Boa sorte, então.",
-
+ text:"Tudo bem. Boa sorte, então.",
  expression:"franzindo",
-
  next:"walk"
-
 },
-
 
 walk:{
-
  type:"narration",
-
- text:
- "Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
-
+ text:"Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
  next:"name"
-
 },
-
 
 name:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Aliás... acho que ainda não perguntei seu nome.",
-
+ text:"Aliás... acho que ainda não perguntei seu nome.",
  expression:"alegre",
-
  next:"name2"
-
 },
-
 
 name2:{
-
  type:"dialogue",
-
  speaker:"Você",
-
- text:
- "Meu nome é seu nome.",
-
+ text:"Meu nome é seu nome.",
  next:"name3"
-
 },
-
 
 name3:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Ah... e eu nem me apresentei.",
-
+ text:"Ah... e eu nem me apresentei.",
  expression:"franzindo",
-
  next:"name4"
-
 },
-
 
 name4:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Eu sou Childe.",
-
+ text:"Eu sou Childe.",
  expression:"alegre",
-
  next:"name5"
-
 },
-
 
 name5:{
-
  type:"dialogue",
-
  speaker:"Childe",
-
- text:
- "Prazer em te conhecer.",
-
+ text:"Prazer em te conhecer.",
  expression:"alegre",
-
  next:"separate"
-
 },
-
 
 separate:{
-
  type:"narration",
-
- text:
- "Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
-
+ text:"Depois de se despedirem, Childe segue pela rua e desaparece entre as pessoas.",
  hide:true,
-
  next:"thought2"
-
 },
-
 
 thought2:{
-
  type:"thought",
-
- text:
- "Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
-
+ text:"Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
  next:"arrival"
-
 },
-
 
 arrival:{
-
  type:"narration",
-
- text:
- "No dia seguinte, você finalmente chega à Universidade Aurora.",
-
+ text:"No dia seguinte, você finalmente chega à Universidade Aurora.",
  place:"university",
-
  hide:true,
-
  next:"arrival2"
-
 },
-
 
 arrival2:{
-
  type:"narration",
-
- text:
- "O campus é ainda mais bonito do que nas fotos.",
-
+ text:"O campus é ainda mais bonito do que nas fotos.",
  next:"thought3"
-
 },
-
 
 thought3:{
-
  type:"thought",
-
- text:
- "Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
-
+ text:"Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
  next:"choice2"
-
 },
 
-
 choice2:{
-
  type:"choice",
-
- text:
- "O que você decide fazer?",
-
+ text:"O que você decide fazer?",
  choices:[
 
-
   {
-
-   text:
-   "Vou procurar a secretaria.",
-
+   text:"Vou procurar a secretaria.",
    action(){
 
     memory.affinity++;
-
-    showNode(
-     "secretary"
-    );
+    showNode("secretary");
 
    }
-
   },
 
-
   {
-
-   text:
-   "Vou procurar minha sala sozinha.",
-
+   text:"Vou procurar minha sala sozinha.",
    action(){
 
-    showNode(
-     "alone"
-    );
+    showNode("alone");
 
    }
-
   },
 
-
   {
-
-   text:
-   "Observo os estudantes ao meu redor.",
-
+   text:"Observo os estudantes ao meu redor.",
    action(){
 
     memory.affinity++;
-
-    showNode(
-     "students"
-    );
+    showNode("students");
 
    }
-
   }
 
  ]
-
 },
-
 
 secretary:{
-
  type:"narration",
-
- text:
- "Você segue as placas espalhadas pelo campus em busca da secretaria.",
-
+ text:"Você segue as placas espalhadas pelo campus em busca da secretaria.",
  next:"future"
-
 },
-
 
 alone:{
-
  type:"narration",
-
- text:
- "Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
-
+ text:"Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
  next:"future"
-
 },
-
 
 students:{
-
  type:"narration",
-
- text:
- "Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
-
+ text:"Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
  next:"future"
-
 },
 
-
 future:{
-
  type:"branch",
-
  condition(){
 
   if(memory.provocadora)
@@ -2816,81 +1956,43 @@ future:{
   return"neutral";
 
  }
-
 },
-
 
 newA:{
-
  type:"narration",
-
- text:
- "Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
-
+ text:"Enquanto observa o campus, uma voz desconhecida chama sua atenção.",
  next:"newA2"
-
 },
-
 
 newA2:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Você está procurando a sala de alguma turma?",
-
+ text:"Você está procurando a sala de alguma turma?",
  next:"end"
-
 },
-
 
 newB:{
-
  type:"narration",
-
- text:
- "Ao dobrar uma esquina, você quase esbarra em alguém.",
-
+ text:"Ao dobrar uma esquina, você quase esbarra em alguém.",
  next:"newB2"
-
 },
-
 
 newB2:{
-
  type:"dialogue",
-
  speaker:"???",
-
- text:
- "Você está bem?",
-
+ text:"Você está bem?",
  next:"end"
-
 },
-
 
 neutral:{
-
  type:"narration",
-
- text:
- "Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
-
+ text:"Você continua pelo campus, sem saber ainda que algumas das pessoas que cruzaram seu caminho terão um papel importante na sua história.",
  next:"end"
-
 },
 
-
 end:{
-
  type:"end",
-
- text:
- "EPISÓDIO 1 — Um encontro inesperado"
-
+ text:"EPISÓDIO 1 — Um encontro inesperado"
 }
 
 };
@@ -2905,37 +2007,24 @@ let current=null;
 
 function showNode(id){
 
- const node=
-  story[id];
-
+ const node=story[id];
 
  if(!node)
   return;
 
-
- current=
-  node;
-
+ current=node;
 
  choices.innerHTML="";
 
+ continueText.style.display="none";
 
- continueText.style.display=
-  "none";
-
-
- /* LOCAL */
 
  if(node.place){
 
-  applyPlace(
-   node.place
-  );
+  applyPlace(node.place);
 
  }
 
-
- /* CHILDE */
 
  if(node.hide)
   hideChilde();
@@ -2943,76 +2032,55 @@ function showNode(id){
 
  if(node.expression){
 
-  showChilde(
-   node.expression
-  );
+  showChilde(node.expression);
 
  }
 
-
- /* NARRAÇÃO */
 
  if(node.type==="narration"){
 
-  dialogue.classList.remove(
-   "thought"
-  );
+  dialogue.classList.remove("thought");
 
   speaker.textContent="";
 
-  text.textContent=
-   node.text;
+  text.textContent=node.text;
 
   hideBubble();
 
-  continueText.style.display=
-   "block";
+  continueText.style.display="block";
 
   return;
 
  }
 
-
- /* PENSAMENTO */
 
  if(node.type==="thought"){
 
-  dialogue.classList.add(
-   "thought"
-  );
+  dialogue.classList.add("thought");
 
-  speaker.textContent=
-   "Pensamento";
+  speaker.textContent="Pensamento";
 
-  text.textContent=
-   node.text;
+  text.textContent=node.text;
 
   hideBubble();
 
-  continueText.style.display=
-   "block";
+  continueText.style.display="block";
 
   return;
 
  }
 
 
- /* DIÁLOGO */
-
  if(node.type==="dialogue"){
 
-  dialogue.classList.remove(
-   "thought"
-  );
+  dialogue.classList.remove("thought");
 
 
   if(node.speaker==="Você"){
 
-   speaker.textContent=
-    "Você";
+   speaker.textContent="Você";
 
-   text.textContent=
-    node.text;
+   text.textContent=node.text;
 
    hideBubble();
 
@@ -3024,62 +2092,43 @@ function showNode(id){
 
    text.textContent="";
 
-
    showChilde(
-    node.expression||
-    "franzindo"
+    node.expression||"franzindo"
    );
 
-
    showBubble(
-    node.speaker||
-    "???",
-
+    node.speaker||"???",
     node.text
    );
 
   }
 
 
-  continueText.style.display=
-   "block";
+  continueText.style.display="block";
 
   return;
 
  }
 
 
- /* ESCOLHAS */
-
  if(node.type==="choice"){
 
-  dialogue.classList.remove(
-   "thought"
-  );
+  dialogue.classList.remove("thought");
 
   speaker.textContent="";
 
-  text.textContent=
-   node.text;
+  text.textContent=node.text;
 
   hideBubble();
 
 
   node.choices.forEach(c=>{
 
-   const b=
-    document.createElement(
-     "button"
-    );
+   const b=document.createElement("button");
 
+   b.className="choice";
 
-   b.className=
-    "choice";
-
-
-   b.textContent=
-    c.text;
-
+   b.textContent=c.text;
 
    b.onclick=e=>{
 
@@ -3091,18 +2140,14 @@ function showNode(id){
 
    };
 
-
    choices.appendChild(b);
 
   });
-
 
   return;
 
  }
 
-
- /* RAMIFICAÇÃO */
 
  if(node.type==="branch"){
 
@@ -3115,35 +2160,22 @@ function showNode(id){
  }
 
 
- /* FINAL */
-
  if(node.type==="end"){
 
   hideChilde();
 
   speaker.textContent="";
 
-  text.textContent=
-   node.text;
+  text.textContent=node.text;
 
 
-  const b=
-   document.createElement(
-    "button"
-   );
+  const b=document.createElement("button");
 
+  b.className="restart";
 
-  b.className=
-   "restart";
+  b.textContent="Recomeçar";
 
-
-  b.textContent=
-   "Recomeçar";
-
-
-  b.onclick=
-   reset;
-
+  b.onclick=reset;
 
   choices.appendChild(b);
 
@@ -3161,15 +2193,10 @@ dialogue.onclick=()=>{
  if(!current)
   return;
 
-
  if(
-
-  current.type==="narration"||
-
-  current.type==="dialogue"||
-
+  current.type==="narration" ||
+  current.type==="dialogue" ||
   current.type==="thought"
-
  ){
 
   if(current.next){
@@ -3192,57 +2219,33 @@ dialogue.onclick=()=>{
 function reset(){
 
  memory.affinity=0;
-
  memory.gentil=false;
-
  memory.provocadora=false;
-
  memory.distancia=false;
+ memory.playerName="Você";
+ memory.music=true;
 
- memory.playerName=
-  "Você";
+ const now=new Date();
 
- memory.music=
-  true;
-
-
- const now=
-  new Date();
-
-
- memory.hour=
-  now.getHours();
-
+ memory.hour=now.getHours();
 
  memory.period=
-  getPeriod(
-   now.getHours()
-  );
+  getPeriod(now.getHours());
 
-
- memory.place=
-  "cafe";
-
+ memory.place="cafe";
 
  updatePlayerName();
-
  updateMusicMenu();
 
- applyPlace(
-  "cafe"
- );
+ applyPlace("cafe");
 
  updateRealClock();
-
  updateAffinity();
 
  hideChilde();
-
  closePlayerMenu();
 
- showNode(
-  "start"
- );
+ showNode("start");
 
 }
 
@@ -3253,46 +2256,29 @@ function reset(){
 
 startButton.onclick=()=>{
 
- startScreen.style.display=
-  "none";
+ startScreen.style.display="none";
 
- game.style.display=
-  "block";
+ game.style.display="block";
 
 
- const now=
-  new Date();
+ const now=new Date();
 
-
- memory.hour=
-  now.getHours();
-
+ memory.hour=now.getHours();
 
  memory.period=
-  getPeriod(
-   now.getHours()
-  );
+  getPeriod(now.getHours());
 
-
- memory.place=
-  "cafe";
-
+ memory.place="cafe";
 
  updatePlayerName();
-
  updateMusicMenu();
 
- applyPlace(
-  "cafe"
- );
+ applyPlace("cafe");
 
  updateRealClock();
-
  updateAffinity();
 
- showNode(
-  "start"
- );
+ showNode("start");
 
 };
 
@@ -3303,10 +2289,7 @@ startButton.onclick=()=>{
 
 setInterval(()=>{
 
- if(
-  game.style.display===
-  "block"
- ){
+ if(game.style.display==="block"){
 
   updateRealClock();
 
@@ -3324,12 +2307,8 @@ document.addEventListener(
  ()=>{
 
   if(
-
    !document.hidden &&
-
-   game.style.display===
-   "block"
-
+   game.style.display==="block"
   ){
 
    updateRealClock();
