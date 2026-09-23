@@ -1,195 +1,585 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<meta
+ name="viewport"
+ content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+>
+
 <title>Doce Destino</title>
 
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
  box-sizing:border-box;
- -webkit-tap-highlight-color:transparent
+ -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
  margin:0;
  width:100%;
  height:100%;
  overflow:hidden;
- font-family:Georgia,"Times New Roman",serif;
+
+ font-family:
+ Georgia,
+ "Times New Roman",
+ serif;
+
  color:#4b3948;
- background:#f8edf5
+
+ background:#f8edf5;
 }
 
-button,input{
- font-family:inherit
+button,
+input{
+ font-family:inherit;
 }
 
-#startScreen,#game{
+
+/* =====================================================
+   TELAS
+===================================================== */
+
+#startScreen,
+#game{
  position:fixed;
  inset:0;
- overflow:hidden
+ overflow:hidden;
 }
 
 #startScreen{
  display:flex;
  align-items:center;
  justify-content:center;
+
  text-align:center;
- background:radial-gradient(circle,#fff,#f9e8f4 60%,#ead0e4)
+
+ background:
+ radial-gradient(
+  circle,
+  #ffffff 0%,
+  #f9e8f4 60%,
+  #ead0e4 100%
+ );
 }
 
 .startContent{
  width:88%;
- max-width:420px
+ max-width:420px;
 }
 
 .heart{
  font-size:34px;
- color:#c99ab9
+ color:#c99ab9;
+
+ text-shadow:
+ 0 2px 10px #c99ab955;
 }
 
 .logo{
  font-size:40px;
  letter-spacing:2px;
- color:#79536d
+ color:#79536d;
+
+ text-shadow:
+ 0 2px 8px #79536d18;
 }
 
 .subtitle{
  font-size:14px;
  color:#9b718d;
- margin:8px 0 40px
+ margin:8px 0 40px;
 }
 
 .startButton{
  padding:13px 30px;
+
  border:1px solid #c69bb8;
  border-radius:25px;
- background:#fff;
+
+ background:
+ linear-gradient(
+ 180deg,
+ #fff,
+ #f9edf5
+ );
+
  color:#76516a;
- box-shadow:0 5px 18px #7e4c6e18
+
+ box-shadow:
+ 0 5px 18px #7e4c6e18,
+ inset 0 1px 0 #ffffff;
 }
 
 #game{
- display:none
+ display:none;
 }
 
-/* =========================
+
+/* =====================================================
    CENÁRIOS
-========================= */
+===================================================== */
 
 .scene{
  position:absolute;
  inset:0;
- overflow:hidden
+
+ overflow:hidden;
 }
 
-#cafe,#university{
+#cafe,
+#university{
  position:absolute;
  inset:0;
+
  background-position:center;
  background-size:cover;
  background-repeat:no-repeat;
- transition:opacity .55s ease
+
+ transition:
+  opacity .55s ease;
 }
 
 #cafe{
- background-image:url("cafe-aurora-manha.png.PNG")
+ background-image:
+ url("cafe-aurora-manha.png.PNG");
 }
 
 #university{
  display:none;
- background-image:url("universidade-aurora.png.PNG")
+
+ background-image:
+ url("universidade-aurora.png.PNG");
 }
 
-/* =========================
-   TRANSIÇÃO
-========================= */
+
+/* =====================================================
+   TRANSIÇÃO DE HORÁRIO
+===================================================== */
 
 #timeFade{
  position:absolute;
  inset:0;
+
  z-index:40;
+
  background:#fff;
+
  opacity:0;
+
  pointer-events:none;
- transition:opacity .45s ease
+
+ transition:
+  opacity .45s ease;
 }
 
 #timeFade.active{
- opacity:1
+ opacity:1;
 }
 
-/* =========================
-   HUD
-========================= */
+
+/* =====================================================
+   HUD — NOVA INTERFACE
+===================================================== */
 
 .hud{
  position:absolute;
- top:15px;
- left:15px;
- right:15px;
+
+ top:14px;
+ left:14px;
+ right:14px;
 
  display:flex;
  justify-content:space-between;
+ align-items:flex-start;
+
+ z-index:30;
+
+ pointer-events:none;
+}
+
+
+/* -----------------------------------------------------
+   ESQUERDA — JOGADOR
+----------------------------------------------------- */
+
+.playerCard{
+
+ display:flex;
  align-items:center;
 
- z-index:30
+ gap:8px;
+
+ padding:5px 13px 5px 5px;
+
+ min-height:48px;
+
+ border-radius:28px;
+
+ background:
+ linear-gradient(
+ 135deg,
+ #fffdfef0,
+ #f7eaf3e8
+ );
+
+ border:1px solid #ffffff;
+
+ box-shadow:
+ 0 5px 18px #4a30431c,
+ inset 0 1px 0 #ffffff;
+
+ backdrop-filter:blur(12px);
+
+ color:#76516a;
+
+ position:relative;
+
+ overflow:hidden;
 }
+
+
+/* brilho delicado */
+
+.playerCard:before{
+
+ content:"";
+
+ position:absolute;
+
+ left:-20px;
+ top:-20px;
+
+ width:70px;
+ height:70px;
+
+ border-radius:50%;
+
+ background:#ffffff55;
+
+ pointer-events:none;
+}
+
+
+/* círculo do avatar */
+
+.avatar{
+
+ width:38px;
+ height:38px;
+
+ flex-shrink:0;
+
+ border-radius:50%;
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+
+ background:
+ linear-gradient(
+ 145deg,
+ #fff,
+ #f5e5ef
+ );
+
+ border:1px solid #d9b7cb;
+
+ color:#b17f9c;
+
+ font-size:20px;
+
+ box-shadow:
+ 0 2px 8px #76516a18,
+ inset 0 1px 2px #ffffff;
+
+ position:relative;
+ z-index:1;
+}
+
+.playerInfo{
+
+ display:flex;
+ flex-direction:column;
+
+ gap:1px;
+
+ position:relative;
+ z-index:1;
+}
+
+.playerMini{
+
+ font-size:9px;
+
+ letter-spacing:1.2px;
+
+ text-transform:uppercase;
+
+ color:#b08a9f;
+}
+
+.playerName{
+
+ font-size:13px;
+
+ color:#76516a;
+
+ font-weight:bold;
+}
+
+
+/* -----------------------------------------------------
+   DIREITA
+----------------------------------------------------- */
 
 .hudRight{
+
  display:flex;
+
  align-items:center;
- gap:7px
+
+ gap:6px;
+
+ pointer-events:auto;
 }
 
-.player,.affinity,.clock{
- background:#ffffff99;
- backdrop-filter:blur(8px);
- border:1px solid #ffffffbb;
- box-shadow:0 3px 14px #50324618;
- color:#76516a
-}
 
-.player{
+/* -----------------------------------------------------
+   MEDALHÃO DO RELÓGIO
+----------------------------------------------------- */
+
+.clock{
+
  display:flex;
  align-items:center;
- gap:8px;
+
+ gap:5px;
+
+ min-height:42px;
+
+ padding:6px 11px 6px 8px;
+
+ border-radius:23px;
+
+ background:
+ linear-gradient(
+ 145deg,
+ #fffdfef2,
+ #f7eaf3e8
+ );
+
+ border:1px solid #ffffff;
+
+ box-shadow:
+ 0 5px 18px #4a30431c,
+ inset 0 1px 0 #ffffff;
+
+ backdrop-filter:blur(12px);
+
+ color:#76516a;
+
+ font-size:12px;
+
+ white-space:nowrap;
+
+ position:relative;
+}
+
+
+/* círculo do horário */
+
+.clockIcon{
+
+ width:29px;
+ height:29px;
+
+ border-radius:50%;
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+
+ background:
+ linear-gradient(
+ 145deg,
+ #fff,
+ #f3e2ed
+ );
+
+ border:1px solid #d9b7cb;
+
+ box-shadow:
+ 0 2px 7px #76516a16,
+ inset 0 1px 2px #ffffff;
+
+ font-size:13px;
+}
+
+.clockTime{
+
+ font-size:12px;
+
+ letter-spacing:.2px;
+
+ color:#76516a;
+}
+
+
+/* -----------------------------------------------------
+   AFINIDADE
+----------------------------------------------------- */
+
+.affinity{
+
+ display:flex;
+ align-items:center;
+
+ gap:6px;
+
+ min-height:42px;
 
  padding:6px 11px 6px 7px;
 
- border-radius:30px;
- font-size:13px
+ border-radius:23px;
+
+ background:
+ linear-gradient(
+ 145deg,
+ #fffdfef2,
+ #f7eaf3e8
+ );
+
+ border:1px solid #ffffff;
+
+ box-shadow:
+ 0 5px 18px #4a30431c,
+ inset 0 1px 0 #ffffff;
+
+ backdrop-filter:blur(12px);
+
+ color:#76516a;
 }
 
-.avatar{
- width:32px;
- height:32px;
- border-radius:50%;
- background:#fff;
+
+/* coração */
+
+.affinityHeart{
+
+ width:29px;
+ height:29px;
 
  display:flex;
  align-items:center;
- justify-content:center
+ justify-content:center;
+
+ border-radius:50%;
+
+ background:
+ linear-gradient(
+ 145deg,
+ #fff,
+ #f3e2ed
+ );
+
+ border:1px solid #d9b7cb;
+
+ color:#b77799;
+
+ font-size:15px;
+
+ box-shadow:
+ 0 2px 7px #76516a16,
+ inset 0 1px 2px #ffffff;
 }
 
-.affinity{
- padding:8px 12px;
- border-radius:20px;
- font-size:12px
+.affinityInfo{
+
+ display:flex;
+ flex-direction:column;
+
+ gap:1px;
 }
 
-.clock{
- padding:8px 11px;
- border-radius:20px;
- font-size:12px
+.affinityMini{
+
+ font-size:8px;
+
+ letter-spacing:1px;
+
+ text-transform:uppercase;
+
+ color:#b08a9f;
 }
 
-/* =========================
+.affinityValue{
+
+ font-size:12px;
+
+ color:#76516a;
+
+ font-weight:bold;
+}
+
+
+/* =====================================================
+   MÚSICA
+===================================================== */
+
+.sound{
+
+ position:absolute;
+
+ right:15px;
+ top:69px;
+
+ z-index:35;
+
+ width:37px;
+ height:37px;
+
+ border-radius:50%;
+
+ border:1px solid #ffffff;
+
+ background:
+ linear-gradient(
+ 145deg,
+ #fffdfef0,
+ #f7eaf3e8
+ );
+
+ color:#9b6d88;
+
+ box-shadow:
+ 0 5px 16px #4a30431c,
+ inset 0 1px 0 #ffffff;
+
+ backdrop-filter:blur(10px);
+
+ font-size:14px;
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+
+/* =====================================================
    CHILDE
-========================= */
+===================================================== */
 
 #childe{
+
  display:none;
 
  position:absolute;
@@ -198,24 +588,29 @@ button,input{
  z-index:12;
 
  pointer-events:none;
- overflow:hidden
+ overflow:hidden;
 }
 
 #childe.visible{
- display:block
+ display:block;
 }
 
 #childe img{
+
  position:absolute;
 
  height:95vh;
+
  width:auto;
+
  max-width:none;
 
  right:-18vw;
+
  bottom:-18vh;
 
  object-fit:contain;
+
  object-position:center bottom;
 
  filter:
@@ -226,29 +621,38 @@ button,input{
 
  transform-origin:center bottom;
 
- animation:alive 4.2s ease-in-out infinite
+ animation:
+  alive 4.2s ease-in-out infinite;
 }
 
 @keyframes alive{
 
  0%,100%{
-  transform:translateY(0) rotate(0)
+  transform:
+   translateY(0)
+   rotate(0);
  }
 
  35%{
-  transform:translate(-1px,-6px) rotate(.15deg)
+  transform:
+   translate(-1px,-6px)
+   rotate(.15deg);
  }
 
  60%{
-  transform:translate(2px,-3px) rotate(.08deg)
+  transform:
+   translate(2px,-3px)
+   rotate(.08deg);
  }
 }
 
-/* =========================
+
+/* =====================================================
    BALÃO
-========================= */
+===================================================== */
 
 #bubble{
+
  display:none;
 
  position:absolute;
@@ -260,22 +664,28 @@ button,input{
 
  padding:12px 15px;
 
- border-radius:20px 20px 6px 20px;
+ border-radius:
+ 20px
+ 20px
+ 6px
+ 20px;
 
  background:#fff9fcf2;
 
  border:1px solid #fff;
 
- box-shadow:0 6px 22px #4a30431f;
+ box-shadow:
+ 0 6px 22px #4a30431f;
 
- z-index:20
+ z-index:20;
 }
 
 #bubble.visible{
- display:block
+ display:block;
 }
 
 #bubble:after{
+
  content:"";
 
  position:absolute;
@@ -291,187 +701,218 @@ button,input{
  transform:rotate(45deg);
 
  border-right:1px solid #fff;
- border-bottom:1px solid #fff
+ border-bottom:1px solid #fff;
 }
 
 .bubbleName{
+
  color:#966582;
+
  font-size:11px;
+
  font-weight:bold;
- margin-bottom:5px
+
+ margin-bottom:5px;
 }
 
 .bubbleText{
+
  font-size:13px;
- line-height:1.45
+
+ line-height:1.45;
 }
 
-/* =========================
+
+/* =====================================================
    DIÁLOGO
-========================= */
+===================================================== */
 
 .bottom{
+
  position:absolute;
 
  left:12px;
  right:12px;
  bottom:12px;
 
- z-index:25
+ z-index:25;
 }
 
 .dialogue{
+
  min-height:92px;
 
  padding:13px 18px 21px;
 
  border:1px solid #ffffffdd;
+
  border-radius:20px;
 
  background:#fffafdD9;
 
  backdrop-filter:blur(13px);
 
- box-shadow:0 7px 28px #472e411f;
+ box-shadow:
+ 0 7px 28px #472e411f;
 
- cursor:pointer
+ cursor:pointer;
 }
 
 .speaker{
+
  color:#966582;
+
  font-size:12px;
+
  font-weight:bold;
- margin-bottom:6px
+
+ margin-bottom:6px;
 }
 
 .text{
+
  font-size:13.5px;
+
  line-height:1.52;
- min-height:45px
+
+ min-height:45px;
 }
 
 .thought{
- background:#faf4fadd
+
+ background:#faf4fadd;
 }
 
 .thought .text{
+
  font-style:italic;
- color:#80657a
+
+ color:#80657a;
 }
 
 .continue{
+
  position:absolute;
 
  right:17px;
  bottom:8px;
 
  color:#ad809b;
+
  font-size:11px;
 
- animation:pulse 1.7s ease-in-out infinite
+ animation:
+  pulse 1.7s ease-in-out infinite;
 }
 
 @keyframes pulse{
+
  50%{
   opacity:.4;
-  transform:translateX(3px)
+
+  transform:
+   translateX(3px);
  }
 }
 
-/* =========================
+
+/* =====================================================
    ESCOLHAS
-========================= */
+===================================================== */
 
 .choices{
+
  display:flex;
+
  flex-direction:column;
+
  gap:8px;
- margin-top:8px
+
+ margin-top:8px;
 }
 
 .choice{
+
  width:100%;
 
  padding:10px 14px;
 
  border:1px solid #c69bb880;
+
  border-radius:22px;
 
  background:#fffdfde8;
 
  color:#76516a;
+
  font-size:13px;
 
- box-shadow:0 5px 18px #7e4c6e12
+ box-shadow:
+ 0 5px 18px #7e4c6e12;
 }
 
 .choice:before{
+
  content:"♡";
+
  margin-right:8px;
- color:#bd8baa
+
+ color:#bd8baa;
 }
 
 .restart{
+
  margin-top:8px;
+
  padding:9px 20px;
 
  border:1px solid #c69bb8;
+
  border-radius:22px;
 
  background:#fff;
- color:#76516a
+
+ color:#76516a;
 }
 
-/* =========================
-   SOM
-========================= */
 
-.sound{
- position:absolute;
-
- right:15px;
- top:61px;
-
- z-index:35;
-
- width:36px;
- height:36px;
-
- border:1px solid #ffffffbb;
- border-radius:50%;
-
- background:#ffffff99;
- color:#76516a
-}
-
-/* =========================
+/* =====================================================
    DESKTOP
-========================= */
+===================================================== */
 
 @media(min-width:700px){
 
  .bottom{
+
   width:650px;
+
   left:50%;
   right:auto;
-  transform:translateX(-50%)
+
+  transform:
+   translateX(-50%);
  }
 
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      TELA INICIAL
-========================= -->
+===================================================== -->
 
 <div id="startScreen">
 
  <div class="startContent">
 
-  <div class="heart">♡</div>
+  <div class="heart">
+   ♡
+  </div>
 
   <div class="logo">
    Doce Destino
@@ -481,7 +922,10 @@ button,input{
    Seu coração escolhe o caminho.
   </div>
 
-  <button class="startButton" id="startButton">
+  <button
+   class="startButton"
+   id="startButton"
+  >
    Começar minha história
   </button>
 
@@ -490,106 +934,225 @@ button,input{
 </div>
 
 
-<!-- =========================
+
+<!-- =====================================================
      JOGO
-========================= -->
+===================================================== -->
 
 <div id="game">
 
+
  <div class="scene">
+
 
   <div id="cafe"></div>
 
+
   <div id="university"></div>
 
+
+  <!-- CHILDE -->
+
   <div id="childe">
-   <img id="childeImg" alt="Childe">
+
+   <img
+    id="childeImg"
+    alt="Childe"
+   >
+
   </div>
+
+
+  <!-- BALÃO -->
 
   <div id="bubble">
 
-   <div class="bubbleName" id="bubbleName">
+   <div
+    class="bubbleName"
+    id="bubbleName"
+   >
     ???
    </div>
 
-   <div class="bubbleText" id="bubbleText"></div>
+   <div
+    class="bubbleText"
+    id="bubbleText"
+   ></div>
 
   </div>
 
+
+  <!-- TRANSIÇÃO -->
+
   <div id="timeFade"></div>
+
 
  </div>
 
 
- <!-- =========================
+
+ <!-- ===================================================
       HUD
- ========================= -->
+ =================================================== -->
 
  <div class="hud">
 
-  <div class="player">
+
+  <!-- VOCÊ -->
+
+  <div class="playerCard">
 
    <div class="avatar">
     ♡
    </div>
 
-   <span>
-    Você
-   </span>
+   <div class="playerInfo">
+
+    <div class="playerMini">
+     Jogadora
+    </div>
+
+    <div class="playerName">
+     Você
+    </div>
+
+   </div>
 
   </div>
 
 
+
+  <!-- DIREITA -->
+
   <div class="hudRight">
 
-   <div class="clock" id="clock">
-    🕐 00:00
+
+   <!-- RELÓGIO -->
+
+   <div
+    class="clock"
+    id="clock"
+   >
+
+    <div
+     class="clockIcon"
+     id="clockIcon"
+    >
+     🌙
+    </div>
+
+    <div
+     class="clockTime"
+     id="clockTime"
+    >
+     00:00
+    </div>
+
    </div>
 
-   <div class="affinity" id="affinity">
-    ♡ Afinidade 0
+
+
+   <!-- AFINIDADE -->
+
+   <div
+    class="affinity"
+    id="affinity"
+   >
+
+    <div class="affinityHeart">
+     ♡
+    </div>
+
+    <div class="affinityInfo">
+
+     <div class="affinityMini">
+      Afinidade
+     </div>
+
+     <div
+      class="affinityValue"
+      id="affinityValue"
+     >
+      0
+     </div>
+
+    </div>
+
    </div>
+
 
   </div>
 
  </div>
 
 
- <button class="sound">
+
+ <!-- ===================================================
+      MÚSICA
+ =================================================== -->
+
+ <button
+  class="sound"
+  id="soundButton"
+ >
+
   ♫
+
  </button>
 
 
- <!-- =========================
+
+ <!-- ===================================================
       DIÁLOGO
- ========================= -->
+ =================================================== -->
 
  <div class="bottom">
 
-  <div class="dialogue" id="dialogue">
 
-   <div class="speaker" id="speaker"></div>
+  <div
+   class="dialogue"
+   id="dialogue"
+  >
 
-   <div class="text" id="text"></div>
+   <div
+    class="speaker"
+    id="speaker"
+   ></div>
 
-   <div class="continue" id="continue">
+   <div
+    class="text"
+    id="text"
+   ></div>
+
+   <div
+    class="continue"
+    id="continue"
+   >
     Continuar ›
    </div>
 
   </div>
 
-  <div class="choices" id="choices"></div>
+
+  <div
+   class="choices"
+   id="choices"
+  ></div>
+
 
  </div>
+
 
 </div>
 
 
+
 <script>
 
-/* =========================
+
+/* =====================================================
    ARQUIVOS
-========================= */
+===================================================== */
 
 const sprites={
 
@@ -602,30 +1165,46 @@ const sprites={
 };
 
 
-/* =========================
+
+/* =====================================================
    FUNDOS
-========================= */
+===================================================== */
 
 const backgrounds={
 
  cafe:{
-  morning:"cafe-aurora-manha.png.PNG",
-  afternoon:"cafe-aurora-tarde.png.PNG",
-  night:"cafe-aurora-noite.png.PNG"
+
+  morning:
+   "cafe-aurora-manha.png.PNG",
+
+  afternoon:
+   "cafe-aurora-tarde.png.PNG",
+
+  night:
+   "cafe-aurora-noite.png.PNG"
+
  },
 
  university:{
-  morning:"universidade-aurora.png.PNG",
-  afternoon:"universidade-aurora-tarde.png.PNG",
-  night:"universidade-aurora-noite.png.PNG"
+
+  morning:
+   "universidade-aurora.png.PNG",
+
+  afternoon:
+   "universidade-aurora-tarde.png.PNG",
+
+  night:
+   "universidade-aurora-noite.png.PNG"
+
  }
 
 };
 
 
-/* =========================
+
+/* =====================================================
    MEMÓRIA
-========================= */
+===================================================== */
 
 const memory={
 
@@ -646,43 +1225,91 @@ const memory={
 };
 
 
-/* =========================
+
+/* =====================================================
    ELEMENTOS
-========================= */
+===================================================== */
 
-const $=id=>document.getElementById(id);
-
-const startScreen=$("startScreen");
-const game=$("game");
-const startButton=$("startButton");
-
-const cafe=$("cafe");
-const university=$("university");
-
-const childe=$("childe");
-const childeImg=$("childeImg");
-
-const bubble=$("bubble");
-const bubbleName=$("bubbleName");
-const bubbleText=$("bubbleText");
-
-const dialogue=$("dialogue");
-const speaker=$("speaker");
-const text=$("text");
-
-const choices=$("choices");
-const continueText=$("continue");
-
-const affinity=$("affinity");
-
-const clock=$("clock");
-
-const timeFade=$("timeFade");
+const $=
+ id=>document.getElementById(id);
 
 
-/* =========================
-   PERÍODO DO DIA
-========================= */
+const startScreen=
+ $("startScreen");
+
+const game=
+ $("game");
+
+const startButton=
+ $("startButton");
+
+
+const cafe=
+ $("cafe");
+
+const university=
+ $("university");
+
+
+const childe=
+ $("childe");
+
+const childeImg=
+ $("childeImg");
+
+
+const bubble=
+ $("bubble");
+
+const bubbleName=
+ $("bubbleName");
+
+const bubbleText=
+ $("bubbleText");
+
+
+const dialogue=
+ $("dialogue");
+
+const speaker=
+ $("speaker");
+
+const text=
+ $("text");
+
+
+const choices=
+ $("choices");
+
+const continueText=
+ $("continue");
+
+
+const affinity=
+ $("affinity");
+
+const affinityValue=
+ $("affinityValue");
+
+
+const clock=
+ $("clock");
+
+const clockIcon=
+ $("clockIcon");
+
+const clockTime=
+ $("clockTime");
+
+
+const timeFade=
+ $("timeFade");
+
+
+
+/* =====================================================
+   PERÍODO
+===================================================== */
 
 function getPeriod(hour){
 
@@ -697,39 +1324,66 @@ function getPeriod(hour){
 }
 
 
-/* =========================
+
+/* =====================================================
+   ÍCONE DO HORÁRIO
+===================================================== */
+
+function getPeriodIcon(period){
+
+ if(period==="morning")
+  return"🌅";
+
+ if(period==="afternoon")
+  return"☀️";
+
+ return"🌙";
+
+}
+
+
+
+/* =====================================================
    RELÓGIO REAL
-========================= */
+===================================================== */
 
 function updateRealClock(){
 
- const now=new Date();
+ const now=
+  new Date();
 
- const hours=now.getHours();
- const minutes=now.getMinutes();
+
+ const hours=
+  now.getHours();
+
+ const minutes=
+  now.getMinutes();
+
 
  const newPeriod=
   getPeriod(hours);
 
+
  const oldPeriod=
   memory.period;
 
- memory.hour=hours;
- memory.period=newPeriod;
+
+ memory.hour=
+  hours;
+
+ memory.period=
+  newPeriod;
 
 
- clock.textContent=
-  "🕐 "+
+ clockTime.textContent=
   String(hours).padStart(2,"0")+
   ":"+
   String(minutes).padStart(2,"0");
 
 
- /*
-  Só muda o cenário quando
-  realmente muda manhã,
-  tarde ou noite.
- */
+ clockIcon.textContent=
+  getPeriodIcon(newPeriod);
+
 
  if(
   newPeriod!==oldPeriod &&
@@ -746,182 +1400,240 @@ function updateRealClock(){
 }
 
 
-/* =========================
+
+/* =====================================================
    MUDAR FUNDO
-========================= */
+===================================================== */
 
 function changeBackground(place,period){
 
  const image=
   backgrounds[place][period];
 
- if(!image)return;
+
+ if(!image)
+  return;
 
 
- timeFade.classList.add("active");
+ timeFade.classList.add(
+  "active"
+ );
 
 
  setTimeout(()=>{
+
 
   if(place==="cafe"){
 
    cafe.style.backgroundImage=
     `url("${image}")`;
 
-   cafe.style.display="block";
+   cafe.style.display=
+    "block";
 
-   university.style.display="none";
+   university.style.display=
+    "none";
 
-  }else{
+  }
+
+  else{
 
    university.style.backgroundImage=
     `url("${image}")`;
 
-   university.style.display="block";
+   university.style.display=
+    "block";
 
-   cafe.style.display="none";
+   cafe.style.display=
+    "none";
 
   }
 
 
   setTimeout(()=>{
 
-   timeFade.classList.remove("active");
+   timeFade.classList.remove(
+    "active"
+   );
 
   },180);
+
 
  },420);
 
 }
 
 
-/* =========================
+
+/* =====================================================
    APLICAR LOCAL
-========================= */
+===================================================== */
 
 function applyPlace(place){
 
- memory.place=place;
+ memory.place=
+  place;
+
 
  const image=
   backgrounds[place][memory.period];
+
 
  if(place==="cafe"){
 
   cafe.style.backgroundImage=
    `url("${image}")`;
 
-  cafe.style.display="block";
+  cafe.style.display=
+   "block";
 
-  university.style.display="none";
+  university.style.display=
+   "none";
 
- }else{
+ }
+
+ else{
 
   university.style.backgroundImage=
    `url("${image}")`;
 
-  university.style.display="block";
+  university.style.display=
+   "block";
 
-  cafe.style.display="none";
+  cafe.style.display=
+   "none";
 
  }
 
 }
 
 
-/* =========================
-   CHILDE
-========================= */
 
-function showChilde(expression="franzindo"){
+/* =====================================================
+   CHILDE
+===================================================== */
+
+function showChilde(
+ expression="franzindo"
+){
 
  childeImg.src=
-  sprites[expression]||sprites.franzindo;
+  sprites[expression]||
+  sprites.franzindo;
 
- childe.classList.add("visible");
+ childe.classList.add(
+  "visible"
+ );
 
 }
 
 
 function hideChilde(){
 
- childe.classList.remove("visible");
+ childe.classList.remove(
+  "visible"
+ );
 
- bubble.classList.remove("visible");
+ bubble.classList.remove(
+  "visible"
+ );
 
  childeImg.src="";
 
 }
 
 
-/* =========================
+
+/* =====================================================
    BALÃO
-========================= */
+===================================================== */
 
-function showBubble(name,msg){
+function showBubble(
+ name,
+ msg
+){
 
- bubbleName.textContent=name;
+ bubbleName.textContent=
+  name;
 
- bubbleText.textContent=msg;
+ bubbleText.textContent=
+  msg;
 
- bubble.classList.add("visible");
+ bubble.classList.add(
+  "visible"
+ );
 
 }
 
 
 function hideBubble(){
 
- bubble.classList.remove("visible");
+ bubble.classList.remove(
+  "visible"
+ );
 
 }
 
 
-/* =========================
+
+/* =====================================================
    AFINIDADE
-========================= */
+===================================================== */
 
 function updateAffinity(){
 
- affinity.textContent=
-  "♡ Afinidade "+memory.affinity;
+ affinityValue.textContent=
+  memory.affinity;
 
 }
 
 
-/* =========================
+
+/* =====================================================
    HISTÓRIA
-========================= */
+===================================================== */
 
 const story={
 
+
 start:{
+
  type:"narration",
 
  text:
  "Você acabou de chegar a uma nova cidade para começar uma nova fase da sua vida.",
 
  next:"thought1"
+
 },
 
+
 thought1:{
+
  type:"thought",
 
  text:
  "Ah... o que eu vou fazer agora? Por onde eu começo?",
 
  next:"lost"
+
 },
 
+
 lost:{
+
  type:"narration",
 
  text:
  "Com uma pequena mala ao lado, você percebe que está completamente perdida.",
 
  next:"childe1"
+
 },
 
+
 childe1:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -932,9 +1644,12 @@ childe1:{
  expression:"franzindo",
 
  next:"childe2"
+
 },
 
+
 childe2:{
+
  type:"dialogue",
 
  speaker:"Você",
@@ -943,9 +1658,12 @@ childe2:{
  "Estou procurando a Universidade Aurora.",
 
  next:"childe3"
+
 },
 
+
 childe3:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -956,7 +1674,9 @@ childe3:{
  expression:"alegre",
 
  next:"choice1"
+
 },
+
 
 choice1:{
 
@@ -967,36 +1687,51 @@ choice1:{
 
  choices:[
 
+
   {
-   text:"Peço ajuda com educação.",
+
+   text:
+   "Peço ajuda com educação.",
 
    action(){
 
     memory.gentil=true;
+
     memory.affinity+=2;
 
     showChilde("alegre");
 
     showNode("help");
+
    }
+
   },
 
+
   {
-   text:"Brinco que consigo me virar sozinha.",
+
+   text:
+   "Brinco que consigo me virar sozinha.",
 
    action(){
 
     memory.provocadora=true;
+
     memory.affinity++;
 
     showChilde("alegre");
 
     showNode("joke");
+
    }
+
   },
 
+
   {
-   text:"Agradeço, mas digo que consigo me virar.",
+
+   text:
+   "Agradeço, mas digo que consigo me virar.",
 
    action(){
 
@@ -1005,7 +1740,9 @@ choice1:{
     showChilde("franzindo");
 
     showNode("distance");
+
    }
+
   }
 
  ]
@@ -1013,7 +1750,9 @@ choice1:{
 },
 
 
+
 help:{
+
  type:"dialogue",
 
  speaker:"Você",
@@ -1022,9 +1761,12 @@ help:{
  "Você poderia me indicar o caminho?",
 
  next:"help2"
+
 },
 
+
 help2:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -1035,9 +1777,12 @@ help2:{
  expression:"alegre",
 
  next:"walk"
+
 },
 
+
 joke:{
+
  type:"dialogue",
 
  speaker:"Você",
@@ -1046,9 +1791,12 @@ joke:{
  "Eu acho que consigo encontrar sozinha.",
 
  next:"joke2"
+
 },
 
+
 joke2:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -1059,9 +1807,12 @@ joke2:{
  expression:"alegre",
 
  next:"walk"
+
 },
 
+
 distance:{
+
  type:"dialogue",
 
  speaker:"Você",
@@ -1070,9 +1821,12 @@ distance:{
  "Obrigada. Vou tentar encontrar.",
 
  next:"distance2"
+
 },
 
+
 distance2:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -1083,18 +1837,24 @@ distance2:{
  expression:"franzindo",
 
  next:"walk"
+
 },
 
+
 walk:{
+
  type:"narration",
 
  text:
  "Vocês caminham juntos por alguns minutos, enquanto a conversa fica cada vez mais natural.",
 
  next:"name"
+
 },
 
+
 name:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -1105,9 +1865,12 @@ name:{
  expression:"alegre",
 
  next:"name2"
+
 },
 
+
 name2:{
+
  type:"dialogue",
 
  speaker:"Você",
@@ -1116,9 +1879,12 @@ name2:{
  "Meu nome é seu nome.",
 
  next:"name3"
+
 },
 
+
 name3:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -1129,9 +1895,12 @@ name3:{
  expression:"franzindo",
 
  next:"name4"
+
 },
 
+
 name4:{
+
  type:"dialogue",
 
  speaker:"???",
@@ -1142,9 +1911,12 @@ name4:{
  expression:"alegre",
 
  next:"name5"
+
 },
 
+
 name5:{
+
  type:"dialogue",
 
  speaker:"Childe",
@@ -1155,9 +1927,12 @@ name5:{
  expression:"alegre",
 
  next:"separate"
+
 },
 
+
 separate:{
+
  type:"narration",
 
  text:
@@ -1166,18 +1941,24 @@ separate:{
  hide:true,
 
  next:"thought2"
+
 },
 
+
 thought2:{
+
  type:"thought",
 
  text:
  "Que encontro estranho... Será que eu realmente vou encontrar aquele garoto de novo?",
 
  next:"arrival"
+
 },
 
+
 arrival:{
+
  type:"narration",
 
  text:
@@ -1188,25 +1969,33 @@ arrival:{
  hide:true,
 
  next:"arrival2"
+
 },
 
+
 arrival2:{
+
  type:"narration",
 
  text:
  "O campus é ainda mais bonito do que nas fotos.",
 
  next:"thought3"
+
 },
 
+
 thought3:{
+
  type:"thought",
 
  text:
  "Tá... respira. Primeiro eu preciso descobrir onde fica minha sala.",
 
  next:"choice2"
+
 },
+
 
 choice2:{
 
@@ -1217,67 +2006,92 @@ choice2:{
 
  choices:[
 
+
   {
-   text:"Vou procurar a secretaria.",
+
+   text:
+   "Vou procurar a secretaria.",
 
    action(){
 
     memory.affinity++;
 
     showNode("secretary");
+
    }
+
   },
 
+
   {
-   text:"Vou procurar minha sala sozinha.",
+
+   text:
+   "Vou procurar minha sala sozinha.",
 
    action(){
 
     showNode("alone");
+
    }
+
   },
 
+
   {
-   text:"Observo os estudantes ao meu redor.",
+
+   text:
+   "Observo os estudantes ao meu redor.",
 
    action(){
 
     memory.affinity++;
 
     showNode("students");
+
    }
+
   }
 
  ]
 
 },
 
+
 secretary:{
+
  type:"narration",
 
  text:
  "Você segue as placas espalhadas pelo campus em busca da secretaria.",
 
  next:"future"
+
 },
 
+
 alone:{
+
  type:"narration",
 
  text:
  "Você decide explorar o campus por conta própria, tentando memorizar cada corredor.",
 
  next:"future"
+
 },
 
+
 students:{
+
  type:"narration",
 
  text:
  "Você observa os estudantes ao redor, tentando entender a dinâmica do campus.",
 
  next:"future"
+
 },
+
 
 future:{
 
@@ -1297,6 +2111,7 @@ future:{
 
 },
 
+
 newA:{
 
  type:"narration",
@@ -1307,6 +2122,7 @@ newA:{
  next:"newA2"
 
 },
+
 
 newA2:{
 
@@ -1321,6 +2137,7 @@ newA2:{
 
 },
 
+
 newB:{
 
  type:"narration",
@@ -1331,6 +2148,7 @@ newB:{
  next:"newB2"
 
 },
+
 
 newB2:{
 
@@ -1345,6 +2163,7 @@ newB2:{
 
 },
 
+
 neutral:{
 
  type:"narration",
@@ -1355,6 +2174,7 @@ neutral:{
  next:"end"
 
 },
+
 
 end:{
 
@@ -1368,31 +2188,42 @@ end:{
 };
 
 
-/* =========================
+
+/* =====================================================
    MOTOR
-========================= */
+===================================================== */
 
 let current=null;
 
 
 function showNode(id){
 
- const node=story[id];
+ const node=
+  story[id];
 
- if(!node)return;
 
- current=node;
+ if(!node)
+  return;
+
+
+ current=
+  node;
+
 
  choices.innerHTML="";
 
- continueText.style.display="none";
+
+ continueText.style.display=
+  "none";
 
 
- /* LOCAL DA CENA */
+ /* LOCAL */
 
  if(node.place){
 
-  applyPlace(node.place);
+  applyPlace(
+   node.place
+  );
 
  }
 
@@ -1402,25 +2233,33 @@ function showNode(id){
  if(node.hide)
   hideChilde();
 
+
  if(node.expression)
-  showChilde(node.expression);
+  showChilde(
+   node.expression
+  );
 
 
  /* NARRAÇÃO */
 
  if(node.type==="narration"){
 
-  dialogue.classList.remove("thought");
+  dialogue.classList.remove(
+   "thought"
+  );
 
   speaker.textContent="";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
   hideBubble();
 
-  continueText.style.display="block";
+  continueText.style.display=
+   "block";
 
   return;
+
  }
 
 
@@ -1428,17 +2267,23 @@ function showNode(id){
 
  if(node.type==="thought"){
 
-  dialogue.classList.add("thought");
+  dialogue.classList.add(
+   "thought"
+  );
 
-  speaker.textContent="Pensamento";
+  speaker.textContent=
+   "Pensamento";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
   hideBubble();
 
-  continueText.style.display="block";
+  continueText.style.display=
+   "block";
 
   return;
+
  }
 
 
@@ -1446,38 +2291,51 @@ function showNode(id){
 
  if(node.type==="dialogue"){
 
-  dialogue.classList.remove("thought");
+  dialogue.classList.remove(
+   "thought"
+  );
 
 
   if(node.speaker==="Você"){
 
-   speaker.textContent="Você";
+   speaker.textContent=
+    "Você";
 
-   text.textContent=node.text;
+   text.textContent=
+    node.text;
 
    hideBubble();
 
-  }else{
+  }
+
+  else{
 
    speaker.textContent="";
 
    text.textContent="";
 
+
    showChilde(
-    node.expression||"franzindo"
+    node.expression||
+    "franzindo"
    );
 
+
    showBubble(
-    node.speaker||"???",
+    node.speaker||
+    "???",
+
     node.text
    );
 
   }
 
 
-  continueText.style.display="block";
+  continueText.style.display=
+   "block";
 
   return;
+
  }
 
 
@@ -1485,11 +2343,14 @@ function showNode(id){
 
  if(node.type==="choice"){
 
-  dialogue.classList.remove("thought");
+  dialogue.classList.remove(
+   "thought"
+  );
 
   speaker.textContent="";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
   hideBubble();
 
@@ -1497,11 +2358,17 @@ function showNode(id){
   node.choices.forEach(c=>{
 
    const b=
-    document.createElement("button");
+    document.createElement(
+     "button"
+    );
 
-   b.className="choice";
 
-   b.textContent=c.text;
+   b.className=
+    "choice";
+
+
+   b.textContent=
+    c.text;
 
 
    b.onclick=e=>{
@@ -1519,7 +2386,9 @@ function showNode(id){
 
   });
 
+
   return;
+
  }
 
 
@@ -1532,6 +2401,7 @@ function showNode(id){
   );
 
   return;
+
  }
 
 
@@ -1543,17 +2413,27 @@ function showNode(id){
 
   speaker.textContent="";
 
-  text.textContent=node.text;
+  text.textContent=
+   node.text;
 
 
   const b=
-   document.createElement("button");
+   document.createElement(
+    "button"
+   );
 
-  b.className="restart";
 
-  b.textContent="Recomeçar";
+  b.className=
+   "restart";
 
-  b.onclick=reset;
+
+  b.textContent=
+   "Recomeçar";
+
+
+  b.onclick=
+   reset;
+
 
   choices.appendChild(b);
 
@@ -1562,31 +2442,41 @@ function showNode(id){
 }
 
 
-/* =========================
+
+/* =====================================================
    CONTINUAR
-========================= */
+===================================================== */
 
 dialogue.onclick=()=>{
 
- if(!current)return;
+ if(!current)
+  return;
+
 
  if(
+
   current.type==="narration"||
+
   current.type==="dialogue"||
+
   current.type==="thought"
+
  ){
 
   if(current.next)
-   showNode(current.next);
+   showNode(
+    current.next
+   );
 
  }
 
 };
 
 
-/* =========================
+
+/* =====================================================
    RESET
-========================= */
+===================================================== */
 
 function reset(){
 
@@ -1598,16 +2488,29 @@ function reset(){
 
  memory.distancia=false;
 
- const now=new Date();
 
- memory.hour=now.getHours();
-
- memory.period=getPeriod(now.getHours());
-
- memory.place="cafe";
+ const now=
+  new Date();
 
 
- applyPlace("cafe");
+ memory.hour=
+  now.getHours();
+
+
+ memory.period=
+  getPeriod(
+   now.getHours()
+  );
+
+
+ memory.place=
+  "cafe";
+
+
+ applyPlace(
+  "cafe"
+ );
+
 
  updateRealClock();
 
@@ -1615,58 +2518,72 @@ function reset(){
 
  hideChilde();
 
- showNode("start");
+ showNode(
+  "start"
+ );
 
 }
 
 
-/* =========================
+
+/* =====================================================
    COMEÇAR
-========================= */
+===================================================== */
 
 startButton.onclick=()=>{
 
- startScreen.style.display="none";
+ startScreen.style.display=
+  "none";
 
- game.style.display="block";
-
-
- const now=new Date();
-
- memory.hour=now.getHours();
-
- memory.period=getPeriod(now.getHours());
-
- memory.place="cafe";
+ game.style.display=
+  "block";
 
 
- applyPlace("cafe");
+ const now=
+  new Date();
+
+
+ memory.hour=
+  now.getHours();
+
+
+ memory.period=
+  getPeriod(
+   now.getHours()
+  );
+
+
+ memory.place=
+  "cafe";
+
+
+ applyPlace(
+  "cafe"
+ );
+
 
  updateRealClock();
 
  updateAffinity();
 
- showNode("start");
+ showNode(
+  "start"
+ );
 
 };
 
 
-/* =========================
+
+/* =====================================================
    RELÓGIO EM TEMPO REAL
-========================= */
-
-/*
- O jogo verifica o horário real
- do aparelho a cada segundo.
-
- O relógio continua passando
- mesmo enquanto o jogador está
- parado em um diálogo.
-*/
+===================================================== */
 
 setInterval(()=>{
 
- if(game.style.display==="block"){
+ if(
+  game.style.display===
+  "block"
+ ){
 
   updateRealClock();
 
@@ -1675,20 +2592,20 @@ setInterval(()=>{
 },1000);
 
 
-/*
- Atualiza imediatamente quando
- a página volta a ficar visível.
- Isso evita que o relógio fique
- desatualizado depois de o Safari
- ficar em segundo plano.
-*/
+
+/* =====================================================
+   ATUALIZAÇÃO AO VOLTAR PARA O JOGO
+===================================================== */
 
 document.addEventListener(
  "visibilitychange",
  ()=>{
 
-  if(!document.hidden &&
-     game.style.display==="block"){
+  if(
+   !document.hidden &&
+   game.style.display===
+   "block"
+  ){
 
    updateRealClock();
 
@@ -1696,6 +2613,7 @@ document.addEventListener(
 
  }
 );
+
 
 </script>
 
