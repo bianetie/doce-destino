@@ -12,6 +12,43 @@
 
 <title>Doce Destino</title>
 
+/* =========================================
+   DOCE DESTINO — CENÁRIOS VIVOS
+========================================= */
+
+#cafe,
+#university {
+  background-size: auto 106%;
+  background-position: center;
+  animation: cenarioVivo 24s ease-in-out infinite alternate;
+  will-change: background-position;
+}
+
+/* Movimento suave da câmera */
+@keyframes cenarioVivo {
+  0% {
+    background-position: 48% 50%;
+  }
+
+  50% {
+    background-position: 52% 49%;
+  }
+
+  100% {
+    background-position: 50% 51%;
+  }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  #cafe,
+  #university {
+    animation: none;
+    background-position: center;
+  }
+}
+
+
 <style>
 
 /* =====================================================
