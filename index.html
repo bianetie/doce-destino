@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#282137">
+<title>Doce Destino</title>
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Georgia,serif;background:#f8edf5;color:#4b3948}
+button{font-family:inherit;cursor:pointer}
+#startScreen,#game{position:fixed;inset:0;overflow:hidden}
+#startScreen{display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,#fff,#f9e8f4 65%,#ead0e4)}
+.logo{font-size:42px;color:#79536d;letter-spacing:2px}
+.subtitle{font-size:14px;color:#9b718d;margin:12px 0 35px}
+button{border:1px solid #c69bb8;border-radius:25px;background:#fff9fc;color:#76516a;padding:12px 22px}
+#game{display:none}
+.scene{position:absolute;inset:0;overflow:hidden}
+
+/* CENÁRIOS ANIMADOS */
+#cafe,#university{
+ position:absolute;
+ inset:0;
+ background-position:center;
+ background-size:cover;
+ background-repeat:no-repeat;
+ transform-origin:center;
+ animation:camera 22s ease-in-out infinite alternate;
+ will-change:transform;
+}
+#university{display:none}
+@keyframes camera{
+ 0%{transform:scale(1.06) translate(-.6%,.2%)}
+ 50%{transform:scale(1.08) translate(.3%,-.4%)}
+ 100%{transform:scale(1.06) translate(.6%,.2%)}
+}
+#fade{position:absolute;inset:0;background:white;opacity:0;pointer-events:none;z-index:40;transition:opacity .45s}
+#fade.active{opacity:1}
+
+/* PERSONAGEM */
+#childe{display:none;position:absolute;inset:0;z-index:12;pointer-events:none}
+#childe.visible{display:block}
+#childeImg{
+ position:absolute;
+ height:95vh;
+ width:auto;
+ max-width:none;
+ right:-18vw;
+ bottom:-18vh;
+ object-fit:contain;
+ filter:drop-shadow(0 12px 22px #3723324d) brightness(1.14) saturate(1.28);
+ animation:alive 4.8s ease-in-out infinite;
+}
+@keyframes alive{
+ 0%,100%{transform:translateY(0) scale(1)}
+ 50%{transform:translateY(-1.5px) scale(1.004)}
+}
+
+/* INTERFACE */
+.hud{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:30}
+.pill{background:#fffdfef0;border:1px solid white;border-radius:25px;padding:11px 15px;color:#76516a;font-size:12px;box-shadow:0 4px 14px #4a304318}
+#playerCard{cursor:pointer}
+#menu{display:none;position:absolute;top:65px;left:12px;z-index:55;width:220px;padding:15px;border-radius:20px;background:#fffafdf5;box-shadow:0 10px 35px #4a304330}
+#menu.visible{display:block}
+.menuRow{padding:10px;border-bottom:1px solid #ead5e2;font-size:13px}
+#bubble{display:none;position:absolute;right:3%;top:9%;width:min(42%,300px);padding:13px;border-radius:20px;background:#fff9fcf2;z-index:20;box-shadow:0 6px 22px #4a30431f}
+#bubble.visible{display:block}
+#bubbleName{font-size:12px;font-weight:bold;color:#966582;margin-bottom:6px}
+#bubbleText{font-size:13px;line-height:1.5}
+.bottom{position:absolute;bottom:12px;left:12px;right:12px;z-index:25}
+#dialogue{min-height:105px;padding:15px 18px 24px;border-radius:20px;background:#fffafde8;border:1px solid white;backdrop-filter:blur(12px);cursor:pointer;box-shadow:0 7px 28px #472e411f}
+#speaker{font-size:12px;font-weight:bold;color:#966582;margin-bottom:6px}
+#text{font-size:14px;line-height:1.5;min-height:45px}
+#continue{font-size:11px;text-align:right;color:#ad809b}
+#choices{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.choice{width:100%;text-align:left;background:#fffdfdf0}
+.choice:before{content:"♡ ";color:#bd8baa}
+.copyright{position:absolute;bottom:130px;width:100%;text-align:center;font:10px Arial;color:#888;pointer-events:none}
+@media(min-width:700px){.bottom{width:650px;left:50%;right:auto;transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+ #cafe,#university,#childeImg{animation:none;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+ <div>
+  <div style="font-size:34px;color:#c99ab9">♡</div>
+  <div class="logo">Doce Destino</div>
+  <div class="subtitle">Seu coração escolhe o caminho.</div>
+  <button id="startButton">Começar minha história</button>
+ </div>
+</div>
+
+<div id="game">
+ <div class="scene">
+  <div id="cafe"></div>
+  <div id="university"></div>
+  <div id="childe"><img id="childeImg" alt="Childe"></div>
+  <div id="bubble">
+   <div id="bubbleName">???</div>
+   <div id="bubbleText"></div>
+  </div>
+  <div id="fade"></div>
+ </div>
+
+ <div class="hud">
+  <div class="pill" id="playerCard">♡ <span id="playerName">Você</span></div>
+  <div class="pill">♡ Afinidade: <span id="affinity">0</span></div>
+ </div>
+
+ <div id="menu">
+  <div class="menuRow">♡ Seu perfil</div>
+  <div class="menuRow">🕒 <span id="clock">00:00</span></div>
+  <div class="menuRow" id="musicButton">♫ Música: <span id="musicStatus">Ativada</span></div>
+  <div class="menuRow">♡ Loja — Em breve</div>
+  <div class="menuRow">♢ Guarda-roupa — Em breve</div>
+ </div>
+
+ <div class="bottom">
+  <div id="dialogue">
+   <div id="speaker"></div>
+   <div id="text"></div>
+   <div id="continue">Continuar ›</div>
+  </div>
+  <div id="choices"></div>
+ </div>
+
+ <div class="copyright">© 2026 Bianca — Doce Destino / Café Aurora.</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+
+const sprites={
+ alegre:"childe-alegre-transparente.png.PNG",
+ blink:"childe-alegre-piscando-transparente.png.PNG",
+ franzindo:"childe-Franzindo a testa-transparente.png.PNG"
+};
+
+const backgrounds={
+ cafe:{
+  morning:"cafe-aurora-manha.png.PNG",
+  afternoon:"cafe-aurora-tarde.png.PNG",
+  night:"cafe-aurora-noite.png.PNG"
+ },
+ university:{
+  morning:"universidade-aurora.png.PNG",
+  afternoon:"universidade-aurora-tarde.png.PNG",
+  night:"universidade-aurora-noite.png.PNG"
+ }
+};
+
+const state={
+ affinity:0,
+ place:"cafe",
+ period:"morning",
+ expression:null,
+ music:true,
+ node:"start"
+};
+
+Object.values(sprites).forEach(src=>{const img=new Image();img.src=src});
+Object.values(backgrounds).forEach(group=>{
+ Object.values(group).forEach(src=>{const img=new Image();img.src=src});
+});
+
+function getPeriod(){
+ const h=new Date().getHours();
+ return h>=6&&h<12?"morning":h>=12&&h<18?"afternoon":"night";
+}
+
+function updateClock(){
+ const now=new Date();
+ $("clock").textContent=now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+ const period=getPeriod();
+ if(period!==state.period){
+  state.period=period;
+  changePlace(state.place,true);
+ }
+}
+
+function changePlace(place,fade=false){
+ const apply=()=>{
+  state.place=place;
+  ["cafe","university"].forEach(id=>{
+   $(id).style.display=id===place?"block":"none";
+  });
+  $(place).style.backgroundImage=`url("${backgrounds[place][state.period]}")`;
+ };
+ if(!fade){apply();return}
+ $("fade").classList.add("active");
+ setTimeout(()=>{
+  apply();
+  setTimeout(()=>$("fade").classList.remove("active"),180);
+ },420);
+}
+
+let blinkTimer=null;
+let blinkRestore=null;
+
+function stopBlink(){
+ clearTimeout(blinkTimer);
+ clearTimeout(blinkRestore);
+}
+
+function scheduleBlink(){
+ stopBlink();
+ if(state.expression!=="alegre")return;
+ blinkTimer=setTimeout(()=>{
+  if(!$("childe").classList.contains("visible"))return;
+  $("childeImg").src=sprites.blink;
+  blinkRestore=setTimeout(()=>{
+   if(state.expression==="alegre")$("childeImg").src=sprites.alegre;
+   scheduleBlink();
+  },120);
+ },3500+Math.random()*5000);
+}
+
+function showChilde(expression="alegre"){
+ stopBlink();
+ state.expression=expression;
+ $("childeImg").src=sprites[expression]||sprites.alegre;
+ $("childe").classList.add("visible");
+ scheduleBlink();
+}
+
+function hideChilde(){
+ stopBlink();
+ state.expression=null;
+ $("childe").classList.remove("visible");
+ hideBubble();
+}
+
+function showBubble(name,message){
+ $("bubbleName").textContent=name;
+ $("bubbleText").textContent=message;
+ $("bubble").classList.add("visible");
+}
+
+function hideBubble(){$("bubble").classList.remove("visible")}
+
+const story={
+ start:{type:"narration",text:"Você acabou de chegar a uma cidade completamente nova. A universidade onde vai estudar fica a poucos minutos dali, mas o mapa no seu celular parece decidido a não colaborar.",next:"thought1"},
+ thought1:{type:"thought",text:"Ótimo... primeiro dia e eu já estou perdida.",next:"lost"},
+ lost:{type:"narration",text:"Você olha ao redor, tentando reconhecer algum ponto de referência. Pessoas passam pela rua, ocupadas demais para perceber sua confusão.",next:"notice"},
+ notice:{type:"thought",text:"Espera... aquele garoto sabe onde fica a universidade?",next:"observe"},
+ observe:{type:"narration",text:"Perto da entrada de um café, um garoto mexe distraidamente no celular. Ele parece conhecer bem a região.",next:"approach"},
+ approach:{type:"thought",text:"Ele é bonito... talvez eu possa perguntar.",next:"childeAppear"},
+ childeAppear:{type:"narration",text:"Você se aproxima.",next:"childe1"},
+ childe1:{type:"dialogue",speaker:"???",text:"Hm?",expression:"alegre",next:"childe2"},
+ childe2:{type:"dialogue",speaker:"Você",text:"Desculpa... você sabe onde fica a Universidade Aurora?",next:"childe3"},
+ childe3:{type:"dialogue",speaker:"???",text:"Sei.",expression:"alegre",next:"childeChoice1"},
+
+ childeChoice1:{type:"choice",text:"O que você responde?",choices:[
+  {text:"Você poderia me mostrar o caminho?",affinity:2,next:"friendly1"},
+  {text:"Só saber já ajuda. Obrigada.",affinity:0,next:"neutral1"},
+  {text:"Então poderia falar de uma vez, né?",affinity:-3,expression:"franzindo",next:"rude1"}
+ ]},
+
+ friendly1:{type:"dialogue",speaker:"???",text:"Posso. Não fica muito longe daqui.",expression:"alegre",next:"friendly2"},
+ friendly2:{type:"dialogue",speaker:"Você",text:"Sério? Eu estava começando a achar que tinha ido para o lado errado da cidade.",next:"friendly3"},
+ friendly3:{type:"dialogue",speaker:"???",text:"Pelo menos você percebeu antes de ficar completamente perdida.",expression:"alegre",next:"friendly4"},
+ friendly4:{type:"dialogue",speaker:"Você",text:"Então eu ainda tenho alguma dignidade.",next:"friendly5"},
+ friendly5:{type:"dialogue",speaker:"???",text:"Ainda estou avaliando.",expression:"alegre",next:"friendlyChoice"},
+
+ friendlyChoice:{type:"choice",text:"A conversa parece mais descontraída. O que você faz?",choices:[
+  {text:"Brinco com ele.",affinity:2,next:"jokeGood"},
+  {text:"Pergunto se ele estuda na universidade.",affinity:1,next:"askUniversity"},
+  {text:"Agradeço e sigo meu caminho.",next:"leaveEarly"}
+ ]},
+
+ jokeGood:{type:"dialogue",speaker:"Você",text:"Você sempre recebe pessoas perdidas desse jeito?",next:"jokeGood2"},
+ jokeGood2:{type:"dialogue",speaker:"???",text:"Só as que parecem precisar de supervisão.",expression:"alegre",next:"jokeGood3"},
+ jokeGood3:{type:"dialogue",speaker:"Você",text:"Nossa. Então estou em boas mãos.",next:"goodEnd"},
+
+ askUniversity:{type:"dialogue",speaker:"Você",text:"Você estuda na Aurora?",next:"askUniversity2"},
+ askUniversity2:{type:"dialogue",speaker:"???",text:"Estudo. Por quê?",expression:"alegre",next:"askUniversity3"},
+ askUniversity3:{type:"choice",text:"O que você responde?",choices:[
+  {text:"Curiosidade. Você parece conhecer o lugar.",affinity:2,next:"goodEnd"},
+  {text:"Nada. Só perguntei.",next:"neutralEnd"},
+  {text:"Porque você tem cara de quem não faz outra coisa.",affinity:-3,expression:"franzindo",next:"rudeEnd"}
+ ]},
+
+ neutral1:{type:"dialogue",speaker:"???",text:"É só seguir aquela rua e virar à esquerda depois da praça.",expression:"alegre",next:"neutral2"},
+ neutral2:{type:"dialogue",speaker:"Você",text:"Entendi. Obrigada.",next:"neutral3"},
+ neutral3:{type:"dialogue",speaker:"???",text:"De nada.",expression:"alegre",next:"neutralChoice"},
+ neutralChoice:{type:"choice",text:"Você ainda tem uma chance de continuar a conversa.",choices:[
+  {text:"Pergunto o nome dele.",affinity:1,next:"nameQuestion"},
+  {text:"Pergunto se ele conhece algum lugar interessante por perto.",affinity:1,next:"placeQuestion"},
+  {text:"Só agradeço novamente e vou embora.",next:"leaveEarly"}
+ ]},
+
+ nameQuestion:{type:"dialogue",speaker:"Você",text:"Ah... qual é o seu nome?",next:"nameAnswer"},
+ nameAnswer:{type:"dialogue",speaker:"???",text:"Childe.",expression:"alegre",next:"nameAnswer2"},
+ nameAnswer2:{type:"dialogue",speaker:"Você",text:"Prazer, Childe.",next:"goodEnd"},
+
+ placeQuestion:{type:"dialogue",speaker:"Você",text:"Você conhece algum lugar legal por aqui?",next:"placeAnswer"},
+ placeAnswer:{type:"dialogue",speaker:"???",text:"Depende do que você considera legal.",expression:"alegre",next:"placeChoice"},
+ placeChoice:{type:"choice",text:"Como você responde?",choices:[
+  {text:"Um lugar tranquilo.",affinity:1,next:"goodEnd"},
+  {text:"Um lugar onde tenha comida.",affinity:2,next:"foodAnswer"},
+  {text:"Qualquer lugar melhor que ficar perdida.",affinity:-1,next:"neutralEnd"}
+ ]},
+ foodAnswer:{type:"dialogue",speaker:"???",text:"Nesse caso, talvez eu conheça um lugar.",expression:"alegre",next:"goodEnd"},
+
+ rude1:{type:"dialogue",speaker:"???",text:"Nossa. Calma.",expression:"franzindo",next:"rude2"},
+ rude2:{type:"dialogue",speaker:"Você",text:"Eu só estou com pressa.",next:"rudeChoice"},
+ rudeChoice:{type:"choice",text:"Você percebe que talvez tenha sido um pouco ríspida.",choices:[
+  {text:"Desculpa. Meu primeiro dia está sendo caótico.",affinity:2,expression:"alegre",next:"apology"},
+  {text:"Enfim... você vai me mostrar ou não?",affinity:-4,expression:"franzindo",next:"leaveRude"},
+  {text:"Esquece. Eu descubro sozinha.",affinity:-2,expression:"franzindo",next:"leaveRude"}
+ ]},
+ apology:{type:"dialogue",speaker:"???",text:"Tudo bem.",expression:"alegre",next:"apology2"},
+ apology2:{type:"dialogue",speaker:"???",text:"A universidade fica naquela direção.",expression:"alegre",next:"apology3"},
+ apology3:{type:"dialogue",speaker:"Você",text:"Obrigada.",next:"neutralEnd"},
+
+ leaveRude:{type:"narration",text:"Childe observa você por alguns segundos, como se decidisse se vale a pena continuar aquela conversa.",next:"leaveRude2"},
+ leaveRude2:{type:"dialogue",speaker:"Childe",text:"Acho que você consegue descobrir sozinha.",expression:"franzindo",next:"leaveRude3"},
+ leaveRude3:{type:"narration",text:"Sem esperar uma resposta, ele guarda o celular no bolso e segue pela rua.",hide:true,next:"afterLeave"},
+ leaveEarly:{type:"narration",text:"Você agradece e segue seu caminho. Quando olha para trás, ele já está indo na direção oposta.",hide:true,next:"afterLeave"},
+ afterLeave:{type:"thought",text:"Ele nem parecia muito interessado em conversar... mas, admito, era bonito.",next:"arrival"},
+
+ goodEnd:{type:"narration",text:"Depois de mais alguns minutos de conversa, vocês seguem caminhos diferentes.",hide:true,next:"goodThought"},
+ goodThought:{type:"thought",text:"Estranho... eu não esperava gostar tanto daquela conversa.",next:"arrival"},
+ neutralEnd:{type:"narration",text:"Depois de se despedirem, cada um segue seu caminho.",hide:true,next:"neutralThought"},
+ neutralThought:{type:"thought",text:"Talvez eu nunca mais veja aquele garoto.",next:"arrival"},
+
+ arrival:{type:"narration",text:"Mais tarde, você finalmente chega à Universidade Aurora.",place:"university",next:"arrival2"},
+ arrival2:{type:"narration",text:"O campus é ainda maior do que você imaginava.",next:"thought3"},
+ thought3:{type:"thought",text:"Certo... agora preciso descobrir onde fica minha sala.",next:"choice2"},
+ choice2:{type:"choice",text:"O que você decide fazer?",choices:[
+  {text:"Vou procurar a secretaria.",next:"secretary"},
+  {text:"Vou tentar descobrir sozinha.",next:"alone"},
+  {text:"Vou observar os estudantes primeiro.",next:"students"}
+ ]},
+ secretary:{type:"narration",text:"Você segue as placas pelo campus em busca da secretaria.",next:"end"},
+ alone:{type:"narration",text:"Você decide explorar o campus por conta própria e tenta memorizar os corredores.",next:"end"},
+ students:{type:"narration",text:"Você observa os estudantes ao redor, tentando entender como funciona aquele lugar.",next:"end"},
+ end:{type:"end",text:"EPISÓDIO 1 — Um encontro inesperado"}
+};
+
+/* MOTOR DO JOGO */
+function showNode(id){
+ const node=story[id];
+ if(!node)return;
+ state.node=id;
+ $("choices").innerHTML="";
+ $("continue").style.display="none";
+
+ if(node.place)changePlace(node.place,true);
+ if(node.hide)hideChilde();
+ if(node.expression)showChilde(node.expression);
+
+ $("dialogue").style.fontStyle=node.type==="thought"?"italic":"normal";
+ $("speaker").textContent="";
+ $("text").textContent="";
+ hideBubble();
+
+ if(node.type==="narration"||node.type==="thought"){
+  $("speaker").textContent=node.type==="thought"?"Pensamento":"";
+  $("text").textContent=node.text;
+  $("continue").style.display="block";
+ }
+ else if(node.type==="dialogue"){
+  if(node.speaker==="Você"){
+   $("speaker").textContent="Você";
+   $("text").textContent=node.text;
+  }else{
+   showChilde(node.expression||state.expression||"alegre");
+   showBubble(node.speaker||"???",node.text);
+  }
+  $("continue").style.display="block";
+ }
+ else if(node.type==="choice"){
+  $("text").textContent=node.text;
+  node.choices.forEach(choice=>{
+   const button=document.createElement("button");
+   button.className="choice";
+   button.textContent=choice.text;
+   button.onclick=e=>{
+    e.stopPropagation();
+    state.affinity+=choice.affinity||0;
+    $("affinity").textContent=state.affinity;
+    if(choice.expression)showChilde(choice.expression);
+    showNode(choice.next);
+   };
+   $("choices").appendChild(button);
+  });
+ }
+ else if(node.type==="end"){
+  hideChilde();
+  $("text").textContent=node.text;
+  const button=document.createElement("button");
+  button.textContent="Recomeçar";
+  button.onclick=reset;
+  $("choices").appendChild(button);
+ }
+}
+
+$("dialogue").onclick=()=>{
+ const node=story[state.node];
+ if(node&&["narration","thought","dialogue"].includes(node.type)&&node.next){
+  showNode(node.next);
+ }
+};
+
+function reset(){
+ state.affinity=0;
+ state.period=getPeriod();
+ state.expression=null;
+ $("affinity").textContent="0";
+ hideChilde();
+ changePlace("cafe");
+ updateClock();
+ showNode("start");
+}
+
+$("startButton").onclick=()=>{
+ $("startScreen").style.display="none";
+ $("game").style.display="block";
+ reset();
+};
+
+$("playerCard").onclick=e=>{
+ e.stopPropagation();
+ $("menu").classList.toggle("visible");
+};
+
+document.addEventListener("click",e=>{
+ if(!$("menu").contains(e.target)&&!$("playerCard").contains(e.target)){
+  $("menu").classList.remove("visible");
+ }
+});
+
+$("musicButton").onclick=()=>{
+ state.music=!state.music;
+ $("musicStatus").textContent=state.music?"Ativada":"Desativada";
+};
+
+setInterval(()=>{
+ if($("game").style.display==="block")updateClock();
+},1000);
+
+document.addEventListener("visibilitychange",()=>{
+ if(!document.hidden&&$("game").style.display==="block")updateClock();
+});
+</script>
+</body>
+</html>
